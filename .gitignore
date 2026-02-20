@@ -100,3 +100,4 @@ lightning_logs/
 wandb/
 *.ckpt
 checkpoints/
+pytorch/
