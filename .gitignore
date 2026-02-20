@@ -1,0 +1,94 @@
+# Build directories
+build/
+cmake-build-*/
+dist/
+*.out
+
+# Object and library files
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+
+# Executable files
+*.exe
+*.bin
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build directories
+build/
+cmake-build-*/
+dist/
+*.out
+
+# Object and library files
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+
+# Executable files
+*.exe
+*.bin
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.Python
+
+# IDE and editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Data directories and large files
+data/
+datasets/
+*.tar.gz
+*.tar
+*.zip
+*.csv
+*.parquet
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.pth
+*.pt
+results/
+benchmarks/
+*.npy
+*.npz
