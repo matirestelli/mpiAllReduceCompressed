@@ -92,3 +92,11 @@ results/
 benchmarks/
 *.npy
 *.npz
+
+# PyTorch
+torch_extensions/
+.torch/
+lightning_logs/
+wandb/
+*.ckpt
+checkpoints/
