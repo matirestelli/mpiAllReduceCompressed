@@ -1,33 +1,34 @@
 #!/bin/bash -l
-#PBS -l select=1:ngpus=4             
-#PBS -l walltime=00:30:00             
-#PBS -l filesystems=home:grand        
-#PBS -q debug-scaling                  
-#PBS -A UIC-HPC               
-#PBS -j n              
-#PBS -o baseline.%j.out               
-#PBS -e baseline.%j.err 
+#PBS -l select=1:ngpus=4
+#PBS -l walltime=00:30:00
+#PBS -l filesystems=home:grand
+#PBS -q debug-scaling
+#PBS -A UIC-HPC
+#PBS -j n
+#PBS -o baseline.%j.out
+#PBS -e baseline.%j.err
 #PBS -N baseline-ddp
-
 cd ${PBS_O_WORKDIR}
-echo "Staged files:"; ls -la *.py *.sh
-
-# Load environment (your working pattern!)
-source polaris_baseline_env.sh
-
-# Your existing MPI/thread vars (safe redundancy)
+echo "=== Job started: $(date) ==="
+echo "=== Node: $(hostname) ==="
+echo "Staged files:"
+ls -la *.py *.sh
+source ${PBS_O_WORKDIR}/envScriptV2.sh
 export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export GOTO_NUM_THREADS=1
+export BLIS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
 export MPICH_GPU_SUPPORT_ENABLED=1
-
-echo "Starting DDP baseline: 4 GPUs" | tee -a baseline.log
-
-# Kill threading (your original)
-export OPENBLAS_NUM_THREADS=1 GOTO_NUM_THREADS=1 BLIS_NUM_THREADS=1 MKL_NUM_THREADS=1 OMP_NUM_THREADS=1
-
-mpirun -np 4 python baselineTraining.py \
-  --models wideresnet resnext convnext \
-  --batch-size 128 \
-  --lr 0.001 \
-  --epochs 5
-
-echo "Done! Check results_4gpus_5epochs.csv + baseline.*.{out,err,log}"
+echo "=== Starting DDP baseline: 4 GPUs ==="
+mpiexec -n 4 -ppn 4 \
+--env LD_PRELOAD="${LD_PRELOAD}" \
+--env LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" \
+--env MPICH_GPU_SUPPORT_ENABLED=1 \
+--env OMP_NUM_THREADS=1 \
+/soft/applications/conda/2025-09-28/mconda3/bin/python baselineTraining.py \
+--models resnet50 resnext101 convnext_base \
+--batch-size 128 \
+--lr 0.001 \
+--epochs 10
+echo "=== Job finished: $(date) ==="
