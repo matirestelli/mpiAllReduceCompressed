@@ -25,7 +25,7 @@ if __name__ == "__main__":
         momentum=0.9,
         weight_decay=5e-4,
         backend="nccl",
-        comm_algorithm=None,  # test the verified ring hook
+        comm_algorithm="ring",  # test the verified ring hook
         cifar_stem=True,
         data_dir="./data",
         checkpoint_dir="./checkpoints",

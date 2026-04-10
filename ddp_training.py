@@ -179,8 +179,14 @@ def train(config: TrainingConfig) -> None:
         os.environ['WORLD_SIZE'] = str(mpi_world_size)
         os.environ.setdefault('MASTER_ADDR', 'localhost')
         os.environ.setdefault('MASTER_PORT', '29500')
-
-    dist.init_process_group(backend=config.backend)
+        _local_rank = mpi_rank % torch.cuda.device_count()
+        torch.cuda.set_device(_local_rank)
+        dist.init_process_group(
+            backend=config.backend,
+            device_id=torch.device(f"cuda:{_local_rank}"),
+        )
+    else:
+        dist.init_process_group(backend=config.backend)
 
     rank = dist.get_rank()
     world_size = dist.get_world_size()
@@ -239,7 +245,7 @@ def train(config: TrainingConfig) -> None:
     model = DDP(
         model,
         device_ids=[local_rank],
-        broadcast_buffers=True,
+        broadcast_buffers=False,
         # find_unused_parameters=False: ResNet50 uses all parameters every forward.
         # Setting True triggers an extra autograd graph traversal every iteration.
         find_unused_parameters=False,
@@ -248,7 +254,7 @@ def train(config: TrainingConfig) -> None:
         # backward pass to force a rebuild.  This also makes bucket-to-hook
         # dispatch permanently stable — no risk of hooks being silently
         # dropped after a rebuild.
-        #static_graph=True,
+        static_graph=True,
     )
 
     if rank == 0:
@@ -385,5 +391,8 @@ def train(config: TrainingConfig) -> None:
     if csv_file is not None:
         csv_file.close()
 
-    dist.barrier()
+    if config.backend == "nccl":
+        dist.barrier(device_ids=[local_rank])
+    else:
+        dist.barrier()
     dist.destroy_process_group()

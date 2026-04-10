@@ -146,6 +146,21 @@ else
     export CMAKE_PREFIX_PATH=$NCCL_DIR:${CMAKE_PREFIX_PATH:-}
 fi
 
+# ── cuDNN ─────────────────────────────────────────────────────
+CUDNN_DIR=$(ls -d /soft/libraries/cudnn/cudnn-cuda12-* 2>/dev/null | sort | tail -1)
+if [ -z "$CUDNN_DIR" ]; then
+    echo "[WARN] System cuDNN not found at /soft/libraries/cudnn — building WITHOUT cuDNN (convolutions will be ~8x slower)"
+    export USE_CUDNN=0
+else
+    echo "[INFO] Using system cuDNN at: $CUDNN_DIR"
+    export USE_CUDNN=1
+    export CUDNN_ROOT=$CUDNN_DIR
+    export CUDNN_INCLUDE_DIR=$CUDNN_DIR/include
+    export CUDNN_LIB_DIR=$CUDNN_DIR/lib
+    export LD_LIBRARY_PATH=$CUDNN_DIR/lib:${LD_LIBRARY_PATH:-}
+    export CMAKE_PREFIX_PATH=$CUDNN_DIR:${CMAKE_PREFIX_PATH:-}
+fi
+
 # ── Build flags ───────────────────────────────────────────────
 export USE_MPI=1
 export USE_CUDA=1
@@ -188,6 +203,8 @@ print(f"CUDA available  : {torch.cuda.is_available()}")
 print(f"CUDA version    : {torch.version.cuda}")
 print(f"MPI available   : {dist.is_mpi_available()}")
 print(f"NCCL available  : {dist.is_nccl_available()}")
+print(f"cuDNN available : {torch.backends.cudnn.is_available()}")
+print(f"cuDNN version   : {torch.backends.cudnn.version() if torch.backends.cudnn.is_available() else 'N/A'}")
 
 ok = True
 if not dist.is_mpi_available():
@@ -196,8 +213,11 @@ if not dist.is_mpi_available():
 if not dist.is_nccl_available():
     print("\n✗ FAILED: NCCL not compiled in")
     ok = False
+if not torch.backends.cudnn.is_available():
+    print("\n✗ FAILED: cuDNN not available — convolutions will be ~8x slower")
+    ok = False
 if ok:
-    print("\n✓ Both MPI and NCCL compiled in!")
+    print("\n✓ MPI, NCCL, and cuDNN all compiled in!")
     print("  MPI test : mpirun -np 4 --ppn 4 -env MPICH_GPU_SUPPORT_ENABLED=1 python test.py")
     print("  NCCL test: torchrun --nproc_per_node=4 test.py")
 else:
