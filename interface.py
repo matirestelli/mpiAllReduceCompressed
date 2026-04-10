@@ -19,17 +19,14 @@ if __name__ == "__main__":
         model_name="resnet50",
         dataset="cifar10",
         num_classes=10,
-        num_epochs=15,
+        num_epochs=50,           # big to see if it trains all
         batch_size=128,
-        learning_rate=0.01,     # safe default for CIFAR + 4-GPU DDP
+        learning_rate=0.01,
         momentum=0.9,
         weight_decay=5e-4,
-        backend="mpi",
-        comm_algorithm=None,    # None = DDP built-in (fastest)
-                                # "default" = our baseline hook
-                                # "ring" = ring allreduce
-                                # "recursive_doubling" = recursive doubling
-        cifar_stem=True,        # adapt ResNet stem for 32x32 images
+        backend="nccl",
+        comm_algorithm=None,  # test the verified ring hook
+        cifar_stem=True,
         data_dir="./data",
         checkpoint_dir="./checkpoints",
         seed=42,

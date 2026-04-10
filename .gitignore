@@ -1,3 +1,6 @@
+# Project-specific files
+CLAUDE.md
+
 # Build directories
 build/
 cmake-build-*/

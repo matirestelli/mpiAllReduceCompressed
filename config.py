@@ -131,11 +131,11 @@ def get_data_loaders(
 
     train_loader = DataLoader(
         train_dataset, batch_size=config.batch_size,
-        sampler=train_sampler, num_workers=0, pin_memory=True,
+        sampler=train_sampler, num_workers=4, pin_memory=True,
     )
     val_loader = DataLoader(
         val_dataset, batch_size=config.batch_size,
-        sampler=val_sampler, num_workers=0, pin_memory=True,
+        sampler=val_sampler, num_workers=4, pin_memory=True,
     )
 
     return train_loader, val_loader, train_sampler

@@ -32,3 +32,7 @@ mpiexec -n 4 -ppn 4 \
 --lr 0.001 \
 --epochs 10
 echo "=== Job finished: $(date) ==="
+
+qsub -I -l select=1:ngpus=4 -l walltime=01:00:00 -l filesystems=home:grand -q debug-scaling -A UIC-HPC
+
+rm -rf ~/.vscode-server/data/User/globalStorage/anthropic.claude-code/
