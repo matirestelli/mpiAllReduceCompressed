@@ -18,7 +18,24 @@ import csv
 from datetime import datetime
 
 from config import TrainingConfig, create_model, get_data_loaders
-from communication_strategy import get_comm_hook
+from communication_strategy import (
+    get_comm_hook,
+    open_first_bucket_compute_range,
+    reset_bucket_compute_markers,
+    set_profiling_step,
+)
+
+ENABLE_NVTX_PROFILING = os.getenv("DDP_PROFILE_NVTX", "0") == "1"
+
+
+def _nvtx_range_push(msg: str) -> None:
+    if ENABLE_NVTX_PROFILING and torch.cuda.is_available():
+        torch.cuda.nvtx.range_push(msg)
+
+
+def _nvtx_range_pop() -> None:
+    if ENABLE_NVTX_PROFILING and torch.cuda.is_available():
+        torch.cuda.nvtx.range_pop()
 
 
 class Tee:
@@ -61,18 +78,39 @@ def train_epoch(
         inputs, targets = inputs.to(device), targets.to(device)
 
         optimizer.zero_grad()
-        outputs = model(inputs)
-        loss = criterion(outputs, targets)
-        loss.backward()
+        set_profiling_step(epoch, batch_idx)
+        _nvtx_range_push(f"iteration epoch={epoch} batch={batch_idx}")
+        try:
+            _nvtx_range_push(f"forward epoch={epoch} batch={batch_idx}")
+            try:
+                outputs = model(inputs)
+                loss = criterion(outputs, targets)
+            finally:
+                _nvtx_range_pop()
 
-        # ── On the last batch of the final epoch, verify real grad sync ──
-        # if verify_last_batch and batch_idx == len(train_loader) - 1:
-        #     if rank == 0:
-        #         print("\n[Verify] Gradient sync check on REAL last training batch "
-        #               "(after backward, before step)...")
-        #     verify_gradient_sync(model, rank, dist.get_world_size())
+            _nvtx_range_push(f"backward epoch={epoch} batch={batch_idx}")
+            try:
+                reset_bucket_compute_markers()
+                open_first_bucket_compute_range()
+                loss.backward()
+            finally:
+                reset_bucket_compute_markers()
+                _nvtx_range_pop()
 
-        optimizer.step()
+            # ── On the last batch of the final epoch, verify real grad sync ──
+            # if verify_last_batch and batch_idx == len(train_loader) - 1:
+            #     if rank == 0:
+            #         print("\n[Verify] Gradient sync check on REAL last training batch "
+            #               "(after backward, before step)...")
+            #     verify_gradient_sync(model, rank, dist.get_world_size())
+
+            _nvtx_range_push(f"optimizer_step epoch={epoch} batch={batch_idx}")
+            try:
+                optimizer.step()
+            finally:
+                _nvtx_range_pop()
+        finally:
+            _nvtx_range_pop()
 
         total_loss += loss.item()
         _, predicted = outputs.max(1)
@@ -327,10 +365,14 @@ def train(config: TrainingConfig) -> None:
             print(f"\n[Epoch {epoch}] Training... (lr={cur_lr:.6f})")
 
         epoch_start = time.time()
-        train_loss, train_acc = train_epoch(
-            model, train_loader, criterion, optimizer, epoch, rank, device,
-            verify_last_batch=(epoch == config.num_epochs),
-        )
+        _nvtx_range_push(f"epoch {epoch}")
+        try:
+            train_loss, train_acc = train_epoch(
+                model, train_loader, criterion, optimizer, epoch, rank, device,
+                verify_last_batch=(epoch == config.num_epochs),
+            )
+        finally:
+            _nvtx_range_pop()
         val_loss, val_acc = validate(model, val_loader, criterion, device)
         epoch_lr = optimizer.param_groups[0]['lr']   # LR used this epoch (before step)
         scheduler.step()
