@@ -19,13 +19,13 @@ if __name__ == "__main__":
         model_name="resnet50",
         dataset="cifar10",
         num_classes=10,
-        num_epochs=50,           # big to see if it trains all
+        num_epochs=10,           # big to see if it trains all
         batch_size=128,
         learning_rate=0.01,
         momentum=0.9,
         weight_decay=5e-4,
-        backend="nccl",
-        comm_algorithm="ring",  # test the verified ring hook
+        backend="nccl", #or mpi
+        comm_algorithm="recursive_doubling_zfp",  # test the verified ring hook
         cifar_stem=True,
         data_dir="./data",
         checkpoint_dir="./checkpoints",

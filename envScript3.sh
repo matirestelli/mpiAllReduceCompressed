@@ -20,20 +20,30 @@ module load conda/2025-09-28
 CUDA_LIB=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/targets/x86_64-linux/lib
 export LD_LIBRARY_PATH="${CUDA_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
-# --- 4. Proxy ---
+# --- 4. ZFP / cuZFP ---
+ZFP_HOME=/eagle/UIC-HPC/mrest/zfp-install
+export ZFP_HOME
+export PATH="$ZFP_HOME/bin:${PATH}"
+export LD_LIBRARY_PATH="$ZFP_HOME/lib64:${LD_LIBRARY_PATH}"
+export CPATH="$ZFP_HOME/include:${CPATH:-}"
+export LIBRARY_PATH="$ZFP_HOME/lib64:${LIBRARY_PATH:-}"
+export CMAKE_PREFIX_PATH="$ZFP_HOME:${CMAKE_PREFIX_PATH:-}"
+
+
+# --- 5. Proxy ---
 export http_proxy=http://proxy.alcf.anl.gov:3128
 export https_proxy=http://proxy.alcf.anl.gov:3128
 export ftp_proxy=http://proxy.alcf.anl.gov:3128
 export no_proxy="localhost,127.0.0.1,*.local,*.alcf.anl.gov,polaris-*,grand.alcf.anl.gov"
 
-# --- 5. Conda ---
+# --- 6. Conda ---
 conda activate base
 # The Eagle PyTorch editable install registers itself via a .pth file in
 # ~/.local/lib/python3.12/site-packages — no PYTHONPATH override needed.
 # If for any reason the wrong torch is picked up, uncomment the line below:
 export PYTHONPATH="/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch:${PYTHONPATH:-}"
 
-# --- 6. CUDA-aware Cray MPICH ---
+# --- 7. CUDA-aware Cray MPICH ---
 export MPICH_GPU_SUPPORT_ENABLED=1   # the actual Polaris enable flag
 export MPICH_GPU_SUPPORT_LEVEL=1
 export CRAY_ACCEL_TARGET=nvidia80
@@ -49,18 +59,18 @@ else
     echo "[WARN] GTL not found at $GTL_LIB — CUDA-aware MPI will not work"
 fi
 
-# --- 7. Threading ---
+# --- 8. Threading ---
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export GOTO_NUM_THREADS=1
 export BLIS_NUM_THREADS=1
 
-# --- 8. Slingshot tuning ---
+# --- 9. Slingshot tuning ---
 export FI_CXI_DEFAULT_CQ_SIZE=131072
 export FI_CXI_RX_MATCH_MODE=software
 
-# --- 9. Sanity check ---
+# --- 10. Sanity check ---
 echo "============================================="
 echo "  Polaris DDP + Eagle PyTorch + Cray MPICH"
 echo "============================================="

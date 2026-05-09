@@ -49,8 +49,8 @@ def _load_extension():
     if zfp_home:
         include_dirs.append(str(Path(zfp_home) / "include"))
         extra_ldflags.extend([
-            f"-L{Path(zfp_home) / 'lib'}",
-            f"-Wl,-rpath,{Path(zfp_home) / 'lib'}",
+            f"-L{Path(zfp_home) / 'lib64'}",
+            f"-Wl,-rpath,{Path(zfp_home) / 'lib64'}",
             "-lzfp",
         ])
     else:
