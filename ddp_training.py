@@ -62,6 +62,7 @@ def train_epoch(
     rank: int,
     device: torch.device,
     verify_last_batch: bool = False,
+    grad_clip=None,
 ) -> tuple:
     """Train for one epoch. Returns (avg_loss, accuracy).
 
@@ -103,6 +104,12 @@ def train_epoch(
             #         print("\n[Verify] Gradient sync check on REAL last training batch "
             #               "(after backward, before step)...")
             #     verify_gradient_sync(model, rank, dist.get_world_size())
+
+            # Gradient clipping — after allreduce (backward complete), before optimizer.
+            # Needed for deep models (ResNeXt101+) where gradient norms at init are
+            # large enough to cause explosion even at warmup LR via momentum accumulation.
+            if grad_clip is not None:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=grad_clip)
 
             _nvtx_range_push(f"optimizer_step epoch={epoch} batch={batch_idx}")
             try:
@@ -278,7 +285,8 @@ def train(config: TrainingConfig) -> None:
 
     # Model — pass cifar_stem explicitly from config
     model = create_model(
-        config.model_name, config.num_classes, cifar_stem=config.cifar_stem
+        config.model_name, config.num_classes,
+        cifar_stem=config.cifar_stem, pretrained=config.pretrained,
     ).to(device)
     model = DDP(
         model,
@@ -334,7 +342,7 @@ def train(config: TrainingConfig) -> None:
     # The scheduler chains warmup → cosine annealing:
     #   Epoch 1..warmup_epochs:  lr ramps 0 → config.learning_rate linearly
     #   Epoch warmup_epochs+1..: cosine annealing to 0
-    warmup_epochs = getattr(config, 'warmup_epochs', min(5, max(1, config.num_epochs // 10)))
+    warmup_epochs = config.warmup_epochs
 
     def lr_lambda(step: int) -> float:
         if step < warmup_epochs:
@@ -370,6 +378,7 @@ def train(config: TrainingConfig) -> None:
             train_loss, train_acc = train_epoch(
                 model, train_loader, criterion, optimizer, epoch, rank, device,
                 verify_last_batch=(epoch == config.num_epochs),
+                grad_clip=config.grad_clip,
             )
         finally:
             _nvtx_range_pop()

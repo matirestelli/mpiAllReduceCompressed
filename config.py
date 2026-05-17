@@ -26,6 +26,14 @@ class TrainingConfig:
     learning_rate: float = 0.01  # NOTE: 0.1 is too high for CIFAR + DDP(4 GPUs)
     momentum: float = 0.9
     weight_decay: float = 5e-4
+    # Universal default: 1.0 is a no-op when gradient norms are already below
+    # 1.0 (typical for shallow models after warmup), and prevents explosion for
+    # deep models (ResNeXt101, ConvNeXt). Set to None to disable explicitly.
+    grad_clip: Optional[float] = 1.0
+    # Warmup epochs: LR ramps linearly from lr×1e-3 to lr over this many epochs,
+    # then cosine-decays. 5 epochs prevents the abrupt 1000× LR jump that causes
+    # NaN in deep models (ResNeXt101) even when grad_clip is active.
+    warmup_epochs: int = 5
 
     # Distributed training
     backend: str = "mpi"         # "nccl" or "mpi"
@@ -33,6 +41,10 @@ class TrainingConfig:
 
     # CIFAR stem adaptation (replace 7x7 conv + maxpool with 3x3 conv)
     cifar_stem: bool = True
+    # Load ImageNet pretrained weights. Required for large models (ResNeXt101,
+    # ConvNeXt) on CIFAR-10 — training 88M+ params from scratch on 50K samples
+    # produces forward-pass float32 overflow that optimizer tuning cannot prevent.
+    pretrained: bool = False
 
     # Paths & misc
     data_dir: str = "./data"
@@ -46,20 +58,25 @@ class TrainingConfig:
         assert self.learning_rate > 0
 
 
-def create_model(model_name: str, num_classes: int, cifar_stem: bool = True) -> nn.Module:
-    """
-    Factory function to create model by name.
-
-    If cifar_stem=True and the model is a ResNet, replaces the ImageNet-oriented
-    7x7-conv + maxpool stem with a 3x3-conv stem that doesn't destroy 32x32
-    spatial resolution.
-    """
+def create_model(
+    model_name: str, num_classes: int,
+    cifar_stem: bool = True, pretrained: bool = False,
+) -> nn.Module:
     builders = {
-        "resnet18":      lambda: models.resnet18(num_classes=num_classes),
-        "resnet50":      lambda: models.resnet50(num_classes=num_classes),
-        "resnet101":     lambda: models.resnet101(num_classes=num_classes),
-        "convnext_tiny": lambda: models.convnext_tiny(num_classes=num_classes),
-        "convnext_small": lambda: models.convnext_small(num_classes=num_classes),
+        "resnet18":         lambda: models.resnet18(num_classes=num_classes),
+        "resnet50":         lambda: models.resnet50(num_classes=num_classes),
+        "resnet101":        lambda: models.resnet101(num_classes=num_classes),
+        "resnext101_32x8d": lambda: models.resnext101_32x8d(num_classes=num_classes),
+        "convnext_tiny":    lambda: models.convnext_tiny(num_classes=num_classes),
+        "convnext_small":   lambda: models.convnext_small(num_classes=num_classes),
+    }
+    pretrained_weights = {
+        "resnet18":         models.ResNet18_Weights.DEFAULT,
+        "resnet50":         models.ResNet50_Weights.DEFAULT,
+        "resnet101":        models.ResNet101_Weights.DEFAULT,
+        "resnext101_32x8d": models.ResNeXt101_32X8D_Weights.DEFAULT,
+        "convnext_tiny":    models.ConvNeXt_Tiny_Weights.DEFAULT,
+        "convnext_small":   models.ConvNeXt_Small_Weights.DEFAULT,
     }
 
     if model_name not in builders:
@@ -67,13 +84,31 @@ def create_model(model_name: str, num_classes: int, cifar_stem: bool = True) -> 
             f"Unknown model: {model_name}. Available: {list(builders.keys())}"
         )
 
-    model = builders[model_name]()
+    if pretrained:
+        # Load full ImageNet weights (1000-class head), then replace the head.
+        # All layers except the classifier are preserved.
+        w = pretrained_weights[model_name]
+        pretrained_builders = {
+            "resnet18":         lambda: models.resnet18(weights=w),
+            "resnet50":         lambda: models.resnet50(weights=w),
+            "resnet101":        lambda: models.resnet101(weights=w),
+            "resnext101_32x8d": lambda: models.resnext101_32x8d(weights=w),
+            "convnext_tiny":    lambda: models.convnext_tiny(weights=w),
+            "convnext_small":   lambda: models.convnext_small(weights=w),
+        }
+        model = pretrained_builders[model_name]()
+        if hasattr(model, 'fc'):                          # ResNet / ResNeXt
+            model.fc = nn.Linear(model.fc.in_features, num_classes)
+        else:                                             # ConvNeXt
+            model.classifier[-1] = nn.Linear(
+                model.classifier[-1].in_features, num_classes
+            )
+    else:
+        model = builders[model_name]()
 
-    # Adapt ResNet stem for 32x32 CIFAR images
-    if cifar_stem and model_name.startswith("resnet"):
-        model.conv1 = nn.Conv2d(
-            3, 64, kernel_size=3, stride=1, padding=1, bias=False
-        )
+    # Adapt ResNet/ResNeXt stem for 32×32 CIFAR images (same for both paths)
+    if cifar_stem and model_name.startswith(("resnet", "resnext")):
+        model.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
         model.maxpool = nn.Identity()
 
     return model
