@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/mrest/mpiAllReduceCompressed/zfp/build-cuda/cmake_install.cmake",
+		"/home/mrest/mpiAllReduceCompressed/zfp/build-cuda/src/cmake_install.cmake",
+		"/home/mrest/mpiAllReduceCompressed/zfp/build-cuda/src/cuda_zfp/cmake_install.cmake",
+		"/home/mrest/mpiAllReduceCompressed/zfp/build-cuda/utils/cmake_install.cmake",
+		"/home/mrest/mpiAllReduceCompressed/zfp/build-cuda/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

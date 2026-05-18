@@ -1,4 +1,5 @@
 #include <torch/extension.h>
+#include <ATen/cuda/CUDAContext.h>
 
 #include <cstdint>
 #include <stdexcept>
@@ -7,6 +8,17 @@
 
 extern "C" {
 #include <zfp.h>
+
+// NEW: custom stream-aware functions added to modified cuZFP.
+size_t cuda_compress_stream(
+    zfp_stream* stream,
+    const zfp_field* field,
+    cudaStream_t cuda_stream);
+
+void cuda_decompress_stream(
+    zfp_stream* stream,
+    zfp_field* field,
+    cudaStream_t cuda_stream);
 }
 
 namespace {
@@ -45,6 +57,11 @@ void setCudaFixedRate(zfp_stream* zfp, const torch::Tensor& tensor, double rate)
   }
 }
 
+cudaStream_t currentCudaStreamFor(const torch::Tensor& tensor) {
+  const int device_index = tensor.get_device();
+  return at::cuda::getCurrentCUDAStream(device_index).stream();
+}
+
 }  // namespace
 
 int64_t max_output_bytes(torch::Tensor input, double rate) {
@@ -77,6 +94,7 @@ int64_t max_output_bytes(torch::Tensor input, double rate) {
   return static_cast<int64_t>(max_bytes);
 }
 
+// Original behavior for existing/naive hooks.
 int64_t compress_into(torch::Tensor input, torch::Tensor output, double rate) {
   validateInputTensor(input, "input");
   validateInputTensor(output, "output");
@@ -118,6 +136,7 @@ int64_t compress_into(torch::Tensor input, torch::Tensor output, double rate) {
   return static_cast<int64_t>(used_bytes);
 }
 
+// Original behavior for existing/naive hooks.
 void decompress_into(torch::Tensor input, int64_t used_bytes, torch::Tensor output, double rate) {
   validateInputTensor(input, "input");
   validateInputTensor(output, "output");
@@ -160,8 +179,105 @@ void decompress_into(torch::Tensor input, int64_t used_bytes, torch::Tensor outp
   zfp_field_free(field);
 }
 
+// NEW: stream-aware behavior for online hooks.
+int64_t compress_into_current_stream(torch::Tensor input, torch::Tensor output, double rate) {
+  validateInputTensor(input, "input");
+  validateInputTensor(output, "output");
+  if (output.scalar_type() != torch::kUInt8) {
+    throw std::runtime_error("output must be a uint8 CUDA tensor");
+  }
+
+  zfp_field* field = zfp_field_1d(input.data_ptr(), zfpTypeFor(input), input.numel());
+  if (!field) {
+    throw std::runtime_error("zfp_field_1d failed");
+  }
+
+  bitstream* bs = stream_open(output.data_ptr(), output.numel());
+  if (!bs) {
+    zfp_field_free(field);
+    throw std::runtime_error("stream_open failed");
+  }
+
+  zfp_stream* zfp = zfp_stream_open(bs);
+  if (!zfp) {
+    stream_close(bs);
+    zfp_field_free(field);
+    throw std::runtime_error("zfp_stream_open failed");
+  }
+
+  setCudaFixedRate(zfp, input, rate);
+  zfp_stream_rewind(zfp);
+
+  cudaStream_t cuda_stream = currentCudaStreamFor(input);
+  size_t used_bytes = cuda_compress_stream(zfp, field, cuda_stream);
+
+  if (used_bytes == 0) {
+    zfp_stream_close(zfp);
+    stream_close(bs);
+    zfp_field_free(field);
+    throw std::runtime_error("cuda_compress_stream failed");
+  }
+
+  zfp_stream_close(zfp);
+  stream_close(bs);
+  zfp_field_free(field);
+  return static_cast<int64_t>(used_bytes);
+}
+
+// NEW: stream-aware behavior for online hooks.
+void decompress_into_current_stream(
+    torch::Tensor input,
+    int64_t used_bytes,
+    torch::Tensor output,
+    double rate) {
+  validateInputTensor(input, "input");
+  validateInputTensor(output, "output");
+  if (input.scalar_type() != torch::kUInt8) {
+    throw std::runtime_error("input must be a uint8 CUDA tensor");
+  }
+  if (used_bytes < 0 || used_bytes > input.numel()) {
+    throw std::runtime_error("used_bytes exceeds compressed buffer capacity");
+  }
+
+  zfp_field* field = zfp_field_1d(output.data_ptr(), zfpTypeFor(output), output.numel());
+  if (!field) {
+    throw std::runtime_error("zfp_field_1d failed");
+  }
+
+  bitstream* bs = stream_open(input.data_ptr(), static_cast<size_t>(used_bytes));
+  if (!bs) {
+    zfp_field_free(field);
+    throw std::runtime_error("stream_open failed");
+  }
+
+  zfp_stream* zfp = zfp_stream_open(bs);
+  if (!zfp) {
+    stream_close(bs);
+    zfp_field_free(field);
+    throw std::runtime_error("zfp_stream_open failed");
+  }
+
+  setCudaFixedRate(zfp, output, rate);
+  zfp_stream_rewind(zfp);
+
+  cudaStream_t cuda_stream = currentCudaStreamFor(output);
+  cuda_decompress_stream(zfp, field, cuda_stream);
+
+  zfp_stream_close(zfp);
+  stream_close(bs);
+  zfp_field_free(field);
+}
+
 PYBIND11_MODULE(TORCH_EXTENSION_NAME, m) {
   m.def("max_output_bytes", &max_output_bytes, "ZFP CUDA max compressed bytes");
-  m.def("compress_into", &compress_into, "ZFP CUDA compress into preallocated buffer");
-  m.def("decompress_into", &decompress_into, "ZFP CUDA decompress into preallocated buffer");
+
+  m.def("compress_into", &compress_into,
+        "ZFP CUDA compress into preallocated buffer using original cuZFP path");
+  m.def("decompress_into", &decompress_into,
+        "ZFP CUDA decompress into preallocated buffer using original cuZFP path");
+
+  m.def("compress_into_current_stream", &compress_into_current_stream,
+        "ZFP CUDA compress into preallocated buffer on current PyTorch CUDA stream");
+  m.def("decompress_into_current_stream", &decompress_into_current_stream,
+        "ZFP CUDA decompress into preallocated buffer on current PyTorch CUDA stream");
 }

@@ -11,7 +11,7 @@
 cd ${PBS_O_WORKDIR}
 
 # Override with: ALGO=recursive_doubling_zfp qsub trainJob_toy.sh
-ALGO=${ALGO:-recursive_doubling_zfp}
+ALGO=${ALGO:-ring_zfp_online_coll}
 
 echo "=== Job started: $(date) ==="
 echo "=== Node: $(hostname) ==="

@@ -21,14 +21,15 @@ CUDA_LIB=/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/cuda/12.9/targets/x86_64-linux/li
 export LD_LIBRARY_PATH="${CUDA_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 # --- 4. ZFP / cuZFP ---
-ZFP_HOME=/eagle/UIC-HPC/mrest/zfp-install
+# Use the modified stream-aware ZFP built inside this project directory.
+PROJECT_ROOT="${PBS_O_WORKDIR:-$(pwd)}"
+ZFP_HOME="${PROJECT_ROOT}/zfp-install"
 export ZFP_HOME
 export PATH="$ZFP_HOME/bin:${PATH}"
 export LD_LIBRARY_PATH="$ZFP_HOME/lib64:${LD_LIBRARY_PATH}"
 export CPATH="$ZFP_HOME/include:${CPATH:-}"
 export LIBRARY_PATH="$ZFP_HOME/lib64:${LIBRARY_PATH:-}"
 export CMAKE_PREFIX_PATH="$ZFP_HOME:${CMAKE_PREFIX_PATH:-}"
-
 
 # --- 5. Proxy ---
 export http_proxy=http://proxy.alcf.anl.gov:3128
@@ -38,13 +39,10 @@ export no_proxy="localhost,127.0.0.1,*.local,*.alcf.anl.gov,polaris-*,grand.alcf
 
 # --- 6. Conda ---
 conda activate base
-# The Eagle PyTorch editable install registers itself via a .pth file in
-# ~/.local/lib/python3.12/site-packages — no PYTHONPATH override needed.
-# If for any reason the wrong torch is picked up, uncomment the line below:
 export PYTHONPATH="/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch:${PYTHONPATH:-}"
 
 # --- 7. CUDA-aware Cray MPICH ---
-export MPICH_GPU_SUPPORT_ENABLED=1   # the actual Polaris enable flag
+export MPICH_GPU_SUPPORT_ENABLED=1
 export MPICH_GPU_SUPPORT_LEVEL=1
 export CRAY_ACCEL_TARGET=nvidia80
 
@@ -75,6 +73,7 @@ echo "============================================="
 echo "  Polaris DDP + Eagle PyTorch + Cray MPICH"
 echo "============================================="
 echo "Node              : $(hostname)"
+echo "ZFP_HOME          : $ZFP_HOME"
 echo "GTL               : ${LD_PRELOAD:-<not set>}"
 echo "MPICH_GPU_SUPPORT : $MPICH_GPU_SUPPORT_ENABLED"
 echo ""

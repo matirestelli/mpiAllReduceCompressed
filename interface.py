@@ -18,9 +18,9 @@ if __name__ == "__main__":
     config = TrainingConfig(
         # ── Model (uncomment one, comment the rest) ──────────────────────────
         # model_name="resnet18",           # ~11M params — fastest, lightweight baseline
-        # model_name="resnet50",           # ~25M params — standard CIFAR-10 benchmark
+        model_name="resnet50",           # ~25M params — standard CIFAR-10 benchmark
         # model_name="resnet101",          # ~44M params — deeper ResNet
-        model_name="resnext101_32x8d",     # ~88M params — grouped convs (32 groups × 8 width)
+        # model_name="resnext101_32x8d",     # ~88M params — grouped convs (32 groups × 8 width)
         # model_name="convnext_tiny",      # ~28M params — modern architecture, no stem fix needed
         # model_name="convnext_small",     # ~50M params — larger ConvNeXt variant
         dataset="cifar10",
@@ -36,9 +36,9 @@ if __name__ == "__main__":
         learning_rate=0.01,
         momentum=0.9,
         weight_decay=5e-4,
-        backend="nccl", # mpi or nccl
+        backend="mpi", # mpi or nccl
         # ── Communication algorithm (uncomment one, comment the rest) ────────
-        comm_algorithm="recursive_doubling_zfp",                        # DDP built-in allreduce (no hook registered)
+        # comm_algorithm="recursive_doubling_zfp",                        # DDP built-in allreduce (no hook registered)
         # comm_algorithm="default",                   # built-in wrapped with NVTX timing only
         # comm_algorithm="ring",                      # custom ring: reduce-scatter + allgather via P2P
         # comm_algorithm="recursive_doubling",        # MPICH recursive doubling, handles non-power-of-2
@@ -46,11 +46,12 @@ if __name__ == "__main__":
         # comm_algorithm="ring_zfp_naive",            # alias for ring_zfp
         # comm_algorithm="recursive_doubling_zfp",     # recursive doubling + ZFP compression
         # comm_algorithm="recursive_doubling_zfp_naive",  # alias for recursive_doubling_zfp
+        comm_algorithm="ring_zfp_online_coll",     # Algorithm 1: ring + ZFP collective-level online compression
         # grad_clip defaults to 1.0 in TrainingConfig (model-agnostic universal
         # default). Override here only to disable (None) or tune the threshold.
         # pretrained=True required for ResNeXt101/ConvNeXt on CIFAR-10 — see
         # TRAINING_STABILITY.md for why training from scratch is not viable.
-        pretrained=True,
+        # pretrained=True,
         cifar_stem=True,
         data_dir="./data",
         checkpoint_dir="./checkpoints",

@@ -1,0 +1,1 @@
+/usr/bin/g++-14 -O3 -DNDEBUG -L/soft/applications/conda/2025-09-28/mconda3/lib -Wl,--enable-new-dtags,-rpath,/soft/applications/conda/2025-09-28/mconda3/lib -Wl,--dependency-file=CMakeFiles/testzfp.dir/link.d CMakeFiles/testzfp.dir/testzfp.cpp.o -o ../bin/testzfp  -Wl,-rpath,/home/mrest/mpiAllReduceCompressed/zfp/build-cuda/lib64 ../lib64/libzfp.so.1.0.1
