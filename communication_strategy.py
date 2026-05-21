@@ -84,6 +84,9 @@ import ctypes.util
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
+import time
+from concurrent.futures import ThreadPoolExecutor
+
 import os
 import threading
 
@@ -143,6 +146,38 @@ if ENABLE_NVTX_PROFILING:
             _NVTX_RANGE_START = None
             _NVTX_RANGE_END = None
 
+# profile variables for measuring communication time, so time spend in the hooks
+ENABLE_HOOK_TIMING = os.getenv("DDP_HOOK_TIMING", "0") == "1"
+HOOK_TIMING_RANK0_ONLY = os.getenv("DDP_HOOK_TIMING_RANK0_ONLY", "1") == "1"
+_HOOK_TIMING_STATS = {}
+_HOOK_TAIL_STATS = {}
+_HOOK_TIMING_LOCK = threading.Lock()
+
+
+def _record_hook_work_timing(label: str, work_ms: float) -> None:
+    if not ENABLE_HOOK_TIMING:
+        return
+    if HOOK_TIMING_RANK0_ONLY and dist.is_available() and dist.is_initialized() and dist.get_rank() != 0:
+        return
+
+    try:
+        with _HOOK_TIMING_LOCK:
+            _HOOK_TIMING_STATS.setdefault(label, []).append(work_ms)
+    except Exception as exc:
+        print(f"[HOOK_TIMING] failed to record timing: {exc}", flush=True)
+
+def _record_hook_tail_timing(label: str, tail_ms: float) -> None:
+    if not ENABLE_HOOK_TIMING:
+        return
+    if HOOK_TIMING_RANK0_ONLY and dist.is_available() and dist.is_initialized() and dist.get_rank() != 0:
+        return
+
+    try:
+        with _HOOK_TIMING_LOCK:
+            _HOOK_TAIL_STATS.setdefault(label, []).append(tail_ms)
+    except Exception as exc:
+        print(f"[HOOK_TIMING] failed to record tail timing: {exc}", flush=True)
+
 # Current training step — updated by ddp_training.py each batch via set_profiling_step().
 _current_epoch: int = 0
 _current_batch: int = 0
@@ -200,36 +235,96 @@ def open_first_bucket_compute_range() -> None:
     if ENABLE_NVTX_PROFILING:
         _nvtx_range_push("compute:B=0")
         _compute_range_open = True
+        
+# helper to summarize epoch time to not print each hook time each time
+def summarize_hook_timing(epoch: int) -> None:
+    if not ENABLE_HOOK_TIMING:
+        return
+    if dist.is_available() and dist.is_initialized() and dist.get_rank() != 0:
+        return
 
+    acquired = _HOOK_TIMING_LOCK.acquire(blocking=False)
+    if not acquired:
+        print(
+            f"[HOOK_TIMING_SUMMARY] epoch={epoch} skipped: timing lock busy",
+            flush=True,
+        )
+        return
+
+    try:
+        work_items = [
+            (label, list(values))
+            for label, values in _HOOK_TIMING_STATS.items()
+            if values
+        ]
+        tail_items = [
+            (label, list(values))
+            for label, values in _HOOK_TAIL_STATS.items()
+            if values
+        ]
+        _HOOK_TIMING_STATS.clear()
+        _HOOK_TAIL_STATS.clear()
+    finally:
+        _HOOK_TIMING_LOCK.release()
+
+    if not work_items and not tail_items:
+        print(f"[HOOK_TIMING_SUMMARY] epoch={epoch} no hook timing samples", flush=True)
+        return
+
+    print(f"\n[HOOK_TIMING_SUMMARY] epoch={epoch}", flush=True)
+
+    for label, values in sorted(work_items):
+        work_total = sum(values)
+        work_mean = work_total / len(values)
+
+        print(
+            f"[HOOK_WORK_SUMMARY] label={label} "
+            f"calls={len(values)} "
+            f"work_total_ms={work_total:.3f} "
+            f"work_mean_ms={work_mean:.3f} "
+            f"work_min_ms={min(values):.3f} "
+            f"work_max_ms={max(values):.3f}",
+            flush=True,
+        )
+
+    for label, values in sorted(tail_items):
+        tail_total = sum(values)
+        tail_mean = tail_total / len(values)
+
+        print(
+            f"[HOOK_TAIL_SUMMARY] label={label} "
+            f"steps={len(values)} "
+            f"tail_total_ms={tail_total:.3f} "
+            f"tail_mean_ms={tail_mean:.3f} "
+            f"tail_min_ms={min(values):.3f} "
+            f"tail_max_ms={max(values):.3f}",
+            flush=True,
+        )
 
 def _profiled_hook(label: str, hook_fn, state, bucket: dist.GradBucket):
     global _bucket_fire_seq, _known_num_buckets, _compute_range_open
     tensor = bucket.buffer()
     numel = tensor.numel()
     epoch, batch = _current_epoch, _current_batch
+    rank = dist.get_rank()
+    hook_dispatch_time = time.perf_counter()
 
-    # Use the actual hook firing order inside this backward.  This avoids relying
-    # on bucket.index() in PyTorch builds where it always reports 0, and avoids
-    # collisions when two buckets have the same numel.
     b_idx = _bucket_fire_seq
     _bucket_fire_seq += 1
     is_last_bucket = False
     bucket_is_last = getattr(bucket, "is_last", None)
     if callable(bucket_is_last):
         is_last_bucket = bool(bucket_is_last())
-    elif _known_num_buckets is not None:
-        is_last_bucket = b_idx == _known_num_buckets - 1
+
     if is_last_bucket:
         _known_num_buckets = b_idx + 1
+    elif _known_num_buckets is not None:
+        is_last_bucket = b_idx == _known_num_buckets - 1
 
-    # Close the compute:B=k range opened at backward start or after B=k-1's hook.
-    # Runs on the main thread → appears in the same NVTX row as "backward".
     if _compute_range_open:
         _nvtx_range_pop()
         _compute_range_open = False
 
-    # hook_called: microseconds wide for async hooks (just dispatches the op);
-    # spans the full comm for synchronous hooks (ring, recursive_doubling).
     _nvtx_range_push(
         f"hook_called:{label} B={b_idx} epoch={epoch} batch={batch} numel={numel}"
     )
@@ -238,22 +333,21 @@ def _profiled_hook(label: str, hook_fn, state, bucket: dist.GradBucket):
     finally:
         _nvtx_range_pop()
 
-    # Open compute:B=k+1 for the next bucket.
-    # Skip the push after the last bucket; otherwise the range is closed by the
-    # next bucket hook, measuring bucket-to-bucket backward computation.
     if ENABLE_NVTX_PROFILING and not is_last_bucket:
         _nvtx_range_push(f"compute:B={b_idx + 1}")
         _compute_range_open = True
 
-    # comm_done fires in finalize_backward() when DDP awaits the future.
-    # Gap between hook_called end and comm_done start = comm overlapped with
-    # gradient computation (free overlap). Zero gap for synchronous hooks.
     def _on_done(f):
         _nvtx_range_push(
             f"comm_done:{label} B={b_idx} epoch={epoch} batch={batch}"
         )
         result = f.value()
         _nvtx_range_pop()
+        
+        if is_last_bucket:
+            tail_ms = (time.perf_counter() - hook_dispatch_time) * 1000.0
+            _record_hook_tail_timing(label, tail_ms)
+            
         return result
 
     return fut.then(_on_done)
@@ -268,6 +362,48 @@ def _next_tag() -> int:
     t = _tag_counter
     _tag_counter += 1
     return t
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Background worker for async ring hook ─────────────────────────────────────
+# One worker preserves the same P2P/tag order as the synchronous ring hook while
+# allowing DDP's main/autograd thread to continue after returning the Future.
+_COMM_HOOK_EXECUTOR = ThreadPoolExecutor(
+    max_workers=1,
+    thread_name_prefix="ddp-comm-hook",
+)
+
+def _submit_async_hook_work(
+    label: str,
+    tensor: torch.Tensor,
+    work_fn,
+) -> torch.futures.Future[torch.Tensor]:
+    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
+    device_index = tensor.device.index if tensor.is_cuda else None
+
+    def _worker() -> None:
+        try:
+            if device_index is not None:
+                torch.cuda.set_device(device_index)
+
+            work_start = time.perf_counter()
+
+            _nvtx_range_push(f"comm_work:{label}")
+            try:
+                work_fn()
+                _cuda_sync(tensor)
+            finally:
+                _nvtx_range_pop()
+
+            work_ms = (time.perf_counter() - work_start) * 1000.0
+            _record_hook_work_timing(label, work_ms)
+
+            fut.set_result(tensor)
+
+        except BaseException as exc:
+            fut.set_exception(exc)
+
+    _COMM_HOOK_EXECUTOR.submit(_worker)
+    return fut
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -602,50 +738,12 @@ def _ring_allreduce_hook(
         f"comm_hook:ring rank={rank} bucket={bucket_index} call={call_n} numel={numel}"
     )
     try:
+        work_start = time.perf_counter()
         _ring_allreduce_sum(tensor, bstate, log=do_full_log, call_n=call_n)
+        work_ms = (time.perf_counter() - work_start) * 1000.0
+        _record_hook_work_timing("mpi:ring", work_ms)
     finally:
         _nvtx_range_pop()
-
-    # ── Post-allreduce verification ──────────────────────────────────────
-    # (disabled — re-enable by setting FULL_LOG_CALLS / LIGHT_LOG_CALLS > 0)
-    # if do_full_log or do_light_log:
-    #     ref = pre.clone()
-    #     dist.all_reduce(ref, op=dist.ReduceOp.SUM)
-    #     ref.div_(world_size)
-    #     max_err = (tensor - ref).abs().max().item()
-    #     rel_err = max_err / (ref.norm().item() + 1e-12)
-    #     match   = "✓ MATCH" if max_err < 1e-4 else "✗ MISMATCH"
-
-    # if do_full_log:
-    #     print(f"  [R{rank}|B{bstate.bucket_id}|C{call_n}] global_tag_after={_tag_counter}", flush=True)
-    #     print(f"  [VERIFY | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-    #           f"max_abs_err={max_err:.3e}  rel={rel_err:.3e}  {match}", flush=True)
-    #     if max_err >= 1e-4:
-    #         err_pos = (tensor - ref).abs().argmax().item()
-    #         print(f"  [R{rank}] ring     : {_fmt(tensor.detach())} worst_err_pos={err_pos}", flush=True)
-    #         print(f"  [R{rank}] allreduce: {_fmt(ref.detach())}", flush=True)
-
-    # elif do_light_log:
-    #     in_norm  = pre.norm().item()
-    #     out_norm = tensor.norm().item()
-    #     is_nan   = "NaN!" if not torch.isfinite(tensor).all() else ""
-    #     print(f"  [LIGHT | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-    #           f"in_norm={in_norm:.4e} out_norm={out_norm:.4e} "
-    #           f"sample={_fmt(tensor)} {match} {is_nan}", flush=True)
-    #     if max_err >= 1e-4:
-    #         print(f"  [LIGHT | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-    #               f"*** MISMATCH *** max_abs_err={max_err:.3e}", flush=True)
-
-    # Return a pre-resolved future containing tensor (= bucket.buffer()).
-    # DDP's finalize_backward calls future_work->wait() then parseHookResult
-    # which calls our .then() and gets tensor back. populate_bucket_views_out
-    # then creates views into tensor — which already holds the ring result.
-    #
-    # Belt-and-suspenders: ensure ALL CUDA work on tensor is complete before
-    # DDP is allowed to consume it.  _ring_allreduce_sum already syncs at
-    # the end, but the verification path (clone, all_reduce, abs, max, norm)
-    # also launches CUDA kernels on tensor-derived data.  This final sync
-    # makes the future contract watertight regardless of code path.
     _cuda_sync(tensor)
     fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
     fut.set_result(tensor)
@@ -655,6 +753,79 @@ def _ring_allreduce_hook(
 # Hook aliases: plain ring allreduce with no compression.
 nccl_ring_allreduce_hook = _ring_allreduce_hook
 mpi_ring_allreduce_hook  = _ring_allreduce_hook
+
+#ring async hook try 1 
+
+def _ring_allreduce_async_hook(
+    state: RingAllreduceState,
+    bucket: dist.GradBucket,
+) -> torch.futures.Future[torch.Tensor]:
+    """
+    Async wrapper for the plain ring allreduce.
+
+    The hook immediately returns an unresolved Future. A single background
+    worker thread runs the existing ring implementation and resolves the Future
+    when communication is complete.
+    """
+    tensor = bucket.buffer()
+    world_size = dist.get_world_size()
+    rank = dist.get_rank()
+    numel = tensor.numel()
+    bucket_index = bucket.index()
+
+    bstate = state.get_or_init(bucket_index, tensor, world_size)
+    bstate.call_count += 1
+    call_n = bstate.call_count
+
+    do_full_log = (FULL_LOG_CALLS > 0 and call_n <= FULL_LOG_CALLS)
+
+    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
+    device_index = tensor.device.index if tensor.is_cuda else None
+
+    if do_full_log:
+        print(
+            f"\n[RING_ASYNC | R{rank}|B{bstate.bucket_id}|C{call_n}] "
+            f"numel={numel} submit_thread={threading.get_ident()} "
+            f"global_tag_before={_tag_counter}",
+            flush=True,
+        )
+
+    def _worker() -> None:
+        try:
+            if device_index is not None:
+                torch.cuda.set_device(device_index)
+
+            if do_full_log:
+                print(
+                    f"[RING_ASYNC | R{rank}|B{bstate.bucket_id}|C{call_n}] "
+                    f"worker_thread={threading.get_ident()}",
+                    flush=True,
+                )
+
+            work_start = time.perf_counter()
+
+            _ring_allreduce_sum(
+                tensor,
+                bstate,
+                log=do_full_log,
+                call_n=call_n,
+            )
+
+            _cuda_sync(tensor)
+
+            work_ms = (time.perf_counter() - work_start) * 1000.0
+            _record_hook_work_timing("mpi:ring_async", work_ms)
+
+            fut.set_result(tensor)
+
+        except BaseException as exc:
+            fut.set_exception(exc)
+
+    _RING_ASYNC_EXECUTOR.submit(_worker)
+    return fut
+
+#aliases
+mpi_ring_async_allreduce_hook = _ring_allreduce_async_hook
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1767,11 +1938,429 @@ def _ring_allreduce_zfp_online_coll_hook(
     fut.set_result(tensor)
     return fut
 
+
+@dataclass
+class ZfpRecursiveDoublingOnlineBucketState:
+    """Persistent buffers for recursive-doubling collective-level online ZFP."""
+    flat: Optional[torch.Tensor] = None
+    recv_decomp: List[torch.Tensor] = field(default_factory=list)
+    send_comp: List[torch.Tensor] = field(default_factory=list)
+    recv_comp: List[torch.Tensor] = field(default_factory=list)
+    streams: List[torch.cuda.Stream] = field(default_factory=list)
+    comp_bytes: int = 0
+    bucket_id: int = 0
+    call_count: int = 0
+
+    def initialize(self, tensor: torch.Tensor, world_size: int, bucket_id: int) -> None:
+        _require_zfp_cuda()
+        cfg = ZfpCompressionConfig()
+
+        numel = tensor.numel()
+        self.flat = torch.empty(numel, dtype=tensor.dtype, device=tensor.device)
+
+        pof2 = 1
+        while pof2 * 2 <= world_size:
+            pof2 *= 2
+
+        num_steps = int(math.log2(pof2)) if pof2 > 1 else 0
+        # +2 gives room for peel/finalize plus recursive-doubling steps.
+        num_slots = max(num_steps + 2, 1)
+
+        self.comp_bytes = int(_zfp_max_output_bytes(self.flat, cfg.rate))
+
+        self.recv_decomp = [
+            torch.empty_like(self.flat)
+            for _ in range(num_slots)
+        ]
+        self.send_comp = [
+            torch.empty(self.comp_bytes, dtype=torch.uint8, device=tensor.device)
+            for _ in range(num_slots)
+        ]
+        self.recv_comp = [
+            torch.empty(self.comp_bytes, dtype=torch.uint8, device=tensor.device)
+            for _ in range(num_slots)
+        ]
+        self.streams = [
+            torch.cuda.Stream(device=tensor.device)
+            for _ in range(world_size)
+        ]
+
+        self.bucket_id = bucket_id
+
+
+@dataclass
+class ZfpRecursiveDoublingOnlineAllreduceState:
+    buckets: Dict[int, ZfpRecursiveDoublingOnlineBucketState] = field(default_factory=dict)
+
+    def get_or_init(
+        self,
+        bucket_index: int,
+        tensor: torch.Tensor,
+        world_size: int,
+    ) -> ZfpRecursiveDoublingOnlineBucketState:
+        bs = self.buckets.get(bucket_index)
+        if bs is None or bs.flat is None or bs.flat.numel() != tensor.numel():
+            bs = ZfpRecursiveDoublingOnlineBucketState()
+            bs.initialize(tensor, world_size, bucket_index)
+            self.buckets[bucket_index] = bs
+        return bs
+    
+def _recursive_doubling_zfp_online_coll_sum(
+    tensor: torch.Tensor,
+    bstate: ZfpRecursiveDoublingOnlineBucketState,
+    log: bool,
+    call_n: int = 0,
+) -> None:
+    """
+    Algorithm 2: Collective-level Online Compression for Recursive-Doubling MPI Allreduce.
+
+    This is the MPI-style version. It uses separate dist.irecv/dist.isend calls
+    so the receive can be posted while ZFP compression runs on a non-default
+    CUDA stream.
+
+    The reduction kernel is launched on the same stream as decompression.
+    Sends are waited after the recursive-doubling loop, matching line 39.
+    """
+    _require_zfp_cuda()
+    cfg = ZfpCompressionConfig()
+
+    rank = dist.get_rank()
+    world_size = dist.get_world_size()
+
+    if world_size == 1:
+        return
+
+    assert bstate.flat is not None
+    assert bstate.streams
+    assert bstate.send_comp
+    assert bstate.recv_comp
+    assert bstate.recv_decomp
+
+    work = bstate.flat
+    work.copy_(tensor.flatten())
+
+    current_stream = torch.cuda.current_stream(device=tensor.device)
+    for s in bstate.streams:
+        s.wait_stream(current_stream)
+
+    B = bstate.comp_bytes
+    send_reqs = []
+
+    # Lines 1-2.
+    pof2 = 1
+    while pof2 * 2 <= world_size:
+        pof2 *= 2
+    rem = world_size - pof2
+
+    # Line 3.
+    newrank = 0
+
+    # =========================================================================
+    # Lines 4-13: non-power-of-two peel.
+    # =========================================================================
+    peel_tag = _next_tag()
+
+    if rank < 2 * rem:
+        if rank % 2 == 0:
+            # Lines 5-7:
+            # Even rank compresses and sends to rank + 1, then drops out.
+            dst = rank + 1
+            stream = bstate.streams[dst]
+
+            with torch.cuda.stream(stream):
+                used = _zfp_compress_into_current_stream(
+                    work,
+                    bstate.send_comp[0],
+                    cfg.rate,
+                )
+
+            if log and used != B:
+                print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
+                      f"peel send used={used} expected={B}",
+                      flush=True)
+
+            stream.synchronize()
+            send_req = dist.isend(
+                bstate.send_comp[0][:B],
+                dst=dst,
+                tag=peel_tag,
+            )
+            send_reqs.append(send_req)
+            newrank = -1
+
+        else:
+            # Lines 8-11:
+            # Odd rank receives compressed data from rank - 1, decompresses,
+            # reduces with its own data, and enters the pof2 communicator.
+            src = rank - 1
+            stream = bstate.streams[src]
+
+            recv_req = dist.irecv(
+                bstate.recv_comp[0][:B],
+                src=src,
+                tag=peel_tag,
+            )
+            recv_req.wait()
+
+            with torch.cuda.stream(stream):
+                _zfp_decompress_into_current_stream(
+                    bstate.recv_comp[0],
+                    B,
+                    bstate.recv_decomp[0],
+                    cfg.rate,
+                )
+                work.add_(bstate.recv_decomp[0])
+
+            stream.synchronize()
+            newrank = rank // 2
+    else:
+        # Lines 12-13.
+        newrank = rank - rem
+
+    # =========================================================================
+    # Lines 14-39: recursive-doubling over the pof2 active ranks.
+    # =========================================================================
+    last_reduce_stream = None
+
+    if newrank != -1:
+        # Line 15.
+        mask = 0x1
+        step = 0
+
+        # Line 16.
+        while mask < pof2:
+            # Lines 17-18.
+            newdst = newrank ^ mask
+            dst = (newdst * 2 + 1) if newdst < rem else (newdst + rem)
+
+            tag = _next_tag()
+            slot = step + 1
+
+            # Lines 21-23:
+            # Choose the stream for the following reduction. If there is a next
+            # recursive-doubling step, reduce on that next step's stream so the
+            # next compression is naturally ordered after reduction. On the last
+            # step, use the current peer's stream.
+            mask2 = mask << 1
+            if mask2 < pof2:
+                newdst2 = newrank ^ mask2
+                dst2 = (newdst2 * 2 + 1) if newdst2 < rem else (newdst2 + rem)
+            else:
+                dst2 = dst
+
+            send_stream = bstate.streams[dst]
+            reduce_stream = bstate.streams[dst2]
+            last_reduce_stream = reduce_stream
+
+            if mask == 0x1:
+                # Lines 19-20:
+                # First active step compresses the current buffer S/R.
+                with torch.cuda.stream(send_stream):
+                    used = _zfp_compress_into_current_stream(
+                        work,
+                        bstate.send_comp[slot],
+                        cfg.rate,
+                    )
+
+                # Line 24:
+                # Post receive while compression is in flight.
+                recv_req = dist.irecv(
+                    bstate.recv_comp[slot][:B],
+                    src=dst,
+                    tag=tag,
+                )
+
+                # Lines 29-30.
+                send_stream.synchronize()
+
+            else:
+                # Line 24:
+                # Post receive first so receive can overlap with compression.
+                recv_req = dist.irecv(
+                    bstate.recv_comp[slot][:B],
+                    src=dst,
+                    tag=tag,
+                )
+
+                # Lines 25-28:
+                # Wait for the stream that produced the current R, then compress.
+                send_stream.synchronize()
+                with torch.cuda.stream(send_stream):
+                    used = _zfp_compress_into_current_stream(
+                        work,
+                        bstate.send_comp[slot],
+                        cfg.rate,
+                    )
+                send_stream.synchronize()
+
+            if log and used != B:
+                print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
+                      f"main step={step} mask={mask} dst={dst} used={used} expected={B}",
+                      flush=True)
+
+            # Line 31.
+            send_req = dist.isend(
+                bstate.send_comp[slot][:B],
+                dst=dst,
+                tag=tag,
+            )
+            send_reqs.append(send_req)
+
+            # Line 32.
+            recv_req.wait()
+
+            # Lines 33-34:
+            # Decompress and reduce on the same stream.
+            with torch.cuda.stream(reduce_stream):
+                _zfp_decompress_into_current_stream(
+                    bstate.recv_comp[slot],
+                    B,
+                    bstate.recv_decomp[slot],
+                    cfg.rate,
+                )
+                work.add_(bstate.recv_decomp[slot])
+
+            if log:
+                print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
+                      f"main step={step} mask={mask} dst={dst} dst2={dst2} tag={tag}",
+                      flush=True)
+
+            # Line 35.
+            mask <<= 1
+            step += 1
+
+        # Lines 36-38:
+        # Wait for the last reduction kernel.
+        if last_reduce_stream is not None:
+            last_reduce_stream.synchronize()
+
+        # Line 39.
+        for req in send_reqs:
+            req.wait()
+        send_reqs = []
+
+    else:
+        # Inactive peeled even ranks still consume the same main-loop tags so
+        # future hook invocations remain tag-aligned across all ranks.
+        mask = 0x1
+        while mask < pof2:
+            _next_tag()
+            mask <<= 1
+
+        for req in send_reqs:
+            req.wait()
+        send_reqs = []
+
+    # =========================================================================
+    # Lines 40-45: non-power-of-two finalize.
+    # =========================================================================
+    final_tag = _next_tag()
+
+    if rank < 2 * rem:
+        if rank % 2 == 0:
+            # Lines 40-43:
+            # Even peeled rank receives the final compressed result from rank+1.
+            src = rank + 1
+            stream = bstate.streams[src]
+
+            recv_req = dist.irecv(
+                bstate.recv_comp[0][:B],
+                src=src,
+                tag=final_tag,
+            )
+            recv_req.wait()
+
+            with torch.cuda.stream(stream):
+                _zfp_decompress_into_current_stream(
+                    bstate.recv_comp[0],
+                    B,
+                    work,
+                    cfg.rate,
+                )
+
+            stream.synchronize()
+
+        else:
+            # Lines 44-45:
+            # Odd active rank sends compressed final result back to rank-1.
+            dst = rank - 1
+            stream = bstate.streams[dst]
+
+            stream.synchronize()
+            with torch.cuda.stream(stream):
+                used = _zfp_compress_into_current_stream(
+                    work,
+                    bstate.send_comp[0],
+                    cfg.rate,
+                )
+
+            if log and used != B:
+                print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
+                      f"final send used={used} expected={B}",
+                      flush=True)
+
+            stream.synchronize()
+            send_req = dist.isend(
+                bstate.send_comp[0][:B],
+                dst=dst,
+                tag=final_tag,
+            )
+            send_req.wait()
+
+    for s in bstate.streams:
+        s.synchronize()
+
+    tensor.copy_(work.view_as(tensor))
+    tensor.div_(world_size)
+    _cuda_sync(tensor)
+    
+def _recursive_doubling_zfp_online_coll_hook(
+    state: ZfpRecursiveDoublingOnlineAllreduceState,
+    bucket: dist.GradBucket,
+) -> torch.futures.Future[torch.Tensor]:
+    """DDP hook for Algorithm 2: recursive-doubling collective-level online ZFP."""
+    tensor = bucket.buffer()
+    rank = dist.get_rank()
+    world_size = dist.get_world_size()
+    bucket_index = bucket.index()
+    numel = tensor.numel()
+
+    bstate = state.get_or_init(bucket_index, tensor, world_size)
+    bstate.call_count += 1
+    call_n = bstate.call_count
+
+    do_full_log = (FULL_LOG_CALLS > 0 and call_n <= FULL_LOG_CALLS)
+
+    if do_full_log:
+        print(f"\n[RECURSIVE_DOUBLING_ZFP_ONLINE_COLL | R{rank}|B{bstate.bucket_id}|C{call_n}] "
+              f"numel={numel} global_tag_before={_tag_counter}",
+              flush=True)
+
+    _nvtx_range_push(
+        f"comm_hook:recursive_doubling_zfp_online_coll rank={rank} "
+        f"bucket={bucket_index} call={call_n} numel={numel}"
+    )
+    try:
+        _recursive_doubling_zfp_online_coll_sum(
+            tensor,
+            bstate,
+            log=do_full_log,
+            call_n=call_n,
+        )
+    finally:
+        _nvtx_range_pop()
+
+    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
+    fut.set_result(tensor)
+    return fut
+
+   
 # Hook aliases: naive point-to-point ZFP baseline layered on top of recursive doubling.
 nccl_recursive_doubling_zfp_allreduce_hook = _recursive_doubling_zfp_hook
 mpi_recursive_doubling_zfp_allreduce_hook  = _recursive_doubling_zfp_hook
 nccl_ring_zfp_online_coll_allreduce_hook = _ring_allreduce_zfp_online_coll_hook
 mpi_ring_zfp_online_coll_allreduce_hook = _ring_allreduce_zfp_online_coll_hook
+mpi_recursive_doubling_zfp_online_coll_allreduce_hook = _recursive_doubling_zfp_online_coll_hook
 
 # Explicit aliases with "naive" in the name to mirror the paper terminology.
 nccl_ring_zfp_naive_allreduce_hook = _ring_allreduce_zfp_hook
@@ -1801,6 +2390,8 @@ _HOOK_REGISTRY = {
     ("mpi",  "recursive_doubling_zfp_naive"): mpi_recursive_doubling_zfp_naive_allreduce_hook,
     ("nccl", "ring_zfp_online_coll"): nccl_ring_zfp_online_coll_allreduce_hook,
     ("mpi",  "ring_zfp_online_coll"): mpi_ring_zfp_online_coll_allreduce_hook,
+    ("mpi", "recursive_doubling_zfp_online_coll"): mpi_recursive_doubling_zfp_online_coll_allreduce_hook,
+    ("mpi", "ring_async"): mpi_ring_async_allreduce_hook,
 }
 
 
@@ -1826,7 +2417,7 @@ def get_comm_hook(
             f"Unknown hook: {backend}/{algorithm}. Available: {available}"
         )
     base_hook = _HOOK_REGISTRY[key]
-    if algorithm == "ring":
+    if algorithm in ("ring", "ring_async"):
         state = RingAllreduceState()
     elif algorithm in ("ring_zfp", "ring_zfp_naive", "ring_zfp_online_coll"):
         state = ZfpRingAllreduceState()
@@ -1834,6 +2425,8 @@ def get_comm_hook(
         state = RecursiveDoublingAllreduceState()
     elif algorithm in ("recursive_doubling_zfp", "recursive_doubling_zfp_naive"):
         state = ZfpRecursiveDoublingAllreduceState()
+    elif algorithm == "recursive_doubling_zfp_online_coll":
+        state = ZfpRecursiveDoublingOnlineAllreduceState()
     else:
         state = None
 

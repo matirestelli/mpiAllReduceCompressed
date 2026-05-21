@@ -1,11 +1,11 @@
 #!/bin/bash -l
-#PBS -l select=2:ngpus=4
-#PBS -l walltime=01:00:00
+#PBS -l select=8
+#PBS -l walltime=00:30:00
 #PBS -l filesystems=home:eagle
-#PBS -q debug
+#PBS -q by-gpu
 #PBS -A UIC-HPC
 #PBS -j oe
-#PBS -o tryRingAsync.%j.out
+#PBS -o train.%j.out
 #PBS -N ddp-train
 
 cd ${PBS_O_WORKDIR}
@@ -14,10 +14,6 @@ echo "=== Job started: $(date) ==="
 echo "=== Node: $(hostname) ==="
 
 source ${PBS_O_WORKDIR}/envScript3.sh
-
-#for enabling profiling time for communication hooks:
-export DDP_HOOK_TIMING=1
-export DDP_HOOK_TIMING_RANK0_ONLY=1
 
 # Edit these lists to run multiple experiments inside one queued job.
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
@@ -28,24 +24,21 @@ BACKENDS=(
 )
 
 COMM_ALGORITHMS=(
-    #"None"
-    # "None"
+    "default"
     # "ring"
     # "recursive_doubling"
     # "ring_zfp_naive"
     # "recursive_doubling_zfp_naive"
     # "ring_zfp_online_coll"
     # "recursive_doubling_zfp_online_coll"
-    "ring_async"
-    "ring"
-    # "default"
+    # "none"
 )
 
 for BACKEND in "${BACKENDS[@]}"; do
     for COMM_ALGORITHM in "${COMM_ALGORITHMS[@]}"; do
         echo "=== Starting training: backend=${BACKEND}, hook=${COMM_ALGORITHM} at $(date) ==="
 
-        mpiexec -np 8 --ppn 4 --depth=8 --cpu-bind depth \
+        mpiexec -np 8 --ppn 8 --depth=8 --cpu-bind depth \
             -env MPICH_GPU_SUPPORT_ENABLED=1 \
             -env LD_PRELOAD="${LD_PRELOAD}" \
             -env LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" \

@@ -23,6 +23,7 @@ from communication_strategy import (
     open_first_bucket_compute_range,
     reset_bucket_compute_markers,
     set_profiling_step,
+    summarize_hook_timing,
 )
 
 ENABLE_NVTX_PROFILING = os.getenv("DDP_PROFILE_NVTX", "0") == "1"
@@ -422,6 +423,10 @@ def train(config: TrainingConfig) -> None:
                     'val_acc': val_acc,
                 }, path)
                 print(f"  -> Best model saved ({val_acc:.2f}%)")
+                
+            print(f"[Epoch {epoch}] Summarizing hook timing...", flush=True)
+            summarize_hook_timing(epoch)
+            print(f"[Epoch {epoch}] Hook timing summary done", flush=True)
 
         # ── Per-epoch gradient stats (rank 0 only, first 10 params) ─────
         # print_gradient_stats(model, epoch, rank, max_params=10)

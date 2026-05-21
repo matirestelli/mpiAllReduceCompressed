@@ -44,6 +44,7 @@ export PYTHONPATH="/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytor
 # --- 7. CUDA-aware Cray MPICH ---
 export MPICH_GPU_SUPPORT_ENABLED=1
 export MPICH_GPU_SUPPORT_LEVEL=1
+export MPICH_MAX_THREAD_SAFETY=multiple
 export CRAY_ACCEL_TARGET=nvidia80
 
 MPI_HOME=/opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3

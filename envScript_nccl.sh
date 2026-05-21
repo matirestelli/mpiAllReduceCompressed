@@ -27,28 +27,39 @@ export https_proxy=http://proxy.alcf.anl.gov:3128
 export ftp_proxy=http://proxy.alcf.anl.gov:3128
 export no_proxy="localhost,127.0.0.1,*.local,*.alcf.anl.gov,polaris-*,grand.alcf.anl.gov"
 
-# --- 5. Conda ---
+# --- 5. ZFP / cuZFP ---
+PROJECT_ROOT="${PBS_O_WORKDIR:-$(pwd)}"
+ZFP_HOME="${PROJECT_ROOT}/zfp-install"
+export ZFP_HOME
+
+export PATH="$ZFP_HOME/bin:${PATH}"
+export LD_LIBRARY_PATH="$ZFP_HOME/lib64:${LD_LIBRARY_PATH}"
+export CPATH="$ZFP_HOME/include:${CPATH:-}"
+export LIBRARY_PATH="$ZFP_HOME/lib64:${LIBRARY_PATH:-}"
+export CMAKE_PREFIX_PATH="$ZFP_HOME:${CMAKE_PREFIX_PATH:-}"
+
+# --- 6. Conda ---
 conda activate base
 # Custom MPI-aware PyTorch build disabled — using conda PyTorch (has cuDNN).
 # Re-enable for MPI backend / ring hook runs:
 # export PYTHONPATH="/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch:${PYTHONPATH:-}"
 
-# --- 6. MPI lib path (no GTL, no MPICH_GPU_SUPPORT) ---
+# --- 7. MPI lib path (no GTL, no MPICH_GPU_SUPPORT) ---
 MPI_HOME=/opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3
 export LD_LIBRARY_PATH="$MPI_HOME/lib:${LD_LIBRARY_PATH}"
 
-# --- 7. Threading ---
+# --- 8. Threading ---
 export OMP_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export GOTO_NUM_THREADS=1
 export BLIS_NUM_THREADS=1
 
-# --- 8. Slingshot tuning ---
+# --- 9. Slingshot tuning ---
 export FI_CXI_DEFAULT_CQ_SIZE=131072
 export FI_CXI_RX_MATCH_MODE=software
 
-# --- 9. Sanity check ---
+# --- 10. Sanity check ---
 echo "============================================="
 echo "  Polaris NCCL test — GTL NOT loaded"
 echo "============================================="
@@ -63,4 +74,7 @@ echo "cuDNN             : $(python -c 'import torch; print(torch.backends.cudnn.
 echo "MPI available     : $(python -c 'import torch.distributed as d; print(d.is_mpi_available())')"
 echo "mpi4py            : $(python -c 'from mpi4py import MPI; print(MPI.Get_library_version().split(chr(10))[0])')"
 echo "mpi4py rank test  : $(mpirun -np 1 python -c 'from mpi4py import MPI; print("rank", MPI.COMM_WORLD.Get_rank(), "OK")')"
+echo "ZFP_HOME          : ${ZFP_HOME}"
+echo "ZFP lib           : $(ls -l ${ZFP_HOME}/lib64/libzfp.so 2>/dev/null || echo MISSING)"
+echo "ZFP include       : $(ls -l ${ZFP_HOME}/include/zfp.h 2>/dev/null || echo MISSING)"
 echo "============================================="

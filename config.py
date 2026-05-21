@@ -66,6 +66,7 @@ def create_model(
         "resnet18":         lambda: models.resnet18(num_classes=num_classes),
         "resnet50":         lambda: models.resnet50(num_classes=num_classes),
         "resnet101":        lambda: models.resnet101(num_classes=num_classes),
+        "wide_resnet50_2":  lambda: models.wide_resnet50_2(num_classes=num_classes),
         "resnext101_32x8d": lambda: models.resnext101_32x8d(num_classes=num_classes),
         "convnext_tiny":    lambda: models.convnext_tiny(num_classes=num_classes),
         "convnext_small":   lambda: models.convnext_small(num_classes=num_classes),
@@ -74,6 +75,7 @@ def create_model(
         "resnet18":         models.ResNet18_Weights.DEFAULT,
         "resnet50":         models.ResNet50_Weights.DEFAULT,
         "resnet101":        models.ResNet101_Weights.DEFAULT,
+        "wide_resnet50_2":  models.Wide_ResNet50_2_Weights.DEFAULT,
         "resnext101_32x8d": models.ResNeXt101_32X8D_Weights.DEFAULT,
         "convnext_tiny":    models.ConvNeXt_Tiny_Weights.DEFAULT,
         "convnext_small":   models.ConvNeXt_Small_Weights.DEFAULT,
@@ -92,6 +94,7 @@ def create_model(
             "resnet18":         lambda: models.resnet18(weights=w),
             "resnet50":         lambda: models.resnet50(weights=w),
             "resnet101":        lambda: models.resnet101(weights=w),
+            "wide_resnet50_2":  lambda: models.wide_resnet50_2(weights=w),
             "resnext101_32x8d": lambda: models.resnext101_32x8d(weights=w),
             "convnext_tiny":    lambda: models.convnext_tiny(weights=w),
             "convnext_small":   lambda: models.convnext_small(weights=w),
@@ -107,7 +110,7 @@ def create_model(
         model = builders[model_name]()
 
     # Adapt ResNet/ResNeXt stem for 32×32 CIFAR images (same for both paths)
-    if cifar_stem and model_name.startswith(("resnet", "resnext")):
+    if cifar_stem and model_name.startswith(("resnet", "resnext", "wide_resnet")):
         model.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
         model.maxpool = nn.Identity()
 
