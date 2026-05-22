@@ -1,0 +1,347 @@
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: recursive_doubling_zfp_online_coll
+================================================================================
+Ranks: 16, Epochs: 20, Batch/rank: 8, Effective batch: 128
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/recursive_doubling_zfp_online_coll
+[Data] Train batches: 391, Val batches: 79
+
+
+[Epoch 1] Training... (lr=0.000001)
+  Batch [50/391] Loss: 2.3586, Acc: 9.75%
+  Batch [100/391] Loss: 2.3496, Acc: 10.38%
+  Batch [150/391] Loss: 2.3537, Acc: 10.17%
+  Batch [200/391] Loss: 2.3480, Acc: 10.44%
+  Batch [250/391] Loss: 2.3491, Acc: 10.75%
+  Batch [300/391] Loss: 2.3500, Acc: 10.38%
+  Batch [350/391] Loss: 2.3475, Acc: 10.57%
+[Epoch 1] Train Loss: 2.3493, Acc: 10.40%  |  Val Loss: 22710.4717, Acc: 9.76%  |  Time: 41.4s
+  -> Best model saved (9.76%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3114 work_total_ms=34589.857 work_mean_ms=11.108 work_min_ms=3.116 work_max_ms=148.734
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=392 tail_total_ms=31185.859 tail_mean_ms=79.556 tail_min_ms=7.168 tail_max_ms=259.474
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.001000)
+  Batch [50/391] Loss: 2.2909, Acc: 10.75%
+  Batch [100/391] Loss: 2.2378, Acc: 15.12%
+  Batch [150/391] Loss: 2.1996, Acc: 17.42%
+  Batch [200/391] Loss: 2.1276, Acc: 21.25%
+  Batch [250/391] Loss: 2.0826, Acc: 24.25%
+  Batch [300/391] Loss: 2.0234, Acc: 26.21%
+  Batch [350/391] Loss: 1.9847, Acc: 28.18%
+[Epoch 2] Train Loss: 1.9488, Acc: 29.22%  |  Val Loss: 1.5785, Acc: 45.12%  |  Time: 40.5s
+  -> Best model saved (45.12%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=35042.031 work_mean_ms=11.203 work_min_ms=3.316 work_max_ms=29.198
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31660.047 tail_mean_ms=80.972 tail_min_ms=72.651 tail_max_ms=91.222
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000993)
+  Batch [50/391] Loss: 1.6280, Acc: 41.50%
+  Batch [100/391] Loss: 1.6330, Acc: 43.25%
+  Batch [150/391] Loss: 1.5998, Acc: 44.17%
+  Batch [200/391] Loss: 1.5863, Acc: 44.62%
+  Batch [250/391] Loss: 1.5668, Acc: 44.95%
+  Batch [300/391] Loss: 1.5418, Acc: 46.42%
+  Batch [350/391] Loss: 1.5291, Acc: 46.61%
+[Epoch 3] Train Loss: 1.5121, Acc: 47.14%  |  Val Loss: 1.3546, Acc: 57.60%  |  Time: 40.6s
+  -> Best model saved (57.60%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34873.027 work_mean_ms=11.149 work_min_ms=3.374 work_max_ms=29.150
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31372.765 tail_mean_ms=80.237 tail_min_ms=72.510 tail_max_ms=90.820
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000973)
+  Batch [50/391] Loss: 1.3553, Acc: 54.00%
+  Batch [100/391] Loss: 1.4051, Acc: 52.25%
+  Batch [150/391] Loss: 1.3756, Acc: 53.83%
+  Batch [200/391] Loss: 1.3682, Acc: 53.69%
+  Batch [250/391] Loss: 1.3616, Acc: 53.40%
+  Batch [300/391] Loss: 1.3657, Acc: 53.12%
+  Batch [350/391] Loss: 1.3631, Acc: 53.25%
+[Epoch 4] Train Loss: 1.3501, Acc: 53.57%  |  Val Loss: 5.5183, Acc: 63.68%  |  Time: 40.5s
+  -> Best model saved (63.68%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34669.735 work_mean_ms=11.084 work_min_ms=3.100 work_max_ms=28.470
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31180.377 tail_mean_ms=79.745 tail_min_ms=71.354 tail_max_ms=90.009
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000940)
+  Batch [50/391] Loss: 1.3219, Acc: 56.50%
+  Batch [100/391] Loss: 1.3075, Acc: 55.00%
+  Batch [150/391] Loss: 1.2640, Acc: 56.58%
+  Batch [200/391] Loss: 1.2323, Acc: 57.88%
+  Batch [250/391] Loss: 1.2473, Acc: 56.75%
+  Batch [300/391] Loss: 1.2436, Acc: 56.71%
+  Batch [350/391] Loss: 1.2471, Acc: 56.89%
+[Epoch 5] Train Loss: 1.2520, Acc: 56.80%  |  Val Loss: 5.6808, Acc: 64.80%  |  Time: 40.3s
+  -> Best model saved (64.80%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34499.040 work_mean_ms=11.029 work_min_ms=2.986 work_max_ms=28.717
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31028.175 tail_mean_ms=79.356 tail_min_ms=70.969 tail_max_ms=88.927
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000895)
+  Batch [50/391] Loss: 1.1358, Acc: 60.50%
+  Batch [100/391] Loss: 1.1860, Acc: 59.38%
+  Batch [150/391] Loss: 1.1544, Acc: 59.92%
+  Batch [200/391] Loss: 1.1367, Acc: 60.19%
+  Batch [250/391] Loss: 1.1501, Acc: 60.05%
+  Batch [300/391] Loss: 1.1550, Acc: 60.33%
+  Batch [350/391] Loss: 1.1637, Acc: 59.89%
+[Epoch 6] Train Loss: 1.1590, Acc: 60.13%  |  Val Loss: 5.1875, Acc: 66.72%  |  Time: 40.2s
+  -> Best model saved (66.72%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34735.583 work_mean_ms=11.105 work_min_ms=3.107 work_max_ms=27.849
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31363.279 tail_mean_ms=80.213 tail_min_ms=72.042 tail_max_ms=90.884
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000839)
+  Batch [50/391] Loss: 1.1288, Acc: 61.00%
+  Batch [100/391] Loss: 1.0862, Acc: 61.25%
+  Batch [150/391] Loss: 1.0882, Acc: 61.92%
+  Batch [200/391] Loss: 1.0924, Acc: 61.69%
+  Batch [250/391] Loss: 1.0814, Acc: 61.95%
+  Batch [300/391] Loss: 1.0843, Acc: 61.83%
+  Batch [350/391] Loss: 1.0808, Acc: 62.32%
+[Epoch 7] Train Loss: 1.0849, Acc: 62.18%  |  Val Loss: 4.1303, Acc: 64.00%  |  Time: 40.4s
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34963.723 work_mean_ms=11.178 work_min_ms=3.295 work_max_ms=28.336
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31586.239 tail_mean_ms=80.783 tail_min_ms=72.103 tail_max_ms=90.242
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000773)
+  Batch [50/391] Loss: 1.0238, Acc: 63.00%
+  Batch [100/391] Loss: 1.0104, Acc: 63.50%
+  Batch [150/391] Loss: 1.0606, Acc: 61.33%
+  Batch [200/391] Loss: 1.0677, Acc: 62.38%
+  Batch [250/391] Loss: 1.0847, Acc: 62.05%
+  Batch [300/391] Loss: 1.0951, Acc: 61.42%
+  Batch [350/391] Loss: 1.0936, Acc: 61.46%
+[Epoch 8] Train Loss: 1.0877, Acc: 61.73%  |  Val Loss: 1.2435, Acc: 67.36%  |  Time: 40.3s
+  -> Best model saved (67.36%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34625.587 work_mean_ms=11.070 work_min_ms=3.020 work_max_ms=54.967
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31231.399 tail_mean_ms=79.876 tail_min_ms=70.530 tail_max_ms=132.548
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000701)
+  Batch [50/391] Loss: 1.1708, Acc: 58.75%
+  Batch [100/391] Loss: 1.1318, Acc: 59.75%
+  Batch [150/391] Loss: 1.1217, Acc: 60.83%
+  Batch [200/391] Loss: 1.1010, Acc: 61.38%
+  Batch [250/391] Loss: 1.0832, Acc: 61.85%
+  Batch [300/391] Loss: 1.0839, Acc: 61.75%
+  Batch [350/391] Loss: 1.0883, Acc: 61.61%
+[Epoch 9] Train Loss: 1.0910, Acc: 61.63%  |  Val Loss: 1.4863, Acc: 68.96%  |  Time: 40.3s
+  -> Best model saved (68.96%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34903.514 work_mean_ms=11.158 work_min_ms=3.696 work_max_ms=28.376
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31553.874 tail_mean_ms=80.700 tail_min_ms=73.356 tail_max_ms=90.143
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000623)
+  Batch [50/391] Loss: 1.0286, Acc: 65.00%
+  Batch [100/391] Loss: 0.9843, Acc: 66.62%
+  Batch [150/391] Loss: 1.0043, Acc: 65.08%
+  Batch [200/391] Loss: 1.0169, Acc: 65.44%
+  Batch [250/391] Loss: 1.0192, Acc: 65.05%
+  Batch [300/391] Loss: 1.0255, Acc: 64.88%
+  Batch [350/391] Loss: 1.0299, Acc: 64.61%
+[Epoch 10] Train Loss: 1.0229, Acc: 64.64%  |  Val Loss: 1.5810, Acc: 68.48%  |  Time: 40.5s
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34949.404 work_mean_ms=11.173 work_min_ms=3.222 work_max_ms=29.345
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31580.800 tail_mean_ms=80.769 tail_min_ms=71.710 tail_max_ms=90.693
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000541)
+  Batch [50/391] Loss: 0.9486, Acc: 67.75%
+  Batch [100/391] Loss: 0.9544, Acc: 67.25%
+  Batch [150/391] Loss: 1.0203, Acc: 65.25%
+  Batch [200/391] Loss: 1.0309, Acc: 64.94%
+  Batch [250/391] Loss: 1.0211, Acc: 65.15%
+  Batch [300/391] Loss: 0.9980, Acc: 66.00%
+  Batch [350/391] Loss: 0.9985, Acc: 65.75%
+[Epoch 11] Train Loss: 0.9969, Acc: 65.86%  |  Val Loss: 1.5863, Acc: 68.00%  |  Time: 40.6s
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=35100.022 work_mean_ms=11.221 work_min_ms=3.426 work_max_ms=69.515
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31732.690 tail_mean_ms=81.158 tail_min_ms=72.348 tail_max_ms=142.850
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000459)
+  Batch [50/391] Loss: 1.0187, Acc: 64.00%
+  Batch [100/391] Loss: 1.0234, Acc: 64.12%
+  Batch [150/391] Loss: 1.0228, Acc: 65.75%
+  Batch [200/391] Loss: 1.0090, Acc: 65.50%
+  Batch [250/391] Loss: 1.0055, Acc: 65.20%
+  Batch [300/391] Loss: 1.0072, Acc: 65.38%
+  Batch [350/391] Loss: 1.0133, Acc: 64.93%
+[Epoch 12] Train Loss: 1.0007, Acc: 65.54%  |  Val Loss: 1.3235, Acc: 68.32%  |  Time: 40.3s
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34816.507 work_mean_ms=11.131 work_min_ms=3.055 work_max_ms=61.078
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31444.220 tail_mean_ms=80.420 tail_min_ms=71.897 tail_max_ms=139.193
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000377)
+  Batch [50/391] Loss: 0.9438, Acc: 64.75%
+  Batch [100/391] Loss: 0.9389, Acc: 67.75%
+  Batch [150/391] Loss: 0.9334, Acc: 67.92%
+  Batch [200/391] Loss: 0.9165, Acc: 68.69%
+  Batch [250/391] Loss: 0.9076, Acc: 69.40%
+  Batch [300/391] Loss: 0.9188, Acc: 68.88%
+  Batch [350/391] Loss: 0.9139, Acc: 69.21%
+[Epoch 13] Train Loss: 0.9074, Acc: 69.28%  |  Val Loss: 1.0673, Acc: 71.52%  |  Time: 40.4s
+  -> Best model saved (71.52%)
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34528.732 work_mean_ms=11.039 work_min_ms=3.093 work_max_ms=35.487
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31034.135 tail_mean_ms=79.371 tail_min_ms=68.503 tail_max_ms=112.092
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000299)
+  Batch [50/391] Loss: 0.9903, Acc: 65.50%
+  Batch [100/391] Loss: 0.9852, Acc: 66.38%
+  Batch [150/391] Loss: 0.9866, Acc: 66.42%
+  Batch [200/391] Loss: 0.9830, Acc: 65.69%
+  Batch [250/391] Loss: 0.9736, Acc: 66.55%
+  Batch [300/391] Loss: 0.9696, Acc: 66.79%
+  Batch [350/391] Loss: 0.9624, Acc: 67.25%
+[Epoch 14] Train Loss: 0.9658, Acc: 67.07%  |  Val Loss: 1.4153, Acc: 68.80%  |  Time: 40.4s
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34482.989 work_mean_ms=11.024 work_min_ms=3.096 work_max_ms=28.476
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=30987.799 tail_mean_ms=79.253 tail_min_ms=69.532 tail_max_ms=88.629
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000227)
+  Batch [50/391] Loss: 0.9224, Acc: 68.25%
+  Batch [100/391] Loss: 0.9510, Acc: 67.38%
+  Batch [150/391] Loss: 0.9304, Acc: 67.75%
+  Batch [200/391] Loss: 0.9129, Acc: 68.19%
+  Batch [250/391] Loss: 0.9068, Acc: 68.70%
+  Batch [300/391] Loss: 0.9048, Acc: 69.04%
+  Batch [350/391] Loss: 0.9044, Acc: 69.07%
+[Epoch 15] Train Loss: 0.9000, Acc: 69.18%  |  Val Loss: 0.9589, Acc: 74.40%  |  Time: 42.1s
+  -> Best model saved (74.40%)
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=35745.117 work_mean_ms=11.427 work_min_ms=3.797 work_max_ms=505.269
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=32379.986 tail_mean_ms=82.813 tail_min_ms=70.821 tail_max_ms=573.747
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000161)
+  Batch [50/391] Loss: 0.9330, Acc: 68.50%
+  Batch [100/391] Loss: 0.9210, Acc: 68.50%
+  Batch [150/391] Loss: 0.9023, Acc: 69.58%
+  Batch [200/391] Loss: 0.8885, Acc: 70.38%
+  Batch [250/391] Loss: 0.8884, Acc: 70.30%
+  Batch [300/391] Loss: 0.8888, Acc: 70.12%
+  Batch [350/391] Loss: 0.8984, Acc: 69.61%
+[Epoch 16] Train Loss: 0.9009, Acc: 69.66%  |  Val Loss: 1.6124, Acc: 69.76%  |  Time: 40.4s
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34670.812 work_mean_ms=11.084 work_min_ms=3.086 work_max_ms=28.305
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31163.029 tail_mean_ms=79.701 tail_min_ms=71.728 tail_max_ms=90.195
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000105)
+  Batch [50/391] Loss: 0.9402, Acc: 66.25%
+  Batch [100/391] Loss: 0.9051, Acc: 67.50%
+  Batch [150/391] Loss: 0.9089, Acc: 68.00%
+  Batch [200/391] Loss: 0.9117, Acc: 69.25%
+  Batch [250/391] Loss: 0.8883, Acc: 69.90%
+  Batch [300/391] Loss: 0.8945, Acc: 69.88%
+  Batch [350/391] Loss: 0.8962, Acc: 69.64%
+[Epoch 17] Train Loss: 0.9072, Acc: 69.38%  |  Val Loss: 1.1829, Acc: 72.32%  |  Time: 40.5s
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34840.282 work_mean_ms=11.138 work_min_ms=2.964 work_max_ms=45.924
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31381.145 tail_mean_ms=80.259 tail_min_ms=72.004 tail_max_ms=120.516
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000060)
+  Batch [50/391] Loss: 0.9367, Acc: 65.50%
+  Batch [100/391] Loss: 0.8987, Acc: 67.62%
+  Batch [150/391] Loss: 0.9016, Acc: 68.50%
+  Batch [200/391] Loss: 0.8913, Acc: 69.12%
+  Batch [250/391] Loss: 0.9022, Acc: 68.70%
+  Batch [300/391] Loss: 0.9210, Acc: 68.25%
+  Batch [350/391] Loss: 0.9205, Acc: 68.46%
+[Epoch 18] Train Loss: 0.9167, Acc: 68.51%  |  Val Loss: 1.2254, Acc: 71.52%  |  Time: 40.5s
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=34556.148 work_mean_ms=11.047 work_min_ms=2.967 work_max_ms=42.803
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31048.576 tail_mean_ms=79.408 tail_min_ms=70.686 tail_max_ms=116.422
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000027)
+  Batch [50/391] Loss: 0.8815, Acc: 69.00%
+  Batch [100/391] Loss: 0.8974, Acc: 67.38%
+  Batch [150/391] Loss: 0.8850, Acc: 67.42%
+  Batch [200/391] Loss: 0.8795, Acc: 68.94%
+  Batch [250/391] Loss: 0.8843, Acc: 68.90%
+  Batch [300/391] Loss: 0.8716, Acc: 69.21%
+  Batch [350/391] Loss: 0.8791, Acc: 69.29%
+[Epoch 19] Train Loss: 0.8811, Acc: 69.25%  |  Val Loss: 1.2506, Acc: 71.20%  |  Time: 40.8s
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=35267.347 work_mean_ms=11.275 work_min_ms=3.374 work_max_ms=98.580
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31905.511 tail_mean_ms=81.600 tail_min_ms=72.058 tail_max_ms=166.361
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000007)
+  Batch [50/391] Loss: 0.8575, Acc: 69.25%
+  Batch [100/391] Loss: 0.9246, Acc: 68.62%
+  Batch [150/391] Loss: 0.8915, Acc: 70.00%
+  Batch [200/391] Loss: 0.8762, Acc: 70.00%
+  Batch [250/391] Loss: 0.8788, Acc: 69.95%
+  Batch [300/391] Loss: 0.8722, Acc: 70.08%
+  Batch [350/391] Loss: 0.8830, Acc: 69.75%
+[Epoch 20] Train Loss: 0.8889, Acc: 69.44%  |  Val Loss: 0.9797, Acc: 73.60%  |  Time: 40.4s
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 calls=3128 work_total_ms=35026.537 work_mean_ms=11.198 work_min_ms=3.574 work_max_ms=39.166
+[HOOK_TAIL_SUMMARY] label=mpi:recursive_doubling_zfp_online_coll:rate16 steps=391 tail_total_ms=31676.073 tail_mean_ms=81.013 tail_min_ms=72.906 tail_max_ms=118.195
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 820.3s | Best val acc: 74.40%
+Epoch times: mean=40.6s  min=40.2s  max=42.1s
+================================================================================

@@ -104,3 +104,9 @@ wandb/
 *.ckpt
 checkpoints/
 pytorch/
+
+# Paper experiment results — include these directories
+!experiments_results_lr001_GlobalBS128/
+!experiments_results_lr001_GlobalBS128/**
+!experiments_results_lr001_LocalBS128/
+!experiments_results_lr001_LocalBS128/**

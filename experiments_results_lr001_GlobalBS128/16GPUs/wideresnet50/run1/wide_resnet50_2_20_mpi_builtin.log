@@ -1,0 +1,289 @@
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: built-in (no hook)
+================================================================================
+Ranks: 16, Epochs: 20, Batch/rank: 8, Effective batch: 128
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] No hook — using DDP built-in MPI allreduce
+[Data] Train batches: 391, Val batches: 79
+
+
+[Epoch 1] Training... (lr=0.000001)
+  Batch [50/391] Loss: 2.3581, Acc: 9.25%
+  Batch [100/391] Loss: 2.3493, Acc: 10.38%
+  Batch [150/391] Loss: 2.3528, Acc: 10.08%
+  Batch [200/391] Loss: 2.3477, Acc: 10.50%
+  Batch [250/391] Loss: 2.3489, Acc: 10.80%
+  Batch [300/391] Loss: 2.3491, Acc: 10.38%
+  Batch [350/391] Loss: 2.3474, Acc: 10.57%
+[Epoch 1] Train Loss: 2.3489, Acc: 10.40%  |  Val Loss: 23720.2867, Acc: 8.80%  |  Time: 24.4s
+  -> Best model saved (8.80%)
+[Epoch 1] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=1 no hook timing samples
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.001000)
+  Batch [50/391] Loss: 2.2889, Acc: 14.75%
+  Batch [100/391] Loss: 2.2515, Acc: 17.38%
+  Batch [150/391] Loss: 2.2050, Acc: 19.83%
+  Batch [200/391] Loss: 2.1439, Acc: 22.31%
+  Batch [250/391] Loss: 2.0986, Acc: 24.45%
+  Batch [300/391] Loss: 2.0463, Acc: 26.00%
+  Batch [350/391] Loss: 2.0111, Acc: 27.25%
+[Epoch 2] Train Loss: 1.9778, Acc: 28.42%  |  Val Loss: 1.6268, Acc: 41.76%  |  Time: 20.7s
+  -> Best model saved (41.76%)
+[Epoch 2] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=2 no hook timing samples
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000993)
+  Batch [50/391] Loss: 1.6439, Acc: 43.25%
+  Batch [100/391] Loss: 1.6702, Acc: 40.50%
+  Batch [150/391] Loss: 1.6244, Acc: 41.83%
+  Batch [200/391] Loss: 1.6012, Acc: 42.56%
+  Batch [250/391] Loss: 1.5888, Acc: 42.75%
+  Batch [300/391] Loss: 1.5681, Acc: 43.58%
+  Batch [350/391] Loss: 1.5625, Acc: 43.93%
+[Epoch 3] Train Loss: 1.5477, Acc: 44.54%  |  Val Loss: 1.4561, Acc: 52.80%  |  Time: 20.7s
+  -> Best model saved (52.80%)
+[Epoch 3] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=3 no hook timing samples
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000973)
+  Batch [50/391] Loss: 1.4528, Acc: 47.25%
+  Batch [100/391] Loss: 1.4776, Acc: 45.75%
+  Batch [150/391] Loss: 1.4534, Acc: 46.08%
+  Batch [200/391] Loss: 1.4382, Acc: 47.31%
+  Batch [250/391] Loss: 1.4338, Acc: 48.00%
+  Batch [300/391] Loss: 1.4260, Acc: 48.54%
+  Batch [350/391] Loss: 1.4218, Acc: 48.82%
+[Epoch 4] Train Loss: 1.4161, Acc: 49.06%  |  Val Loss: 1.2114, Acc: 60.00%  |  Time: 20.7s
+  -> Best model saved (60.00%)
+[Epoch 4] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=4 no hook timing samples
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000940)
+  Batch [50/391] Loss: 1.3502, Acc: 52.75%
+  Batch [100/391] Loss: 1.3397, Acc: 51.62%
+  Batch [150/391] Loss: 1.2949, Acc: 53.58%
+  Batch [200/391] Loss: 1.2562, Acc: 55.56%
+  Batch [250/391] Loss: 1.2629, Acc: 55.70%
+  Batch [300/391] Loss: 1.2581, Acc: 56.17%
+  Batch [350/391] Loss: 1.2685, Acc: 55.82%
+[Epoch 5] Train Loss: 1.2735, Acc: 55.65%  |  Val Loss: 1.2099, Acc: 60.48%  |  Time: 20.6s
+  -> Best model saved (60.48%)
+[Epoch 5] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=5 no hook timing samples
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000895)
+  Batch [50/391] Loss: 1.2118, Acc: 56.25%
+  Batch [100/391] Loss: 1.2045, Acc: 58.12%
+  Batch [150/391] Loss: 1.1871, Acc: 58.67%
+  Batch [200/391] Loss: 1.1811, Acc: 59.06%
+  Batch [250/391] Loss: 1.2108, Acc: 58.25%
+  Batch [300/391] Loss: 1.2036, Acc: 58.33%
+  Batch [350/391] Loss: 1.2105, Acc: 58.43%
+[Epoch 6] Train Loss: 1.2073, Acc: 58.11%  |  Val Loss: 1.0947, Acc: 65.76%  |  Time: 20.6s
+  -> Best model saved (65.76%)
+[Epoch 6] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=6 no hook timing samples
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000839)
+  Batch [50/391] Loss: 1.2329, Acc: 59.25%
+  Batch [100/391] Loss: 1.2092, Acc: 57.75%
+  Batch [150/391] Loss: 1.1855, Acc: 59.33%
+  Batch [200/391] Loss: 1.1903, Acc: 59.38%
+  Batch [250/391] Loss: 1.1814, Acc: 59.40%
+  Batch [300/391] Loss: 1.1781, Acc: 59.42%
+  Batch [350/391] Loss: 1.1614, Acc: 60.07%
+[Epoch 7] Train Loss: 1.1664, Acc: 59.90%  |  Val Loss: 1.2288, Acc: 64.16%  |  Time: 20.7s
+[Epoch 7] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=7 no hook timing samples
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000773)
+  Batch [50/391] Loss: 1.0646, Acc: 62.25%
+  Batch [100/391] Loss: 1.0293, Acc: 62.88%
+  Batch [150/391] Loss: 1.0756, Acc: 62.17%
+  Batch [200/391] Loss: 1.0798, Acc: 62.31%
+  Batch [250/391] Loss: 1.0979, Acc: 61.70%
+  Batch [300/391] Loss: 1.1158, Acc: 61.38%
+  Batch [350/391] Loss: 1.1222, Acc: 61.00%
+[Epoch 8] Train Loss: 1.1190, Acc: 61.34%  |  Val Loss: 1.0132, Acc: 65.76%  |  Time: 20.7s
+[Epoch 8] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=8 no hook timing samples
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000701)
+  Batch [50/391] Loss: 1.1302, Acc: 59.50%
+  Batch [100/391] Loss: 1.1109, Acc: 60.75%
+  Batch [150/391] Loss: 1.0983, Acc: 61.92%
+  Batch [200/391] Loss: 1.0864, Acc: 61.81%
+  Batch [250/391] Loss: 1.0687, Acc: 62.55%
+  Batch [300/391] Loss: 1.0596, Acc: 63.04%
+  Batch [350/391] Loss: 1.0484, Acc: 63.64%
+[Epoch 9] Train Loss: 1.0615, Acc: 63.26%  |  Val Loss: 1.3047, Acc: 69.76%  |  Time: 20.6s
+  -> Best model saved (69.76%)
+[Epoch 9] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=9 no hook timing samples
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000623)
+  Batch [50/391] Loss: 0.9634, Acc: 66.50%
+  Batch [100/391] Loss: 0.9524, Acc: 66.50%
+  Batch [150/391] Loss: 0.9800, Acc: 65.33%
+  Batch [200/391] Loss: 0.9914, Acc: 65.62%
+  Batch [250/391] Loss: 0.9961, Acc: 65.35%
+  Batch [300/391] Loss: 0.9941, Acc: 65.08%
+  Batch [350/391] Loss: 0.9989, Acc: 64.82%
+[Epoch 10] Train Loss: 0.9948, Acc: 65.18%  |  Val Loss: 1.0164, Acc: 69.12%  |  Time: 20.6s
+[Epoch 10] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=10 no hook timing samples
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000541)
+  Batch [50/391] Loss: 0.9768, Acc: 65.00%
+  Batch [100/391] Loss: 0.9625, Acc: 65.12%
+  Batch [150/391] Loss: 1.0374, Acc: 63.83%
+  Batch [200/391] Loss: 1.0432, Acc: 64.00%
+  Batch [250/391] Loss: 1.0260, Acc: 64.30%
+  Batch [300/391] Loss: 1.0112, Acc: 64.96%
+  Batch [350/391] Loss: 1.0080, Acc: 65.18%
+[Epoch 11] Train Loss: 1.0057, Acc: 65.31%  |  Val Loss: 0.9321, Acc: 70.40%  |  Time: 20.7s
+  -> Best model saved (70.40%)
+[Epoch 11] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=11 no hook timing samples
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000459)
+  Batch [50/391] Loss: 0.9485, Acc: 68.00%
+  Batch [100/391] Loss: 1.0022, Acc: 65.25%
+  Batch [150/391] Loss: 0.9803, Acc: 66.33%
+  Batch [200/391] Loss: 0.9610, Acc: 66.31%
+  Batch [250/391] Loss: 0.9556, Acc: 66.30%
+  Batch [300/391] Loss: 0.9681, Acc: 66.38%
+  Batch [350/391] Loss: 0.9681, Acc: 66.50%
+[Epoch 12] Train Loss: 0.9632, Acc: 66.78%  |  Val Loss: 0.9281, Acc: 70.88%  |  Time: 20.6s
+  -> Best model saved (70.88%)
+[Epoch 12] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=12 no hook timing samples
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000377)
+  Batch [50/391] Loss: 0.9393, Acc: 65.50%
+  Batch [100/391] Loss: 0.8970, Acc: 68.50%
+  Batch [150/391] Loss: 0.9097, Acc: 68.92%
+  Batch [200/391] Loss: 0.9419, Acc: 68.50%
+  Batch [250/391] Loss: 0.9525, Acc: 67.70%
+  Batch [300/391] Loss: 0.9570, Acc: 67.75%
+  Batch [350/391] Loss: 0.9659, Acc: 66.96%
+[Epoch 13] Train Loss: 0.9600, Acc: 67.30%  |  Val Loss: 1.0353, Acc: 67.68%  |  Time: 20.7s
+[Epoch 13] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=13 no hook timing samples
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000299)
+  Batch [50/391] Loss: 1.0324, Acc: 66.50%
+  Batch [100/391] Loss: 1.0402, Acc: 64.75%
+  Batch [150/391] Loss: 1.0213, Acc: 65.58%
+  Batch [200/391] Loss: 1.0183, Acc: 65.00%
+  Batch [250/391] Loss: 1.0081, Acc: 65.90%
+  Batch [300/391] Loss: 1.0076, Acc: 66.12%
+  Batch [350/391] Loss: 1.0042, Acc: 66.04%
+[Epoch 14] Train Loss: 1.0021, Acc: 66.08%  |  Val Loss: 0.9646, Acc: 70.88%  |  Time: 20.8s
+[Epoch 14] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=14 no hook timing samples
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000227)
+  Batch [50/391] Loss: 0.9784, Acc: 65.50%
+  Batch [100/391] Loss: 1.0109, Acc: 64.50%
+  Batch [150/391] Loss: 0.9816, Acc: 65.33%
+  Batch [200/391] Loss: 0.9678, Acc: 66.31%
+  Batch [250/391] Loss: 0.9705, Acc: 67.00%
+  Batch [300/391] Loss: 0.9524, Acc: 67.25%
+  Batch [350/391] Loss: 0.9517, Acc: 67.18%
+[Epoch 15] Train Loss: 0.9518, Acc: 67.26%  |  Val Loss: 0.9117, Acc: 71.68%  |  Time: 20.7s
+  -> Best model saved (71.68%)
+[Epoch 15] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=15 no hook timing samples
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000161)
+  Batch [50/391] Loss: 0.9752, Acc: 69.00%
+  Batch [100/391] Loss: 0.9430, Acc: 70.25%
+  Batch [150/391] Loss: 0.9281, Acc: 69.33%
+  Batch [200/391] Loss: 0.9130, Acc: 69.88%
+  Batch [250/391] Loss: 0.9256, Acc: 69.15%
+  Batch [300/391] Loss: 0.9232, Acc: 69.54%
+  Batch [350/391] Loss: 0.9188, Acc: 69.46%
+[Epoch 16] Train Loss: 0.9222, Acc: 69.09%  |  Val Loss: 0.9320, Acc: 73.12%  |  Time: 20.7s
+  -> Best model saved (73.12%)
+[Epoch 16] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=16 no hook timing samples
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000105)
+  Batch [50/391] Loss: 0.9693, Acc: 66.75%
+  Batch [100/391] Loss: 0.9488, Acc: 67.50%
+  Batch [150/391] Loss: 0.9409, Acc: 67.75%
+  Batch [200/391] Loss: 0.9302, Acc: 68.44%
+  Batch [250/391] Loss: 0.9272, Acc: 68.90%
+  Batch [300/391] Loss: 0.9217, Acc: 69.21%
+  Batch [350/391] Loss: 0.9302, Acc: 68.57%
+[Epoch 17] Train Loss: 0.9417, Acc: 67.81%  |  Val Loss: 1.1568, Acc: 69.76%  |  Time: 20.7s
+[Epoch 17] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=17 no hook timing samples
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000060)
+  Batch [50/391] Loss: 0.9510, Acc: 67.25%
+  Batch [100/391] Loss: 0.9357, Acc: 67.75%
+  Batch [150/391] Loss: 0.9150, Acc: 69.17%
+  Batch [200/391] Loss: 0.9054, Acc: 69.56%
+  Batch [250/391] Loss: 0.9132, Acc: 68.75%
+  Batch [300/391] Loss: 0.9376, Acc: 68.12%
+  Batch [350/391] Loss: 0.9403, Acc: 68.32%
+[Epoch 18] Train Loss: 0.9312, Acc: 68.54%  |  Val Loss: 0.9988, Acc: 73.76%  |  Time: 20.7s
+  -> Best model saved (73.76%)
+[Epoch 18] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=18 no hook timing samples
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000027)
+  Batch [50/391] Loss: 0.8742, Acc: 69.50%
+  Batch [100/391] Loss: 0.9049, Acc: 69.12%
+  Batch [150/391] Loss: 0.8910, Acc: 69.42%
+  Batch [200/391] Loss: 0.8834, Acc: 69.31%
+  Batch [250/391] Loss: 0.8934, Acc: 69.00%
+  Batch [300/391] Loss: 0.8780, Acc: 69.79%
+  Batch [350/391] Loss: 0.8852, Acc: 69.79%
+[Epoch 19] Train Loss: 0.8910, Acc: 69.79%  |  Val Loss: 0.8840, Acc: 72.64%  |  Time: 20.6s
+[Epoch 19] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=19 no hook timing samples
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000007)
+  Batch [50/391] Loss: 0.8917, Acc: 68.50%
+  Batch [100/391] Loss: 0.9297, Acc: 67.75%
+  Batch [150/391] Loss: 0.9213, Acc: 68.67%
+  Batch [200/391] Loss: 0.9067, Acc: 69.50%
+  Batch [250/391] Loss: 0.9117, Acc: 68.80%
+  Batch [300/391] Loss: 0.9090, Acc: 68.75%
+  Batch [350/391] Loss: 0.9109, Acc: 68.79%
+[Epoch 20] Train Loss: 0.9154, Acc: 68.83%  |  Val Loss: 1.0582, Acc: 72.32%  |  Time: 20.6s
+[Epoch 20] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=20 no hook timing samples
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 427.4s | Best val acc: 73.76%
+Epoch times: mean=20.8s  min=20.6s  max=24.4s
+================================================================================
