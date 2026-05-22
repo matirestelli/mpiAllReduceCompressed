@@ -84,12 +84,12 @@ if __name__ == "__main__":
         # the total batch size is 128 -> so based on the number of gpus here set: 128/Number of GPUs
         # batch_size=32, # for 4 gpus
         # batch_size=16, # for 8 gpus
-        batch_size=8, # for 16 gpus
+        # batch_size=8, # for 16 gpus
         # no wait in this way goes slower with 8 gpus.
         #   4 GPUs  -> effective batch 512
         #   8 GPUs  -> effective batch 1024
         #   16 GPUs -> effective batch 2048
-        # batch_size=128,
+        batch_size=128,
         learning_rate=0.001,
         momentum=0.9,
         weight_decay=5e-4,
