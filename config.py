@@ -38,6 +38,9 @@ class TrainingConfig:
     # Distributed training
     backend: str = "mpi"         # "nccl" or "mpi"
     comm_algorithm: Optional[str] = None  # None, "default", "ring", "recursive_doubling"
+    
+    # ZFP compression
+    zfp_rate: float = 16.0
 
     # CIFAR stem adaptation (replace 7x7 conv + maxpool with 3x3 conv)
     cifar_stem: bool = True

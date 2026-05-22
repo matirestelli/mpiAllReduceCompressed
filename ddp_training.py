@@ -245,6 +245,8 @@ def train(config: TrainingConfig) -> None:
     csv_writer = None
     if rank == 0:
         algo_str = config.comm_algorithm or "builtin"
+        if config.comm_algorithm and "zfp" in config.comm_algorithm:
+            algo_str = f"{algo_str}_rate{config.zfp_rate:g}"
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_filename = (
             f"{config.model_name}_{config.num_epochs}_"
@@ -261,7 +263,7 @@ def train(config: TrainingConfig) -> None:
         csv_writer.writerow([
             'epoch', 'lr', 'train_loss', 'train_acc',
             'val_loss', 'val_acc', 'epoch_time_s',
-            'model', 'backend', 'algorithm', 'world_size',
+            'model', 'backend', 'algorithm', 'zfp_rate', 'world_size',
             'batch_size', 'num_epochs',
         ])
 
@@ -312,9 +314,13 @@ def train(config: TrainingConfig) -> None:
     # The ring hook requires a RingAllreduceState as its state so that
     # persistent GPU buffers can be reused across backward passes — this
     # is what fixes the Cray MPICH GPU-direct RDMA stale-registration bug.
-    comm_hook_result = get_comm_hook(config.backend, config.comm_algorithm)
-    if comm_hook_result is not None:
-        comm_hook, comm_state = comm_hook_result
+    result = get_comm_hook(
+        config.backend,
+        config.comm_algorithm,
+        zfp_rate=config.zfp_rate,
+    )
+    if result is not None:
+        comm_hook, comm_state = result
         model.register_comm_hook(state=comm_state, hook=comm_hook)
         if rank == 0:
             print(f"[Setup] Hook registered: {config.backend}/"
@@ -400,6 +406,7 @@ def train(config: TrainingConfig) -> None:
                 f"{val_loss:.6f}",  f"{val_acc:.4f}",
                 f"{epoch_elapsed:.2f}",
                 config.model_name, config.backend, algo_str,
+                f"{config.zfp_rate:g}",
                 world_size, config.batch_size, config.num_epochs,
             ])
             csv_file.flush()

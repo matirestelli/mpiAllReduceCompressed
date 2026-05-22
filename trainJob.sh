@@ -1,11 +1,11 @@
 #!/bin/bash -l
-#PBS -l select=2:ngpus=4
+#PBS -l select=4:ngpus=4
 #PBS -l walltime=01:00:00
 #PBS -l filesystems=home:eagle
-#PBS -q debug
+#PBS -q debug-scaling
 #PBS -A UIC-HPC
 #PBS -j oe
-#PBS -o tryRingAsync.%j.out
+#PBS -o ring_hooks_online_10.%j.out
 #PBS -N ddp-train
 
 cd ${PBS_O_WORKDIR}
@@ -27,35 +27,44 @@ BACKENDS=(
     # "nccl"
 )
 
-COMM_ALGORITHMS=(
-    #"None"
-    # "None"
-    # "ring"
-    # "recursive_doubling"
-    # "ring_zfp_naive"
-    # "recursive_doubling_zfp_naive"
-    # "ring_zfp_online_coll"
-    # "recursive_doubling_zfp_online_coll"
-    "ring_async"
-    "ring"
-    # "default"
+EXPERIMENTS=(
+    # "None:"
+    # "ring:"
+    # "ring_zfp_naive:16"
+    # "ring_zfp_online_coll:16"
+    "ring_zfp_online_coll:10"
+    # "recursive_doubling:"
+    # "recursive_doubling_zfp_naive:16"
+    # "recursive_doubling_zfp_online_coll:16"
+    # "recursive_doubling_zfp_online_coll:8"
 )
 
 for BACKEND in "${BACKENDS[@]}"; do
-    for COMM_ALGORITHM in "${COMM_ALGORITHMS[@]}"; do
-        echo "=== Starting training: backend=${BACKEND}, hook=${COMM_ALGORITHM} at $(date) ==="
+    for EXPERIMENT in "${EXPERIMENTS[@]}"; do
+        COMM_ALGORITHM="${EXPERIMENT%%:*}"
+        ZFP_RATE="${EXPERIMENT#*:}"
 
-        mpiexec -np 8 --ppn 4 --depth=8 --cpu-bind depth \
-            -env MPICH_GPU_SUPPORT_ENABLED=1 \
-            -env LD_PRELOAD="${LD_PRELOAD}" \
-            -env LD_LIBRARY_PATH="${LD_LIBRARY_PATH}" \
-            -env PYTHONPATH="${PYTHONPATH}" \
-            -env BACKEND="${BACKEND}" \
-            -env COMM_ALGORITHM="${COMM_ALGORITHM}" \
+        echo "=== Starting training: backend=${BACKEND}, hook=${COMM_ALGORITHM}, zfp_rate=${ZFP_RATE:-none} at $(date) ==="
+
+        MPI_ENV_ARGS=(
+            -env MPICH_GPU_SUPPORT_ENABLED=1
+            -env LD_PRELOAD="${LD_PRELOAD}"
+            -env LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
+            -env PYTHONPATH="${PYTHONPATH}"
+            -env BACKEND="${BACKEND}"
+            -env COMM_ALGORITHM="${COMM_ALGORITHM}"
+        )
+
+        if [[ -n "${ZFP_RATE}" ]]; then
+            MPI_ENV_ARGS+=(-env ZFP_RATE="${ZFP_RATE}")
+        fi
+
+        mpiexec -np 16 --ppn 4 --depth=8 --cpu-bind depth \
+            "${MPI_ENV_ARGS[@]}" \
             python interface.py
 
         status=$?
-        echo "=== Finished training: backend=${BACKEND}, hook=${COMM_ALGORITHM}, status=${status} at $(date) ==="
+        echo "=== Finished training: backend=${BACKEND}, hook=${COMM_ALGORITHM}, zfp_rate=${ZFP_RATE:-none}, status=${status} at $(date) ==="
 
         if [[ ${status} -ne 0 ]]; then
             echo "=== Stopping job because training failed ==="

@@ -430,18 +430,28 @@ def _default_allreduce_hook(
     backend = dist.get_backend()
     rank = dist.get_rank()
     numel = tensor.numel()
+
+    label = f"{backend}:default"
+
     tensor.div_(dist.get_world_size())
+
     _nvtx_range_push(
         f"allreduce_launched backend={backend} rank={rank} "
         f"bucket={bucket.index()} numel={numel}"
     )
     _nvtx_range_pop()
+
     range_id = _nvtx_process_range_start(
         f"async_allreduce:{backend} rank={rank} bucket={bucket.index()} numel={numel}"
     )
+
+    work_start = time.perf_counter()
     fut = dist.all_reduce(tensor, op=dist.ReduceOp.SUM, async_op=True).get_future()
 
     def _finish(f):
+        work_ms = (time.perf_counter() - work_start) * 1000.0
+        _record_hook_work_timing(label, work_ms)
+
         _nvtx_process_range_end(range_id)
         return f.value()[0]
 
@@ -449,7 +459,7 @@ def _default_allreduce_hook(
 
 # Hook alias: baseline PyTorch-style allreduce using dist.all_reduce.
 nccl_default_allreduce_hook = _default_allreduce_hook
-mpi_default_allreduce_hook  = _default_allreduce_hook
+mpi_default_allreduce_hook = _default_allreduce_hook
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -734,20 +744,15 @@ def _ring_allreduce_hook(
 
     _nvtx_range_push(f"bucket_grads_ready:B{bucket_index} rank={rank} call={call_n}")
     _nvtx_range_pop()
-    _nvtx_range_push(
-        f"comm_hook:ring rank={rank} bucket={bucket_index} call={call_n} numel={numel}"
-    )
-    try:
-        work_start = time.perf_counter()
-        _ring_allreduce_sum(tensor, bstate, log=do_full_log, call_n=call_n)
-        work_ms = (time.perf_counter() - work_start) * 1000.0
-        _record_hook_work_timing("mpi:ring", work_ms)
-    finally:
-        _nvtx_range_pop()
-    _cuda_sync(tensor)
-    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
-    fut.set_result(tensor)
-    return fut
+    def _work() -> None:
+        _ring_allreduce_sum(
+            tensor,
+            bstate,
+            log=do_full_log,
+            call_n=call_n,
+        )
+
+    return _submit_async_hook_work(f"{dist.get_backend()}:ring", tensor, _work)
 
 
 # Hook aliases: plain ring allreduce with no compression.
@@ -756,76 +761,76 @@ mpi_ring_allreduce_hook  = _ring_allreduce_hook
 
 #ring async hook try 1 
 
-def _ring_allreduce_async_hook(
-    state: RingAllreduceState,
-    bucket: dist.GradBucket,
-) -> torch.futures.Future[torch.Tensor]:
-    """
-    Async wrapper for the plain ring allreduce.
-
-    The hook immediately returns an unresolved Future. A single background
-    worker thread runs the existing ring implementation and resolves the Future
-    when communication is complete.
-    """
-    tensor = bucket.buffer()
-    world_size = dist.get_world_size()
-    rank = dist.get_rank()
-    numel = tensor.numel()
-    bucket_index = bucket.index()
-
-    bstate = state.get_or_init(bucket_index, tensor, world_size)
-    bstate.call_count += 1
-    call_n = bstate.call_count
-
-    do_full_log = (FULL_LOG_CALLS > 0 and call_n <= FULL_LOG_CALLS)
-
-    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
-    device_index = tensor.device.index if tensor.is_cuda else None
-
-    if do_full_log:
-        print(
-            f"\n[RING_ASYNC | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-            f"numel={numel} submit_thread={threading.get_ident()} "
-            f"global_tag_before={_tag_counter}",
-            flush=True,
-        )
-
-    def _worker() -> None:
-        try:
-            if device_index is not None:
-                torch.cuda.set_device(device_index)
-
-            if do_full_log:
-                print(
-                    f"[RING_ASYNC | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                    f"worker_thread={threading.get_ident()}",
-                    flush=True,
-                )
-
-            work_start = time.perf_counter()
-
-            _ring_allreduce_sum(
-                tensor,
-                bstate,
-                log=do_full_log,
-                call_n=call_n,
-            )
-
-            _cuda_sync(tensor)
-
-            work_ms = (time.perf_counter() - work_start) * 1000.0
-            _record_hook_work_timing("mpi:ring_async", work_ms)
-
-            fut.set_result(tensor)
-
-        except BaseException as exc:
-            fut.set_exception(exc)
-
-    _RING_ASYNC_EXECUTOR.submit(_worker)
-    return fut
-
-#aliases
-mpi_ring_async_allreduce_hook = _ring_allreduce_async_hook
+# def _ring_allreduce_async_hook(
+#     state: RingAllreduceState,
+#     bucket: dist.GradBucket,
+# ) -> torch.futures.Future[torch.Tensor]:
+#     """
+#     Async wrapper for the plain ring allreduce.
+#
+#     The hook immediately returns an unresolved Future. A single background
+#     worker thread runs the existing ring implementation and resolves the Future
+#     when communication is complete.
+#     """
+#     tensor = bucket.buffer()
+#     world_size = dist.get_world_size()
+#     rank = dist.get_rank()
+#     numel = tensor.numel()
+#     bucket_index = bucket.index()
+#
+#     bstate = state.get_or_init(bucket_index, tensor, world_size)
+#     bstate.call_count += 1
+#     call_n = bstate.call_count
+#
+#     do_full_log = (FULL_LOG_CALLS > 0 and call_n <= FULL_LOG_CALLS)
+#
+#     fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
+#     device_index = tensor.device.index if tensor.is_cuda else None
+#
+#     if do_full_log:
+#         print(
+#             f"\n[RING_ASYNC | R{rank}|B{bstate.bucket_id}|C{call_n}] "
+#             f"numel={numel} submit_thread={threading.get_ident()} "
+#             f"global_tag_before={_tag_counter}",
+#             flush=True,
+#         )
+#
+#     def _worker() -> None:
+#         try:
+#             if device_index is not None:
+#                 torch.cuda.set_device(device_index)
+#
+#             if do_full_log:
+#                 print(
+#                     f"[RING_ASYNC | R{rank}|B{bstate.bucket_id}|C{call_n}] "
+#                     f"worker_thread={threading.get_ident()}",
+#                     flush=True,
+#                 )
+#
+#             work_start = time.perf_counter()
+#
+#             _ring_allreduce_sum(
+#                 tensor,
+#                 bstate,
+#                 log=do_full_log,
+#                 call_n=call_n,
+#             )
+#
+#             _cuda_sync(tensor)
+#
+#             work_ms = (time.perf_counter() - work_start) * 1000.0
+#             _record_hook_work_timing("mpi:ring_async", work_ms)
+#
+#             fut.set_result(tensor)
+#
+#         except BaseException as exc:
+#             fut.set_exception(exc)
+#
+#     _RING_ASYNC_EXECUTOR.submit(_worker)
+#     return fut
+#
+# #aliases
+# mpi_ring_async_allreduce_hook = _ring_allreduce_async_hook
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -1032,53 +1037,19 @@ def _recursive_doubling_allreduce_hook(
 
     _nvtx_range_push(f"bucket_grads_ready:B{bucket_index} rank={rank} call={call_n}")
     _nvtx_range_pop()
-    _nvtx_range_push(
-        f"comm_hook:recursive_doubling rank={rank} bucket={bucket_index} call={call_n} numel={numel}"
-    )
-    try:
+    def _work() -> None:
         _recursive_doubling_allreduce_sum(
             tensor,
             bstate,
             log=do_full_log,
             call_n=call_n,
         )
-    finally:
-        _nvtx_range_pop()
 
-    # if do_full_log or do_light_log:
-    #     ref = pre.clone()
-    #     dist.all_reduce(ref, op=dist.ReduceOp.SUM)
-    #     ref.div_(world_size)
-    #     max_err = (tensor - ref).abs().max().item()
-    #     rel_err = max_err / (ref.norm().item() + 1e-12)
-    #     match = "✓ MATCH" if max_err < 1e-4 else "✗ MISMATCH"
-    #
-    # if do_full_log:
-    #     print(f"  [R{rank}|B{bstate.bucket_id}|C{call_n}] global_tag_after={_tag_counter}",
-    #           flush=True)
-    #     print(f"  [VERIFY | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-    #           f"max_abs_err={max_err:.3e}  rel={rel_err:.3e}  {match}", flush=True)
-    #     if max_err >= 1e-4:
-    #         err_pos = (tensor - ref).abs().argmax().item()
-    #         print(f"  [R{rank}] recursive_doubling: {_fmt(tensor.detach())} "
-    #               f"worst_err_pos={err_pos}", flush=True)
-    #         print(f"  [R{rank}] allreduce: {_fmt(ref.detach())}", flush=True)
-    #
-    # elif do_light_log:
-    #     in_norm = pre.norm().item()
-    #     out_norm = tensor.norm().item()
-    #     is_nan = "NaN!" if not torch.isfinite(tensor).all() else ""
-    #     print(f"  [LIGHT | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-    #           f"in_norm={in_norm:.4e} out_norm={out_norm:.4e} "
-    #           f"sample={_fmt(tensor)} {match} {is_nan}", flush=True)
-    #     if max_err >= 1e-4:
-    #         print(f"  [LIGHT | R{rank}|B{bstate.bucket_id}|C{call_n}] "
-    #               f"*** MISMATCH *** max_abs_err={max_err:.3e}", flush=True)
-
-    _cuda_sync(tensor)
-    fut = torch.futures.Future()
-    fut.set_result(tensor)
-    return fut
+    return _submit_async_hook_work(
+        f"{dist.get_backend()}:recursive_doubling",
+        tensor,
+        _work,
+    )
 
 # Hook aliases: plain recursive-doubling allreduce with no compression.
 nccl_recursive_doubling_allreduce_hook = _recursive_doubling_allreduce_hook
@@ -1110,10 +1081,12 @@ class ZfpRingBucketState:
     bucket_id:       int                    = 0
     call_count:      int                    = 0
     ready:           bool                   = False
+    rate:            float                  = 16.0
 
-    def initialize(self, tensor: torch.Tensor, world_size: int, bucket_id: int) -> None:
+    def initialize(self, tensor: torch.Tensor, world_size: int, bucket_id: int, rate: float) -> None:
         _require_zfp_cuda()
-        cfg = ZfpCompressionConfig()
+        self.rate = rate
+        cfg = ZfpCompressionConfig(rate=rate)
         numel = tensor.numel()
         base_chunk = math.ceil(numel / world_size)
 
@@ -1173,6 +1146,7 @@ class ZfpRingBucketState:
 
 @dataclass
 class ZfpRingAllreduceState:
+    rate: float = 16.0
     buckets: Dict[int, ZfpRingBucketState] = field(default_factory=dict)
 
     def get_or_init(self, bucket_index: int,
@@ -1180,7 +1154,7 @@ class ZfpRingAllreduceState:
         bs = self.buckets.get(bucket_index)
         if bs is None or bs.flat is None or bs.flat.numel() != tensor.numel():
             bs = ZfpRingBucketState()
-            bs.initialize(tensor, world_size, bucket_index)
+            bs.initialize(tensor, world_size, bucket_index, self.rate)            
             self.buckets[bucket_index] = bs
         return bs
 
@@ -1203,7 +1177,7 @@ def _ring_allreduce_zfp_sum(
     This is *not* the paper's later collective-level online compression scheme.
     """
     _require_zfp_cuda()
-    cfg = ZfpCompressionConfig()
+    cfg = ZfpCompressionConfig(rate=bstate.rate)    
     rank = dist.get_rank()
     world_size = dist.get_world_size()
 
@@ -1351,18 +1325,19 @@ def _ring_allreduce_zfp_hook(
         print(f"\n[RING_ZFP | R{rank}|B{bstate.bucket_id}|C{call_n}] numel={numel} "
               f"global_tag_before={_tag_counter}", flush=True)
 
-    _nvtx_range_push(
-        f"comm_hook:ring_zfp rank={rank} bucket={bucket_index} call={call_n} numel={numel}"
-    )
-    try:
-        _ring_allreduce_zfp_sum(tensor, bstate, log=do_full_log, call_n=call_n)
-    finally:
-        _nvtx_range_pop()
+    def _work() -> None:
+        _ring_allreduce_zfp_sum(
+            tensor,
+            bstate,
+            log=do_full_log,
+            call_n=call_n,
+        )
 
-    _cuda_sync(tensor)
-    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
-    fut.set_result(tensor)
-    return fut
+    return _submit_async_hook_work(
+        f"{dist.get_backend()}:ring_zfp_naive:rate{bstate.rate:g}",
+        tensor,
+        _work,
+    )
 
 
 # Hook aliases: naive point-to-point ZFP baseline layered on top of ring.
@@ -1385,10 +1360,12 @@ class ZfpRecursiveDoublingBucketState:
     recv_size:  Optional[torch.Tensor] = None
     bucket_id:  int                    = 0
     call_count: int                    = 0
+    rate:       float                  = 16.0
 
-    def initialize(self, tensor: torch.Tensor, bucket_id: int) -> None:
+    def initialize(self, tensor: torch.Tensor, bucket_id: int, rate: float) -> None:
         _require_zfp_cuda()
-        cfg = ZfpCompressionConfig()
+        self.rate = rate
+        cfg = ZfpCompressionConfig(rate=rate)
         self.flat = torch.empty(tensor.numel(), dtype=tensor.dtype, device=tensor.device)
         self.tmp = torch.empty_like(self.flat)
         max_bytes = _zfp_max_output_bytes(self.flat, cfg.rate)
@@ -1401,6 +1378,7 @@ class ZfpRecursiveDoublingBucketState:
 
 @dataclass
 class ZfpRecursiveDoublingAllreduceState:
+    rate: float = 16.0
     buckets: Dict[int, ZfpRecursiveDoublingBucketState] = field(default_factory=dict)
 
     def get_or_init(self, bucket_index: int,
@@ -1408,7 +1386,7 @@ class ZfpRecursiveDoublingAllreduceState:
         bs = self.buckets.get(bucket_index)
         if bs is None or bs.flat is None or bs.flat.numel() != tensor.numel():
             bs = ZfpRecursiveDoublingBucketState()
-            bs.initialize(tensor, bucket_index)
+            bs.initialize(tensor, bucket_index, self.rate)
             self.buckets[bucket_index] = bs
         return bs
 
@@ -1466,7 +1444,7 @@ def _recursive_doubling_zfp_sum(
     overheads described in the paper's baseline discussion.
     """
     _require_zfp_cuda()
-    cfg = ZfpCompressionConfig()
+    cfg = ZfpCompressionConfig(rate=bstate.rate)    
     rank = dist.get_rank()
     world_size = dist.get_world_size()
 
@@ -1632,18 +1610,19 @@ def _recursive_doubling_zfp_hook(
         print(f"\n[RECURSIVE_DOUBLING_ZFP | R{rank}|B{bstate.bucket_id}|C{call_n}] "
               f"numel={numel} global_tag_before={_tag_counter}", flush=True)
 
-    _nvtx_range_push(
-        f"comm_hook:recursive_doubling_zfp rank={rank} bucket={bucket_index} call={call_n} numel={numel}"
-    )
-    try:
-        _recursive_doubling_zfp_sum(tensor, bstate, log=do_full_log, call_n=call_n)
-    finally:
-        _nvtx_range_pop()
+    def _work() -> None:
+        _recursive_doubling_zfp_sum(
+            tensor,
+            bstate,
+            log=do_full_log,
+            call_n=call_n,
+        )
 
-    _cuda_sync(tensor)
-    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
-    fut.set_result(tensor)
-    return fut
+    return _submit_async_hook_work(
+        f"{dist.get_backend()}:recursive_doubling_zfp_naive:rate{bstate.rate:g}",
+        tensor,
+        _work,
+    )
 
 
 def _ring_allreduce_zfp_online_coll_sum(
@@ -1670,8 +1649,7 @@ def _ring_allreduce_zfp_online_coll_sum(
     needed for this online algorithm.
     """
     _require_zfp_cuda()
-    cfg = ZfpCompressionConfig()
-
+    cfg = ZfpCompressionConfig(rate=bstate.rate)
     rank = dist.get_rank()
     world_size = dist.get_world_size()
 
@@ -1921,22 +1899,19 @@ def _ring_allreduce_zfp_online_coll_hook(
               f"numel={numel} global_tag_before={_tag_counter}",
               flush=True)
 
-    _nvtx_range_push(
-        f"comm_hook:ring_zfp_online_coll rank={rank} bucket={bucket_index} call={call_n} numel={numel}"
-    )
-    try:
+    def _work() -> None:
         _ring_allreduce_zfp_online_coll_sum(
             tensor,
             bstate,
             log=do_full_log,
             call_n=call_n,
         )
-    finally:
-        _nvtx_range_pop()
 
-    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
-    fut.set_result(tensor)
-    return fut
+    return _submit_async_hook_work(
+        f"{dist.get_backend()}:ring_zfp_online_coll:rate{bstate.rate:g}",
+        tensor,
+        _work,
+    )
 
 
 @dataclass
@@ -1950,11 +1925,12 @@ class ZfpRecursiveDoublingOnlineBucketState:
     comp_bytes: int = 0
     bucket_id: int = 0
     call_count: int = 0
+    rate: float = 16.0
 
-    def initialize(self, tensor: torch.Tensor, world_size: int, bucket_id: int) -> None:
+    def initialize(self, tensor: torch.Tensor, world_size: int, bucket_id: int, rate: float) -> None:
         _require_zfp_cuda()
-        cfg = ZfpCompressionConfig()
-
+        self.rate = rate
+        cfg = ZfpCompressionConfig(rate=rate)
         numel = tensor.numel()
         self.flat = torch.empty(numel, dtype=tensor.dtype, device=tensor.device)
 
@@ -1990,6 +1966,7 @@ class ZfpRecursiveDoublingOnlineBucketState:
 
 @dataclass
 class ZfpRecursiveDoublingOnlineAllreduceState:
+    rate: float = 16.0
     buckets: Dict[int, ZfpRecursiveDoublingOnlineBucketState] = field(default_factory=dict)
 
     def get_or_init(
@@ -2001,7 +1978,7 @@ class ZfpRecursiveDoublingOnlineAllreduceState:
         bs = self.buckets.get(bucket_index)
         if bs is None or bs.flat is None or bs.flat.numel() != tensor.numel():
             bs = ZfpRecursiveDoublingOnlineBucketState()
-            bs.initialize(tensor, world_size, bucket_index)
+            bs.initialize(tensor, world_size, bucket_index, self.rate)
             self.buckets[bucket_index] = bs
         return bs
     
@@ -2022,8 +1999,7 @@ def _recursive_doubling_zfp_online_coll_sum(
     Sends are waited after the recursive-doubling loop, matching line 39.
     """
     _require_zfp_cuda()
-    cfg = ZfpCompressionConfig()
-
+    cfg = ZfpCompressionConfig(rate=bstate.rate)
     rank = dist.get_rank()
     world_size = dist.get_world_size()
 
@@ -2336,38 +2312,28 @@ def _recursive_doubling_zfp_online_coll_hook(
               f"numel={numel} global_tag_before={_tag_counter}",
               flush=True)
 
-    _nvtx_range_push(
-        f"comm_hook:recursive_doubling_zfp_online_coll rank={rank} "
-        f"bucket={bucket_index} call={call_n} numel={numel}"
-    )
-    try:
+    def _work() -> None:
         _recursive_doubling_zfp_online_coll_sum(
             tensor,
             bstate,
             log=do_full_log,
             call_n=call_n,
         )
-    finally:
-        _nvtx_range_pop()
 
-    fut: torch.futures.Future[torch.Tensor] = torch.futures.Future()
-    fut.set_result(tensor)
-    return fut
-
+    return _submit_async_hook_work(
+        f"{dist.get_backend()}:recursive_doubling_zfp_online_coll:rate{bstate.rate:g}",
+        tensor,
+        _work,
+    )
    
-# Hook aliases: naive point-to-point ZFP baseline layered on top of recursive doubling.
-nccl_recursive_doubling_zfp_allreduce_hook = _recursive_doubling_zfp_hook
-mpi_recursive_doubling_zfp_allreduce_hook  = _recursive_doubling_zfp_hook
-nccl_ring_zfp_online_coll_allreduce_hook = _ring_allreduce_zfp_online_coll_hook
-mpi_ring_zfp_online_coll_allreduce_hook = _ring_allreduce_zfp_online_coll_hook
-mpi_recursive_doubling_zfp_online_coll_allreduce_hook = _recursive_doubling_zfp_online_coll_hook
-
 # Explicit aliases with "naive" in the name to mirror the paper terminology.
 nccl_ring_zfp_naive_allreduce_hook = _ring_allreduce_zfp_hook
 mpi_ring_zfp_naive_allreduce_hook = _ring_allreduce_zfp_hook
 nccl_recursive_doubling_zfp_naive_allreduce_hook = _recursive_doubling_zfp_hook
 mpi_recursive_doubling_zfp_naive_allreduce_hook = _recursive_doubling_zfp_hook
 
+mpi_ring_zfp_online_coll_allreduce_hook = _ring_allreduce_zfp_online_coll_hook
+mpi_recursive_doubling_zfp_online_coll_allreduce_hook = _recursive_doubling_zfp_online_coll_hook
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # HOOK FACTORY
@@ -2376,28 +2342,23 @@ mpi_recursive_doubling_zfp_naive_allreduce_hook = _recursive_doubling_zfp_hook
 _HOOK_REGISTRY = {
     ("nccl", "default"):            nccl_default_allreduce_hook,
     ("nccl", "ring"):               nccl_ring_allreduce_hook,
-    ("nccl", "ring_zfp"):           nccl_ring_zfp_allreduce_hook,
     ("nccl", "ring_zfp_naive"):     nccl_ring_zfp_naive_allreduce_hook,
     ("nccl", "recursive_doubling"): nccl_recursive_doubling_allreduce_hook,
-    ("nccl", "recursive_doubling_zfp"): nccl_recursive_doubling_zfp_allreduce_hook,
     ("nccl", "recursive_doubling_zfp_naive"): nccl_recursive_doubling_zfp_naive_allreduce_hook,
     ("mpi",  "default"):            mpi_default_allreduce_hook,
     ("mpi",  "ring"):               mpi_ring_allreduce_hook,
-    ("mpi",  "ring_zfp"):           mpi_ring_zfp_allreduce_hook,
     ("mpi",  "ring_zfp_naive"):     mpi_ring_zfp_naive_allreduce_hook,
     ("mpi",  "recursive_doubling"): mpi_recursive_doubling_allreduce_hook,
-    ("mpi",  "recursive_doubling_zfp"): mpi_recursive_doubling_zfp_allreduce_hook,
     ("mpi",  "recursive_doubling_zfp_naive"): mpi_recursive_doubling_zfp_naive_allreduce_hook,
-    ("nccl", "ring_zfp_online_coll"): nccl_ring_zfp_online_coll_allreduce_hook,
     ("mpi",  "ring_zfp_online_coll"): mpi_ring_zfp_online_coll_allreduce_hook,
     ("mpi", "recursive_doubling_zfp_online_coll"): mpi_recursive_doubling_zfp_online_coll_allreduce_hook,
-    ("mpi", "ring_async"): mpi_ring_async_allreduce_hook,
 }
 
 
 def get_comm_hook(
-    backend:   str,
+    backend: str,
     algorithm: Optional[str] = None,
+    zfp_rate: float = 16.0,
 ) -> Optional[tuple]:
     """
     Return (hook, state) for DDP's register_comm_hook, or None.
@@ -2417,21 +2378,25 @@ def get_comm_hook(
             f"Unknown hook: {backend}/{algorithm}. Available: {available}"
         )
     base_hook = _HOOK_REGISTRY[key]
-    if algorithm in ("ring", "ring_async"):
+    if algorithm == "ring":
         state = RingAllreduceState()
-    elif algorithm in ("ring_zfp", "ring_zfp_naive", "ring_zfp_online_coll"):
-        state = ZfpRingAllreduceState()
+    elif algorithm in ("ring_zfp_naive", "ring_zfp_online_coll"):
+        state = ZfpRingAllreduceState(rate=zfp_rate)
     elif algorithm == "recursive_doubling":
         state = RecursiveDoublingAllreduceState()
-    elif algorithm in ("recursive_doubling_zfp", "recursive_doubling_zfp_naive"):
-        state = ZfpRecursiveDoublingAllreduceState()
+    elif algorithm == "recursive_doubling_zfp_naive":
+        state = ZfpRecursiveDoublingAllreduceState(rate=zfp_rate)
     elif algorithm == "recursive_doubling_zfp_online_coll":
-        state = ZfpRecursiveDoublingOnlineAllreduceState()
+        state = ZfpRecursiveDoublingOnlineAllreduceState(rate=zfp_rate)
     else:
         state = None
 
+    profile_label = f"{backend}:{algorithm}"
+    if "zfp" in algorithm:
+        profile_label = f"{profile_label}:rate{zfp_rate:g}"
+
     def hook(state_obj, bucket):
-        return _profiled_hook(f"{backend}:{algorithm}", base_hook, state_obj, bucket)
+        return _profiled_hook(profile_label, base_hook, state_obj, bucket)
 
     return hook, state
 

@@ -35,16 +35,27 @@ def _normalize_optional_value(value):
     return value
 
 
+def _read_float_env(name):
+    value = os.environ.get(name)
+    if value is None or value == "":
+        return None
+    return float(value)
+
+
 def apply_job_overrides(config):
-    """Allow PBS/train job scripts to override only backend and hook."""
+    """Allow PBS/train job scripts to override backend, hook, and ZFP rate."""
     backend = _read_optional_env("BACKEND")
     comm_algorithm = _read_optional_env("COMM_ALGORITHM")
+    zfp_rate = _read_float_env("ZFP_RATE")
 
     if backend is not None:
         config.backend = backend
 
     if comm_algorithm is not None:
         config.comm_algorithm = _normalize_optional_value(comm_algorithm)
+
+    if zfp_rate is not None:
+        config.zfp_rate = zfp_rate
 
 
 if __name__ == "__main__":
@@ -72,8 +83,8 @@ if __name__ == "__main__":
         # without LR adjustment. At 4 GPUs x 128 = 512 effective - conservative and safe.
         # the total batch size is 128 -> so based on the number of gpus here set: 128/Number of GPUs
         # batch_size=32, # for 4 gpus
-        batch_size=16, # for 8 gpus
-        # batch_size=8, # for 16 gpus
+        # batch_size=16, # for 8 gpus
+        batch_size=8, # for 16 gpus
         # no wait in this way goes slower with 8 gpus.
         #   4 GPUs  -> effective batch 512
         #   8 GPUs  -> effective batch 1024
@@ -99,6 +110,7 @@ if __name__ == "__main__":
         # default). Override here only to disable (None) or tune the threshold.
         # pretrained=True required for ResNeXt101/ConvNeXt on CIFAR-10 - see
         # TRAINING_STABILITY.md for why training from scratch is not viable.
+        zfp_rate=16.0,
         pretrained=True,
         cifar_stem=False,
         data_dir="./data",
@@ -135,6 +147,8 @@ if __name__ == "__main__":
     print(f"  Dataset:    {config.dataset} ({config.num_classes} classes)")
     print(f"  Backend:    {config.backend}")
     print(f"  Algorithm:  {config.comm_algorithm or 'built-in (no hook)'}")
+    if config.comm_algorithm and "zfp" in config.comm_algorithm:
+        print(f"  ZFP rate:   {config.zfp_rate:g}")
     print(f"  Epochs:     {config.num_epochs}")
     print(f"  Batch/rank: {config.batch_size}")
     print(f"  LR:         {config.learning_rate}")
