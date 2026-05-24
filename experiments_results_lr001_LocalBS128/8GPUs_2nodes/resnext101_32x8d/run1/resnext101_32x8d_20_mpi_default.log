@@ -1,0 +1,217 @@
+
+================================================================================
+Distributed Training: RESNEXT101_32X8D on CIFAR10
+Backend: MPI, Algorithm: default
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 128, Effective batch: 1024
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/default
+[Data] Train batches: 48, Val batches: 10
+
+
+[Epoch 1] Training... (lr=0.000001)
+[Epoch 1] Train Loss: 2.3194, Acc: 10.50%  |  Val Loss: 2.3229, Acc: 11.12%  |  Time: 11.6s
+  -> Best model saved (11.12%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:default calls=600 work_total_ms=73103.354 work_mean_ms=121.839 work_min_ms=83.919 work_max_ms=142.956
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=49 tail_total_ms=4714.537 tail_mean_ms=96.215 tail_min_ms=84.160 tail_max_ms=113.903
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.000201)
+[Epoch 2] Train Loss: nan, Acc: 9.67%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75284.197 work_mean_ms=120.648 work_min_ms=82.734 work_max_ms=136.070
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4573.682 tail_mean_ms=95.285 tail_min_ms=85.644 tail_max_ms=99.148
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000401)
+[Epoch 3] Train Loss: nan, Acc: 9.96%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75648.771 work_mean_ms=121.232 work_min_ms=93.164 work_max_ms=136.520
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4574.354 tail_mean_ms=95.299 tail_min_ms=93.219 tail_max_ms=101.906
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000600)
+[Epoch 4] Train Loss: nan, Acc: 9.73%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75830.811 work_mean_ms=121.524 work_min_ms=93.455 work_max_ms=153.146
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4595.894 tail_mean_ms=95.748 tail_min_ms=93.511 tail_max_ms=119.749
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000800)
+[Epoch 5] Train Loss: nan, Acc: 10.11%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75895.284 work_mean_ms=121.627 work_min_ms=93.529 work_max_ms=164.943
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4595.839 tail_mean_ms=95.747 tail_min_ms=93.585 tail_max_ms=131.443
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.001000)
+[Epoch 6] Train Loss: nan, Acc: 10.12%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75312.345 work_mean_ms=120.693 work_min_ms=93.503 work_max_ms=144.156
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4547.626 tail_mean_ms=94.742 tail_min_ms=93.560 tail_max_ms=110.123
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000989)
+[Epoch 7] Train Loss: nan, Acc: 10.61%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75267.631 work_mean_ms=120.621 work_min_ms=93.207 work_max_ms=142.227
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4559.371 tail_mean_ms=94.987 tail_min_ms=93.263 tail_max_ms=110.090
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000957)
+[Epoch 8] Train Loss: nan, Acc: 9.91%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75486.974 work_mean_ms=120.973 work_min_ms=93.734 work_max_ms=154.507
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4570.335 tail_mean_ms=95.215 tail_min_ms=93.789 tail_max_ms=120.542
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000905)
+[Epoch 9] Train Loss: nan, Acc: 9.67%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75491.342 work_mean_ms=120.980 work_min_ms=93.378 work_max_ms=163.430
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4576.340 tail_mean_ms=95.340 tail_min_ms=93.434 tail_max_ms=129.324
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000835)
+[Epoch 10] Train Loss: nan, Acc: 9.91%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75525.821 work_mean_ms=121.035 work_min_ms=92.884 work_max_ms=160.614
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4578.861 tail_mean_ms=95.393 tail_min_ms=92.939 tail_max_ms=128.048
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000750)
+[Epoch 11] Train Loss: nan, Acc: 10.43%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.8s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75731.279 work_mean_ms=121.364 work_min_ms=93.941 work_max_ms=154.303
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4598.928 tail_mean_ms=95.811 tail_min_ms=94.001 tail_max_ms=121.370
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000655)
+[Epoch 12] Train Loss: nan, Acc: 9.75%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75506.954 work_mean_ms=121.005 work_min_ms=93.408 work_max_ms=146.094
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4575.196 tail_mean_ms=95.317 tail_min_ms=93.463 tail_max_ms=111.729
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000552)
+[Epoch 13] Train Loss: nan, Acc: 10.34%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75528.960 work_mean_ms=121.040 work_min_ms=93.461 work_max_ms=154.041
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4575.395 tail_mean_ms=95.321 tail_min_ms=93.515 tail_max_ms=120.612
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000448)
+[Epoch 14] Train Loss: nan, Acc: 9.88%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75554.420 work_mean_ms=121.081 work_min_ms=93.658 work_max_ms=143.084
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4576.524 tail_mean_ms=95.344 tail_min_ms=93.713 tail_max_ms=109.999
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000345)
+[Epoch 15] Train Loss: nan, Acc: 10.06%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=76088.301 work_mean_ms=121.936 work_min_ms=93.695 work_max_ms=146.687
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4610.601 tail_mean_ms=96.054 tail_min_ms=93.750 tail_max_ms=112.396
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000250)
+[Epoch 16] Train Loss: nan, Acc: 9.88%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75607.143 work_mean_ms=121.165 work_min_ms=93.851 work_max_ms=139.796
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4579.726 tail_mean_ms=95.411 tail_min_ms=93.908 tail_max_ms=104.948
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000165)
+[Epoch 17] Train Loss: nan, Acc: 10.07%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75689.829 work_mean_ms=121.298 work_min_ms=93.590 work_max_ms=152.365
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4583.463 tail_mean_ms=95.489 tail_min_ms=93.649 tail_max_ms=117.136
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000095)
+[Epoch 18] Train Loss: nan, Acc: 9.99%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.8s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75678.368 work_mean_ms=121.279 work_min_ms=94.416 work_max_ms=144.236
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4594.323 tail_mean_ms=95.715 tail_min_ms=94.474 tail_max_ms=110.735
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000043)
+[Epoch 19] Train Loss: nan, Acc: 10.06%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=76000.989 work_mean_ms=121.796 work_min_ms=93.450 work_max_ms=144.842
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4600.380 tail_mean_ms=95.841 tail_min_ms=93.505 tail_max_ms=111.998
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000011)
+[Epoch 20] Train Loss: nan, Acc: 10.58%  |  Val Loss: nan, Acc: 10.88%  |  Time: 9.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=mpi:default calls=624 work_total_ms=75207.285 work_mean_ms=120.524 work_min_ms=92.225 work_max_ms=142.933
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=48 tail_total_ms=4542.538 tail_mean_ms=94.636 tail_min_ms=92.282 tail_max_ms=110.510
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 197.5s | Best val acc: 11.12%
+Epoch times: mean=9.8s  min=9.7s  max=11.6s
+================================================================================

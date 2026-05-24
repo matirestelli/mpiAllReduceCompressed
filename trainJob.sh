@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#PBS -l select=4:ngpus=4
+#PBS -l select=1:ngpus=4
 #PBS -l walltime=01:00:00
 #PBS -l filesystems=home:eagle
 #PBS -q debug-scaling
@@ -28,7 +28,8 @@ BACKENDS=(
 )
 
 EXPERIMENTS=(
-    # "None:"
+    #"default:"
+   # "None:"
     # "ring:"
     # "ring_zfp_naive:16"
     # "ring_zfp_online_coll:16"
@@ -59,7 +60,7 @@ for BACKEND in "${BACKENDS[@]}"; do
             MPI_ENV_ARGS+=(-env ZFP_RATE="${ZFP_RATE}")
         fi
 
-        mpiexec -np 16 --ppn 4 --depth=8 --cpu-bind depth \
+        mpiexec -np 4 --ppn 4 --depth=8 --cpu-bind depth \
             "${MPI_ENV_ARGS[@]}" \
             python interface.py
 

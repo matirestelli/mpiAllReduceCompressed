@@ -61,6 +61,41 @@ class TrainingConfig:
         assert self.learning_rate > 0
 
 
+def apply_cifar_stem(
+    model: nn.Module,
+    pretrained: bool = False,
+    init_from_pretrained_center: bool = False,
+) -> nn.Module:
+    """Replace ImageNet ResNet/ResNeXt stem with CIFAR stem.
+
+    If init_from_pretrained_center=True, initialize the new 3x3 conv from
+    the center crop of the pretrained 7x7 conv. This is useful for pretrained
+    ResNeXt on CIFAR-10, where a random new stem can destabilize training.
+    """
+    old_conv1 = model.conv1
+
+    model.conv1 = nn.Conv2d(
+        in_channels=old_conv1.in_channels,
+        out_channels=old_conv1.out_channels,
+        kernel_size=3,
+        stride=1,
+        padding=1,
+        bias=False,
+    )
+
+    if pretrained and init_from_pretrained_center:
+        if old_conv1.weight.shape[-2:] != (7, 7):
+            raise ValueError(
+                "Cannot center-crop pretrained stem: expected old conv1 to be 7x7."
+            )
+
+        with torch.no_grad():
+            model.conv1.weight.copy_(old_conv1.weight[:, :, 2:5, 2:5])
+
+    model.maxpool = nn.Identity()
+    return model
+
+
 def create_model(
     model_name: str, num_classes: int,
     cifar_stem: bool = True, pretrained: bool = False,
@@ -112,10 +147,25 @@ def create_model(
     else:
         model = builders[model_name]()
 
-    # Adapt ResNet/ResNeXt stem for 32×32 CIFAR images (same for both paths)
+       # Adapt ResNet/ResNeXt stem for 32x32 CIFAR images.
     if cifar_stem and model_name.startswith(("resnet", "resnext", "wide_resnet")):
-        model.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
-        model.maxpool = nn.Identity()
+        # Default behavior: random 3x3 CIFAR stem.
+        # This reproduces the original 4-GPU ResNeXt baseline behavior.
+        init_from_pretrained_center = False
+
+        # Optional ResNeXt experiment:
+        # Uncomment this only for the ResNeXt 8-GPU CIFAR-stem experiment
+        # where you want to initialize the 3x3 CIFAR stem from the center
+        # crop of the pretrained ImageNet 7x7 stem.
+        #
+        # if model_name == "resnext101_32x8d":
+        #     init_from_pretrained_center = True
+
+        model = apply_cifar_stem(
+            model,
+            pretrained=pretrained,
+            init_from_pretrained_center=init_from_pretrained_center,
+        )
 
     return model
 
@@ -174,6 +224,13 @@ def get_data_loaders(
         train_dataset, batch_size=config.batch_size,
         sampler=train_sampler, num_workers=4, pin_memory=True,
     )
+    
+    # only for 8 GPUs run this with the drop_last=True option also set
+    #train_loader = DataLoader(
+    #    train_dataset, batch_size=config.batch_size,
+    #    sampler=train_sampler, num_workers=4, pin_memory=True, drop_last=True, 
+    #)
+    
     val_loader = DataLoader(
         val_dataset, batch_size=config.batch_size,
         sampler=val_sampler, num_workers=4, pin_memory=True,

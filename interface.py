@@ -68,8 +68,8 @@ if __name__ == "__main__":
         # grad_clip=None,
         # warmup_epochs=1,
         # model_name="resnet101",          # ~44M params - deeper ResNet
-        model_name="wide_resnet50_2",
-        # model_name="resnext101_32x8d",   # ~88M params - grouped convs (32 groups x 8 width)
+        # model_name="wide_resnet50_2",
+        model_name="resnext101_32x8d",   # ~88M params - grouped convs (32 groups x 8 width)
         # model_name="convnext_tiny",      # ~28M params - modern architecture, no stem fix needed
         # model_name="convnext_small",     # ~50M params - larger ConvNeXt variant
         dataset="cifar10",
@@ -82,19 +82,22 @@ if __name__ == "__main__":
         # Quality: effective_batch = batch_size x world_size. Keep <= 2048 for CIFAR-10
         # without LR adjustment. At 4 GPUs x 128 = 512 effective - conservative and safe.
         # the total batch size is 128 -> so based on the number of gpus here set: 128/Number of GPUs
-        # batch_size=32, # for 4 gpus
+        batch_size=32, # for 4 gpus
         # batch_size=16, # for 8 gpus
         # batch_size=8, # for 16 gpus
         # no wait in this way goes slower with 8 gpus.
         #   4 GPUs  -> effective batch 512
         #   8 GPUs  -> effective batch 1024
         #   16 GPUs -> effective batch 2048
-        batch_size=128,
+        # batch_size=128,
         learning_rate=0.001,
         momentum=0.9,
         weight_decay=5e-4,
-        warmup_epochs=1,
-        grad_clip=None,
+        # warmup_epochs=1, #for Wide_Resnet50_2
+        warmup_epochs=5, #for Resnext_32x8d
+        # grad_clip=None, #for Wide_Resnet50_2
+        # grad_clip=1, #for Resnext_32x8d
+        grad_clip=0.5, #for little batches with Resnext like 32
         backend="mpi", # mpi or nccl; can be overridden by BACKEND in trainJobs.sh
         # -- Communication algorithm (uncomment one, comment the rest) -------
         # comm_algorithm=None,
@@ -112,7 +115,8 @@ if __name__ == "__main__":
         # TRAINING_STABILITY.md for why training from scratch is not viable.
         zfp_rate=16.0,
         pretrained=True,
-        cifar_stem=False,
+        # cifar_stem=False, #for Wide_resnet50_2
+        cifar_stem=True, #for Resnext_32x8d
         data_dir="./data",
         checkpoint_dir="./checkpoints",
         seed=42,

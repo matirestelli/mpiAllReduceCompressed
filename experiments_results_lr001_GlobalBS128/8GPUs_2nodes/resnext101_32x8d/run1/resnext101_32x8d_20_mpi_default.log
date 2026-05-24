@@ -1,0 +1,352 @@
+
+================================================================================
+Distributed Training: RESNEXT101_32X8D on CIFAR10
+Backend: MPI, Algorithm: default
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 16, Effective batch: 128
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/default
+[Data] Train batches: 390, Val batches: 79
+
+
+[Epoch 1] Training... (lr=0.000001)
+  Batch [50/390] Loss: 2.3184, Acc: 10.62%
+  Batch [100/390] Loss: 2.3147, Acc: 10.62%
+  Batch [150/390] Loss: 2.3142, Acc: 10.58%
+  Batch [200/390] Loss: 2.3158, Acc: 10.47%
+  Batch [250/390] Loss: 2.3164, Acc: 10.62%
+  Batch [300/390] Loss: 2.3157, Acc: 10.88%
+  Batch [350/390] Loss: 2.3169, Acc: 10.93%
+[Epoch 1] Train Loss: 2.3167, Acc: 10.87%  |  Val Loss: 2.3190, Acc: 9.68%  |  Time: 29.0s
+  -> Best model saved (9.68%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5046 work_total_ms=78881.811 work_mean_ms=15.633 work_min_ms=1.910 work_max_ms=53.561
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=391 tail_total_ms=8371.746 tail_mean_ms=21.411 tail_min_ms=18.912 tail_max_ms=53.417
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.000201)
+  Batch [50/390] Loss: 2.3064, Acc: 11.38%
+  Batch [100/390] Loss: 2.2983, Acc: 12.75%
+  Batch [150/390] Loss: 2.2858, Acc: 14.38%
+  Batch [200/390] Loss: 2.2746, Acc: 16.12%
+  Batch [250/390] Loss: 2.2612, Acc: 18.75%
+  Batch [300/390] Loss: 2.2503, Acc: 20.44%
+  Batch [350/390] Loss: 2.2396, Acc: 22.23%
+[Epoch 2] Train Loss: 2.2290, Acc: 23.89%  |  Val Loss: 2.1627, Acc: 34.16%  |  Time: 24.3s
+  -> Best model saved (34.16%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=77298.846 work_mean_ms=15.246 work_min_ms=2.057 work_max_ms=23.990
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8096.290 tail_mean_ms=20.760 tail_min_ms=14.753 tail_max_ms=22.159
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000401)
+  Batch [50/390] Loss: 2.1148, Acc: 40.00%
+  Batch [100/390] Loss: 2.1032, Acc: 41.31%
+  Batch [150/390] Loss: 2.0783, Acc: 43.38%
+  Batch [200/390] Loss: 2.0501, Acc: 45.75%
+  Batch [250/390] Loss: 2.0226, Acc: 47.85%
+  Batch [300/390] Loss: 1.9971, Acc: 48.92%
+  Batch [350/390] Loss: 1.9722, Acc: 50.02%
+[Epoch 3] Train Loss: 1.9519, Acc: 50.77%  |  Val Loss: 1.7658, Acc: 61.12%  |  Time: 24.5s
+  -> Best model saved (61.12%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=78089.392 work_mean_ms=15.402 work_min_ms=1.898 work_max_ms=24.614
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8148.500 tail_mean_ms=20.894 tail_min_ms=15.530 tail_max_ms=22.862
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000600)
+  Batch [50/390] Loss: 1.6695, Acc: 62.12%
+  Batch [100/390] Loss: 1.6435, Acc: 61.50%
+  Batch [150/390] Loss: 1.6069, Acc: 61.67%
+  Batch [200/390] Loss: 1.5629, Acc: 62.50%
+  Batch [250/390] Loss: 1.5205, Acc: 63.60%
+  Batch [300/390] Loss: 1.4861, Acc: 63.81%
+  Batch [350/390] Loss: 1.4576, Acc: 64.09%
+[Epoch 4] Train Loss: 1.4383, Acc: 64.42%  |  Val Loss: 1.3614, Acc: 73.52%  |  Time: 24.5s
+  -> Best model saved (73.52%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=75329.781 work_mean_ms=14.858 work_min_ms=1.934 work_max_ms=24.446
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7949.399 tail_mean_ms=20.383 tail_min_ms=16.264 tail_max_ms=22.612
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000800)
+  Batch [50/390] Loss: 1.2271, Acc: 67.38%
+  Batch [100/390] Loss: 1.2027, Acc: 68.44%
+  Batch [150/390] Loss: 1.1463, Acc: 69.71%
+  Batch [200/390] Loss: 1.1172, Acc: 70.09%
+  Batch [250/390] Loss: 1.0909, Acc: 70.38%
+  Batch [300/390] Loss: 1.0544, Acc: 71.23%
+  Batch [350/390] Loss: 1.0297, Acc: 71.68%
+[Epoch 5] Train Loss: 1.0100, Acc: 72.10%  |  Val Loss: 0.8787, Acc: 79.68%  |  Time: 24.5s
+  -> Best model saved (79.68%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=78785.633 work_mean_ms=15.540 work_min_ms=1.912 work_max_ms=25.992
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8216.456 tail_mean_ms=21.068 tail_min_ms=15.700 tail_max_ms=24.251
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.001000)
+  Batch [50/390] Loss: 0.8170, Acc: 76.50%
+  Batch [100/390] Loss: 0.8076, Acc: 75.81%
+  Batch [150/390] Loss: 0.8080, Acc: 75.50%
+  Batch [200/390] Loss: 0.7831, Acc: 76.03%
+  Batch [250/390] Loss: 0.7707, Acc: 76.40%
+  Batch [300/390] Loss: 0.7542, Acc: 76.90%
+  Batch [350/390] Loss: 0.7433, Acc: 76.96%
+[Epoch 6] Train Loss: 0.7345, Acc: 77.18%  |  Val Loss: 0.6271, Acc: 85.76%  |  Time: 24.4s
+  -> Best model saved (85.76%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=76934.695 work_mean_ms=15.174 work_min_ms=1.919 work_max_ms=24.709
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8062.958 tail_mean_ms=20.674 tail_min_ms=16.811 tail_max_ms=23.006
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000989)
+  Batch [50/390] Loss: 0.5555, Acc: 82.62%
+  Batch [100/390] Loss: 0.5610, Acc: 82.44%
+  Batch [150/390] Loss: 0.5664, Acc: 81.88%
+  Batch [200/390] Loss: 0.5723, Acc: 81.50%
+  Batch [250/390] Loss: 0.5720, Acc: 81.45%
+  Batch [300/390] Loss: 0.5552, Acc: 82.31%
+  Batch [350/390] Loss: 0.5481, Acc: 82.54%
+[Epoch 7] Train Loss: 0.5507, Acc: 82.32%  |  Val Loss: 0.5005, Acc: 88.96%  |  Time: 24.6s
+  -> Best model saved (88.96%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=81151.932 work_mean_ms=16.006 work_min_ms=2.061 work_max_ms=28.233
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8455.034 tail_mean_ms=21.680 tail_min_ms=17.057 tail_max_ms=26.452
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000957)
+  Batch [50/390] Loss: 0.5260, Acc: 84.00%
+  Batch [100/390] Loss: 0.5018, Acc: 84.94%
+  Batch [150/390] Loss: 0.5059, Acc: 84.29%
+  Batch [200/390] Loss: 0.5079, Acc: 84.34%
+  Batch [250/390] Loss: 0.5098, Acc: 84.22%
+  Batch [300/390] Loss: 0.4980, Acc: 84.65%
+  Batch [350/390] Loss: 0.4981, Acc: 84.61%
+[Epoch 8] Train Loss: 0.4917, Acc: 84.84%  |  Val Loss: 0.4384, Acc: 89.76%  |  Time: 24.4s
+  -> Best model saved (89.76%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=76210.002 work_mean_ms=15.032 work_min_ms=1.905 work_max_ms=33.712
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8029.236 tail_mean_ms=20.588 tail_min_ms=16.190 tail_max_ms=31.890
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000905)
+  Batch [50/390] Loss: 0.4716, Acc: 84.88%
+  Batch [100/390] Loss: 0.4504, Acc: 85.56%
+  Batch [150/390] Loss: 0.4325, Acc: 85.92%
+  Batch [200/390] Loss: 0.4288, Acc: 86.38%
+  Batch [250/390] Loss: 0.4228, Acc: 86.35%
+  Batch [300/390] Loss: 0.4154, Acc: 86.48%
+  Batch [350/390] Loss: 0.4238, Acc: 86.16%
+[Epoch 9] Train Loss: 0.4228, Acc: 86.23%  |  Val Loss: 0.3955, Acc: 91.68%  |  Time: 24.5s
+  -> Best model saved (91.68%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=74217.480 work_mean_ms=14.639 work_min_ms=1.886 work_max_ms=25.445
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7873.439 tail_mean_ms=20.188 tail_min_ms=16.849 tail_max_ms=23.591
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000835)
+  Batch [50/390] Loss: 0.4052, Acc: 87.38%
+  Batch [100/390] Loss: 0.4124, Acc: 86.44%
+  Batch [150/390] Loss: 0.4013, Acc: 87.00%
+  Batch [200/390] Loss: 0.4104, Acc: 86.88%
+  Batch [250/390] Loss: 0.4048, Acc: 87.05%
+  Batch [300/390] Loss: 0.3988, Acc: 87.27%
+  Batch [350/390] Loss: 0.3998, Acc: 87.14%
+[Epoch 10] Train Loss: 0.3961, Acc: 87.23%  |  Val Loss: 0.3446, Acc: 92.48%  |  Time: 24.6s
+  -> Best model saved (92.48%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=74248.204 work_mean_ms=14.645 work_min_ms=1.955 work_max_ms=29.508
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7734.013 tail_mean_ms=19.831 tail_min_ms=15.337 tail_max_ms=27.445
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000750)
+  Batch [50/390] Loss: 0.3607, Acc: 87.38%
+  Batch [100/390] Loss: 0.3504, Acc: 87.94%
+  Batch [150/390] Loss: 0.3508, Acc: 88.21%
+  Batch [200/390] Loss: 0.3565, Acc: 88.12%
+  Batch [250/390] Loss: 0.3560, Acc: 88.08%
+  Batch [300/390] Loss: 0.3523, Acc: 88.12%
+  Batch [350/390] Loss: 0.3492, Acc: 88.39%
+[Epoch 11] Train Loss: 0.3523, Acc: 88.37%  |  Val Loss: 0.3294, Acc: 92.80%  |  Time: 24.6s
+  -> Best model saved (92.80%)
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=75035.496 work_mean_ms=14.800 work_min_ms=1.934 work_max_ms=24.419
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7905.592 tail_mean_ms=20.271 tail_min_ms=16.263 tail_max_ms=22.634
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000655)
+  Batch [50/390] Loss: 0.3131, Acc: 90.88%
+  Batch [100/390] Loss: 0.3303, Acc: 89.81%
+  Batch [150/390] Loss: 0.3388, Acc: 89.42%
+  Batch [200/390] Loss: 0.3355, Acc: 89.34%
+  Batch [250/390] Loss: 0.3372, Acc: 89.15%
+  Batch [300/390] Loss: 0.3360, Acc: 89.23%
+  Batch [350/390] Loss: 0.3347, Acc: 89.18%
+[Epoch 12] Train Loss: 0.3370, Acc: 89.23%  |  Val Loss: 0.3187, Acc: 93.20%  |  Time: 24.5s
+  -> Best model saved (93.20%)
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=76319.008 work_mean_ms=15.053 work_min_ms=1.904 work_max_ms=24.448
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8008.638 tail_mean_ms=20.535 tail_min_ms=15.798 tail_max_ms=22.570
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000552)
+  Batch [50/390] Loss: 0.3089, Acc: 89.75%
+  Batch [100/390] Loss: 0.3036, Acc: 90.00%
+  Batch [150/390] Loss: 0.3037, Acc: 89.88%
+  Batch [200/390] Loss: 0.3229, Acc: 89.41%
+  Batch [250/390] Loss: 0.3085, Acc: 90.05%
+  Batch [300/390] Loss: 0.3128, Acc: 90.12%
+  Batch [350/390] Loss: 0.3102, Acc: 90.11%
+[Epoch 13] Train Loss: 0.3112, Acc: 90.16%  |  Val Loss: 0.2945, Acc: 93.28%  |  Time: 24.5s
+  -> Best model saved (93.28%)
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=80227.836 work_mean_ms=15.824 work_min_ms=1.954 work_max_ms=25.128
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8469.176 tail_mean_ms=21.716 tail_min_ms=16.382 tail_max_ms=23.401
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000448)
+  Batch [50/390] Loss: 0.3400, Acc: 89.62%
+  Batch [100/390] Loss: 0.3437, Acc: 88.94%
+  Batch [150/390] Loss: 0.3551, Acc: 88.33%
+  Batch [200/390] Loss: 0.3454, Acc: 88.78%
+  Batch [250/390] Loss: 0.3374, Acc: 88.83%
+  Batch [300/390] Loss: 0.3364, Acc: 88.85%
+  Batch [350/390] Loss: 0.3351, Acc: 88.79%
+[Epoch 14] Train Loss: 0.3276, Acc: 89.18%  |  Val Loss: 0.2742, Acc: 94.00%  |  Time: 24.5s
+  -> Best model saved (94.00%)
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=75134.210 work_mean_ms=14.819 work_min_ms=1.910 work_max_ms=24.829
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7956.541 tail_mean_ms=20.401 tail_min_ms=16.570 tail_max_ms=23.062
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000345)
+  Batch [50/390] Loss: 0.3329, Acc: 89.25%
+  Batch [100/390] Loss: 0.3411, Acc: 89.25%
+  Batch [150/390] Loss: 0.3283, Acc: 89.54%
+  Batch [200/390] Loss: 0.3205, Acc: 89.66%
+  Batch [250/390] Loss: 0.3139, Acc: 89.78%
+  Batch [300/390] Loss: 0.3183, Acc: 89.71%
+  Batch [350/390] Loss: 0.3143, Acc: 89.66%
+[Epoch 15] Train Loss: 0.3145, Acc: 89.71%  |  Val Loss: 0.2752, Acc: 94.16%  |  Time: 24.5s
+  -> Best model saved (94.16%)
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=78670.319 work_mean_ms=15.517 work_min_ms=1.943 work_max_ms=25.112
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8250.081 tail_mean_ms=21.154 tail_min_ms=16.059 tail_max_ms=23.486
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000250)
+  Batch [50/390] Loss: 0.2959, Acc: 91.38%
+  Batch [100/390] Loss: 0.3022, Acc: 90.69%
+  Batch [150/390] Loss: 0.2970, Acc: 90.42%
+  Batch [200/390] Loss: 0.2965, Acc: 90.72%
+  Batch [250/390] Loss: 0.2966, Acc: 90.35%
+  Batch [300/390] Loss: 0.3012, Acc: 90.15%
+  Batch [350/390] Loss: 0.3035, Acc: 89.95%
+[Epoch 16] Train Loss: 0.3027, Acc: 90.06%  |  Val Loss: 0.2609, Acc: 94.08%  |  Time: 24.4s
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=73966.892 work_mean_ms=14.589 work_min_ms=1.891 work_max_ms=26.786
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7701.764 tail_mean_ms=19.748 tail_min_ms=16.801 tail_max_ms=24.815
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000165)
+  Batch [50/390] Loss: 0.3070, Acc: 89.88%
+  Batch [100/390] Loss: 0.2792, Acc: 90.69%
+  Batch [150/390] Loss: 0.2814, Acc: 91.00%
+  Batch [200/390] Loss: 0.2884, Acc: 90.66%
+  Batch [250/390] Loss: 0.2958, Acc: 90.45%
+  Batch [300/390] Loss: 0.2959, Acc: 90.44%
+  Batch [350/390] Loss: 0.2931, Acc: 90.61%
+[Epoch 17] Train Loss: 0.2928, Acc: 90.42%  |  Val Loss: 0.2769, Acc: 93.68%  |  Time: 24.6s
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=75932.817 work_mean_ms=14.977 work_min_ms=1.946 work_max_ms=51.900
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7848.986 tail_mean_ms=20.126 tail_min_ms=17.040 tail_max_ms=49.762
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000095)
+  Batch [50/390] Loss: 0.2795, Acc: 91.62%
+  Batch [100/390] Loss: 0.2830, Acc: 90.81%
+  Batch [150/390] Loss: 0.2953, Acc: 90.46%
+  Batch [200/390] Loss: 0.2916, Acc: 90.53%
+  Batch [250/390] Loss: 0.2930, Acc: 90.47%
+  Batch [300/390] Loss: 0.2980, Acc: 90.23%
+  Batch [350/390] Loss: 0.2950, Acc: 90.20%
+[Epoch 18] Train Loss: 0.2932, Acc: 90.24%  |  Val Loss: 0.2683, Acc: 93.92%  |  Time: 24.6s
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=77594.136 work_mean_ms=15.305 work_min_ms=2.023 work_max_ms=55.289
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8069.830 tail_mean_ms=20.692 tail_min_ms=18.722 tail_max_ms=53.058
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000043)
+  Batch [50/390] Loss: 0.2446, Acc: 92.00%
+  Batch [100/390] Loss: 0.2683, Acc: 91.25%
+  Batch [150/390] Loss: 0.2720, Acc: 91.12%
+  Batch [200/390] Loss: 0.2773, Acc: 90.84%
+  Batch [250/390] Loss: 0.2851, Acc: 90.53%
+  Batch [300/390] Loss: 0.2881, Acc: 90.23%
+  Batch [350/390] Loss: 0.2873, Acc: 90.21%
+[Epoch 19] Train Loss: 0.2898, Acc: 90.14%  |  Val Loss: 0.2752, Acc: 93.60%  |  Time: 24.6s
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=75232.668 work_mean_ms=14.839 work_min_ms=1.897 work_max_ms=71.791
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=7950.607 tail_mean_ms=20.386 tail_min_ms=19.229 tail_max_ms=69.629
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000011)
+  Batch [50/390] Loss: 0.2694, Acc: 91.50%
+  Batch [100/390] Loss: 0.2738, Acc: 90.94%
+  Batch [150/390] Loss: 0.2889, Acc: 90.25%
+  Batch [200/390] Loss: 0.2925, Acc: 90.28%
+  Batch [250/390] Loss: 0.2931, Acc: 90.38%
+  Batch [300/390] Loss: 0.2943, Acc: 90.48%
+  Batch [350/390] Loss: 0.2905, Acc: 90.55%
+[Epoch 20] Train Loss: 0.2916, Acc: 90.53%  |  Val Loss: 0.2631, Acc: 94.16%  |  Time: 24.6s
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=mpi:default calls=5070 work_total_ms=79059.304 work_mean_ms=15.594 work_min_ms=1.935 work_max_ms=38.190
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=390 tail_total_ms=8272.805 tail_mean_ms=21.212 tail_min_ms=19.203 tail_max_ms=35.856
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 511.4s | Best val acc: 94.16%
+Epoch times: mean=24.7s  min=24.3s  max=29.0s
+================================================================================

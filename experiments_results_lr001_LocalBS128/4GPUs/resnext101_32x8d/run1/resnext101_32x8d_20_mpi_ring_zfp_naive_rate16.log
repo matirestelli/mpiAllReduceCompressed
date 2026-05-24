@@ -1,0 +1,236 @@
+
+================================================================================
+Distributed Training: RESNEXT101_32X8D on CIFAR10
+Backend: MPI, Algorithm: ring_zfp_naive
+================================================================================
+Ranks: 4, Epochs: 20, Batch/rank: 128, Effective batch: 512
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/ring_zfp_naive
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000001)
+  Batch [50/98] Loss: 2.3110, Acc: 11.08%
+[Epoch 1] Train Loss: 2.3109, Acc: 10.94%  |  Val Loss: 2.3159, Acc: 10.68%  |  Time: 22.8s
+  -> Best model saved (10.68%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1250 work_total_ms=16408.545 work_mean_ms=13.127 work_min_ms=1.566 work_max_ms=140.376
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=99 tail_total_ms=10376.754 tail_mean_ms=104.816 tail_min_ms=2.568 tail_max_ms=140.722
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.000201)
+  Batch [50/98] Loss: 2.3050, Acc: 11.64%
+[Epoch 2] Train Loss: 2.2965, Acc: 12.71%  |  Val Loss: 2.2774, Acc: 16.00%  |  Time: 20.0s
+  -> Best model saved (16.00%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16468.114 work_mean_ms=12.926 work_min_ms=1.567 work_max_ms=139.782
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10256.507 tail_mean_ms=104.658 tail_min_ms=93.712 tail_max_ms=105.720
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000401)
+  Batch [50/98] Loss: 2.2672, Acc: 16.55%
+[Epoch 3] Train Loss: 2.2507, Acc: 18.72%  |  Val Loss: 2.2099, Acc: 24.48%  |  Time: 20.0s
+  -> Best model saved (24.48%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16525.212 work_mean_ms=12.971 work_min_ms=1.554 work_max_ms=139.704
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10272.111 tail_mean_ms=104.817 tail_min_ms=93.724 tail_max_ms=105.717
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000600)
+  Batch [50/98] Loss: 2.1932, Acc: 25.53%
+[Epoch 4] Train Loss: 2.1671, Acc: 27.57%  |  Val Loss: 2.0970, Acc: 33.84%  |  Time: 20.1s
+  -> Best model saved (33.84%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16555.572 work_mean_ms=12.995 work_min_ms=1.563 work_max_ms=140.528
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10328.856 tail_mean_ms=105.396 tail_min_ms=93.950 tail_max_ms=106.394
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000800)
+  Batch [50/98] Loss: 2.0718, Acc: 34.48%
+[Epoch 5] Train Loss: 2.0406, Acc: 35.63%  |  Val Loss: 1.9435, Acc: 40.44%  |  Time: 20.1s
+  -> Best model saved (40.44%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16507.602 work_mean_ms=12.957 work_min_ms=1.565 work_max_ms=139.415
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10292.305 tail_mean_ms=105.024 tail_min_ms=93.419 tail_max_ms=105.750
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.001000)
+  Batch [50/98] Loss: 1.9166, Acc: 40.45%
+[Epoch 6] Train Loss: 1.8728, Acc: 41.84%  |  Val Loss: 1.7573, Acc: 46.96%  |  Time: 20.1s
+  -> Best model saved (46.96%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16485.085 work_mean_ms=12.940 work_min_ms=1.551 work_max_ms=139.563
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10256.617 tail_mean_ms=104.659 tail_min_ms=93.184 tail_max_ms=105.782
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000989)
+  Batch [50/98] Loss: 1.7469, Acc: 46.75%
+[Epoch 7] Train Loss: 1.7077, Acc: 48.07%  |  Val Loss: 1.6033, Acc: 50.96%  |  Time: 20.1s
+  -> Best model saved (50.96%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16514.361 work_mean_ms=12.963 work_min_ms=1.579 work_max_ms=139.789
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10292.352 tail_mean_ms=105.024 tail_min_ms=93.393 tail_max_ms=106.400
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000957)
+  Batch [50/98] Loss: 1.5925, Acc: 50.66%
+[Epoch 8] Train Loss: 1.5582, Acc: 51.70%  |  Val Loss: 1.4696, Acc: 54.68%  |  Time: 20.1s
+  -> Best model saved (54.68%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16516.203 work_mean_ms=12.964 work_min_ms=1.540 work_max_ms=140.161
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10297.656 tail_mean_ms=105.078 tail_min_ms=92.987 tail_max_ms=106.112
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000905)
+  Batch [50/98] Loss: 1.4604, Acc: 54.45%
+[Epoch 9] Train Loss: 1.4226, Acc: 55.47%  |  Val Loss: 1.3452, Acc: 58.84%  |  Time: 20.1s
+  -> Best model saved (58.84%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16554.809 work_mean_ms=12.994 work_min_ms=1.570 work_max_ms=140.256
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10321.355 tail_mean_ms=105.320 tail_min_ms=93.759 tail_max_ms=106.398
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000835)
+  Batch [50/98] Loss: 1.3226, Acc: 58.80%
+[Epoch 10] Train Loss: 1.3025, Acc: 59.17%  |  Val Loss: 1.2310, Acc: 61.80%  |  Time: 20.1s
+  -> Best model saved (61.80%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16530.829 work_mean_ms=12.976 work_min_ms=1.551 work_max_ms=140.218
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10328.659 tail_mean_ms=105.394 tail_min_ms=93.817 tail_max_ms=106.522
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000750)
+  Batch [50/98] Loss: 1.2359, Acc: 60.89%
+[Epoch 11] Train Loss: 1.2074, Acc: 61.62%  |  Val Loss: 1.1431, Acc: 64.72%  |  Time: 20.0s
+  -> Best model saved (64.72%)
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16475.628 work_mean_ms=12.932 work_min_ms=1.562 work_max_ms=140.099
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10239.295 tail_mean_ms=104.483 tail_min_ms=93.191 tail_max_ms=106.159
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000655)
+  Batch [50/98] Loss: 1.1536, Acc: 63.97%
+[Epoch 12] Train Loss: 1.1348, Acc: 64.31%  |  Val Loss: 1.0690, Acc: 66.64%  |  Time: 20.1s
+  -> Best model saved (66.64%)
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16527.816 work_mean_ms=12.973 work_min_ms=1.557 work_max_ms=139.717
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10296.805 tail_mean_ms=105.069 tail_min_ms=93.384 tail_max_ms=105.813
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000552)
+  Batch [50/98] Loss: 1.0926, Acc: 65.31%
+[Epoch 13] Train Loss: 1.0693, Acc: 65.98%  |  Val Loss: 1.0223, Acc: 68.24%  |  Time: 20.0s
+  -> Best model saved (68.24%)
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16464.195 work_mean_ms=12.923 work_min_ms=1.574 work_max_ms=140.127
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10251.430 tail_mean_ms=104.606 tail_min_ms=93.503 tail_max_ms=106.160
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000448)
+  Batch [50/98] Loss: 1.0308, Acc: 66.64%
+[Epoch 14] Train Loss: 1.0273, Acc: 66.81%  |  Val Loss: 0.9778, Acc: 69.44%  |  Time: 20.1s
+  -> Best model saved (69.44%)
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16582.407 work_mean_ms=13.016 work_min_ms=1.564 work_max_ms=140.351
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10333.769 tail_mean_ms=105.447 tail_min_ms=93.901 tail_max_ms=106.170
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000345)
+  Batch [50/98] Loss: 1.0199, Acc: 66.64%
+[Epoch 15] Train Loss: 1.0053, Acc: 67.29%  |  Val Loss: 0.9516, Acc: 70.36%  |  Time: 20.1s
+  -> Best model saved (70.36%)
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16575.030 work_mean_ms=13.010 work_min_ms=1.550 work_max_ms=140.294
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10326.350 tail_mean_ms=105.371 tail_min_ms=94.037 tail_max_ms=106.273
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000250)
+  Batch [50/98] Loss: 0.9678, Acc: 69.09%
+[Epoch 16] Train Loss: 0.9626, Acc: 69.20%  |  Val Loss: 0.9286, Acc: 70.96%  |  Time: 20.1s
+  -> Best model saved (70.96%)
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16574.128 work_mean_ms=13.010 work_min_ms=1.539 work_max_ms=140.916
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10336.034 tail_mean_ms=105.470 tail_min_ms=93.951 tail_max_ms=107.003
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000165)
+  Batch [50/98] Loss: 0.9635, Acc: 68.56%
+[Epoch 17] Train Loss: 0.9598, Acc: 68.62%  |  Val Loss: 0.9150, Acc: 71.36%  |  Time: 20.0s
+  -> Best model saved (71.36%)
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16474.920 work_mean_ms=12.932 work_min_ms=1.558 work_max_ms=139.295
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10258.267 tail_mean_ms=104.676 tail_min_ms=93.595 tail_max_ms=105.773
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000095)
+  Batch [50/98] Loss: 0.9417, Acc: 69.56%
+[Epoch 18] Train Loss: 0.9501, Acc: 69.02%  |  Val Loss: 0.9136, Acc: 70.96%  |  Time: 20.1s
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16608.569 work_mean_ms=13.037 work_min_ms=1.571 work_max_ms=140.294
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10352.806 tail_mean_ms=105.641 tail_min_ms=94.082 tail_max_ms=106.057
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000043)
+  Batch [50/98] Loss: 0.9483, Acc: 69.47%
+[Epoch 19] Train Loss: 0.9416, Acc: 69.66%  |  Val Loss: 0.9057, Acc: 71.44%  |  Time: 20.1s
+  -> Best model saved (71.44%)
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16537.237 work_mean_ms=12.981 work_min_ms=1.550 work_max_ms=140.952
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10314.296 tail_mean_ms=105.248 tail_min_ms=93.172 tail_max_ms=106.920
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000011)
+  Batch [50/98] Loss: 0.9145, Acc: 70.50%
+[Epoch 20] Train Loss: 0.9392, Acc: 69.11%  |  Val Loss: 0.9032, Acc: 72.16%  |  Time: 20.0s
+  -> Best model saved (72.16%)
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_naive:rate16 calls=1274 work_total_ms=16497.692 work_mean_ms=12.950 work_min_ms=1.551 work_max_ms=139.357
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_naive:rate16 steps=98 tail_total_ms=10284.144 tail_mean_ms=104.940 tail_min_ms=93.213 tail_max_ms=105.530
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 426.2s | Best val acc: 72.16%
+Epoch times: mean=20.2s  min=20.0s  max=22.8s
+================================================================================
