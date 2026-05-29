@@ -85,3 +85,5 @@ echo "MPI available     : $(python -c 'import torch.distributed as d; print(d.is
 echo "mpi4py            : $(python -c 'from mpi4py import MPI; print(MPI.Get_library_version().split(chr(10))[0])')"
 echo "mpi4py rank test  : $(mpirun -np 1 python -c 'from mpi4py import MPI; print("rank", MPI.COMM_WORLD.Get_rank(), "OK")')"
 echo "============================================="
+
+# request interactive node: qsub -I -l select=1 -l filesystems=home:eagle -l walltime=1:00:00 -q debug -A UIC-HPC

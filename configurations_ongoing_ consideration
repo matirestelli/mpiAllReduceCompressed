@@ -1,305 +1,523 @@
-# Configuration Considerations for Multi‑GPU Scaling (MPI) + Communication Research
+# New Configuration Plan for Multi-GPU Scaling Experiments
 
-This document defines **recommended training configurations** and **which parameters to expose/tune** in the experiment interface to fairly compare MPI-based communication algorithms against a DDP-style all-reduce baseline.  
-Primary goal: **measure scaling and speed** while maintaining **training stability** (not necessarily best final accuracy).
+## 0. Context: What We Tried Before
 
----
+Before defining the new experiment matrix, we should summarize the previous setup from the project README.
 
-## 1. Goals and What “Fair” Means
+To fill in from README:
 
-### 1.1 Primary goals
-- Compare different **gradient communication algorithms** under MPI.
-- Demonstrate improvements in:
-  - **time/step**, **time/epoch**
-  - **throughput** (images/sec)
-  - **scaling efficiency** when increasing GPUs
+- dataset used:
+- model used:
+- number of GPUs:
+- batch size definition:
+- optimizer:
+- learning rate:
+- LR schedule:
+- communication baseline:
+- proposed communication method:
+- main observed result:
+- main limitation / reason for new experiments:
 
-### 1.2 Fair-comparison rules (must hold across methods)
-Keep constant across runs:
-- Model architecture (including stem, BN type)
-- Precision mode (FP32 vs AMP/bf16/TF32)
-- Global batch definition (strong vs weak scaling mode)
-- Dataset pipeline / augmentation
-- Number of steps and evaluation frequency
-- Optimizer + LR schedule (unless explicitly studying these)
+Main motivation for the new configurations:
 
-Change only:
-- communication algorithm (e.g., ring all-reduce vs tree vs reduce-scatter/allgather variants, compression, etc.)
-
----
-
-## 2. Two Benchmark Regimes: Strong vs Weak Scaling
-
-### 2.1 Strong scaling (recommended main experiment)
-**Keep global batch size constant** across GPU counts.
-- Pros: clean scaling comparison; same number of steps per epoch.
-- Cons: per-GPU batch may become too small (BN instability) at high GPU counts.
-
-Definition:
-- \(B_{\text{global}}\) fixed
-- \(B_{\text{local}} = B_{\text{global}} / \text{world\_size}\)
-
-### 2.2 Weak scaling / throughput (secondary)
-**Keep local batch size constant** and let global batch grow with GPUs.
-- Pros: often higher GPU utilization; good for images/sec.
-- Cons: changes optimization dynamics; fewer steps per epoch.
-
-Definition:
-- \(B_{\text{local}}\) fixed
-- \(B_{\text{global}} = B_{\text{local}} \cdot \text{world\_size}\)
+- keep the submitted-paper setup reproducible
+- explore stronger and more realistic training configurations
+- compare communication methods under both strong and weak scaling
+- check whether better LR and batch-size choices improve accuracy without changing the communication comparison
 
 ---
 
-## 3. Recommended Configurations by Scenario
+# 1. Scaling Modes to Test
 
-### Scenario A — CIFAR-10, from scratch, ResNet/ResNeXt (communication research baseline)
-**Recommended default:** strong scaling with \(B_{\text{global}} = 256\) to avoid tiny per-GPU batch at 16 GPUs.
+## 1.1 Weak Scaling: Local Batch Size Fixed
 
-- Dataset: CIFAR-10 (50k train)
-- Input: 32×32
-- Augment:
-  - pad 4 → random crop 32
-  - random horizontal flip
-  - normalize with CIFAR-10 mean/std
-- Architecture:
-  - Use **CIFAR stem**: conv \(3\times 3\), stride 1, padding 1; **no maxpool**
-- Batch sizing:
-  - Strong scaling: \(B_{\text{global}} = 256\)
-    - 4 GPUs → 64 / GPU
-    - 8 GPUs → 32 / GPU
-    - 16 GPUs → 16 / GPU (usually OK for BN)
-- Optimizer:
-  - SGD, momentum 0.9
-  - weight decay: \(1\times 10^{-4}\) to \(5\times 10^{-4}\)
-- LR schedule (choose one and keep fixed across all comm methods):
-  - Step schedule: base LR, drops at epochs 80/120/160 (for 200 epochs)
-  - or Cosine schedule for N epochs (simpler for parameterization)
-- Epochs:
-  - For comm benchmarking: run by **steps** (e.g., 500–2000 steps) + optionally 1–5 epochs
-  - For “training not broken” sanity: 50–200 epochs
+Use this to measure throughput and communication amortization.
 
-**Notes**
-- If we use \(B_{\text{global}}=128\) at 16 GPUs, then \(B_{\text{local}}=8\), and BN may become unstable and confound results.
-- If we must run with small \(B_{\text{local}}\), consider:
-  - SyncBatchNorm (if allowed), or
-  - Freeze BN / use GroupNorm (but that changes the model; treat as separate experiment)
+```text
+B_local = 128
+B_global = 128 * world_size
+```
 
----
+Example:
 
-### Scenario B — CIFAR-10, from scratch, testing “local=128” (weak scaling stress)
-Purpose: show throughput and comm amortization behavior.
+```text
+1 GPU  -> B_global = 128
+2 GPUs -> B_global = 256
+4 GPUs -> B_global = 512
+8 GPUs -> B_global = 1024
+16 GPUs -> B_global = 2048
+```
 
-- Weak scaling:
-  - \(B_{\text{local}} = 128\)
-  - \(B_{\text{global}} = 128 \cdot \text{world\_size}\)
-- Report primarily:
-  - images/sec
-  - time/step
-- Do **not** compare accuracy directly vs strong scaling runs.
+Why:
 
----
+- good for throughput testing
+- keeps per-GPU workload constant
+- avoids tiny per-GPU batches
+- less clean for accuracy comparison because global batch changes with GPU count
 
-### Scenario C — New dataset (“ImageNet-like”, larger than CIFAR): from scratch
-Purpose: evaluate comm algorithms under heavier compute and realistic input sizes (224×224).
+Report:
 
-- Dataset: ImageNet or ImageNet-like (larger images, more classes)
-- Architecture:
-  - Use standard ImageNet stem (7×7 stride 2 + maxpool) unless dataset images are small.
-- Batch sizing:
-  - Strong scaling: choose \(B_{\text{global}}\) so \(B_{\text{local}} \ge 16\) at max GPUs.
-  - Example: if max GPUs = 16, pick \(B_{\text{global}} \in \{256, 512\}\) depending on memory.
-- Optimizer:
-  - SGD momentum 0.9, weight decay \(1\times 10^{-4}\)
-- LR:
-  - Base LR depends on global batch; keep fixed across comm methods.
-  - Use warmup (e.g., 5 epochs) if training from scratch.
-- Epochs:
-  - Benchmark: fixed steps (e.g., 1000 steps)
-  - Sanity: 10–30 epochs (full convergence not required for comm papers)
+- time/step
+- throughput, images/sec
+- scaling behavior
 
----
+Accuracy should be treated carefully because the effective global batch changes.
 
-### Scenario D — New dataset: pretrained fine-tuning
-Purpose: fast correctness signal (loss decreases quickly), often fewer epochs.
+## 1.2 Strong Scaling: Global Batch Size Fixed at 128
 
-- Load pretrained weights (ImageNet pretrained model if compatible).
-- Lower LR (example: \(1\times 10^{-3}\) to \(1\times 10^{-2}\) for SGD depending on head/FT depth).
-- Short schedule (e.g., 5–20 epochs).
-- Strong scaling still recommended for comm algorithm comparison.
+Use this to reproduce/compare against the previous paper-style setup if relevant.
 
----
+```text
+B_global = 128
+B_local = 128 / world_size
+```
 
-## 4. Parameters to Expose in the Interface / Config
+Example:
 
-### 4.1 Experiment identity
-- `experiment_name`
-- `seed`
-- `log_dir`
-- `save_checkpoints` (bool) + `ckpt_interval_epochs` or `ckpt_interval_steps`
+```text
+1 GPU  -> B_local = 128
+2 GPUs -> B_local = 64
+4 GPUs -> B_local = 32
+8 GPUs -> B_local = 16
+16 GPUs -> B_local = 8
+```
 
-### 4.2 Distributed / MPI
-- `dist.backend = "mpi"` (fixed for this scope)
-- `dist.world_size`
-- `dist.rank` (usually set by launcher)
-- `dist.init_method` (if applicable)
-- `dist.device = "cuda"`
+Problem:
 
-### 4.3 Communication algorithm (core research knob)
-Expose all as a single block so it’s obvious what changed:
-- `comm.algorithm` (enum)
-  - `mpi_allreduce_ring`
-  - `mpi_allreduce_tree`
-  - `reduce_scatter_allgather`
-  - `hierarchical` (intra-node + inter-node)
-  - `compressed` / `quantized` (if applicable)
-- `comm.bucket_size_mb`
-- `comm.overlap_with_backward` (bool)
-- `comm.fp16_communication` (bool) if you support it
-- `comm.gradient_accumulation_steps` (int) if used to alter comm frequency
-- `comm.fusion` (bool) (tensor fusion into larger buffers)
-- `comm.async` (bool) (if your algorithm supports async progress)
+- at 16 GPUs, `B_local = 8`
+- this can make BatchNorm less stable
+- accuracy may become harder to interpret
 
-**Rule:** if `bucket_size_mb`, fusion, overlap differ, document them; they materially affect results.
+Use this mostly for comparison with previous experiments, not necessarily as the best default.
 
-### 4.4 Model
-- `model.name` (e.g., `resnet50`, `resnet101`, `resnext50_32x4d`, `resnext101_32x8d`)
-- `model.num_classes`
-- `model.stem = "cifar" | "imagenet"`
-- `model.norm = "batchnorm" | "syncbatchnorm" | "groupnorm"`
-- `model.pretrained` (bool) + `model.pretrained_path` (optional)
+## 1.3 Strong Scaling: Global Batch Size Fixed at 256
 
-### 4.5 Data
-- `data.dataset` (cifar10 / imagenet / custom)
-- `data.root`
-- `data.num_workers`
-- `data.pin_memory` (bool)
-- `data.prefetch` (bool, optional)
-- `data.aug`:
-  - CIFAR: `pad=4`, `random_crop=32`, `hflip=0.5`
-  - ImageNet: `random_resized_crop`, `color_jitter`, etc.
-- `data.normalize.mean`, `data.normalize.std`
+Use this as the preferred strong-scaling setup.
 
-### 4.6 Batch sizing / scaling mode (critical)
-- `train.batch_mode = "strong" | "weak"`
-- If strong:
-  - `train.global_batch_size`
-- If weak:
-  - `train.local_batch_size`
-- Always log derived:
-  - `B_local`, `B_global`, steps/epoch
+```text
+B_global = 256
+B_local = 256 / world_size
+```
 
-### 4.7 Optimization
-- `opt.name = "sgd" | "adamw"`
-- For SGD:
-  - `opt.lr`
-  - `opt.momentum = 0.9`
-  - `opt.weight_decay`
-  - `opt.nesterov` (bool)
-- `opt.grad_clip_norm` (optional)
+Example:
 
-### 4.8 LR schedule
-- `sched.name = "step" | "cosine"`
-- Step:
-  - `sched.milestones = [80, 120, 160]`
-  - `sched.gamma = 0.1`
-- Cosine:
-  - `sched.epochs`
-  - `sched.min_lr`
-- Warmup (recommended for ImageNet / large batch):
-  - `sched.warmup_epochs`
-  - `sched.warmup_start_lr`
+```text
+1 GPU  -> B_local = 256
+2 GPUs -> B_local = 128
+4 GPUs -> B_local = 64
+8 GPUs -> B_local = 32
+16 GPUs -> B_local = 16
+```
 
-### 4.9 Precision / performance
-- `precision.mode = "fp32" | "amp_fp16" | "amp_bf16" | "tf32"`
-- `precision.loss_scaler` (if needed)
-- `cudnn.benchmark` (bool)
+Why:
 
-### 4.10 Timing / benchmarking controls (mandatory)
-- `bench.measure = "step" | "epoch" | "both"`
-- `bench.warmup_steps` (e.g., 50)
-- `bench.measure_steps` (e.g., 200)
-- `bench.cuda_sync_timing` (bool, should be true)
-- `bench.profile = "none" | "pytorch_profiler" | "nsys_marker"`
+- cleaner scaling comparison than weak scaling
+- avoids very small local batch at 16 GPUs
+- better BatchNorm behavior than `B_global = 128`
+- still practical for CIFAR-sized inputs
+
+Recommended as the main CIFAR strong-scaling configuration.
 
 ---
 
-## 5. Measurement and Reporting Template
+# 2. CIFAR From Scratch: Paper-Style LR
 
-### 5.1 Report these for every run
-- world size (GPUs)
-- model + norm type + stem type
-- batch mode + \(B_{\text{global}}\) and \(B_{\text{local}}\)
-- optimizer + LR schedule
-- precision mode
-- communication algorithm + bucket size + overlap flag
-- mean time/step (after warmup)
-- throughput (images/sec)
-- scaling efficiency:
-  \[
-  \eta(n) = \frac{t(1)}{n \cdot t(n)}
-  \]
-  where \(t(n)\) is time/step on \(n\) GPUs.
+This section keeps the previous/paper-inspired learning rate:
 
-### 5.2 Correctness sanity (minimal)
-- show loss curve over first N steps (e.g., 500)
-- optional: top-1 accuracy after a short training budget (not necessarily final)
+```text
+LR = 0.001
+```
+
+Purpose:
+
+- reproduce the previous behavior
+- keep a conservative/stable configuration
+- compare communication methods without changing too many training variables
+
+Dataset:
+
+```yaml
+data.dataset: "cifar10"
+data.input_size: 32
+data.augmentation:
+  pad: 4
+  random_crop: 32
+  hflip: 0.5
+data.normalize: "cifar10"
+```
+
+## 2.1 WideResNet50-2 on CIFAR
+
+Why:
+
+- larger than standard ResNet-50
+- useful for stressing computation and communication
+- still simpler than ResNeXt101-32x8d
+
+Configuration:
+
+```yaml
+model.name: "wide_resnet50_2"
+model.stem: "cifar"
+model.norm: "batchnorm"
+model.pretrained: false
+model.num_classes: 10
+
+train.batch_mode: "strong"   # or "weak"
+train.global_batch_size: 256 # for strong scaling
+train.local_batch_size: 128  # for weak scaling
+
+opt.name: "sgd"
+opt.lr: 0.001
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+
+# Not specified in the paper:
+sched.name: null
+precision.mode: null
+
+#usually better hypotesis: 
+#sched.name: "cosine"
+#sched.epochs: 200
+#sched.warmup_epochs: 0
+#precision.mode: "fp32"
+```
+
+## 2.2 ResNeXt101-32x8d on CIFAR
+
+Why:
+
+- much heavier model
+- stronger communication/computation workload
+- useful to test whether the proposed method helps more on larger models
+
+Configuration:
+
+```yaml
+model.name: "resnext101_32x8d"
+model.stem: "cifar"
+model.norm: "batchnorm"
+model.pretrained: false
+model.num_classes: 10
+
+train.batch_mode: "strong"   # or "weak"
+train.global_batch_size: 256 # for strong scaling
+train.local_batch_size: 128  # for weak scaling
+
+opt.name: "sgd"
+opt.lr: 0.001
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+
+# Not specified in the paper:
+sched.name: null
+precision.mode: null
+
+#usually better hypotesis: 
+#sched.name: "cosine"
+#sched.epochs: 200
+#sched.warmup_epochs: 0
+#precision.mode: "fp32"
+```
+
+Notes:
+
+- `LR = 0.001` is conservative.
+- This is useful for reproducing the previous setup, but may be too low for good CIFAR accuracy from scratch.
+- If accuracy is poor or training is too slow, use Section 3.
 
 ---
 
-## 6. Practical Defaults (Suggested Starting Values)
+# 3. CIFAR From Scratch: Improved LR and Scaling
 
-### CIFAR-10 strong scaling default (up to 16 GPUs)
-- `model = resnet50` (or resnext50_32x4d)
-- `model.stem = cifar`
-- `model.norm = batchnorm`
-- `train.batch_mode = strong`
-- `train.global_batch_size = 256`
-- `opt = sgd(lr=0.05, momentum=0.9, wd=1e-4)` (tune LR only if unstable)
-- `sched = cosine(epochs=200, warmup_epochs=0-1)`
-- `precision = fp32` initially for debugging; then enable AMP consistently
+Purpose:
 
-### Weak scaling stress
-- `train.batch_mode = weak`
-- `train.local_batch_size = 128`
+- test whether accuracy improves with a more standard CIFAR LR
+- keep the communication comparison fair
+- check whether `B_global = 256` gives better stability than `B_global = 128`
 
-### ImageNet-like strong scaling (example)
-- `train.global_batch_size = 256` (or 512 if memory allows)
-- `sched.warmup_epochs = 5`
-- cosine schedule
+Use the same models as Section 2:
+
+- `wide_resnet50_2`
+- `resnext101_32x8d`
+
+Recommended scaling modes:
+
+```text
+strong scaling with B_global = 256
+weak scaling with B_local = 128
+```
+
+Optional comparison:
+
+```text
+strong scaling with B_global = 128
+```
+
+## 3.1 Recommended LR Candidates
+
+For CIFAR from scratch with SGD:
+
+```yaml
+opt.lr_candidates: [0.01, 0.05, 0.1]
+```
+
+Suggested starting point:
+
+```yaml
+opt.lr: 0.05
+```
+
+Why:
+
+- more reasonable than `0.001` for SGD from scratch
+- still conservative compared with `0.1`
+- likely to give a faster loss decrease
+
+If unstable:
+
+```yaml
+opt.lr: 0.01
+```
+
+If stable and underfitting / learning slowly:
+
+```yaml
+opt.lr: 0.1
+```
+
+## 3.2 WideResNet50-2 Improved CIFAR Config
+
+```yaml
+model.name: "wide_resnet50_2"
+model.stem: "cifar"
+model.norm: "batchnorm"
+model.pretrained: false
+model.num_classes: 10
+
+train.batch_mode: "strong"
+train.global_batch_size: 256
+
+opt.name: "sgd"
+opt.lr: 0.05
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+
+sched.name: "cosine"
+sched.epochs: 200
+sched.warmup_epochs: 0
+
+precision.mode: "fp32"
+```
+
+## 3.3 ResNeXt101-32x8d Improved CIFAR Config
+
+```yaml
+model.name: "resnext101_32x8d"
+model.stem: "cifar"
+model.norm: "batchnorm"
+model.pretrained: false
+model.num_classes: 10
+
+train.batch_mode: "strong"
+train.global_batch_size: 256
+
+opt.name: "sgd"
+opt.lr: 0.05
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+
+sched.name: "cosine"
+sched.epochs: 200
+sched.warmup_epochs: 0
+
+precision.mode: "fp32"
+```
+
+Rules:
+
+- compare DDP and the proposed method using the same LR
+- do not tune LR separately for each communication method
+- if testing multiple LRs, run both communication methods for each LR
 
 ---
 
-## 7. Interpretation of Results (Important Notes)
+# 4. ImageNet / ImageNet-Like Experiments
 
-- If “algorithm X” is faster than DDP-style all-reduce under MPI:
-  - verify timing uses CUDA synchronization
-  - verify data loading is not the bottleneck
-  - verify gradient bucketing/fusion/overlap settings are comparable
-- If local batch is tiny (e.g., 8), BN can change convergence; treat accuracy as non-authoritative in that regime.
+Purpose:
+
+- test the same models on larger, more realistic inputs
+- evaluate communication behavior with heavier compute
+- optionally use pretrained models for faster correctness checks
+
+Dataset:
+
+```yaml
+data.dataset: "imagenet_like"
+data.input_size: 224
+data.augmentation:
+  random_resized_crop: 224
+  hflip: 0.5
+data.validation:
+  resize: 256
+  center_crop: 224
+```
+
+Use ImageNet stem:
+
+```yaml
+model.stem: "imagenet"
+```
+
+This means:
+
+```text
+7x7 conv, stride 2
+maxpool
+```
+
+## 4.1 WideResNet50-2 ImageNet-Style Config
+
+### From Scratch
+
+```yaml
+model.name: "wide_resnet50_2"
+model.stem: "imagenet"
+model.norm: "batchnorm"
+model.pretrained: false
+model.num_classes: <num_classes>
+
+train.batch_mode: "strong"
+train.global_batch_size: 256
+
+opt.name: "sgd"
+opt.lr: 0.1
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+opt.lr_scaling: "linear_with_global_batch"
+
+sched.name: "cosine"
+sched.epochs: 90
+sched.warmup_epochs: 5
+
+precision.mode: "amp_fp16"
+```
+
+### Pretrained Fine-Tuning
+
+```yaml
+model.name: "wide_resnet50_2"
+model.stem: "imagenet"
+model.norm: "batchnorm"
+model.pretrained: true
+model.num_classes: <num_classes>
+
+train.batch_mode: "strong"
+train.global_batch_size: 256
+
+opt.name: "sgd"
+opt.lr: 0.001
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+
+sched.name: "cosine"
+sched.epochs: 5-20
+sched.warmup_epochs: 0-1
+
+precision.mode: "amp_fp16"
+```
+
+## 4.2 ResNeXt101-32x8d ImageNet-Style Config
+
+Use an NVIDIA-style ImageNet recipe, adapted from ResNeXt101-32x4d to ResNeXt101-32x8d.
+
+Important:
+
+- NVIDIA’s public example is for `resnext101_32x4d`.
+- This project uses `resnext101_32x8d`.
+- `32x8d` is wider/heavier, so timing and memory use will differ.
+- The recipe style is still useful: ImageNet stem, SGD, cosine LR, warmup, label smoothing, AMP.
+
+### From Scratch
+
+```yaml
+model.name: "resnext101_32x8d"
+model.stem: "imagenet"
+model.norm: "batchnorm"
+model.pretrained: false
+model.num_classes: <num_classes>
+
+train.batch_mode: "strong"
+train.global_batch_size: 256
+train.label_smoothing: 0.1
+
+opt.name: "sgd"
+opt.lr: 0.1
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+opt.lr_scaling: "linear_with_global_batch"
+
+sched.name: "cosine"
+sched.epochs: 90
+sched.warmup_epochs: 5
+
+precision.mode: "amp_fp16"
+```
+
+Alternative closer to NVIDIA ResNeXt101-32x4d recipe:
+
+```yaml
+opt.lr: 0.256
+opt.momentum: 0.875
+opt.weight_decay: 6.103515625e-05
+opt.apply_weight_decay_to_bn: false
+train.label_smoothing: 0.1
+```
+
+Recommended approach:
+
+- start with `lr = 0.1`, `momentum = 0.9`, `weight_decay = 1e-4`
+- use the NVIDIA-style alternative only as a separate recipe variant
+- do not mix recipe variants inside the same comparison table
+
+### Pretrained Fine-Tuning
+
+```yaml
+model.name: "resnext101_32x8d"
+model.stem: "imagenet"
+model.norm: "batchnorm"
+model.pretrained: true
+model.num_classes: <num_classes>
+
+train.batch_mode: "strong"
+train.global_batch_size: 256
+
+opt.name: "sgd"
+opt.lr: 0.001
+opt.momentum: 0.9
+opt.weight_decay: 1e-4
+
+sched.name: "cosine"
+sched.epochs: 5-20
+sched.warmup_epochs: 0-1
+
+precision.mode: "amp_fp16"
+```
 
 ---
 
-## 8. Planned Experiment Matrix (Example)
+# 5. Checklist Before Comparing Results
 
-### CIFAR-10 (from scratch)
-- Models: resnet50, resnext50_32x4d, resnext101_32x8d (optional)
-- GPUs: 1, 2, 4, 8, 16
-- Strong scaling: \(B_{\text{global}}=256\)
-- Weak scaling: \(B_{\text{local}}=128\)
-- Comm algorithms: baseline mpi all-reduce vs proposed variants
-
-### ImageNet-like
-- From scratch: strong scaling \(B_{\text{global}} \in \{256, 512\}\)
-- Pretrained fine-tuning: short runs for correctness
-
----
-
-## 9. Checklist Before Claiming “Faster than Baseline”
-- [ ] Same model/precision/batch definition
-- [ ] Same number of steps measured, same warmup
-- [ ] CUDA-synchronized timing
-- [ ] Comparable overlap/bucket configuration documented
-- [ ] Throughput + time/step both reported
-- [ ] Optional: training loss curve not degraded catastrophically
-
----
+- [ ] Same model
+- [ ] Same dataset
+- [ ] Same stem
+- [ ] Same precision
+- [ ] Same batch mode
+- [ ] Same local/global batch size
+- [ ] Same optimizer
+- [ ] Same LR
+- [ ] Same schedule
+- [ ] Same measured steps
+- [ ] Same warmup steps
+- [ ] CUDA synchronization used for timing
+- [ ] Loss is not catastrophically worse

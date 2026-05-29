@@ -1,35 +1,78 @@
 #!/usr/bin/env python3
 """
-Plot one epoch timing breakdown to explain communication measurement.
+Create an epoch-level communication accounting figure.
 
-This figure is intentionally an ACCOUNTING VIEW, not a literal time-line.
+The script selects the worst combined communication case by default.
+If no --results-root is provided, it searches both GlobalBS128 and LocalBS128.
 
-For the selected epoch, it plots:
-1. The real epoch wall-clock time.
-2. The accumulated hook work time.
-3. The accumulated exposed communication tail time.
+It plots:
+    1. Whole epoch wall-clock time as the full horizontal extent.
+    2. Accumulated hook work right-aligned to the epoch end.
+    3. Accumulated exposed tail right-aligned to the epoch end.
+
+This is not a literal timeline. The bars are an accounting view:
+    epoch time     = real elapsed wall-clock epoch time
+    hook work time = sum of hook work over bucket hook calls
+    tail time      = sum of exposed communication tail over training steps
+
+The right-alignment is intentionally visual: it helps explain that both measured
+communication work and exposed tail are end-of-epoch accounting quantities, with
+the tail being the final non-overlapped part.
+
+Run from:
+    ddp-allreduce-eval-framework/plotting/
 
 Example:
-python plot_epoch_comm_timing_breakdown.py \
-  --log logs/ring_zfp_online_rate10_8gpu.out \
-  --model Wide_ResNet50_2 \
-  --hook "Ring+ZFP(rate:10)" \
-  --gpus 8 \
-  --out epoch_comm_breakdown.png
+    python plot_epoch_comm_timing_breakdown.py \
+        --results-root experiments_results_lr001_GlobalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --gpus 4 \
+        --hook-contains ring_zfp_online_coll_rate10 \
+        --out wide_resnet50_2_4gpu_comm_accounting.pdf
+
+Search all current GlobalBS128 and LocalBS128 results and plot the worst combined case:
+    python plot_epoch_comm_timing_breakdown.py \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --out wide_resnet50_2_worst_comm_accounting.pdf
+
+The default ignores extremely pathological cases where the exposed tail is more
+than 50% of the epoch wall time. To include every row, pass:
+    --max-tail-fraction 0
+
+Search all current results and force selection by only accumulated hook work:
+    python plot_epoch_comm_timing_breakdown.py \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --select-by work \
+        --out wide_resnet50_2_worst_work_accounting.pdf
+
+Choose a specific epoch instead of worst-tail epoch:
+    python plot_epoch_comm_timing_breakdown.py \
+        --results-root experiments_results_lr001_GlobalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --gpus 4 \
+        --hook-contains ring_zfp_online_coll_rate10 \
+        --epoch 12
 """
 
 import argparse
 import re
 from pathlib import Path
-
 import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
 
-
-EPOCH_RE = re.compile(
-    r"\[Epoch\s+(\d+)\].*?Train Loss:.*?\|\s*Val Loss:.*?\|\s*Time:\s*([0-9.eE+-]+)s"
+from ddp_plot_common import (
+    apply_paper_style,
+    find_logs,
+    parse_gpu_count,
+    pretty_hook_from_filename,
 )
 
-HOOK_BLOCK_RE = re.compile(
+EPOCH_RE = re.compile(r"\[Epoch\s+(\d+)\].*?\|\s*Time:\s*([0-9.eE+-]+)s")
+BLOCK_RE = re.compile(
     r"\[HOOK_TIMING_SUMMARY\]\s+epoch=([0-9]+).*?"
     r"\[HOOK_WORK_SUMMARY\].*?work_total_ms=([0-9.eE+-]+).*?work_mean_ms=([0-9.eE+-]+).*?"
     r"\[HOOK_TAIL_SUMMARY\].*?tail_total_ms=([0-9.eE+-]+).*?tail_mean_ms=([0-9.eE+-]+)",
@@ -37,241 +80,344 @@ HOOK_BLOCK_RE = re.compile(
 )
 
 
-def parse_log(path):
+def parse_rows(path):
     text = Path(path).read_text(errors="replace")
+    epoch_times = {
+        int(m.group(1)): float(m.group(2)) * 1000 for m in EPOCH_RE.finditer(text)
+    }
 
-    epoch_times = {}
-    for match in EPOCH_RE.finditer(text):
-        epoch = int(match.group(1))
-        epoch_times[epoch] = float(match.group(2)) * 1000.0
-
-    hook_rows = []
-    for match in HOOK_BLOCK_RE.finditer(text):
-        epoch = int(match.group(1))
-        hook_rows.append(
+    rows = []
+    for m in BLOCK_RE.finditer(text):
+        epoch = int(m.group(1))
+        rows.append(
             {
                 "epoch": epoch,
-                "epoch_time_ms": epoch_times.get(epoch),
-                "work_total_ms": float(match.group(2)),
-                "work_mean_ms": float(match.group(3)),
-                "tail_total_ms": float(match.group(4)),
-                "tail_mean_ms": float(match.group(5)),
+                "epoch_ms": epoch_times.get(epoch),
+                "work_total_ms": float(m.group(2)),
+                "work_mean_ms": float(m.group(3)),
+                "tail_total_ms": float(m.group(4)),
+                "tail_mean_ms": float(m.group(5)),
             }
         )
+    return rows
 
-    if not hook_rows:
-        raise ValueError("No hook timing summaries found in this log.")
 
-    return hook_rows
+def collect_candidate_rows(results_roots, model_dir, gpus, run, hook_contains):
+    candidates = []
+    for root in results_roots:
+        for log in find_logs(root, model_dir, gpus=gpus, run=run):
+            if hook_contains and hook_contains.lower() not in str(log).lower():
+                continue
+            for row in parse_rows(log):
+                if row["epoch_ms"] is None:
+                    continue
+                candidates.append(
+                    {
+                        **row,
+                        "log": log,
+                        "results_root": root,
+                        "gpus": parse_gpu_count(log),
+                        "hook_name": pretty_hook_from_filename(log),
+                    }
+                )
+    return candidates
+
+
+def add_combined_scores(candidates):
+    max_tail = max(row["tail_total_ms"] for row in candidates)
+    max_work = max(row["work_total_ms"] for row in candidates)
+
+    for row in candidates:
+        tail_score = row["tail_total_ms"] / max_tail if max_tail else 0.0
+        work_score = row["work_total_ms"] / max_work if max_work else 0.0
+        row["tail_score"] = tail_score
+        row["work_score"] = work_score
+        row["combined_score"] = 0.5 * tail_score + 0.5 * work_score
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--log", required=True)
-    parser.add_argument("--model", default="Wide_ResNet50_2")
-    parser.add_argument("--hook", default="Communication hook")
-    parser.add_argument("--gpus", type=int, default=None)
-    parser.add_argument("--out", default="epoch_comm_timing_breakdown.png")
-    parser.add_argument(
-        "--epoch",
-        type=int,
+    p = argparse.ArgumentParser()
+    p.add_argument(
+        "--results-root",
+        action="append",
         default=None,
-        help="Manually choose epoch. Default: epoch with largest tail_total_ms.",
+        help=(
+            "Result root to search. May be passed multiple times. "
+            "Default: GlobalBS128 and LocalBS128."
+        ),
     )
-    args = parser.parse_args()
+    p.add_argument("--model-dir", default="wideresnet")
+    p.add_argument("--model-title", default="Wide_ResNet50_2")
+    p.add_argument("--gpus", type=int, default=None)
+    p.add_argument(
+        "--hook-contains",
+        default=None,
+        help="Optional filename filter, for example: ring_zfp_online_coll_rate10",
+    )
+    p.add_argument(
+        "--select-by",
+        choices=["combined", "tail", "work"],
+        default="combined",
+        help=(
+            "Choose the worst epoch by normalized combined communication score, "
+            "accumulated exposed tail, or accumulated hook work."
+        ),
+    )
+    p.add_argument(
+        "--max-tail-fraction",
+        type=float,
+        default=0.50,
+        help=(
+            "Ignore rows whose tail_total_ms / epoch_ms is above this value. "
+            "Default 0.50 chooses a bad but more plausible explanatory case. "
+            "Use 0 to disable this filter."
+        ),
+    )
+    p.add_argument("--run", default=None)
+    p.add_argument("--epoch", type=int, default=None)
+    p.add_argument("--out", default=None)
+    args = p.parse_args()
 
-    rows = parse_log(args.log)
+    apply_paper_style(plt)
 
-    if args.epoch is None:
-        row = max(rows, key=lambda r: r["tail_total_ms"])
+    results_roots = args.results_root or [
+        "experiments_results_lr001_GlobalBS128",
+        "experiments_results_lr001_LocalBS128",
+    ]
+
+    candidates = collect_candidate_rows(
+        results_roots=results_roots,
+        model_dir=args.model_dir,
+        gpus=args.gpus,
+        run=args.run,
+        hook_contains=args.hook_contains,
+    )
+    if not candidates:
+        raise SystemExit("No hook timing rows found in the selected results.")
+
+    if args.epoch is not None:
+        candidates = [row for row in candidates if row["epoch"] == args.epoch]
+        if not candidates:
+            raise SystemExit(f"No hook timing rows found for epoch {args.epoch}.")
+
+    unfiltered_count = len(candidates)
+    if args.max_tail_fraction > 0:
+        filtered = [
+            row
+            for row in candidates
+            if row["tail_total_ms"] / row["epoch_ms"] <= args.max_tail_fraction
+        ]
+        if filtered:
+            candidates = filtered
+        else:
+            print(
+                "Warning: max-tail-fraction removed all rows; "
+                "falling back to unfiltered candidates."
+            )
+
+    add_combined_scores(candidates)
+    worst_tail = max(candidates, key=lambda r: r["tail_total_ms"])
+    worst_work = max(candidates, key=lambda r: r["work_total_ms"])
+    worst_combined = max(candidates, key=lambda r: r["combined_score"])
+    if args.select_by == "work":
+        row = worst_work
+    elif args.select_by == "tail":
+        row = worst_tail
     else:
-        matches = [r for r in rows if r["epoch"] == args.epoch]
-        if not matches:
-            raise ValueError(f"Epoch {args.epoch} not found in hook timing summaries.")
-        row = matches[0]
+        row = worst_combined
 
-    if row["epoch_time_ms"] is None:
-        raise ValueError("Could not match epoch training time for selected epoch.")
+    log = row["log"]
 
-    epoch_ms = row["epoch_time_ms"]
+    epoch_ms = row["epoch_ms"]
     work_ms = row["work_total_ms"]
     tail_ms = row["tail_total_ms"]
 
     # -------------------------------------------------------------------------
-    # What these three quantities mean
+    # How to read this figure
     # -------------------------------------------------------------------------
+    #
+    # This drawing is a timing-accounting diagram, not a literal CUDA/MPI trace.
     #
     # epoch_ms:
-    #     This is the real wall-clock training time for the whole epoch.
-    #     It comes from the line:
-    #
-    #         [Epoch N] ... | Time: 15.9s
-    #
-    #     This is the actual elapsed time observed by the training loop.
-    #
+    #     The real wall-clock duration of the epoch. This is the horizontal
+    #     reference frame of the figure, from 0 to epoch_ms.
     #
     # work_ms:
-    #     This is NOT a separate block of time that happened after computation.
-    #     It is the accumulated sum of all communication-hook work measured
-    #     during the epoch.
-    #
-    #     In DDP, the model gradients are split into buckets. As backward
-    #     computation produces each bucket, PyTorch invokes the registered
-    #     communication hook for that bucket. So during one epoch there are many
-    #     hook invocations:
-    #
-    #         bucket 0 hook work
-    #         bucket 1 hook work
-    #         bucket 2 hook work
-    #         ...
-    #
-    #     The log line:
-    #
-    #         [HOOK_WORK_SUMMARY] ... calls=3128 work_total_ms=10268.977
-    #
-    #     means:
-    #
-    #         work_total_ms = sum(duration of all measured hook work calls)
-    #
-    #     across the epoch.
-    #
-    #     Therefore, work_total_ms is an epoch-level accumulated total over many
-    #     small communication events. It is not necessarily equal to visible
-    #     training slowdown, because much of this hook work can be overlapped
-    #     with backward computation. For example, while earlier gradient buckets
-    #     are being communicated, the GPU may still be computing later layers'
-    #     gradients.
-    #
+    #     The accumulated sum of all hook work measured during the epoch. In DDP,
+    #     communication hooks are called many times, usually once per bucket.
+    #     The log's work_total_ms is the sum of those hook-work durations.
     #
     # tail_ms:
-    #     This is also an epoch-level accumulated total, but it measures a
-    #     different idea.
+    #     The accumulated exposed communication tail. This is the part that was
+    #     not hidden by overlap with backward computation. Because it is called
+    #     "tail", the figure places it at the end of the epoch.
     #
-    #     The communication tail is the part of communication that remains
-    #     exposed after computation overlap has been used up. In other words,
-    #     this is the part that the training loop effectively has to wait for.
+    # Right-aligning communication:
+    #     We draw both accumulated communication quantities so that they end at
+    #     epoch_ms. The hook-work line is the sum of all hook work in the epoch,
+    #     right-aligned to suggest that communication must be completed by the
+    #     epoch boundary. The tail line is below it and also right-aligned,
+    #     because it represents the final exposed, non-overlapped portion.
     #
-    #     Your log line:
+    #     This is intentionally visual and explanatory. The real hook calls are
+    #     spread throughout backward passes over many batches, not one single
+    #     continuous communication block. Right-alignment answers the conceptual
+    #     question: "How much accumulated communication work is there, and how
+    #     much of it is still exposed at the tail end?"
     #
-    #         [HOOK_TAIL_SUMMARY] ... steps=391 tail_total_ms=6509.535
-    #
-    #     means:
-    #
-    #         tail_total_ms = sum(exposed communication tail over all steps)
-    #
-    #     across the epoch.
-    #
-    #     Notice the different counting:
-    #
-    #         work_total_ms is summed over hook calls / buckets.
-    #         tail_total_ms is summed over training steps / batches.
-    #
-    #     That is why the example has around 3128 hook calls but around 391
-    #     tail steps. In that run, each training step triggers multiple bucket
-    #     communication hooks, but the exposed tail is summarized once per step.
-    #
-    #
-    # The key interpretation:
-    #
-    #     epoch_ms, work_ms, and tail_ms do NOT add up.
-    #
-    #     epoch_ms is the real elapsed epoch time.
-    #     work_ms is the total amount of communication-hook activity measured.
-    #     tail_ms is the part of communication that remained exposed to the
-    #     training loop after overlap with computation.
-    #
-    # A hook can have a large work_total_ms and still be fast if most of that
-    # work overlaps with computation. Conversely, a hook with smaller work may
-    # still hurt training time if its work appears late and creates a large tail.
-    #
-    # This figure should therefore be read as:
-    #
-    #     "Within this epoch, the training loop took epoch_ms total. Across that
-    #      epoch, we measured work_ms of communication-hook activity. Of the
-    #      communication behavior, tail_ms was exposed rather than hidden by
-    #      overlap."
-    #
-    # It is deliberately not a literal chronological schedule.
+    # Important:
+    #     epoch_ms, work_ms, and tail_ms do not add up. They are different
+    #     measurements of the same epoch. Large hook work is not necessarily bad
+    #     if most of it overlaps; large tail is the part that is visibly costly.
     # -------------------------------------------------------------------------
 
-    overlapped_work_ms = max(work_ms - tail_ms, 0.0)
+    comm_start = epoch_ms - work_ms
+    tail_start = epoch_ms - tail_ms
+    x_min = min(0.0, comm_start)
+    x_max = epoch_ms
 
-    labels = [
-        "Whole epoch wall time",
-        "Accumulated hook work",
-        "Accumulated exposed tail",
-    ]
-    values = [
-        epoch_ms,
-        work_ms,
-        tail_ms,
-    ]
+    fig, ax = plt.subplots(figsize=(7.4, 3.25))
 
-    colors = [
-        "#4C72B0",
-        "#55A868",
-        "#C44E52",
-    ]
+    epoch_y = 1.16
+    work_y = 0.78
+    tail_y = 0.40
+    height = 0.22
 
-    fig, ax = plt.subplots(figsize=(11, 5))
-
-    y = [2, 1, 0]
-    bars = ax.barh(y, values, color=colors, edgecolor="black", height=0.42)
-
-    ax.set_yticks(y)
-    ax.set_yticklabels(labels, fontsize=14)
-    ax.set_xlabel("Accumulated time in selected epoch (ms)", fontsize=14)
-
-    gpu_text = f", {args.gpus} GPUs" if args.gpus is not None else ""
-    ax.set_title(
-        f"{args.model}{gpu_text} - Epoch {row['epoch']} Communication Accounting",
-        fontsize=18,
-        fontweight="bold",
+    ax.add_patch(
+        Rectangle(
+            (0, epoch_y),
+            epoch_ms,
+            height,
+            facecolor="#4C72B0",
+            edgecolor="black",
+            linewidth=0.35,
+        )
     )
+
+    ax.add_patch(
+        Rectangle(
+            (comm_start, work_y),
+            work_ms,
+            height,
+            facecolor="#55A868",
+            edgecolor="black",
+            linewidth=0.35,
+        )
+    )
+
+    ax.add_patch(
+        Rectangle(
+            (tail_start, tail_y),
+            tail_ms,
+            height,
+            facecolor="#C44E52",
+            edgecolor="black",
+            linewidth=0.35,
+        )
+    )
+
+    ax.vlines(epoch_ms, tail_y, 1.50, color="black", linewidth=0.7)
+    ax.text(epoch_ms, 1.53, "epoch end", ha="right", va="bottom", fontsize=9.5)
+
+    ax.set_yticks([epoch_y + height / 2, work_y + height / 2, tail_y + height / 2])
+    ax.set_yticklabels(
+        ["Whole epoch", "Accumulated hook work", "Exposed tail"], fontsize=13
+    )
+    ax.set_title(
+        f"{args.model_title} - {row['gpus']} GPUs - Epoch {row['epoch']}",
+        fontsize=17,
+        fontweight="normal",
+        pad=7,
+    )
+
+    ax.text(0, 1.58, row["hook_name"], fontsize=10.5, va="bottom")
 
     ax.text(
-        0,
-        2.72,
-        f"{args.hook}: tail is the exposed part; hook work may overlap with backward computation",
-        fontsize=11,
+        epoch_ms / 2,
+        epoch_y + height / 2,
+        f"epoch wall time - {epoch_ms:.1f} ms",
+        ha="center",
         va="center",
+        fontsize=10,
+        color="white",
+    )
+    ax.text(
+        comm_start + work_ms / 2,
+        work_y + height / 2,
+        f"hook work - {work_ms:.1f} ms",
+        ha="center",
+        va="center",
+        fontsize=9.5,
+        color="white",
+    )
+    ax.text(
+        tail_start + tail_ms / 2,
+        tail_y + height / 2,
+        f"tail - {tail_ms:.1f} ms",
+        ha="center",
+        va="center",
+        fontsize=9.5,
+        color="white",
     )
 
-    for bar, value in zip(bars, values):
-        ax.text(
-            value,
-            bar.get_y() + bar.get_height() / 2,
-            f"  {value:.1f} ms",
-            va="center",
-            fontsize=12,
-        )
+    ax.set_xlim(x_min - (x_max - x_min) * 0.03, x_max * 1.03)
+    ax.set_ylim(0.28, 1.77)
+    ax.tick_params(axis="x", bottom=False, labelbottom=False)
+    ax.tick_params(axis="y", length=0)
+    ax.grid(False)
+    ax.spines["bottom"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["top"].set_visible(False)
 
-    if work_ms > 0:
-        tail_pct_of_work = 100.0 * tail_ms / work_ms
-        overlap_pct_of_work = 100.0 * overlapped_work_ms / work_ms
-
-        ax.text(
-            0,
-            -0.72,
-            f"Approx. exposed tail: {tail_pct_of_work:.1f}% of hook work | "
-            f"approx. overlapped hook work: {overlap_pct_of_work:.1f}%",
-            fontsize=11,
-            color="#333333",
-        )
-
-    ax.grid(axis="x", alpha=0.3)
-    ax.set_axisbelow(True)
-    ax.set_xlim(0, max(values) * 1.22)
-
+    gpu_name = f"{row['gpus']}gpu" if row["gpus"] is not None else "allgpus"
+    out = args.out or f"{args.model_dir}_{gpu_name}_epoch_comm_breakdown.pdf"
     fig.tight_layout()
-    fig.savefig(args.out, dpi=300)
+    fig.savefig(out, dpi=300, bbox_inches="tight")
 
+    print(f"Selected by: {args.select_by}")
+    if args.max_tail_fraction > 0:
+        print(
+            "Tail plausibility filter: "
+            f"tail/epoch <= {args.max_tail_fraction:.2f} "
+            f"({len(candidates)}/{unfiltered_count} rows kept)"
+        )
+    else:
+        print("Tail plausibility filter: disabled")
+    print(f"Using log: {log}")
     print(f"Selected epoch: {row['epoch']}")
-    print(f"Epoch wall time: {epoch_ms:.3f} ms")
-    print(f"Accumulated hook work: {work_ms:.3f} ms")
-    print(f"Accumulated exposed tail: {tail_ms:.3f} ms")
-    print(f"Approx overlapped hook work: {overlapped_work_ms:.3f} ms")
-    print(f"Saved {args.out}")
+    print(
+        "Selected combined score: "
+        f"{row['combined_score']:.4f} "
+        f"(tail_norm={row['tail_score']:.4f}, work_norm={row['work_score']:.4f})"
+    )
+    print(
+        "Worst combined: "
+        f"score={worst_combined['combined_score']:.4f}, "
+        f"tail={worst_combined['tail_total_ms']:.3f} ms, "
+        f"work={worst_combined['work_total_ms']:.3f} ms, "
+        f"epoch {worst_combined['epoch']}, "
+        f"{worst_combined['gpus']} GPUs, "
+        f"{worst_combined['hook_name']}, "
+        f"{worst_combined['log']}"
+    )
+    print(
+        "Worst tail: "
+        f"{worst_tail['tail_total_ms']:.3f} ms, "
+        f"epoch {worst_tail['epoch']}, "
+        f"{worst_tail['gpus']} GPUs, "
+        f"{worst_tail['hook_name']}, "
+        f"{worst_tail['log']}"
+    )
+    print(
+        "Worst hook work: "
+        f"{worst_work['work_total_ms']:.3f} ms, "
+        f"epoch {worst_work['epoch']}, "
+        f"{worst_work['gpus']} GPUs, "
+        f"{worst_work['hook_name']}, "
+        f"{worst_work['log']}"
+    )
+    print(f"Saved {out}")
 
 
 if __name__ == "__main__":

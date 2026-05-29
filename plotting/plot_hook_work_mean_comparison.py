@@ -1,184 +1,136 @@
 #!/usr/bin/env python3
 """
-Compare communication hook work time across logs.
+Compare mean hook work time for one model.
 
-This plots, for each hook/log:
-    mean(all epoch hook work_mean_ms values)
+This plots:
+    mean(epoch hook_work_mean_ms)
 
-Built-in/no-hook logs are skipped by default because they do not contain
-HOOK_WORK_SUMMARY lines.
+So if a log has 20 epochs, this script computes the mean of the 20
+per-epoch hook work means.
+
+Built-in/no-hook logs are skipped because they have no HOOK_WORK_SUMMARY.
+
+Run from:
+    ddp-allreduce-eval-framework/plotting/
 
 Example:
-python plot_hook_work_mean_comparison.py \
-  --model Wide_ResNet50_2 \
-  --gpus 8 \
-  --out hook_work_mean_8gpu.png \
-  "Ring+ZFP(rate:10)=logs/ring_zfp_online_rate10_8gpu.out" \
-  "RD+ZFP(rate:8)=logs/rd_zfp_rate8_8gpu.out" \
-  "Ring=logs/ring_8gpu.out"
+    python plot_hook_work_mean_comparison.py \
+        --results-root experiments_results_lr001_GlobalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --gpus 4 \
+        --out wide_resnet50_2_4gpu_hook_work_mean.pdf
+
+Across all available GPU counts:
+    python plot_hook_work_mean_comparison.py \
+        --results-root experiments_results_lr001_GlobalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --out wide_resnet50_2_all_gpus_hook_work_mean.pdf
 """
 
 import argparse
-import re
-from pathlib import Path
-
 import matplotlib.pyplot as plt
 
-
-WORK_RE = re.compile(
-    r"\[HOOK_WORK_SUMMARY\].*?"
-    r"label=(\S+)\s+"
-    r"calls=([0-9]+)\s+"
-    r"work_total_ms=([0-9.eE+-]+)\s+"
-    r"work_mean_ms=([0-9.eE+-]+)\s+"
-    r"work_min_ms=([0-9.eE+-]+)\s+"
-    r"work_max_ms=([0-9.eE+-]+)"
+from ddp_plot_common import (
+    HOOK_COLORS,
+    HOOK_X,
+    add_grouped_hook_legend,
+    apply_paper_style,
+    find_logs,
+    hook_sort_key,
+    parse_log,
+    pretty_hook_from_filename,
 )
 
 
-def mean(values):
-    return sum(values) / len(values) if values else None
-
-
-def parse_named_log(item):
-    if "=" not in item:
-        raise ValueError(f"Expected NAME=PATH, got: {item}")
-    name, path = item.split("=", 1)
-    return name.strip(), path.strip()
-
-
-def parse_hook_work_means(path):
-    text = Path(path).read_text(errors="replace")
-
-    means = []
-    totals = []
-    mins = []
-    maxs = []
-    calls = []
-    labels = []
-
-    for match in WORK_RE.finditer(text):
-        labels.append(match.group(1))
-        calls.append(int(match.group(2)))
-        totals.append(float(match.group(3)))
-        means.append(float(match.group(4)))
-        mins.append(float(match.group(5)))
-        maxs.append(float(match.group(6)))
-
-    return {
-        "labels": labels,
-        "calls": calls,
-        "work_total_ms": totals,
-        "work_mean_ms": means,
-        "work_min_ms": mins,
-        "work_max_ms": maxs,
-        "mean_of_work_means_ms": mean(means),
-        "mean_of_work_totals_ms": mean(totals),
-        "min_work_mean_ms": min(means) if means else None,
-        "max_work_mean_ms": max(means) if means else None,
-    }
-
-
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("logs", nargs="+", help="Pairs like 'Hook name=path/to/log.out'")
-    parser.add_argument("--model", default="Wide_ResNet50_2")
-    parser.add_argument("--gpus", type=int, default=None)
-    parser.add_argument("--out", default="hook_work_mean_comparison.png")
-    parser.add_argument("--title", default=None)
-    parser.add_argument(
-        "--show-error-bars",
-        action="store_true",
-        help="Show min/max range of per-epoch work_mean_ms values.",
-    )
-    parser.add_argument(
-        "--fail-on-missing",
-        action="store_true",
-        help="Fail if a log has no HOOK_WORK_SUMMARY lines instead of skipping it.",
-    )
-    args = parser.parse_args()
+    p = argparse.ArgumentParser()
+    p.add_argument("--results-root", default="experiments_results_lr001_GlobalBS128")
+    p.add_argument("--model-dir", default="wideresnet")
+    p.add_argument("--model-title", default="Wide_ResNet50_2")
+    p.add_argument("--gpus", type=int, default=None)
+    p.add_argument("--run", default=None)
+    p.add_argument("--out", default=None)
+    args = p.parse_args()
 
-    names = []
-    values = []
-    lower_errors = []
-    upper_errors = []
+    apply_paper_style(plt)
 
-    skipped = []
+    logs = find_logs(args.results_root, args.model_dir, gpus=args.gpus, run=args.run)
+    if not logs:
+        raise SystemExit("No logs found.")
 
-    for item in args.logs:
-        name, path = parse_named_log(item)
-        stats = parse_hook_work_means(path)
+    names, values = [], []
 
-        value = stats["mean_of_work_means_ms"]
+    for log in logs:
+        stats = parse_log(log)
+        value = stats["hook_work_mean_ms"]
         if value is None:
-            message = f"No HOOK_WORK_SUMMARY found in {path}"
-            if args.fail_on_missing:
-                raise ValueError(message)
-            skipped.append((name, path))
             continue
-
-        names.append(name)
+        names.append(pretty_hook_from_filename(log))
         values.append(value)
 
-        min_value = stats["min_work_mean_ms"]
-        max_value = stats["max_work_mean_ms"]
-        lower_errors.append(value - min_value)
-        upper_errors.append(max_value - value)
+    if not values:
+        raise SystemExit(
+            "No hook work timing found. Built-in logs have no hook work timing."
+        )
 
-    if not names:
-        raise ValueError("No hook work timing data found in any input log.")
+    rows = sorted(zip(names, values), key=lambda row: hook_sort_key(row[0]))
+    names = [row[0] for row in rows]
+    values = [row[1] for row in rows]
 
-    fig, ax = plt.subplots(figsize=(11, 6))
+    can_group = all(name in HOOK_X for name in names)
+    x_positions = [HOOK_X[name] for name in names] if can_group else range(len(names))
+    colors = [HOOK_COLORS.get(name, "#999999") for name in names]
 
-    colors = plt.cm.Set2(range(len(names)))
-
-    yerr = None
-    if args.show_error_bars:
-        yerr = [lower_errors, upper_errors]
-
+    fig, ax = plt.subplots(figsize=(7.2, 5.2))
     bars = ax.bar(
-        names,
+        x_positions,
         values,
-        yerr=yerr,
-        capsize=5 if args.show_error_bars else 0,
+        width=0.38 if can_group else 0.48,
         color=colors,
         edgecolor="black",
-        linewidth=0.7,
+        linewidth=0.35,
     )
 
-    gpu_text = f" - {args.gpus} GPUs" if args.gpus is not None else ""
+    gpu_text = f" - {args.gpus} GPUs" if args.gpus else ""
     ax.set_title(
-        args.title or f"{args.model}{gpu_text}: Mean Hook Work Time",
+        f"{args.model_title}{gpu_text}",
         fontsize=21,
-        fontweight="bold",
+        fontweight="normal",
+        pad=7,
     )
-    ax.set_xlabel("Communication hook", fontsize=15)
-    ax.set_ylabel("Mean of epoch hook work means (ms)", fontsize=15)
-
-    ax.grid(axis="y", alpha=0.35)
+    ax.set_xlabel("Communication Hook", fontsize=19)
+    ax.set_ylabel("Mean Hook Work Time (ms)", fontsize=20)
+    ax.grid(axis="y", alpha=0.25, linewidth=0.55)
     ax.set_axisbelow(True)
-    ax.tick_params(axis="x", labelrotation=25, labelsize=11)
-    ax.tick_params(axis="y", labelsize=13)
+    ax.set_xticks([])
+    ax.tick_params(axis="y", labelsize=15)
 
     for bar, value in zip(bars, values):
         ax.text(
             bar.get_x() + bar.get_width() / 2,
-            bar.get_height(),
+            value + max(values) * 0.012,
             f"{value:.3f}",
             ha="center",
             va="bottom",
             fontsize=10,
         )
 
+    if can_group:
+        add_grouped_hook_legend(ax, fontsize=10.5, y=-0.08)
+        ax.set_xlim(-0.45, 7.15)
+    else:
+        ax.set_xticks(list(x_positions))
+        ax.set_xticklabels(names, rotation=28, ha="right", fontsize=10)
+
+    ax.set_ylim(0, max(values) * 1.18)
+
+    gpu_name = f"_{args.gpus}gpu" if args.gpus else ""
+    out = args.out or f"{args.model_dir}{gpu_name}_hook_work_mean.pdf"
     fig.tight_layout()
-    fig.savefig(args.out, dpi=300)
-
-    print(f"Saved {args.out}")
-
-    if skipped:
-        print("Skipped logs without hook work timing:")
-        for name, path in skipped:
-            print(f"  {name}: {path}")
+    fig.savefig(out, dpi=300, bbox_inches="tight")
+    print(f"Saved {out}")
 
 
 if __name__ == "__main__":

@@ -1,185 +1,200 @@
 #!/usr/bin/env python3
 """
-Scaling plot: one model, many hooks, many GPU counts.
+Plot scaling for one model: compare hooks across all discovered GPU counts.
+
+Run from:
+    ddp-allreduce-eval-framework/plotting/
 
 Example:
-python plot_hook_scaling.py \
-  --model Wide_ResNet50_2 \
-  --metric epoch_mean \
-  --out wide_resnet50_2_hook_scaling.png \
-  "4:Baseline=logs/builtin_4gpu.out" \
-  "8:Baseline=logs/builtin_8gpu.out" \
-  "16:Baseline=logs/builtin_16gpu.out" \
-  "4:Ring+ZFP(rate:10)=logs/ring_zfp_rate10_4gpu.out" \
-  "8:Ring+ZFP(rate:10)=logs/ring_zfp_rate10_8gpu.out" \
-  "16:Ring+ZFP(rate:10)=logs/ring_zfp_rate10_16gpu.out"
+    python plot_hook_scaling.py \
+        --results-root experiments_results_lr001_GlobalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --metric epoch_mean \
+        --out wide_resnet50_2_scaling_epoch_mean.pdf
+
+Communication timing scaling:
+    python plot_hook_scaling.py \
+        --results-root experiments_results_lr001_GlobalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2 \
+        --metric hook_tail_total_ms \
+        --out wide_resnet50_2_scaling_tail_total.pdf
+
+For LocalBS128 results:
+    python plot_hook_scaling.py \
+        --results-root experiments_results_lr001_LocalBS128 \
+        --model-dir wideresnet \
+        --model-title Wide_ResNet50_2
+        
+For resnext_101_32x8d
+    python plot_hook_scaling.py \
+    --results-root experiments_results_lr001_GlobalBS128 \
+    --model-dir resnext101_32x8d \
+    --model-title ResNeXt101_32x8d \
+    --metric epoch_mean \
+    --out resnext101_32x8d_scaling_epoch_mean.pdf
+    
+    For resnext_101_32x8d
+    python plot_hook_scaling.py \
+    --results-root experiments_results_lr001_LocalBS128 \
+    --model-dir resnext101_32x8d \
+    --model-title ResNeXt101_32x8d \
+    --metric epoch_mean \
+    --out resnext101_32x8d_scaling_epoch_mean.pdf
 """
 
 import argparse
-import re
-from pathlib import Path
-
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
-
-EPOCH_RE = re.compile(r"\[Epoch\s+(\d+)\].*?\|\s*Time:\s*([0-9.eE+-]+)s")
-SUMMARY_RE = re.compile(
-    r"Epoch times:\s*mean=([0-9.eE+-]+)s\s+min=([0-9.eE+-]+)s\s+max=([0-9.eE+-]+)s"
+from ddp_plot_common import (
+    HOOK_COLORS,
+    HOOK_ORDER,
+    HOOK_X,
+    add_grouped_hook_legend,
+    apply_paper_style,
+    find_logs,
+    hook_sort_key,
+    parse_log,
+    metric_value,
+    pretty_hook_from_filename,
+    parse_gpu_count,
 )
-DONE_RE = re.compile(r"Done in\s*([0-9.eE+-]+)s\s*\|\s*Best val acc:\s*([0-9.eE+-]+)%")
-WORK_RE = re.compile(
-    r"\[HOOK_WORK_SUMMARY\].*?work_total_ms=([0-9.eE+-]+).*?work_mean_ms=([0-9.eE+-]+)"
-)
-TAIL_RE = re.compile(
-    r"\[HOOK_TAIL_SUMMARY\].*?tail_total_ms=([0-9.eE+-]+).*?tail_mean_ms=([0-9.eE+-]+)"
-)
 
+METRICS = [
+    "epoch_mean",
+    "epoch_min",
+    "epoch_max",
+    "total_time",
+    "best_val_acc",
+    "hook_work_mean_ms",
+    "hook_tail_mean_ms",
+    "hook_work_total_ms",
+    "hook_tail_total_ms",
+]
 
-def mean(values):
-    return sum(values) / len(values) if values else None
-
-
-def parse_log(path):
-    text = Path(path).read_text(errors="replace")
-
-    epoch_times = [float(m.group(2)) for m in EPOCH_RE.finditer(text)]
-
-    summary = SUMMARY_RE.search(text)
-    done = DONE_RE.search(text)
-
-    work_total, work_mean = [], []
-    tail_total, tail_mean = [], []
-
-    for m in WORK_RE.finditer(text):
-        work_total.append(float(m.group(1)))
-        work_mean.append(float(m.group(2)))
-
-    for m in TAIL_RE.finditer(text):
-        tail_total.append(float(m.group(1)))
-        tail_mean.append(float(m.group(2)))
-
-    return {
-        "epoch_times": epoch_times,
-        "epoch_mean": float(summary.group(1)) if summary else mean(epoch_times),
-        "epoch_min": float(summary.group(2)) if summary else min(epoch_times),
-        "epoch_max": float(summary.group(3)) if summary else max(epoch_times),
-        "total_time": float(done.group(1)) if done else None,
-        "best_val_acc": float(done.group(2)) if done else None,
-        "hook_work_mean_ms": mean(work_mean),
-        "hook_tail_mean_ms": mean(tail_mean),
-        "hook_work_total_ms": mean(work_total),
-        "hook_tail_total_ms": mean(tail_total),
-    }
-
-
-def metric_value(stats, metric, skip_first_epoch):
-    if metric == "epoch_mean":
-        return mean(stats["epoch_times"][skip_first_epoch:])
-    return stats[metric]
-
-
-def parse_scaling_item(item):
-    if ":" not in item or "=" not in item:
-        raise ValueError(f"Expected GPUS:HOOK=PATH, got: {item}")
-
-    gpu_text, rest = item.split(":", 1)
-    hook, path = rest.split("=", 1)
-
-    return int(gpu_text), hook.strip(), path.strip()
+YLABELS = {
+    "epoch_mean": "Training time / epoch (s)",
+    "epoch_min": "Min epoch time (s)",
+    "epoch_max": "Max epoch time (s)",
+    "total_time": "Total training time (s)",
+    "best_val_acc": "Best validation accuracy (%)",
+    "hook_work_mean_ms": "Mean hook work time (ms)",
+    "hook_tail_mean_ms": "Mean exposed tail time (ms)",
+    "hook_work_total_ms": "Mean accumulated hook work / epoch (ms)",
+    "hook_tail_total_ms": "Mean accumulated exposed tail / epoch (ms)",
+}
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("logs", nargs="+", help="Items like '8:Baseline=path/to/log.out'")
-    parser.add_argument("--model", default="Wide_ResNet50_2")
-    parser.add_argument("--out", default="hook_scaling.png")
-    parser.add_argument(
-        "--metric",
-        default="epoch_mean",
-        choices=[
-            "epoch_mean",
-            "epoch_min",
-            "epoch_max",
-            "total_time",
-            "best_val_acc",
-            "hook_work_mean_ms",
-            "hook_tail_mean_ms",
-            "hook_work_total_ms",
-            "hook_tail_total_ms",
-        ],
+    p = argparse.ArgumentParser()
+    p.add_argument("--results-root", default="experiments_results_lr001_GlobalBS128")
+    p.add_argument("--model-dir", default="wideresnet")
+    p.add_argument("--model-title", default="Wide_ResNet50_2")
+    p.add_argument("--run", default=None)
+    p.add_argument("--metric", choices=METRICS, default="epoch_mean")
+    p.add_argument("--skip-first-epoch", type=int, default=1)
+    p.add_argument(
+        "--allow-missing-hooks",
+        action="store_true",
+        help="Plot hooks even when they are not present at every discovered GPU count.",
     )
-    parser.add_argument("--skip-first-epoch", type=int, default=1)
-    parser.add_argument("--title", default=None)
-    args = parser.parse_args()
+    p.add_argument("--out", default=None)
+    args = p.parse_args()
+
+    apply_paper_style(plt)
+
+    logs = find_logs(args.results_root, args.model_dir, run=args.run)
+    if not logs:
+        raise SystemExit("No logs found.")
 
     data = {}
-    gpu_counts = set()
     hooks = []
+    gpus_seen = set()
 
-    for item in args.logs:
-        gpus, hook, path = parse_scaling_item(item)
-        stats = parse_log(path)
+    for log in logs:
+        gpus = parse_gpu_count(log)
+        if gpus is None:
+            continue
+
+        hook = pretty_hook_from_filename(log)
+        if hook not in HOOK_ORDER:
+            print(f"Skipping unsupported hook label for scaling plot: {hook} ({log})")
+            continue
+
+        stats = parse_log(log)
         value = metric_value(stats, args.metric, args.skip_first_epoch)
-
         if value is None:
-            raise ValueError(f"Metric {args.metric} is missing in {path}")
+            continue
+
+        if (gpus, hook) in data:
+            print(f"Skipping duplicate scaling value for {gpus} GPUs / {hook}: {log}")
+            continue
 
         data[(gpus, hook)] = value
-        gpu_counts.add(gpus)
-
+        gpus_seen.add(gpus)
         if hook not in hooks:
             hooks.append(hook)
 
-    gpu_counts = sorted(gpu_counts)
-    x = np.arange(len(gpu_counts))
+    hooks = sorted(hooks, key=hook_sort_key)
+    gpus_list = sorted(gpus_seen)
+    if not args.allow_missing_hooks:
+        complete_hooks = []
+        for hook in hooks:
+            missing_gpus = [g for g in gpus_list if (g, hook) not in data]
+            if missing_gpus:
+                print(
+                    "Skipping incomplete hook for scaling plot: "
+                    f"{hook} missing at GPUs {missing_gpus}"
+                )
+                continue
+            complete_hooks.append(hook)
+        hooks = complete_hooks
 
-    width = min(0.8 / max(len(hooks), 1), 0.18)
+    if not hooks:
+        raise SystemExit("No complete hook series found for the selected results.")
 
-    fig, ax = plt.subplots(figsize=(10, 7))
+    x = np.arange(len(gpus_list)) * 1.65
+    width = 0.085
+    present_hook_x = [HOOK_X[hook] for hook in hooks if hook in HOOK_X]
+    hook_center = (
+        (min(present_hook_x) + max(present_hook_x)) / 2 if present_hook_x else 0.0
+    )
+    family_scale = 0.15
 
-    colors = plt.cm.Set1(np.linspace(0, 1, len(hooks)))
+    fig, ax = plt.subplots(figsize=(7.2, 5.2))
 
     for i, hook in enumerate(hooks):
-        offset = (i - (len(hooks) - 1) / 2) * width
-        values = [data.get((gpus, hook), np.nan) for gpus in gpu_counts]
+        if hook in HOOK_X:
+            offset = (HOOK_X[hook] - hook_center) * family_scale
+        else:
+            offset = (i - (len(hooks) - 1) / 2) * width
+        values = [data.get((g, hook), np.nan) for g in gpus_list]
         ax.bar(
             x + offset,
             values,
             width,
             label=hook,
-            color=colors[i],
+            color=HOOK_COLORS.get(hook, "#999999"),
             edgecolor="black",
-            linewidth=0.6,
+            linewidth=0.35,
         )
 
-    ylabel = {
-        "epoch_mean": "Training time / epoch (s)",
-        "epoch_min": "Min epoch time (s)",
-        "epoch_max": "Max epoch time (s)",
-        "total_time": "Total training time (s)",
-        "best_val_acc": "Best validation accuracy (%)",
-        "hook_work_mean_ms": "Hook work mean (ms)",
-        "hook_tail_mean_ms": "Hook tail mean (ms)",
-        "hook_work_total_ms": "Hook work total / epoch (ms)",
-        "hook_tail_total_ms": "Hook tail total / epoch (ms)",
-    }[args.metric]
-
-    ax.set_title(args.title or args.model, fontsize=24, fontweight="bold")
-    ax.set_xlabel("GPUs", fontsize=18)
-    ax.set_ylabel(ylabel, fontsize=18)
-
+    ax.set_title(args.model_title, fontsize=21, fontweight="normal", pad=7)
+    ax.set_xlabel("GPUs", fontsize=19)
+    ax.set_ylabel(YLABELS[args.metric], fontsize=20)
     ax.set_xticks(x)
-    ax.set_xticklabels([str(g) for g in gpu_counts], fontsize=15)
-    ax.tick_params(axis="y", labelsize=14)
-
-    ax.grid(axis="y", alpha=0.35)
+    ax.set_xticklabels([str(g) for g in gpus_list], fontsize=15)
+    ax.tick_params(axis="y", labelsize=15)
+    ax.grid(axis="y", alpha=0.25, linewidth=0.55)
     ax.set_axisbelow(True)
-    ax.legend(fontsize=12, frameon=False)
+    add_grouped_hook_legend(ax, fontsize=10.5, y=-0.10)
 
+    out = args.out or f"{args.model_dir}_scaling_{args.metric}.pdf"
     fig.tight_layout()
-    fig.savefig(args.out, dpi=300)
-    print(f"Saved {args.out}")
+    fig.savefig(out, dpi=300, bbox_inches="tight")
+    print(f"Saved {out}")
 
 
 if __name__ == "__main__":

@@ -286,10 +286,15 @@ def train(config: TrainingConfig) -> None:
               f"Effective batch: {config.batch_size * world_size}")
         print(f"LR: {config.learning_rate}, Device: {device}\n")
 
-    # Model — pass cifar_stem explicitly from config
+    # Model: take all the configurations option from interface
     model = create_model(
-        config.model_name, config.num_classes,
-        cifar_stem=config.cifar_stem, pretrained=config.pretrained,
+        config.model_name,
+        config.num_classes,
+        cifar_stem=config.cifar_stem,
+        pretrained=config.pretrained,
+        init_cifar_stem_from_pretrained_center=(
+            config.init_cifar_stem_from_pretrained_center
+        ),
     ).to(device)
     model = DDP(
         model,
@@ -339,25 +344,21 @@ def train(config: TrainingConfig) -> None:
         weight_decay=config.weight_decay,
     )
 
-    # ── BUG FIX: LR warmup ──────────────────────────────────────────────
-    # ResNet50 from scratch on 32×32 images diverges with lr=0.01 from step 1
-    # because the randomly-initialised deep network produces large gradient
-    # norms that, combined with momentum=0.9, cause weight explosion.
-    # A linear warmup over the first epoch lets BN statistics stabilise and
-    # gradient norms settle before the full learning rate kicks in.
-    #
-    # The scheduler chains warmup → cosine annealing:
-    #   Epoch 1..warmup_epochs:  lr ramps 0 → config.learning_rate linearly
-    #   Epoch warmup_epochs+1..: cosine annealing to 0
-    warmup_epochs = config.warmup_epochs
+    if config.scheduler == "constant":
+        scheduler = optim.lr_scheduler.LambdaLR(optimizer, lambda epoch: 1.0)
+    else:
+        warmup_epochs = config.warmup_epochs
 
-    def lr_lambda(step: int) -> float:
-        if step < warmup_epochs:
-            return 1e-3 + (1.0 - 1e-3) * step / max(warmup_epochs, 1)
-        progress = (step - warmup_epochs) / max(config.num_epochs - warmup_epochs, 1)
-        return 0.5 * (1.0 + math.cos(math.pi * progress))
+        def lr_lambda(epoch: int) -> float:
+            if epoch < warmup_epochs:
+                return 1e-3 + (1.0 - 1e-3) * epoch / max(warmup_epochs, 1)
+            progress = (
+                (epoch - warmup_epochs)
+                / max(config.num_epochs - warmup_epochs, 1)
+            )
+            return 0.5 * (1.0 + math.cos(math.pi * progress))
 
-    scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
+        scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
 
     # ── Data ─────────────────────────────────────────────────────────────
     train_loader, val_loader, train_sampler = get_data_loaders(

@@ -1,53 +1,93 @@
+
+
+config.py
+
+
+New project
+ddp-allreduce-eval-framework
+config.py
+
+
+
 """
 Training Configuration & Utilities
 
 Shared configuration classes and factory functions for model and data loading.
+
+Data layout expected by default:
+    ./data/
+      cifar/       # torchvision CIFAR10/CIFAR100 root
+      imagenet/    # ImageFolder-style dataset
+        train/
+        val/
 """
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, DistributedSampler
-from torchvision import models, transforms, datasets
+from torchvision import datasets, models, transforms
 
 
 @dataclass
 class TrainingConfig:
-    """Complete training configuration."""
-    # Model & Data
+    """Complete training configuration.
+
+    Important batch-size convention:
+        batch_size is always the local/per-rank batch size.
+        global_batch_size = batch_size * world_size.
+
+    For strong scaling, manually set:
+        batch_size = desired_global_batch_size // world_size
+
+    For weak scaling, keep:
+        batch_size = desired_local_batch_size
+    """
+
+    # Model & data
     model_name: str = "resnet50"
-    dataset: str = "cifar10"
+    dataset: str = "cifar10"  # "cifar10", "cifar100", or "imagenet"
     num_classes: int = 10
+    image_size: int = 32
 
     # Training hyperparameters
-    num_epochs: int = 10
-    batch_size: int = 128        # per-rank batch size
-    learning_rate: float = 0.01  # NOTE: 0.1 is too high for CIFAR + DDP(4 GPUs)
+    num_epochs: int = 20
+    batch_size: int = 128
+    learning_rate: float = 0.001
     momentum: float = 0.9
     weight_decay: float = 5e-4
-    # Universal default: 1.0 is a no-op when gradient norms are already below
-    # 1.0 (typical for shallow models after warmup), and prevents explosion for
-    # deep models (ResNeXt101, ConvNeXt). Set to None to disable explicitly.
-    grad_clip: Optional[float] = 1.0
-    # Warmup epochs: LR ramps linearly from lr×1e-3 to lr over this many epochs,
-    # then cosine-decays. 5 epochs prevents the abrupt 1000× LR jump that causes
-    # NaN in deep models (ResNeXt101) even when grad_clip is active.
-    warmup_epochs: int = 5
+    grad_clip: Optional[float] = None
+
+    # Scheduler
+    # Use "constant" for paper-style LR=0.001 reproduction.
+    # Use "cosine" for improved CIFAR/ImageNet-style experiments.
+    scheduler: str = "constant"  # "constant" or "cosine"
+    warmup_epochs: int = 0
+
+    # DataLoader behavior
+    num_workers: int = 4
+    pin_memory: bool = True
+    drop_last: bool = False
 
     # Distributed training
-    backend: str = "mpi"         # "nccl" or "mpi"
-    comm_algorithm: Optional[str] = None  # None, "default", "ring", "recursive_doubling"
-    
+    backend: str = "mpi"  # "nccl" or "mpi"
+    comm_algorithm: Optional[str] = None
+
     # ZFP compression
     zfp_rate: float = 16.0
 
-    # CIFAR stem adaptation (replace 7x7 conv + maxpool with 3x3 conv)
+    # Model initialization
+    # CIFAR from scratch:
+    #     pretrained=False, cifar_stem=True
+    # ImageNet/ImageNet-like from scratch:
+    #     pretrained=False, cifar_stem=False
+    # ImageNet/ImageNet-like fine-tuning:
+    #     pretrained=True, cifar_stem=False
     cifar_stem: bool = True
-    # Load ImageNet pretrained weights. Required for large models (ResNeXt101,
-    # ConvNeXt) on CIFAR-10 — training 88M+ params from scratch on 50K samples
-    # produces forward-pass float32 overflow that optimizer tuning cannot prevent.
     pretrained: bool = False
+    init_cifar_stem_from_pretrained_center: bool = False
 
     # Paths & misc
     data_dir: str = "./data"
@@ -55,185 +95,17 @@ class TrainingConfig:
     seed: int = 42
 
     def validate(self):
+        valid_datasets = ("cifar10", "cifar100", "imagenet", "imagenet_like")
+        valid_schedulers = ("constant", "cosine")
+
+        assert self.dataset in valid_datasets, f"Unknown dataset: {self.dataset}"
         assert self.backend in ("nccl", "mpi"), f"Unknown backend: {self.backend}"
+        assert self.scheduler in valid_schedulers, (
+            f"Unknown scheduler: {self.scheduler}"
+        )
         assert self.num_epochs > 0
         assert self.batch_size > 0
         assert self.learning_rate > 0
+        assert self.num_workers >= 0
 
-
-def apply_cifar_stem(
-    model: nn.Module,
-    pretrained: bool = False,
-    init_from_pretrained_center: bool = False,
-) -> nn.Module:
-    """Replace ImageNet ResNet/ResNeXt stem with CIFAR stem.
-
-    If init_from_pretrained_center=True, initialize the new 3x3 conv from
-    the center crop of the pretrained 7x7 conv. This is useful for pretrained
-    ResNeXt on CIFAR-10, where a random new stem can destabilize training.
-    """
-    old_conv1 = model.conv1
-
-    model.conv1 = nn.Conv2d(
-        in_channels=old_conv1.in_channels,
-        out_channels=old_conv1.out_channels,
-        kernel_size=3,
-        stride=1,
-        padding=1,
-        bias=False,
-    )
-
-    if pretrained and init_from_pretrained_center:
-        if old_conv1.weight.shape[-2:] != (7, 7):
-            raise ValueError(
-                "Cannot center-crop pretrained stem: expected old conv1 to be 7x7."
-            )
-
-        with torch.no_grad():
-            model.conv1.weight.copy_(old_conv1.weight[:, :, 2:5, 2:5])
-
-    model.maxpool = nn.Identity()
-    return model
-
-
-def create_model(
-    model_name: str, num_classes: int,
-    cifar_stem: bool = True, pretrained: bool = False,
-) -> nn.Module:
-    builders = {
-        "resnet18":         lambda: models.resnet18(num_classes=num_classes),
-        "resnet50":         lambda: models.resnet50(num_classes=num_classes),
-        "resnet101":        lambda: models.resnet101(num_classes=num_classes),
-        "wide_resnet50_2":  lambda: models.wide_resnet50_2(num_classes=num_classes),
-        "resnext101_32x8d": lambda: models.resnext101_32x8d(num_classes=num_classes),
-        "convnext_tiny":    lambda: models.convnext_tiny(num_classes=num_classes),
-        "convnext_small":   lambda: models.convnext_small(num_classes=num_classes),
-    }
-    pretrained_weights = {
-        "resnet18":         models.ResNet18_Weights.DEFAULT,
-        "resnet50":         models.ResNet50_Weights.DEFAULT,
-        "resnet101":        models.ResNet101_Weights.DEFAULT,
-        "wide_resnet50_2":  models.Wide_ResNet50_2_Weights.DEFAULT,
-        "resnext101_32x8d": models.ResNeXt101_32X8D_Weights.DEFAULT,
-        "convnext_tiny":    models.ConvNeXt_Tiny_Weights.DEFAULT,
-        "convnext_small":   models.ConvNeXt_Small_Weights.DEFAULT,
-    }
-
-    if model_name not in builders:
-        raise ValueError(
-            f"Unknown model: {model_name}. Available: {list(builders.keys())}"
-        )
-
-    if pretrained:
-        # Load full ImageNet weights (1000-class head), then replace the head.
-        # All layers except the classifier are preserved.
-        w = pretrained_weights[model_name]
-        pretrained_builders = {
-            "resnet18":         lambda: models.resnet18(weights=w),
-            "resnet50":         lambda: models.resnet50(weights=w),
-            "resnet101":        lambda: models.resnet101(weights=w),
-            "wide_resnet50_2":  lambda: models.wide_resnet50_2(weights=w),
-            "resnext101_32x8d": lambda: models.resnext101_32x8d(weights=w),
-            "convnext_tiny":    lambda: models.convnext_tiny(weights=w),
-            "convnext_small":   lambda: models.convnext_small(weights=w),
-        }
-        model = pretrained_builders[model_name]()
-        if hasattr(model, 'fc'):                          # ResNet / ResNeXt
-            model.fc = nn.Linear(model.fc.in_features, num_classes)
-        else:                                             # ConvNeXt
-            model.classifier[-1] = nn.Linear(
-                model.classifier[-1].in_features, num_classes
-            )
-    else:
-        model = builders[model_name]()
-
-       # Adapt ResNet/ResNeXt stem for 32x32 CIFAR images.
-    if cifar_stem and model_name.startswith(("resnet", "resnext", "wide_resnet")):
-        # Default behavior: random 3x3 CIFAR stem.
-        # This reproduces the original 4-GPU ResNeXt baseline behavior.
-        init_from_pretrained_center = False
-
-        # Optional ResNeXt experiment:
-        # Uncomment this only for the ResNeXt 8-GPU CIFAR-stem experiment
-        # where you want to initialize the 3x3 CIFAR stem from the center
-        # crop of the pretrained ImageNet 7x7 stem.
-        #
-        # if model_name == "resnext101_32x8d":
-        #     init_from_pretrained_center = True
-
-        model = apply_cifar_stem(
-            model,
-            pretrained=pretrained,
-            init_from_pretrained_center=init_from_pretrained_center,
-        )
-
-    return model
-
-
-def get_data_loaders(
-    config: TrainingConfig,
-    rank: int,
-    world_size: int,
-) -> tuple:
-    """Load dataset and create distributed dataloaders."""
-    if config.dataset == "cifar10":
-        normalize = transforms.Normalize(
-            mean=[0.4914, 0.4822, 0.4465],
-            std=[0.2023, 0.1994, 0.2010],
-        )
-        ds_cls = datasets.CIFAR10
-    elif config.dataset == "cifar100":
-        normalize = transforms.Normalize(
-            mean=[0.5071, 0.4867, 0.4408],
-            std=[0.2675, 0.2565, 0.2761],
-        )
-        ds_cls = datasets.CIFAR100
-    else:
-        raise ValueError(f"Unknown dataset: {config.dataset}")
-
-    train_transform = transforms.Compose([
-        transforms.RandomCrop(32, padding=4),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        normalize,
-    ])
-    val_transform = transforms.Compose([
-        transforms.ToTensor(),
-        normalize,
-    ])
-
-    train_dataset = ds_cls(
-        root=config.data_dir, train=True, download=False,
-        transform=train_transform,
-    )
-    val_dataset = ds_cls(
-        root=config.data_dir, train=False, download=False,
-        transform=val_transform,
-    )
-
-    train_sampler = DistributedSampler(
-        train_dataset, num_replicas=world_size, rank=rank,
-        shuffle=True, seed=config.seed,
-    )
-    val_sampler = DistributedSampler(
-        val_dataset, num_replicas=world_size, rank=rank,
-        shuffle=False, seed=config.seed,
-    )
-
-    train_loader = DataLoader(
-        train_dataset, batch_size=config.batch_size,
-        sampler=train_sampler, num_workers=4, pin_memory=True,
-    )
-    
-    # only for 8 GPUs run this with the drop_last=True option also set
-    #train_loader = DataLoader(
-    #    train_dataset, batch_size=config.batch_size,
-    #    sampler=train_sampler, num_workers=4, pin_memory=True, drop_last=True, 
-    #)
-    
-    val_loader = DataLoader(
-        val_dataset, batch_size=config.batch_size,
-        sampler=val_sampler, num_workers=4, pin_memory=True,
-    )
-
-    return train_loader, val_loader, train_sampler
+        if self.dataset.startswith("cifar"):

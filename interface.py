@@ -8,12 +8,12 @@ Usage:
         -env MPICH_GPU_SUPPORT_ENABLED=1 \
         python interface.py
 
-Optional job-script overrides:
-    BACKEND=mpi|nccl
-    COMM_ALGORITHM=default|ring|recursive_doubling|ring_zfp_naive|...
+You can configure experiments in two ways:
+    1. Edit the TrainingConfig defaults below for a single/manual run.
+    2. Set environment variables from a job script to run sweeps without
+       editing this file between queued jobs.
 
-The values selected below remain the defaults. Environment variables only
-override them for the current launched training run.
+Environment variables only override values when they are set.
 """
 
 import os
@@ -35,112 +35,148 @@ def _normalize_optional_value(value):
     return value
 
 
+def _read_int_env(name):
+    value = _read_optional_env(name)
+    if value is None:
+        return None
+    value = _normalize_optional_value(value)
+    if value is None:
+        return None
+    return int(value)
+
+
 def _read_float_env(name):
-    value = os.environ.get(name)
-    if value is None or value == "":
+    value = _read_optional_env(name)
+    if value is None:
+        return None
+    value = _normalize_optional_value(value)
+    if value is None:
         return None
     return float(value)
 
 
+def _read_bool_env(name):
+    value = _read_optional_env(name)
+    if value is None:
+        return None
+
+    normalized = value.lower()
+    if normalized in {"1", "true", "yes", "y", "on"}:
+        return True
+    if normalized in {"0", "false", "no", "n", "off"}:
+        return False
+
+    raise ValueError(f"Invalid boolean value for {name}: {value}")
+
+
+def _set_if_present(config, attr, value):
+    if value is not None:
+        setattr(config, attr, value)
+
+
 def apply_job_overrides(config):
-    """Allow PBS/train job scripts to override backend, hook, and ZFP rate."""
-    backend = _read_optional_env("BACKEND")
+    """Allow PBS/train job scripts to override experiment settings."""
+    _set_if_present(config, "model_name", _read_optional_env("MODEL_NAME"))
+    _set_if_present(config, "dataset", _read_optional_env("DATASET"))
+    _set_if_present(config, "num_classes", _read_int_env("NUM_CLASSES"))
+    _set_if_present(config, "image_size", _read_int_env("IMAGE_SIZE"))
+
+    _set_if_present(config, "num_epochs", _read_int_env("NUM_EPOCHS"))
+    _set_if_present(config, "batch_size", _read_int_env("BATCH_SIZE"))
+    _set_if_present(config, "learning_rate", _read_float_env("LEARNING_RATE"))
+    _set_if_present(config, "momentum", _read_float_env("MOMENTUM"))
+    _set_if_present(config, "weight_decay", _read_float_env("WEIGHT_DECAY"))
+    _set_if_present(config, "grad_clip", _read_float_env("GRAD_CLIP"))
+
+    _set_if_present(config, "scheduler", _read_optional_env("SCHEDULER"))
+    _set_if_present(config, "warmup_epochs", _read_int_env("WARMUP_EPOCHS"))
+
+    _set_if_present(config, "num_workers", _read_int_env("NUM_WORKERS"))
+    _set_if_present(config, "pin_memory", _read_bool_env("PIN_MEMORY"))
+    _set_if_present(config, "drop_last", _read_bool_env("DROP_LAST"))
+
+    _set_if_present(config, "backend", _read_optional_env("BACKEND"))
+
     comm_algorithm = _read_optional_env("COMM_ALGORITHM")
-    zfp_rate = _read_float_env("ZFP_RATE")
-
-    if backend is not None:
-        config.backend = backend
-
     if comm_algorithm is not None:
         config.comm_algorithm = _normalize_optional_value(comm_algorithm)
 
-    if zfp_rate is not None:
-        config.zfp_rate = zfp_rate
+    _set_if_present(config, "zfp_rate", _read_float_env("ZFP_RATE"))
+
+    _set_if_present(config, "pretrained", _read_bool_env("PRETRAINED"))
+    _set_if_present(config, "cifar_stem", _read_bool_env("CIFAR_STEM"))
+    _set_if_present(
+        config,
+        "init_cifar_stem_from_pretrained_center",
+        _read_bool_env("INIT_CIFAR_STEM_FROM_PRETRAINED_CENTER"),
+    )
+
+    _set_if_present(config, "data_dir", _read_optional_env("DATA_DIR"))
+    _set_if_present(config, "checkpoint_dir", _read_optional_env("CHECKPOINT_DIR"))
+    _set_if_present(config, "seed", _read_int_env("SEED"))
 
 
 if __name__ == "__main__":
 
     config = TrainingConfig(
-        # -- Model (uncomment one, comment the rest) -------------------------
-        # model_name="resnet18",           # ~11M params - fastest, lightweight baseline
-        # model_name="resnet50",           # ~25M params - standard CIFAR-10 benchmark
-            # if model resnet50 also uncomment this next 2 instructions
-        # grad_clip=None,
-        # warmup_epochs=1,
-        # model_name="resnet101",          # ~44M params - deeper ResNet
+        # Model
+        # model_name="resnet18",
+        # model_name="resnet50",
+        # model_name="resnet101",
         # model_name="wide_resnet50_2",
-        model_name="resnext101_32x8d",   # ~88M params - grouped convs (32 groups x 8 width)
-        # model_name="convnext_tiny",      # ~28M params - modern architecture, no stem fix needed
-        # model_name="convnext_small",     # ~50M params - larger ConvNeXt variant
+        model_name="resnext101_32x8d",
+        # model_name="convnext_tiny",
+        # model_name="convnext_small",
+
+        # Dataset
         dataset="cifar10",
+        # dataset="imagenet",
         num_classes=10,
-        num_epochs=20,           # big to see if it trains all
-        # -- Batch size ------------------------------------------------------
-        # Memory: fixed ~1 GB (params+grads+optimizer) + ~50-80 MB/sample activations.
-        # resnext101 on CIFAR-10 (32x32): ~8-12 GB at batch_size=128 on A100 -> comfortable.
-        # Go to 64 if OOM. Go to 256 (and scale lr proportionally) if you want larger effective batch.
-        # Quality: effective_batch = batch_size x world_size. Keep <= 2048 for CIFAR-10
-        # without LR adjustment. At 4 GPUs x 128 = 512 effective - conservative and safe.
-        # the total batch size is 128 -> so based on the number of gpus here set: 128/Number of GPUs
-        batch_size=32, # for 4 gpus
-        # batch_size=16, # for 8 gpus
-        # batch_size=8, # for 16 gpus
-        # no wait in this way goes slower with 8 gpus.
-        #   4 GPUs  -> effective batch 512
-        #   8 GPUs  -> effective batch 1024
-        #   16 GPUs -> effective batch 2048
-        # batch_size=128,
+        image_size=32,
+
+        # Training
+        num_epochs=20,
+        batch_size=16,          # local/per-rank batch size
         learning_rate=0.001,
         momentum=0.9,
         weight_decay=5e-4,
-        # warmup_epochs=1, #for Wide_Resnet50_2
-        warmup_epochs=5, #for Resnext_32x8d
-        # grad_clip=None, #for Wide_Resnet50_2
-        # grad_clip=1, #for Resnext_32x8d
-        grad_clip=0.5, #for little batches with Resnext like 32
-        backend="mpi", # mpi or nccl; can be overridden by BACKEND in trainJobs.sh
-        # -- Communication algorithm (uncomment one, comment the rest) -------
+        grad_clip=None,
+
+        # Scheduler
+        scheduler="constant",   # paper-style LR=0.001 reproduction
+        # scheduler="cosine",
+        warmup_epochs=0,
+
+        # DataLoader
+        num_workers=4,
+        pin_memory=True,
+        drop_last=False,
+
+        # Distributed / communication
+        backend="mpi",
         # comm_algorithm=None,
-        comm_algorithm="default",                   # built-in wrapped with NVTX timing only
-        # comm_algorithm="ring",                    # custom ring: reduce-scatter + allgather via P2P
-        # comm_algorithm="recursive_doubling",      # MPICH recursive doubling, handles non-power-of-2
-        # comm_algorithm="ring_zfp_naive",          # ring + ZFP compression (naive paper baseline)
-        # comm_algorithm="recursive_doubling_zfp_naive",  # recursive doubling + ZFP compression
-        # comm_algorithm="ring_zfp_online_coll",    # Algorithm 1: ring + ZFP collective-level online compression
+        comm_algorithm="default",
+        # comm_algorithm="ring",
+        # comm_algorithm="recursive_doubling",
+        # comm_algorithm="ring_zfp_naive",
+        # comm_algorithm="recursive_doubling_zfp_naive",
+        # comm_algorithm="ring_zfp_online_coll",
         # comm_algorithm="recursive_doubling_zfp_online_coll",
-        # comm_algorithm="ring_async"
-        # grad_clip defaults to 1.0 in TrainingConfig (model-agnostic universal
-        # default). Override here only to disable (None) or tune the threshold.
-        # pretrained=True required for ResNeXt101/ConvNeXt on CIFAR-10 - see
-        # TRAINING_STABILITY.md for why training from scratch is not viable.
+        # comm_algorithm="ring_async",
         zfp_rate=16.0,
-        pretrained=True,
-        # cifar_stem=False, #for Wide_resnet50_2
-        cifar_stem=True, #for Resnext_32x8d
+
+        # Model initialization
+        pretrained=False,
+        cifar_stem=True,
+        init_cifar_stem_from_pretrained_center=False,
+
+        # Paths
         data_dir="./data",
         checkpoint_dir="./checkpoints",
         seed=42,
-        )
+    )
 
-    # Keep this interface as the visible default, but allow the train job to
-    # run sweeps without editing this file between queued jobs.
     apply_job_overrides(config)
-
-    # ================================================================
-    # BENCHMARKING EXAMPLES
-    # ================================================================
-
-    # To benchmark ring allreduce:
-    # config.comm_algorithm = "ring"
-
-    # To benchmark recursive doubling:
-    # config.comm_algorithm = "recursive_doubling"
-
-    # To use NCCL backend instead:
-    # config.backend = "nccl"
-    # config.comm_algorithm = "ring"
-
-    # ================================================================
 
     print("\n" + "=" * 80)
     print("DISTRIBUTED TRAINING LAUNCHER")
@@ -149,6 +185,7 @@ if __name__ == "__main__":
           f"{' (CIFAR stem)' if config.cifar_stem else ''}"
           f"{' (pretrained)' if config.pretrained else ' (from scratch)'}")
     print(f"  Dataset:    {config.dataset} ({config.num_classes} classes)")
+    print(f"  Image size: {config.image_size}")
     print(f"  Backend:    {config.backend}")
     print(f"  Algorithm:  {config.comm_algorithm or 'built-in (no hook)'}")
     if config.comm_algorithm and "zfp" in config.comm_algorithm:
@@ -156,6 +193,11 @@ if __name__ == "__main__":
     print(f"  Epochs:     {config.num_epochs}")
     print(f"  Batch/rank: {config.batch_size}")
     print(f"  LR:         {config.learning_rate}")
+    print(f"  Scheduler:  {config.scheduler}")
+    print(f"  Warmup:     {config.warmup_epochs}")
+    print(f"  Grad clip:  {config.grad_clip}")
+    print(f"  Drop last:  {config.drop_last}")
+    print(f"  Data dir:   {config.data_dir}")
     print("=" * 80 + "\n")
 
     train(config)
