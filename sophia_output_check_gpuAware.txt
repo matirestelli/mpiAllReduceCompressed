@@ -1,0 +1,33 @@
+=== mpi_gpuaware_check.py ===
+Host: sophia-gpu-04
+PID: 3617270
+Python: 3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]
+Torch: 2.8.0a0
+Torch file: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+torch.distributed.is_available(): True
+torch.distributed.is_mpi_available(): True
+=== mpi_gpuaware_check.py ===
+Host: sophia-gpu-04
+PID: 3617271
+Python: 3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]
+Torch: 2.8.0a0
+Torch file: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+torch.distributed.is_available(): True
+torch.distributed.is_mpi_available(): True
+CUDA available/devices: True / 1
+CUDA available/devices: True / 1
+MPI process group initialized: rank 0/2
+[rank1] [cpu] all_reduce OK? True | mean=3.000000 expected=3.000000
+[rank0] [cpu] all_reduce OK? True | mean=3.000000 expected=3.000000
+[rank1] Using CUDA device: cuda:0 (ndev=1)
+[rank0] Using CUDA device: cuda:0 (ndev=1)
+[rank0] [cuda] all_reduce OK? True | mean=3.000000 expected=3.000000
+[rank1] [cuda] all_reduce OK? True | mean=3.000000 expected=3.000000
+=== SUMMARY (rank 0) ===
+world_size=2
+cuda_device_count=1
+REQUIRE_DISTINCT_GPUS=0
+cpu_ok  = True
+cuda_ok = True
+RESULT: CUDA all_reduce succeeded, but all ranks likely shared the same GPU (only 1 GPU visible).
+For a stricter test, request 2 GPUs (ngpus=2) or set REQUIRE_DISTINCT_GPUS=1.

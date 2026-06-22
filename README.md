@@ -105,32 +105,46 @@ without internet access.
 
 ## Build ZFP/cuZFP
 
-Compressed hooks require the CUDA-enabled ZFP build in `zfp-install/`.
+The first time you are using this framework on a cluster/system, you should build and install ZFP into a system-specific prefix (do not reuse the present builds).
 
-On Polaris:
+From the repository root, build ZFP in an out-of-source build directory named build-<newSystem> and install into zfp-install-<newSystem>:
 
 ```bash
-qsub build_zfp_cuda.sh
+cd ddp-allreduce-eval-framework/zfp
+
+mkdir -p build-newSystem
+cd build-newSystem
+
+cmake .. -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=$PWD/../../zfp-install-newSystem \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+
+cmake --build . -j
+cmake --install .
 ```
 
-The build script installs into:
+This installs headers and libraries into:
 
 ```text
-ddp-allreduce-eval-framework/zfp-install
+ddp-allreduce-eval-framework/zfp-install-newSystem
 ```
 
-`envScript3.sh` then exports:
+Configure your environment
+In your env script (or before launching jobs), point ZFP_HOME at the install prefix and ensure the runtime loader can find libzfp.so:
 
 ```bash
-export ZFP_HOME="${PROJECT_ROOT}/zfp-install"
-export LD_LIBRARY_PATH="$ZFP_HOME/lib64:${LD_LIBRARY_PATH}"
+export ZFP_HOME="/path/to/ddp-allreduce-eval-framework/zfp-install-newSystem"
+export LD_LIBRARY_PATH="$ZFP_HOME/lib:$ZFP_HOME/lib64:${LD_LIBRARY_PATH:-}"
 export CPATH="$ZFP_HOME/include:${CPATH:-}"
-export LIBRARY_PATH="$ZFP_HOME/lib64:${LIBRARY_PATH:-}"
-export CMAKE_PREFIX_PATH="$ZFP_HOME:${CMAKE_PREFIX_PATH:-}"
+export LIBRARY_PATH="$ZFP_HOME/lib:$ZFP_HOME/lib64:${LIBRARY_PATH:-}"
 ```
 
-If `import zfp_cuda` fails, first check that `ZFP_HOME`, `libzfp.so`, and the
-Python extension can all be found in the launched job environment.
+If you compile any components that use CMake, also export:
+
+```bash
+export CMAKE_PREFIX_PATH="$ZFP_HOME:${CMAKE_PREFIX_PATH:-}"
+```
+If import zfp_cuda fails, confirm that ZFP_HOME is correct and that $ZFP_HOME/lib64/libzfp.so (or $ZFP_HOME/lib/libzfp.so) exists in the job environment.
 
 ## Configure an Experiment
 

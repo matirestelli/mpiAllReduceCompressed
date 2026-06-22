@@ -1,0 +1,998 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:204 (message)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      The system is: Linux - 5.14.0-611.54.1.el9_7.x86_64 - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/3.26.5/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/3.26.5/CompilerIdCXX/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:34 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_20642/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_20642.dir/build.make CMakeFiles/cmTC_20642.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX'
+        Building C object CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -fPIE   -v -o CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_20642.dir/'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_20642.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64-v2 -version -fPIE -o /home/mrest/.tmp/ccrW1qYJ.s
+        GNU C17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-redhat-linux/11/include
+         /usr/local/include
+         /usr/include
+        End of search list.
+        GNU C17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: af9ae44e97202b04afb7ff0bca3249b1
+        COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_20642.dir/'
+         as -v --64 -o CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o /home/mrest/.tmp/ccrW1qYJ.s
+        GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_20642
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20642.dir/link.txt --verbose=1
+        /usr/bin/cc  -v CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o -o cmTC_20642 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_20642' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'cmTC_20642.'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccQ3XPAs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_20642 /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_20642' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'cmTC_20642.'
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-redhat-linux/11/include]
+          add: [/usr/local/include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/11/include] ==> [/usr/lib/gcc/x86_64-redhat-linux/11/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-redhat-linux/11/include;/usr/local/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX]
+        ignore line: []
+        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_20642/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_20642.dir/build.make CMakeFiles/cmTC_20642.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-5OPuaX']
+        ignore line: [Building C object CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -fPIE   -v -o CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_20642.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/cc1 -quiet -v /usr/share/cmake/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_20642.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64-v2 -version -fPIE -o /home/mrest/.tmp/ccrW1qYJ.s]
+        ignore line: [GNU C17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: af9ae44e97202b04afb7ff0bca3249b1]
+        ignore line: [COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_20642.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o /home/mrest/.tmp/ccrW1qYJ.s]
+        ignore line: [GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_20642]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20642.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o -o cmTC_20642 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_20642' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'cmTC_20642.']
+        link line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccQ3XPAs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_20642 /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/home/mrest/.tmp/ccQ3XPAs.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--no-add-needed] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_20642] ==> ignore
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..]
+          arg [CMakeFiles/cmTC_20642.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/crtend.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/crtend.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o] ==> [/usr/lib64/crt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11] ==> [/usr/lib/gcc/x86_64-redhat-linux/11]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib64/crt1.o;/usr/lib64/crti.o;/usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o;/usr/lib/gcc/x86_64-redhat-linux/11/crtend.o;/usr/lib64/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/11;/usr/lib64;/lib64;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:34 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5b27f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5b27f.dir/build.make CMakeFiles/cmTC_5b27f.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn'
+        Building CXX object CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -fPIE   -v -o CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_5b27f.dir/'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/cc1plus -quiet -v -D_GNU_SOURCE /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5b27f.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64-v2 -version -fPIE -o /home/mrest/.tmp/ccRaxMti.s
+        GNU C++17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11
+         /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/x86_64-redhat-linux
+         /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/backward
+         /usr/lib/gcc/x86_64-redhat-linux/11/include
+         /usr/local/include
+         /usr/include
+        End of search list.
+        GNU C++17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 4f5d76413fadacfbad3069e5f772f987
+        COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_5b27f.dir/'
+         as -v --64 -o CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o /home/mrest/.tmp/ccRaxMti.s
+        GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_5b27f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b27f.dir/link.txt --verbose=1
+        /usr/bin/c++  -v CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5b27f 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5b27f' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'cmTC_5b27f.'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccdjSJac.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_5b27f /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5b27f' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'cmTC_5b27f.'
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11]
+          add: [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/x86_64-redhat-linux]
+          add: [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/backward]
+          add: [/usr/lib/gcc/x86_64-redhat-linux/11/include]
+          add: [/usr/local/include]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11] ==> [/usr/include/c++/11]
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/x86_64-redhat-linux] ==> [/usr/include/c++/11/x86_64-redhat-linux]
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/backward] ==> [/usr/include/c++/11/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/11/include] ==> [/usr/lib/gcc/x86_64-redhat-linux/11/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/11;/usr/include/c++/11/x86_64-redhat-linux;/usr/include/c++/11/backward;/usr/lib/gcc/x86_64-redhat-linux/11/include;/usr/local/include;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:34 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn]
+        ignore line: []
+        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5b27f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5b27f.dir/build.make CMakeFiles/cmTC_5b27f.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Z0j0rn']
+        ignore line: [Building CXX object CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -fPIE   -v -o CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_5b27f.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/cc1plus -quiet -v -D_GNU_SOURCE /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_5b27f.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64-v2 -version -fPIE -o /home/mrest/.tmp/ccRaxMti.s]
+        ignore line: [GNU C++17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/x86_64-redhat-linux]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++17 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 4f5d76413fadacfbad3069e5f772f987]
+        ignore line: [COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_5b27f.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o /home/mrest/.tmp/ccRaxMti.s]
+        ignore line: [GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fPIE' '-v' '-o' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_5b27f]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b27f.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_5b27f ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_5b27f' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-dumpdir' 'cmTC_5b27f.']
+        link line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccdjSJac.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_5b27f /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/home/mrest/.tmp/ccdjSJac.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--no-add-needed] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_5b27f] ==> ignore
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..]
+          arg [CMakeFiles/cmTC_5b27f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/crtend.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/crtend.o]
+          arg [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o] ==> [/usr/lib64/crt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11] ==> [/usr/lib/gcc/x86_64-redhat-linux/11]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib64/crt1.o;/usr/lib64/crti.o;/usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o;/usr/lib/gcc/x86_64-redhat-linux/11/crtend.o;/usr/lib64/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/11;/usr/lib64;/lib64;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:483 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:186 (find_package)"
+    description: "Detecting C OpenMP compiler info"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/mrest/mpiAllReduceCompressed/zfp/cmake"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_C_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_46280/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_46280.dir/build.make CMakeFiles/cmTC_46280.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8'
+        Building C object CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o
+        /usr/bin/cc   -fopenmp -v -std=gnu99 -fPIE -o CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8/OpenMPTryFlag.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu99' '-fPIE' '-o' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_46280.dir/'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/cc1 -quiet -v -D_REENTRANT /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8/OpenMPTryFlag.c -quiet -dumpdir CMakeFiles/cmTC_46280.dir/ -dumpbase OpenMPTryFlag.c.c -dumpbase-ext .c -mtune=generic -march=x86-64-v2 -std=gnu99 -version -fopenmp -fPIE -o /home/mrest/.tmp/ccvuSUxO.s
+        GNU C99 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-redhat-linux/11/include
+         /usr/local/include
+         /usr/include
+        End of search list.
+        GNU C99 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: af9ae44e97202b04afb7ff0bca3249b1
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu99' '-fPIE' '-o' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_46280.dir/'
+         as -v --64 -o CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o /home/mrest/.tmp/ccvuSUxO.s
+        GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu99' '-fPIE' '-o' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.'
+        Linking C executable cmTC_46280
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_46280.dir/link.txt --verbose=1
+        /usr/bin/cc  -fopenmp -v CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o -o cmTC_46280  -v 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        Reading specs from /usr/lib/gcc/x86_64-redhat-linux/11/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_46280' '-v' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'cmTC_46280.'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccr274Qs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_46280 /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o -lgomp -lgcc --push-state --as-needed -lgcc_s --pop-state -lpthread -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadend.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_46280' '-v' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'cmTC_46280.'
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:262 (message)"
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:483 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:186 (find_package)"
+    message: |
+      Parsed C OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8]
+        ignore line: []
+        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_46280/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_46280.dir/build.make CMakeFiles/cmTC_46280.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8']
+        ignore line: [Building C object CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o]
+        ignore line: [/usr/bin/cc   -fopenmp -v -std=gnu99 -fPIE -o CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8/OpenMPTryFlag.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu99' '-fPIE' '-o' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_46280.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/cc1 -quiet -v -D_REENTRANT /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-vK6AP8/OpenMPTryFlag.c -quiet -dumpdir CMakeFiles/cmTC_46280.dir/ -dumpbase OpenMPTryFlag.c.c -dumpbase-ext .c -mtune=generic -march=x86-64-v2 -std=gnu99 -version -fopenmp -fPIE -o /home/mrest/.tmp/ccvuSUxO.s]
+        ignore line: [GNU C99 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C99 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: af9ae44e97202b04afb7ff0bca3249b1]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu99' '-fPIE' '-o' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_46280.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o /home/mrest/.tmp/ccvuSUxO.s]
+        ignore line: [GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu99' '-fPIE' '-o' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o' '-c' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.']
+        ignore line: [Linking C executable cmTC_46280]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_46280.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -fopenmp -v CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o -o cmTC_46280  -v ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [Reading specs from /usr/lib/gcc/x86_64-redhat-linux/11/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_46280' '-v' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'cmTC_46280.']
+        link line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccr274Qs.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_46280 /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o -lgomp -lgcc --push-state --as-needed -lgcc_s --pop-state -lpthread -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadend.o]
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/home/mrest/.tmp/ccr274Qs.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--no-add-needed] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_46280] ==> ignore
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..]
+          arg [CMakeFiles/cmTC_46280.dir/OpenMPTryFlag.c.o] ==> ignore
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lpthread] ==> lib [pthread]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11] ==> [/usr/lib/gcc/x86_64-redhat-linux/11]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> [/usr/lib]
+        implicit libs: [gomp;gcc;gcc_s;pthread;c;gcc;gcc_s]
+        implicit objs: []
+        implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/11;/usr/lib64;/lib64;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:219 (try_compile)"
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:483 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:186 (find_package)"
+    description: "Detecting CXX OpenMP compiler info"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/mrest/mpiAllReduceCompressed/zfp/cmake"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "OpenMP_COMPILE_RESULT_CXX_fopenmp"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_35b42/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_35b42.dir/build.make CMakeFiles/cmTC_35b42.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg'
+        Building CXX object CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o
+        /usr/bin/c++   -fopenmp -v -std=gnu++98 -fPIE -o CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg/OpenMPTryFlag.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu++98' '-fPIE' '-o' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_35b42.dir/'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/cc1plus -quiet -v -D_GNU_SOURCE -D_REENTRANT /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg/OpenMPTryFlag.cpp -quiet -dumpdir CMakeFiles/cmTC_35b42.dir/ -dumpbase OpenMPTryFlag.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64-v2 -std=gnu++98 -version -fopenmp -fPIE -o /home/mrest/.tmp/ccuYNss0.s
+        GNU C++98 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11
+         /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/x86_64-redhat-linux
+         /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/backward
+         /usr/lib/gcc/x86_64-redhat-linux/11/include
+         /usr/local/include
+         /usr/include
+        End of search list.
+        GNU C++98 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)
+        	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11), GMP version 6.2.0, MPFR version 4.1.0-p9, MPC version 1.2.1, isl version none
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 4f5d76413fadacfbad3069e5f772f987
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu++98' '-fPIE' '-o' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_35b42.dir/'
+         as -v --64 -o CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o /home/mrest/.tmp/ccuYNss0.s
+        GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu++98' '-fPIE' '-o' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.'
+        Linking CXX executable cmTC_35b42
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_35b42.dir/link.txt --verbose=1
+        /usr/bin/c++  -fopenmp -v CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o -o cmTC_35b42  -v 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-redhat-linux
+        Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c,c++,fortran,lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/
+        Reading specs from /usr/lib/gcc/x86_64-redhat-linux/11/libgomp.spec
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_35b42' '-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'cmTC_35b42.'
+         /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccCt5JjI.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_35b42 /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lgomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadend.o
+        COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_35b42' '-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'cmTC_35b42.'
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:262 (message)"
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:483 (_OPENMP_GET_FLAGS)"
+      - "CMakeLists.txt:186 (find_package)"
+    message: |
+      Parsed CXX OpenMP implicit link information from above output:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg]
+        ignore line: []
+        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_35b42/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_35b42.dir/build.make CMakeFiles/cmTC_35b42.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg']
+        ignore line: [Building CXX object CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o]
+        ignore line: [/usr/bin/c++   -fopenmp -v -std=gnu++98 -fPIE -o CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg/OpenMPTryFlag.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu++98' '-fPIE' '-o' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_35b42.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/cc1plus -quiet -v -D_GNU_SOURCE -D_REENTRANT /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-Nu1QKg/OpenMPTryFlag.cpp -quiet -dumpdir CMakeFiles/cmTC_35b42.dir/ -dumpbase OpenMPTryFlag.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64-v2 -std=gnu++98 -version -fopenmp -fPIE -o /home/mrest/.tmp/ccuYNss0.s]
+        ignore line: [GNU C++98 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/11/../../../../x86_64-redhat-linux/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/x86_64-redhat-linux]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/../../../../include/c++/11/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/11/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++98 (GCC) version 11.5.0 20240719 (Red Hat 11.5.0-11) (x86_64-redhat-linux)]
+        ignore line: [	compiled by GNU C version 11.5.0 20240719 (Red Hat 11.5.0-11)  GMP version 6.2.0  MPFR version 4.1.0-p9  MPC version 1.2.1  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 4f5d76413fadacfbad3069e5f772f987]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu++98' '-fPIE' '-o' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_35b42.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o /home/mrest/.tmp/ccuYNss0.s]
+        ignore line: [GNU assembler version 2.35.2 (x86_64-redhat-linux) using BFD version version 2.35.2-67.el9_7.1]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-std=gnu++98' '-fPIE' '-o' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.']
+        ignore line: [Linking CXX executable cmTC_35b42]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_35b42.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -fopenmp -v CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o -o cmTC_35b42  -v ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-redhat-linux]
+        ignore line: [Configured with: ../configure --enable-bootstrap --enable-host-pie --enable-host-bind-now --enable-languages=c c++ fortran lto --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --enable-plugin --enable-initfini-array --without-isl --enable-multilib --with-linker-hash-style=gnu --enable-offload-targets=nvptx-none --without-cuda-driver --enable-gnu-indirect-function --enable-cet --with-tune=generic --with-arch_64=x86-64-v2 --with-arch_32=x86-64 --build=x86_64-redhat-linux --with-build-config=bootstrap-lto --enable-link-serialization=1]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 11.5.0 20240719 (Red Hat 11.5.0-11) (GCC) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/11/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/11/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/11/../../../:/lib/:/usr/lib/]
+        ignore line: [Reading specs from /usr/lib/gcc/x86_64-redhat-linux/11/libgomp.spec]
+        ignore line: [COLLECT_GCC_OPTIONS='-fopenmp' '-v' '-o' 'cmTC_35b42' '-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64-v2' '-pthread' '-dumpdir' 'cmTC_35b42.']
+        link line: [ /usr/libexec/gcc/x86_64-redhat-linux/11/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper -plugin-opt=-fresolution=/home/mrest/.tmp/ccCt5JjI.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_35b42 /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/11/crtbegin.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/11 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/11/../../.. CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lgomp -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/11/crtend.o /usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64/crtn.o /usr/lib/gcc/x86_64-redhat-linux/11/crtoffloadend.o]
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-redhat-linux/11/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/11/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/home/mrest/.tmp/ccCt5JjI.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lpthread] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--no-add-needed] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_35b42] ==> ignore
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..]
+          arg [CMakeFiles/cmTC_35b42.dir/OpenMPTryFlag.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgomp] ==> lib [gomp]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lpthread] ==> lib [pthread]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11] ==> [/usr/lib/gcc/x86_64-redhat-linux/11]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/11/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gomp;gcc_s;gcc;pthread;c;gcc_s;gcc]
+        implicit objs: []
+        implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/11;/usr/lib64;/lib64;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:419 (try_compile)"
+      - "/usr/share/cmake/Modules/FindOpenMP.cmake:557 (_OPENMP_GET_SPEC_DATE)"
+      - "CMakeLists.txt:186 (find_package)"
+    description: "Detecting C OpenMP version"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-8OKU5p"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-8OKU5p"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/mrest/mpiAllReduceCompressed/zfp/cmake"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "OpenMP_SPECTEST_C_"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-8OKU5p
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_55ea8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_55ea8.dir/build.make CMakeFiles/cmTC_55ea8.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-8OKU5p'
+        Building C object CMakeFiles/cmTC_55ea8.dir/OpenMPCheckVersion.c.o
+        /usr/bin/cc   -fopenmp -std=gnu99 -fPIE -o CMakeFiles/cmTC_55ea8.dir/OpenMPCheckVersion.c.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-8OKU5p/OpenMPCheckVersion.c
+        Linking C executable cmTC_55ea8
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_55ea8.dir/link.txt --verbose=1
+        /usr/bin/cc  -fopenmp CMakeFiles/cmTC_55ea8.dir/OpenMPCheckVersion.c.o -o cmTC_55ea8 
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-8OKU5p'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake/Modules/CheckCSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:263 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_MATH"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-84rPOE"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-84rPOE"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/mrest/mpiAllReduceCompressed/zfp/cmake"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "HAVE_MATH"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-84rPOE
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b8d9f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b8d9f.dir/build.make CMakeFiles/cmTC_b8d9f.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-84rPOE'
+        Building C object CMakeFiles/cmTC_b8d9f.dir/src.c.o
+        /usr/bin/cc -DHAVE_MATH  -std=gnu99 -fPIE -o CMakeFiles/cmTC_b8d9f.dir/src.c.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-84rPOE/src.c
+        Linking C executable cmTC_b8d9f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8d9f.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_b8d9f.dir/src.c.o -o cmTC_b8d9f 
+        /usr/bin/ld: CMakeFiles/cmTC_b8d9f.dir/src.c.o: in function `main':
+        src.c:(.text+0x23): undefined reference to `sqrt'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_b8d9f.dir/build.make:99: cmTC_b8d9f] Error 1
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-84rPOE'
+        gmake: *** [Makefile:127: cmTC_b8d9f/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake/Modules/CheckCSourceCompiles.cmake:76 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:266 (check_c_source_compiles)"
+    checks:
+      - "Performing Test HAVE_LIBM_MATH"
+    directories:
+      source: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-hLiOCs"
+      binary: "/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-hLiOCs"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/mrest/mpiAllReduceCompressed/zfp/cmake"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "HAVE_LIBM_MATH"
+      cached: true
+      stdout: |
+        Change Dir: /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-hLiOCs
+        
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_24cf3/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_24cf3.dir/build.make CMakeFiles/cmTC_24cf3.dir/build
+        gmake[1]: Entering directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-hLiOCs'
+        Building C object CMakeFiles/cmTC_24cf3.dir/src.c.o
+        /usr/bin/cc -DHAVE_LIBM_MATH  -std=gnu99 -fPIE -o CMakeFiles/cmTC_24cf3.dir/src.c.o -c /home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-hLiOCs/src.c
+        Linking C executable cmTC_24cf3
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_24cf3.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_24cf3.dir/src.c.o -o cmTC_24cf3  -lm 
+        gmake[1]: Leaving directory '/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/CMakeFiles/CMakeScratch/TryCompile-hLiOCs'
+        
+      exitCode: 0
+...

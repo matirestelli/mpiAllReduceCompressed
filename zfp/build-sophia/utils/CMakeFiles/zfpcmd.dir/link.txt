@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG CMakeFiles/zfpcmd.dir/zfp.c.o -o ../bin/zfp  -Wl,-rpath,/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/lib64:: ../lib64/libzfp.so.1.0.1 -lm 

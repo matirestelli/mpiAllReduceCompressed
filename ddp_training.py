@@ -240,6 +240,25 @@ def train(config: TrainingConfig) -> None:
     torch.cuda.set_device(local_rank)
     device = torch.device(f"cuda:{local_rank}")
 
+    # check if really using GPUs (doubt for Sophia's MPI backend)
+    use_cuda = torch.cuda.is_available() and torch.cuda.device_count() > 0
+    if use_cuda:
+        local_rank = rank % torch.cuda.device_count()
+        torch.cuda.set_device(local_rank)
+        device = torch.device(f"cuda:{local_rank}")
+        name = torch.cuda.get_device_name(local_rank)
+    else:
+        local_rank = -1
+        device = torch.device("cpu")
+        name = "CPU"
+
+    print(
+        f"[Rank {rank}/{world_size}] device={device} local_rank={local_rank} "
+        f"cuda_available={torch.cuda.is_available()} device_count={torch.cuda.device_count()} "
+        f"name={name}",
+        flush=True
+    )
+
     # ── Setup logging and CSV (rank 0 only) ──────────────────────────────
     csv_file   = None
     csv_writer = None

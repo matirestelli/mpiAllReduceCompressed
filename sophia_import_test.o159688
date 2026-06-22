@@ -1,0 +1,56 @@
+=== host: sophia-gpu-05 ===
+=== jobid: 159688.sophia-pbs-01.lab.alcf.anl.gov ===
+=== workdir: /home/mrest/mpiAllReduceCompressed ===
+Mon Jun 22 08:01:27 PM UTC 2026
+=============================================
+  Sophia DDP + Installed PyTorch + OpenMPI
+=============================================
+Node               : sophia-gpu-05
+Python             : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+NVCC               : /usr/local/cuda-12.9/bin/nvcc
+MPI launcher       : /soft/compilers/openmpi/5.0.10/bin/mpirun
+CUDA_HOME          : /usr/local/cuda-12.9
+PYTORCH_MPI_BUILD  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia
+PYTORCH_SOURCE     : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/src/pytorch
+EAGLE_PYTHON_PREFIX: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi
+ZFP_HOME           : /home/mrest/mpiAllReduceCompressed/zfp-install
+PYTHONPATH         : <unset>
+=============================================
+Python version    : 3.11.14
+Python executable : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+PyTorch version   : 2.8.0a0
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+Built CUDA        : 12.9
+CUDA available    : True 1
+MPI available     : True
+NCCL available    : True
+Gloo available    : True
+[WARN] mpi4py check failed: ModuleNotFoundError("No module named 'mpi4py'")
+Mon Jun 22 20:01:32 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:90:00.0 Off |                    0 |
+| N/A   26C    P0             59W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+python: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+=== import test ===
+torch: 2.8.0a0 /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+cuda: True count: 1
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+ModuleNotFoundError: No module named 'framework_allreduce_zfp_cuda'

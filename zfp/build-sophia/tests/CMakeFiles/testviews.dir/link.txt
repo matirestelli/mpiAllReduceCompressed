@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/testviews.dir/testviews.cpp.o -o ../bin/testviews  -Wl,-rpath,/home/mrest/mpiAllReduceCompressed/zfp/build-sophia/lib64 ../lib64/libzfp.so.1.0.1 /usr/lib/gcc/x86_64-redhat-linux/11/libgomp.so /usr/lib64/libpthread.a 

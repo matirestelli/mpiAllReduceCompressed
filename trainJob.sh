@@ -26,8 +26,8 @@ NUM_PROCS=4
 PPN=4
 
 MODELS=(
-    "resnext101_32x8d"
-    # "wide_resnet50_2"
+    "wide_resnet50_2"
+    # "resnext101_32x8d"
 )
 
 DATASETS=(
@@ -58,7 +58,8 @@ BATCH_SIZES=(
 )
 
 LEARNING_RATES=(
-    "0.001"    # paper-style CIFAR reproduction
+    "0.0001"
+    # "0.001"    # paper-style CIFAR reproduction
     # "0.01"
     # "0.05"
     # "0.1"
@@ -75,9 +76,9 @@ WARMUP_EPOCHS_LIST=(
 )
 
 GRAD_CLIPS=(
-    "none"
+    #"none"
     # "0.5"
-    # "1.0"
+    "1.0"
 )
 
 PRETRAINED_VALUES=(
@@ -103,8 +104,8 @@ BACKENDS=(
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 EXPERIMENTS=(
-    "default:"
-    # "none:"
+    # "default:"
+    "none:"
     # "ring:"
     # "ring_zfp_naive:16"
     # "ring_zfp_online_coll:16"
@@ -197,3 +198,6 @@ done
 done
 
 echo "=== Job finished: $(date) ==="
+
+#to request an interactive node
+# qsub -I -l select=1:ngpus=4 -l walltime=01:00:00 -l filesystems=home:eagle -q debug -A UIC-HPC
