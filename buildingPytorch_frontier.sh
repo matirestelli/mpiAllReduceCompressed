@@ -56,67 +56,69 @@ PREREQS
 set -euo pipefail
 trap 'echo "[ERROR] Failed at line ${LINENO} at $(date)" >&2' ERR
 
-# Paths 
+# Paths
 ENVROOT=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch
-REPO_DIR="$ENVROOT"                 # pytorch git checkout lives here
-ENV_PREFIX="$ENVROOT/conda"         # conda env on Lustre (install target)
-TARBALL="$ENVROOT/conda_env.tar.gz" # packed env output on Lustre
+REPO_DIR="$ENVROOT"
+ENV_PREFIX="$ENVROOT/conda"
+TARBALL="$ENVROOT/conda_env.tar.gz"
 
 LOCAL_BASE=/tmp/$USER
 LOCAL_ENV=$LOCAL_BASE/conda
 
-# Node-local build sandbox: build in /tmp, install into ENV_PREFIX on Lustre
 JOBTAG="${SLURM_JOB_ID:-nojobid}"
 NODE_SCRATCH="/tmp/${USER}/pytorch_build_${JOBTAG}"
 
-# Modules 
+# Modules
 module purge
 module load cpe/26.03
 module load PrgEnv-gnu
 module load gcc-native/13.2
 module load cray-mpich
-module load rocm
+module load rocm/7.1.1
+module load libfabric
 module load craype-accel-amd-gfx90a
 module load craype-x86-milan
 module load miniforge3/23.11.0-0
 module unload darshan-runtime || true
 
-# Initialize conda for non-interactive shell
 source /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/profile.d/conda.sh
+
+# Offline
+unset all_proxy ftp_proxy http_proxy https_proxy no_proxy || true
 
 # Environment variables
 export MPICH_GPU_SUPPORT_ENABLED=1
 export LD_LIBRARY_PATH="${CRAY_LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
-# Keep job offline, because probems before where getting stuck in some installations from git on compute nodes 
-unset all_proxy ftp_proxy http_proxy https_proxy no_proxy || true
-
-# PyTorch ROCm build knobs
 export USE_ROCM=1
 export USE_CUDA=0
 export USE_XPU=0
+export USE_DISTRIBUTED=1
+export USE_MPI=1
+
 export PYTORCH_ROCM_ARCH=gfx90a
 export HCC_AMDGPU_TARGET=gfx90a
+
 export BUILD_TEST=0
 export USE_MKLDNN=0
 
-# HARD DISABLE KINETO/PROFILER STACK (otherwise stuck in tryint to install and use that)
+# Disable profiler/kineto stack
 export USE_KINETO=0
 export USE_ITT=0
 export USE_ROCTRACER=0
 export USE_ROCPROFILER=0
 
+# Disable mobile/inference extras
 export USE_NNPACK=0
 export USE_QNNPACK=0
 export USE_PYTORCH_QNNPACK=0
 
-# Feature disables (avoid Triton/AOTriton/flash-attn -> because otherwise stuck in trying to download/install them ) 
+# Avoid Triton/aotriton/flash-attn paths
 export USE_TRITON=0
 export USE_AOTRITON=0
 export USE_FLASH_ATTENTION=0
 export USE_MEM_EFF_ATTENTION=0
 
-# Parallelism
 export MAX_JOBS="${SLURM_CPUS_PER_TASK:-16}"
 
 # Force Cray compiler wrappers
@@ -125,12 +127,19 @@ export CXX=CC
 export FC=ftn
 export CMAKE_C_COMPILER=cc
 export CMAKE_CXX_COMPILER=CC
+export CMAKE_Fortran_COMPILER=ftn
+
+# Force MPI wrappers for FindMPI
+export MPI_C_COMPILER=cc
+export MPI_CXX_COMPILER=CC
+export MPI_Fortran_COMPILER=ftn
 
 export CFLAGS="${CFLAGS:-} -Wno-error -Wno-pedantic"
 export CXXFLAGS="${CXXFLAGS:-} -Wno-error -Wno-pedantic"
 
-# ROCm path hints
-export ROCM_SOURCE_DIR="${ROCM_HOME:-/opt/rocm}"
+# Pin ROCm explicitly
+export ROCM_HOME=/opt/rocm-7.1.1
+export ROCM_SOURCE_DIR=/opt/rocm-7.1.1
 
 echo "MODULE LIST"
 module list || true
@@ -138,56 +147,69 @@ module list || true
 echo "TOOLCHAIN (before conda activate)"
 which cc    || true; cc  --version   || true
 which CC    || true; CC  --version   || true
+which ftn   || true; ftn --version   || true
+which hipcc || true; hipcc --version | head -n 5 || true
 which cmake || true; cmake --version || true
+echo "MPI tools (before conda activate)"
+which mpicc || true
+which mpicxx || true
+which mpirun || true
 
-# Activate existing env (install target) 
+# Activate env
 if [[ ! -x "$ENV_PREFIX/bin/python" ]]; then
   echo "ERROR: Env not found at $ENV_PREFIX. Create/populate it on the login node first."
   exit 2
 fi
 
 conda activate "$ENV_PREFIX"
-
-# Force conda tools to win over module/system ones
 hash -r
+
+# Prefer conda tools
 export PATH="$ENV_PREFIX/bin:$PATH"
 export CMAKE_COMMAND="$ENV_PREFIX/bin/cmake"
 export CMAKE_PREFIX_PATH="$ENV_PREFIX${CMAKE_PREFIX_PATH:+:$CMAKE_PREFIX_PATH}"
 
-echo " PYTHON/TOOLS IN ENV "
+# ROCm toolchain hints
+export ROCM_PATH="$ROCM_HOME"
+export HIP_PATH="$ROCM_HOME"
+export HSA_PATH="$ROCM_HOME"
+
+# Prefer ROCm tools first
+export PATH="$ROCM_HOME/bin:$PATH"
+
+# Library search paths
+export LD_LIBRARY_PATH="${CRAY_LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/opt/cray/libfabric/2.3.1/lib64:$ROCM_HOME/lib:$ROCM_HOME/lib/roctracer:$ROCM_HOME/lib/rocprofiler:$LD_LIBRARY_PATH"
+
+echo "PYTHON/TOOLS IN ENV"
 which python
 python -V
 python -m pip -V
 which ninja || true
 ninja --version || true
-which -a cmake || true
-cmake --version || true
+"$CMAKE_COMMAND" --version || true
+echo "MPI tools (after conda activate)"
+which mpicc || true
+which mpicxx || true
+which mpirun || true
 
-# Hard fail early if key deps missing
 python - <<'PY'
 import numpy, yaml, packaging, typing_extensions
-print("deps ok:", "numpy", numpy.__version__)
+print("deps ok:", numpy.__version__)
 PY
 
-# Get source ready (Lustre tree) 
+# Source prep
 cd "$REPO_DIR"
 git submodule sync --recursive
 git submodule update --init --recursive
 
-# AOTriton persistent cache (on Lustre) 
-# Because even if disabling Triton/AOTriton, but keep the staging logic so before dowbload aotriton from a login node and then get that 
-AOTRITON_CACHE_DIR=/lustre/orion/gen243/proj-shared/matilderestelli/aotriton_cache
-AOTRITON_TARBALL_NAME="aotriton-0.12b-manylinux_2_28_x86_64-rocm7.0-shared.tar.gz"
-AOTRITON_TARBALL_CACHE="$AOTRITON_CACHE_DIR/$AOTRITON_TARBALL_NAME"
-
-# Node-local build sandbox (tried on Sophia of ALCF and worked so decided to keep the same structure for Frontier) 
-echo " NODE-LOCAL BUILD DIR "
+# Local build sandbox
 echo "NODE_SCRATCH=$NODE_SCRATCH"
 rm -rf "$NODE_SCRATCH"
 mkdir -p "$NODE_SCRATCH"
 df -h /tmp || true
 
-echo " COPYING SOURCE: Lustre -> /tmp (excluding .git/build/dist) "
+echo "COPYING SOURCE: Lustre -> /tmp (excluding .git/build/dist)"
 tar -C "$REPO_DIR" \
     --exclude='.git' \
     --exclude='build' \
@@ -202,27 +224,17 @@ rm -rf build dist
 export TMPDIR="$NODE_SCRATCH/tmp"
 mkdir -p "$TMPDIR"
 
-# Stage AOTriton tarball into the *local* expected legacy location (under /tmp tree)
-AOTRITON_RUNTIME_TGZ_REL="build/aotriton_runtime-prefix/src/$AOTRITON_TARBALL_NAME"
-AOTRITON_RUNTIME_TGZ="$NODE_SCRATCH/$AOTRITON_RUNTIME_TGZ_REL"
-mkdir -p "$(dirname "$AOTRITON_RUNTIME_TGZ")"
-
-if [[ -f "$AOTRITON_TARBALL_CACHE" ]]; then
-  cp -f "$AOTRITON_TARBALL_CACHE" "$AOTRITON_RUNTIME_TGZ"
-else
-  echo "NOTE: AOTriton tarball cache not found at $AOTRITON_TARBALL_CACHE"
-  echo "      Since USE_AOTRITON=0, build should still proceed."
-fi
-
-# Optional/informational: verify the kineto source file (should be irrelevant when disabled)
-echo " VERIFY KINETO SOURCE FILE (informational)"
-grep -n "fmt/format.h\|fmt/core.h" -n torch/csrc/profiler/kineto/profiler_kineto.cpp || true
-
-# ROCm/AMD prep step (run in the local tree)
 python tools/amd_build/build_amd.py
 
 # CMake args
 export CMAKE_ARGS="\
+-DUSE_ROCM=ON \
+-DROCM_PATH=$ROCM_HOME \
+-DHIP_ROOT_DIR=$ROCM_HOME \
+-DUSE_MPI=ON \
+-DMPI_C_COMPILER=cc \
+-DMPI_CXX_COMPILER=CC \
+-DMPI_Fortran_COMPILER=ftn \
 -DUSE_TRITON=OFF \
 -DUSE_AOTRITON=OFF \
 -DUSE_FLASH_ATTENTION=OFF \
@@ -236,30 +248,36 @@ export CMAKE_ARGS="\
 -DUSE_PYTORCH_QNNPACK=OFF \
 "
 
-echo " BUILD SETTINGS "
+echo "BUILD SETTINGS"
+echo "ROCM_HOME=$ROCM_HOME"
 echo "ROCM_SOURCE_DIR=$ROCM_SOURCE_DIR"
 echo "CC=$CC CXX=$CXX FC=$FC"
+echo "MPI_C_COMPILER=$MPI_C_COMPILER MPI_CXX_COMPILER=$MPI_CXX_COMPILER"
 echo "MAX_JOBS=$MAX_JOBS"
 echo "PYTORCH_ROCM_ARCH=$PYTORCH_ROCM_ARCH"
 echo "CMAKE_COMMAND=$CMAKE_COMMAND"
 echo "CMAKE_ARGS=$CMAKE_ARGS"
-echo "USE_KINETO=$USE_KINETO USE_ITT=$USE_ITT USE_ROCTRACER=$USE_ROCTRACER USE_ROCPROFILER=$USE_ROCPROFILER"
-echo "USE_TRITON=$USE_TRITON USE_AOTRITON=$USE_AOTRITON"
-echo "USE_NNPACK=$USE_NNPACK USE_QNNPACK=$USE_QNNPACK USE_PYTORCH_QNNPACK=$USE_PYTORCH_QNNPACK"
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
-# Ensure don't accidentally keep an old torch in the env (casued problems)
 python -m pip uninstall -y torch torchvision torchaudio >/dev/null 2>&1 || true
 
-# PHASE 1: configure-only + early Kineto OFF check
+# ROCm compat: provide libamdhip64.so.6 at build time
+export ROCM_COMPAT_DIR="/tmp/${USER}/rocm_compat_build_${SLURM_JOB_ID:-nojob}"
+mkdir -p "$ROCM_COMPAT_DIR"
+ln -sf "$ROCM_HOME/lib/libamdhip64.so.7" "$ROCM_COMPAT_DIR/libamdhip64.so.6"
+ls -l "$ROCM_COMPAT_DIR/libamdhip64.so.6" || true
+export LD_LIBRARY_PATH="$ROCM_COMPAT_DIR:$LD_LIBRARY_PATH"
+
 export PYTHONUNBUFFERED=1
 export NINJA_STATUS="[%f/%t %e] "
 
-echo " PHASE 1: CONFIGURE ONLY (generate build/CMakeCache.txt) "
+echo "PHASE 1: CONFIGURE ONLY"
 export ONLY_RUN_CMAKE=1
 
 set +e
 MAX_JOBS="$MAX_JOBS" \
 USE_ROCM=1 USE_CUDA=OFF \
+USE_DISTRIBUTED=1 USE_MPI=1 \
 USE_TRITON=0 USE_AOTRITON=0 \
 USE_FLASH_ATTENTION=0 USE_MEM_EFF_ATTENTION=0 \
 USE_NNPACK=0 USE_QNNPACK=0 USE_PYTORCH_QNNPACK=0 \
@@ -273,36 +291,48 @@ set -e
 
 unset ONLY_RUN_CMAKE
 
-echo " configure.log tail (debug) "
 tail -n 120 configure.log || true
 
 if [[ $cfg_rc -ne 0 ]]; then
-  echo "ERROR: Configure step failed (rc=$cfg_rc). Not continuing to build."
+  echo "ERROR: Configure step failed (rc=$cfg_rc)."
   exit $cfg_rc
 fi
 
 if [[ ! -f build/CMakeCache.txt ]]; then
-  echo "ERROR: build/CMakeCache.txt not found after configure step."
+  echo "ERROR: build/CMakeCache.txt not found after configure."
   exit 90
 fi
 
-echo " EARLY CHECK: Kineto/profiler flags must be OFF in build/CMakeCache.txt "
-grep -E "^(USE_KINETO|USE_ITT|USE_ROCTRACER|USE_ROCPROFILER|USE_NNPACK|USE_QNNPACK|USE_PYTORCH_QNNPACK):" -n build/CMakeCache.txt || true
+echo "EARLY CHECK: key flags from build/CMakeCache.txt"
+egrep '^(USE_ROCM|USE_CUDA|USE_DISTRIBUTED|USE_MPI|MPI_FOUND|MPI_C_FOUND|MPI_CXX_FOUND|MPI_C_INCLUDE_PATH|MPI_C_LIBRARIES|MPI_C_COMPILER|MPI_CXX_COMPILER|USE_KINETO|USE_ITT|USE_ROCTRACER|USE_ROCPROFILER):' \
+  build/CMakeCache.txt || true
+
+if grep -qE '^USE_ROCM:BOOL=OFF$' build/CMakeCache.txt; then
+  echo "ERROR: USE_ROCM is OFF after configure; aborting."
+  exit 98
+fi
+
+if grep -qE '^USE_MPI:BOOL=OFF$' build/CMakeCache.txt || \
+   grep -qE '^MPI_C_FOUND:BOOL=FALSE$' build/CMakeCache.txt || \
+   grep -qE '^MPI_CXX_FOUND:BOOL=FALSE$' build/CMakeCache.txt; then
+  echo "ERROR: MPI not properly detected in CMakeCache; aborting before wheel build."
+  exit 97
+fi
 
 if grep -qE '^USE_KINETO:BOOL=ON$' build/CMakeCache.txt || \
    grep -qE '^USE_ITT:BOOL=ON$' build/CMakeCache.txt || \
    grep -qE '^USE_ROCTRACER:BOOL=ON$' build/CMakeCache.txt || \
    grep -qE '^USE_ROCPROFILER:BOOL=ON$' build/CMakeCache.txt; then
-  echo "ERROR: Kineto/profiler stack is ENABLED in CMakeCache (expected OFF)."
+  echo "ERROR: profiler stack ENABLED in CMakeCache (expected OFF)."
   exit 99
 fi
 
-echo "OK: Kineto/profiler stack is OFF. Proceeding to wheel build."
+echo "OK: ROCm is ON, MPI is ON, profiler stack is OFF. Proceeding."
 
-#  PHASE 2: build wheel + install into Lustre env 
-echo " PHASE 2: BUILD WHEEL "
+echo "PHASE 2: BUILD WHEEL"
 MAX_JOBS="$MAX_JOBS" \
 USE_ROCM=1 USE_CUDA=OFF \
+USE_DISTRIBUTED=1 USE_MPI=1 \
 USE_TRITON=0 USE_AOTRITON=0 \
 USE_FLASH_ATTENTION=0 USE_MEM_EFF_ATTENTION=0 \
 USE_NNPACK=0 USE_QNNPACK=0 USE_PYTORCH_QNNPACK=0 \
@@ -312,22 +342,31 @@ CMAKE_COMMAND="$CMAKE_COMMAND" \
 CMAKE_ARGS="$CMAKE_ARGS" \
 python -u setup.py bdist_wheel -v 2>&1 | tee build.log
 
-# Install wheel into ENV_PREFIX (on Lustre)
+echo "WHEELS:"
+ls -lh dist/*.whl
+
 python -m pip install -U dist/*.whl
 
-# Sanity check (build node)
+echo "INSTALLED TORCH:"
+python -m pip show torch || true
+python -m pip freeze | egrep '^torch(==| @ )' || true
+
 python - <<'PY'
 import torch
+import torch.distributed as dist
 print("torch version:", torch.__version__)
-print("torch file:", torch.__file__)
+print("torch.file:", torch.__file__)
 print("torch.version.hip:", torch.version.hip)
 print("device_count:", torch.cuda.device_count())
 print("is_available:", torch.cuda.is_available())
+print("MPI available:", dist.is_mpi_available())
 PY
 
-# Pack env to tarball on Lustre
+echo "LDD CHECK torch/_C*.so (must NOT show 'not found')"
+ldd "$ENV_PREFIX"/lib/python3.10/site-packages/torch/_C*.so | egrep "not found|libfabric|amdhip|rocm_smi" || true
+
 if ! command -v conda-pack >/dev/null 2>&1; then
-  echo "ERROR: conda-pack not in env. Install it on the login node: conda install -c conda-forge conda-pack"
+  echo "ERROR: conda-pack not in env. Install it on login node: conda install -c conda-forge conda-pack"
   exit 3
 fi
 
@@ -335,7 +374,6 @@ rm -f "$TARBALL"
 conda-pack -p "$ENV_PREFIX" -o "$TARBALL"
 ls -lh "$TARBALL"
 
-# bcast/unpack test on same node 
 mkdir -p "$LOCAL_BASE"
 sbcast -f "$TARBALL" "$LOCAL_BASE/conda_env.tar.gz"
 
@@ -343,9 +381,18 @@ rm -rf "$LOCAL_ENV"
 mkdir -p "$LOCAL_ENV"
 tar -xzf "$LOCAL_BASE/conda_env.tar.gz" -C "$LOCAL_ENV"
 
-# Activate packed env and fix absolute paths
-source "$LOCAL_ENV/bin/activate"
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate "$LOCAL_ENV"
 conda-unpack
+
+export LD_LIBRARY_PATH="${CRAY_LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="/opt/cray/libfabric/2.3.1/lib64:$ROCM_HOME/lib:$ROCM_HOME/lib/roctracer:$ROCM_HOME/lib/rocprofiler:$LD_LIBRARY_PATH"
+
+echo "MPI toolchain sanity (runtime test env)"
+which mpicc || true
+which mpicxx || true
+which mpirun || true
+cc --craype-verbose 2>/dev/null | head -n 50 || true
 
 python - <<'PY'
 import torch
@@ -357,5 +404,4 @@ print("RUNTIME is_available:", torch.cuda.is_available())
 print("MPI available:", dist.is_mpi_available())
 PY
 
-# Cleanup node-local build dir 
 rm -rf "$NODE_SCRATCH"

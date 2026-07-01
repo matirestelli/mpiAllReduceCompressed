@@ -26,6 +26,14 @@ from communication_strategy import (
     summarize_hook_timing,
 )
 
+#delete later ---
+MAX_TRAIN_BATCHES = int(os.getenv("MAX_TRAIN_BATCHES", "0"))  # 0 = no limit
+MAX_VAL_BATCHES   = int(os.getenv("MAX_VAL_BATCHES", "0"))    # 0 = no limit
+WARMUP_PRINT_EVERY = int(os.getenv("WARMUP_PRINT_EVERY", "10"))   # batches
+WARMUP_PRINT_FIRST_N = int(os.getenv("WARMUP_PRINT_FIRST_N", "5")) # always print first N batches
+WARMUP_TIMING = os.getenv("WARMUP_TIMING", "1") == "1"
+#----
+
 ENABLE_NVTX_PROFILING = os.getenv("DDP_PROFILE_NVTX", "0") == "1"
 
 
@@ -76,9 +84,12 @@ def train_epoch(
     correct = 0
     total = 0
 
+    epoch_t0 = time.time()
+    last_t = epoch_t0
+    last_print_batch = 0
+
     for batch_idx, (inputs, targets) in enumerate(train_loader):
         inputs, targets = inputs.to(device), targets.to(device)
-
         optimizer.zero_grad()
         set_profiling_step(epoch, batch_idx)
         _nvtx_range_push(f"iteration epoch={epoch} batch={batch_idx}")
@@ -125,13 +136,59 @@ def train_epoch(
         total += targets.size(0)
         correct += predicted.eq(targets).sum().item()
 
+        # ---- Warmup verbosity / timing ----
+        if rank == 0 and (WARMUP_PRINT_EVERY or WARMUP_PRINT_FIRST_N):
+            do_print = False
+            if (batch_idx + 1) <= WARMUP_PRINT_FIRST_N:
+                do_print = True
+            elif WARMUP_PRINT_EVERY and ((batch_idx + 1) % WARMUP_PRINT_EVERY == 0):
+                do_print = True
+
+            if do_print:
+                now = time.time()
+                dt = now - last_t
+                total_dt = now - epoch_t0
+                last_t = now
+
+                # throughput (samples/sec) over the last printed interval
+                # (approx, because dt spans multiple batches if print_every>1)
+                bsz = targets.size(0)
+                interval_batches = (batch_idx + 1) - last_print_batch
+                last_print_batch = (batch_idx + 1)
+                sps = (bsz * interval_batches) / dt if dt > 0 else float("inf")
+
+                accuracy = 100.0 * correct / total
+                avg_loss = total_loss / (batch_idx + 1)
+
+                print(
+                    f"[Epoch {epoch}] batch {batch_idx+1}/{len(train_loader)}  "
+                    f"avg_loss={avg_loss:.4f}  acc={accuracy:.2f}%  "
+                    f"dt={dt:.1f}s  total={total_dt/60:.1f}min  "
+                    f"{sps:.1f} samples/s",
+                    flush=True
+                )
+            #---- delete later ----
+
         if rank == 0 and (batch_idx + 1) % 50 == 0:
             accuracy = 100.0 * correct / total
             avg_loss = total_loss / (batch_idx + 1)
             print(f"  Batch [{batch_idx+1}/{len(train_loader)}] "
                   f"Loss: {avg_loss:.4f}, Acc: {accuracy:.2f}%")
+        
+        #delete later ---
+        if MAX_TRAIN_BATCHES and (batch_idx + 1) >= MAX_TRAIN_BATCHES:
+            if rank == 0:
+                print(f"[Warmup] Stopping early after {batch_idx+1} train batches "
+                        f"(MAX_TRAIN_BATCHES={MAX_TRAIN_BATCHES})", flush=True)
+            break
+        #----   
 
-    return total_loss / len(train_loader), 100.0 * correct / total
+    #restore this later ---
+    #return total_loss / len(train_loader), 100.0 * correct / total
+    #delete later
+    denom = min(len(train_loader), MAX_TRAIN_BATCHES) if MAX_TRAIN_BATCHES else len(train_loader)
+    return total_loss / denom, 100.0 * correct / total
+    #---
 
 
 def validate(
@@ -146,8 +203,24 @@ def validate(
     correct = 0
     total = 0
 
+    #restore this later ---
+    #with torch.no_grad():
+    #    for inputs, targets in val_loader:
+    #        inputs, targets = inputs.to(device), targets.to(device)
+    #        outputs = model(inputs)
+    #        total_loss += criterion(outputs, targets).item()
+    #        _, predicted = outputs.max(1)
+    #        total += targets.size(0)
+    #        correct += predicted.eq(targets).sum().item()
+
+    # return total_loss / len(val_loader), 100.0 * correct / total
+    #----
+
+    #to delete later ---
+    max_val_batches = int(os.getenv("MAX_VAL_BATCHES", "0"))  # 0 = no limit
+
     with torch.no_grad():
-        for inputs, targets in val_loader:
+        for batch_idx, (inputs, targets) in enumerate(val_loader):
             inputs, targets = inputs.to(device), targets.to(device)
             outputs = model(inputs)
             total_loss += criterion(outputs, targets).item()
@@ -155,7 +228,12 @@ def validate(
             total += targets.size(0)
             correct += predicted.eq(targets).sum().item()
 
-    return total_loss / len(val_loader), 100.0 * correct / total
+            if max_val_batches and (batch_idx + 1) >= max_val_batches:
+                break
+
+    denom = min(len(val_loader), max_val_batches) if max_val_batches else len(val_loader)
+    return total_loss / denom, 100.0 * correct / total
+    #---
 
 
 def print_gradient_stats(model: DDP, epoch: int, rank: int, max_params: int = 10):
@@ -240,25 +318,6 @@ def train(config: TrainingConfig) -> None:
     torch.cuda.set_device(local_rank)
     device = torch.device(f"cuda:{local_rank}")
 
-    # check if really using GPUs (doubt for Sophia's MPI backend)
-    use_cuda = torch.cuda.is_available() and torch.cuda.device_count() > 0
-    if use_cuda:
-        local_rank = rank % torch.cuda.device_count()
-        torch.cuda.set_device(local_rank)
-        device = torch.device(f"cuda:{local_rank}")
-        name = torch.cuda.get_device_name(local_rank)
-    else:
-        local_rank = -1
-        device = torch.device("cpu")
-        name = "CPU"
-
-    print(
-        f"[Rank {rank}/{world_size}] device={device} local_rank={local_rank} "
-        f"cuda_available={torch.cuda.is_available()} device_count={torch.cuda.device_count()} "
-        f"name={name}",
-        flush=True
-    )
-
     # ── Setup logging and CSV (rank 0 only) ──────────────────────────────
     csv_file   = None
     csv_writer = None
@@ -291,7 +350,13 @@ def train(config: TrainingConfig) -> None:
     torch.cuda.manual_seed(config.seed)
 
     # Standard paper setting: let cuDNN benchmark and pick the fastest kernels.
-    torch.backends.cudnn.benchmark = True
+    if torch.cuda.is_available():
+        device_name = torch.cuda.get_device_name(0).lower()
+        # If the GPU name contains 'amd' or 'gfx' (common for AMD architectures)
+        if 'amd' in device_name or 'gfx' in device_name:
+            torch.backends.cudnn.benchmark = False
+        else:
+            torch.backends.cudnn.benchmark = True
 
     if rank == 0:
         print("\n" + "=" * 80)
