@@ -11,6 +11,7 @@ module load PrgEnv-gnu/8.7.0
 module load cpe/26.03
 module load cray-mpich
 module load rocm/7.1.1
+module load gcc/12 
 module load libfabric
 module load craype-accel-amd-gfx90a
 module load miniforge3
@@ -21,7 +22,7 @@ export LD_LIBRARY_PATH="${CRAY_LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_P
 # --- Config (edit if you want different locations) ---
 ENVROOT=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch
 # ENV_TARBALL="${ENV_TARBALL:-$ENVROOT/conda_env.tar.gz}" old one without torch vision for datasets
-ENV_TARBALL="${ENV_TARBALL:-$ENVROOT/conda_env_torch_vision_20260626.tar.gz}"
+ENV_TARBALL="${ENV_TARBALL:-$ENVROOT/conda_env_torch_vision_20260721_hipfix.tar.gz}"
 
 # Where to unpack on login node:
 # - Lustre location is persistent and matches your goal.
@@ -74,10 +75,15 @@ fi
 # Runtime loader fix (needed for torch import on Frontier)
 export ROCM_HOME=/opt/rocm-7.1.1
 export LIBFABRIC_LIBDIR=/opt/cray/libfabric/2.3.1/lib64
+export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}"
+
 
 export ROCM_COMPAT_DIR="/tmp/${USER}/rocm_compat_${SLURM_JOB_ID:-login}"
 mkdir -p "$ROCM_COMPAT_DIR"
+# Torch in this env expects older HIP SONAMEs (libamdhip64.so.5/.6).
+# Frontier ROCm provides libamdhip64.so.7, so we alias it.
 ln -sf "$ROCM_HOME/lib/libamdhip64.so.7" "$ROCM_COMPAT_DIR/libamdhip64.so.6"
+ln -sf "$ROCM_HOME/lib/libamdhip64.so.7" "$ROCM_COMPAT_DIR/libamdhip64.so.5"
 
 export LD_LIBRARY_PATH="$ROCM_COMPAT_DIR:$ROCM_HOME/lib:$ROCM_HOME/lib/rocprofiler:$ROCM_HOME/lib/roctracer:$LIBFABRIC_LIBDIR:${CRAY_LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
@@ -87,6 +93,9 @@ export HIP_VISIBLE_DEVICES=""
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
+
+# --- Make sure torch shared libs are visible to the dynamic loader ---
+export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
 
 # Optional quick sanity check (safe on login: no GPUs expected)
 python - <<'PY'

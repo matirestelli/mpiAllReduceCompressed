@@ -94,7 +94,7 @@ import torch
 import torch.distributed as dist
 
 try:
-    from zfp_cuda import (
+    from zfp_api import (
         ZfpCompressionConfig,
         compress_into as _zfp_compress_into,
         decompress_into as _zfp_decompress_into,

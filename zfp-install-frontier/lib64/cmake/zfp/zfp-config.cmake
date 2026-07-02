@@ -43,4 +43,4 @@ if(ZFP_WITH_OPENMP)
 endif()
 
 set(ZFP_WITH_CUDA OFF)
-set(ZFP_WITH_HIP OFF)
+set(ZFP_WITH_HIP ON)

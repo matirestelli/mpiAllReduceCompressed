@@ -11,6 +11,7 @@ module purge || true
 module load PrgEnv-gnu/8.7.0
 module load cpe/26.03
 module load cray-mpich
+module load gcc/12 
 module load rocm/7.1.1
 module load libfabric
 module load craype-accel-amd-gfx90a
@@ -34,6 +35,19 @@ export FI_CXI_RX_MATCH_MODE=hybrid
 export NCCL_NET_GDR_LEVEL=3
 export NCCL_CROSS_NIC=1
 export NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+
+# --- ROCm HIP SONAME compatibility (torch expects libamdhip64.so.5/.6) ---
+export ROCM_HOME=${ROCM_HOME:-/opt/rocm-7.1.1}
+
+export ROCM_COMPAT_DIR="${ROCM_COMPAT_DIR:-/tmp/${USER}/rocm_compat_${SLURM_JOB_ID:-login}}"
+mkdir -p "$ROCM_COMPAT_DIR"
+
+# Alias ROCm7 libamdhip64.so.7 to older SONAMEs expected by some torch builds
+ln -sf "$ROCM_HOME/lib/libamdhip64.so.7" "$ROCM_COMPAT_DIR/libamdhip64.so.6"
+ln -sf "$ROCM_HOME/lib/libamdhip64.so.7" "$ROCM_COMPAT_DIR/libamdhip64.so.5"
+
+# Ensure the compat dir is searched first
+export LD_LIBRARY_PATH="$ROCM_COMPAT_DIR:${LD_LIBRARY_PATH:-}"
 
 # Threading
 export OMP_NUM_THREADS=1
@@ -131,7 +145,7 @@ export MIOPEN_FIND_ENFORCE=1
 : "${SLURM_JOB_ID:?This script should be sourced/run inside a Slurm job allocation}"
 
 # ENV_TARBALL="${ENV_TARBALL:-/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env.tar.gz}" old tarball without torch vision for datasets
-ENV_TARBALL="${ENV_TARBALL:-/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260626.tar.gz}"
+ENV_TARBALL="${ENV_TARBALL:-/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260721_hipfix.tar.gz}"
 
 NVME_BASE="/mnt/bb/${USER}"
 ENV_DIR="/mnt/bb/${USER}/torch_env"
@@ -171,6 +185,8 @@ conda activate "$ENV_DIR"
 # Runtime loader fix (needed for torch import on Frontier)
 export ROCM_HOME=/opt/rocm-7.1.1
 export LIBFABRIC_LIBDIR=/opt/cray/libfabric/2.3.1/lib64
+export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}"
+
 
 # Node-local compat dir (NVMe). /tmp would also work.
 export ROCM_COMPAT_DIR="/mnt/bb/${USER}/rocm_compat"

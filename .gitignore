@@ -108,3 +108,6 @@ pytorch/
 !experiments_results_lr001_GlobalBS128/**
 !experiments_results_lr001_LocalBS128/
 !experiments_results_lr001_LocalBS128/**
+
+# Local data symlink
+data
