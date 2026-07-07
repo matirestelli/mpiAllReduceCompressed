@@ -145,7 +145,7 @@ export MIOPEN_FIND_ENFORCE=1
 : "${SLURM_JOB_ID:?This script should be sourced/run inside a Slurm job allocation}"
 
 # ENV_TARBALL="${ENV_TARBALL:-/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env.tar.gz}" old tarball without torch vision for datasets
-ENV_TARBALL="${ENV_TARBALL:-/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260721_hipfix.tar.gz}"
+ENV_TARBALL="${ENV_TARBALL:-/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz}"
 
 NVME_BASE="/mnt/bb/${USER}"
 ENV_DIR="/mnt/bb/${USER}/torch_env"

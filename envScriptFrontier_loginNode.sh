@@ -22,7 +22,7 @@ export LD_LIBRARY_PATH="${CRAY_LD_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_P
 # --- Config (edit if you want different locations) ---
 ENVROOT=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch
 # ENV_TARBALL="${ENV_TARBALL:-$ENVROOT/conda_env.tar.gz}" old one without torch vision for datasets
-ENV_TARBALL="${ENV_TARBALL:-$ENVROOT/conda_env_torch_vision_20260721_hipfix.tar.gz}"
+ENV_TARBALL="${ENV_TARBALL:-$ENVROOT/conda_env_torch_vision_20260701_hipfix.tar.gz}"
 
 # Where to unpack on login node:
 # - Lustre location is persistent and matches your goal.

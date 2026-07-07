@@ -182,6 +182,18 @@ def _record_hook_tail_timing(label: str, tail_ms: float) -> None:
 _current_epoch: int = 0
 _current_batch: int = 0
 
+# helper function to fix bug of bit/bytes missmatch in zfp
+def _zfp_pad_tail_to_B_(buf_u8: torch.Tensor, used_bits: int, B: int) -> int:
+    """Zero-fill buf_u8[used_bytes:B] where used_bits is returned by ZFP (bits). Returns used_bytes."""
+    used_bits = int(used_bits)
+    used_bytes = (used_bits + 7) // 8
+    if used_bytes > B:
+        raise RuntimeError(f"ZFP overflow: used_bytes={used_bytes} > B={B}")
+    if used_bytes < B:
+        buf_u8[used_bytes:B].zero_()
+    return used_bytes
+
+
 
 def set_profiling_step(epoch: int, batch: int) -> None:
     global _current_epoch, _current_batch
@@ -1698,15 +1710,18 @@ def _ring_allreduce_zfp_online_coll_sum(
         # First iteration compresses the initially available R_si.
         if i == 0:
             with torch.cuda.stream(bstate.streams[si]):
-                used = _zfp_compress_into_current_stream(
+                used_bits = _zfp_compress_into_current_stream(
                     chunks[si],
                     bstate.send_comp[si],
                     cfg.rate,
                 )
-            if log and used != send_B:
+                used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[si], used_bits, send_B)
+
+            if log:
                 print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                      f"P1 line5 i={i} si={si} used={used} expected={send_B}",
-                      flush=True)
+                    f"P1 line5 i={i} si={si} used_bits={int(used_bits)} used_bytes={used_bytes} B={send_B}",
+                    flush=True)
+
 
         # Line 6.
         # Post receive before waiting for compression, giving compression and
@@ -1731,15 +1746,18 @@ def _ring_allreduce_zfp_online_coll_sum(
 
             # Line 11.
             with torch.cuda.stream(bstate.streams[si]):
-                used = _zfp_compress_into_current_stream(
+                used_bits = _zfp_compress_into_current_stream(
                     chunks[si],
                     bstate.send_comp[si],
                     cfg.rate,
                 )
-            if log and used != send_B:
+                used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[si], used_bits, send_B)
+
+            if log:
                 print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                      f"P1 line11 i={i} si={si} used={used} expected={send_B}",
-                      flush=True)
+                    f"P1 line11 i={i} si={si} used_bits={int(used_bits)} used_bytes={used_bytes} B={send_B}",
+                    flush=True)
+
 
             # Line 12.
             bstate.streams[si].synchronize()
@@ -1802,15 +1820,18 @@ def _ring_allreduce_zfp_online_coll_sum(
         # Later sends forward a previously received compressed payload directly.
         if i == 0:
             with torch.cuda.stream(bstate.streams[si]):
-                used = _zfp_compress_into_current_stream(
+                used_bits = _zfp_compress_into_current_stream(
                     chunks[si],
                     bstate.send_comp[si],
                     cfg.rate,
                 )
-            if log and used != send_B:
+                used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[si], used_bits, send_B)
+
+            if log:
                 print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                      f"P2 line24 i={i} si={si} used={used} expected={send_B}",
-                      flush=True)
+                    f"P2 line24 i={i} si={si} used_bits={int(used_bits)} used_bytes={used_bytes} B={send_B}",
+                    flush=True)
+
 
         # Line 25.
         # Receive into a per-step compressed buffer so it can be forwarded later
@@ -2044,15 +2065,16 @@ def _recursive_doubling_zfp_online_coll_sum(
             stream = bstate.streams[dst]
 
             with torch.cuda.stream(stream):
-                used = _zfp_compress_into_current_stream(
+                used_bits = _zfp_compress_into_current_stream(
                     work,
                     bstate.send_comp[0],
                     cfg.rate,
                 )
+                used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[0], used_bits, B)
 
-            if log and used != B:
+            if log and used_bytes != B:
                 print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                      f"peel send used={used} expected={B}",
+                      f"peel send used={used_bytes} expected={B}",
                       flush=True)
 
             stream.synchronize()
@@ -2132,11 +2154,12 @@ def _recursive_doubling_zfp_online_coll_sum(
                 # Lines 19-20:
                 # First active step compresses the current buffer S/R.
                 with torch.cuda.stream(send_stream):
-                    used = _zfp_compress_into_current_stream(
+                    used_bits = _zfp_compress_into_current_stream(
                         work,
                         bstate.send_comp[slot],
                         cfg.rate,
                     )
+                    used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[slot], used_bits, B)
 
                 # Line 24:
                 # Post receive while compression is in flight.
@@ -2162,16 +2185,17 @@ def _recursive_doubling_zfp_online_coll_sum(
                 # Wait for the stream that produced the current R, then compress.
                 send_stream.synchronize()
                 with torch.cuda.stream(send_stream):
-                    used = _zfp_compress_into_current_stream(
+                    used_bits = _zfp_compress_into_current_stream(
                         work,
                         bstate.send_comp[slot],
                         cfg.rate,
                     )
+                    used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[slot], used_bits, B)
                 send_stream.synchronize()
 
-            if log and used != B:
+            if log and used_bytes != B:
                 print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                      f"main step={step} mask={mask} dst={dst} used={used} expected={B}",
+                      f"main step={step} mask={mask} dst={dst} used={used_bytes} expected={B}",
                       flush=True)
 
             # Line 31.
@@ -2264,15 +2288,16 @@ def _recursive_doubling_zfp_online_coll_sum(
 
             stream.synchronize()
             with torch.cuda.stream(stream):
-                used = _zfp_compress_into_current_stream(
+                used_bits = _zfp_compress_into_current_stream(
                     work,
                     bstate.send_comp[0],
                     cfg.rate,
                 )
+                used_bytes = _zfp_pad_tail_to_B_(bstate.send_comp[0], used_bits, B)
 
-            if log and used != B:
+            if log and used_bytes != B:
                 print(f"[R{rank}|B{bstate.bucket_id}|C{call_n}] "
-                      f"final send used={used} expected={B}",
+                      f"final send used={used_bytes} expected={B}",
                       flush=True)
 
             stream.synchronize()

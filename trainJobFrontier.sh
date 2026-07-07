@@ -1,16 +1,15 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p batch
-#SBATCH -q debug
-#SBATCH -J ddp-train             
+#SBATCH -p extended
+#SBATCH -J ddp-train-frontier_different_lr
 #SBATCH -N 1  
 #SBATCH --ntasks-per-node=1
 #SBATCH --gpus-per-node=4
 #SBATCH --cpus-per-task=8                  
-#SBATCH -t 01:30:00   
+#SBATCH -t 08:00:00   
 #SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier.%j.out       
-#SBATCH -e ddp_train_frontier.%j.err       
+#SBATCH -o ddp_train_frontier_different_lr.%j.out       
+#SBATCH -e ddp_train_frontier_different_lr.%j.err       
 
 # srun <your_program>
 # Frontier modules
@@ -66,7 +65,8 @@ NUM_EPOCHS_LIST=(
 )
 
 BATCH_SIZES=(
-    "32"       # strong global 128 on 4 GPUs
+    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    # "32"       # strong global 128 on 4 GPUs
     # "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
@@ -74,7 +74,7 @@ BATCH_SIZES=(
 LEARNING_RATES=(
     #"0.0001"
     "0.001"    # paper-style CIFAR reproduction
-    # "0.01"
+    "0.01"
     # "0.05"
     # "0.1"
 )
@@ -118,16 +118,15 @@ BACKENDS=(
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 EXPERIMENTS=(
-    # "default:"
     "none:"
     "ring:"
     "ring_zfp_naive:16"
-    #"ring_zfp_online_coll:16"
-    #"ring_zfp_online_coll:10"
-    #"recursive_doubling:"
-    #"recursive_doubling_zfp_naive:16"
-    #"recursive_doubling_zfp_online_coll:16"
-    #"recursive_doubling_zfp_online_coll:8"
+    "ring_zfp_online_coll:16"
+    "ring_zfp_online_coll:10"
+    "recursive_doubling:"
+    "recursive_doubling_zfp_naive:16"
+    "recursive_doubling_zfp_online_coll:16"
+    "recursive_doubling_zfp_online_coll:8"
 )
 
 for MODEL_NAME in "${MODELS[@]}"; do
