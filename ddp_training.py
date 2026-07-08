@@ -26,41 +26,29 @@ from communication_strategy import (
     summarize_hook_timing,
 )
 
-#delete later ---
-MAX_TRAIN_BATCHES = int(os.getenv("MAX_TRAIN_BATCHES", "0"))  # 0 = no limit
-MAX_VAL_BATCHES   = int(os.getenv("MAX_VAL_BATCHES", "0"))    # 0 = no limit
-WARMUP_PRINT_EVERY = int(os.getenv("WARMUP_PRINT_EVERY", "10"))   # batches
-WARMUP_PRINT_FIRST_N = int(os.getenv("WARMUP_PRINT_FIRST_N", "5")) # always print first N batches
-WARMUP_TIMING = os.getenv("WARMUP_TIMING", "1") == "1"
-#----
-
 ENABLE_NVTX_PROFILING = os.getenv("DDP_PROFILE_NVTX", "0") == "1"
-
 
 def _nvtx_range_push(msg: str) -> None:
     if ENABLE_NVTX_PROFILING and torch.cuda.is_available():
         torch.cuda.nvtx.range_push(msg)
 
-
 def _nvtx_range_pop() -> None:
     if ENABLE_NVTX_PROFILING and torch.cuda.is_available():
         torch.cuda.nvtx.range_pop()
-
 
 class Tee:
     """Duplicate output to console and log file simultaneously."""
     def __init__(self, *files):
         self.files = files
-    
+
     def write(self, data):
         for f in self.files:
             f.write(data)
             f.flush()
-    
+
     def flush(self):
         for f in self.files:
             f.flush()
-
 
 def train_epoch(
     model: DDP,
@@ -136,60 +124,13 @@ def train_epoch(
         total += targets.size(0)
         correct += predicted.eq(targets).sum().item()
 
-        # ---- Warmup verbosity / timing ----
-        if rank == 0 and (WARMUP_PRINT_EVERY or WARMUP_PRINT_FIRST_N):
-            do_print = False
-            if (batch_idx + 1) <= WARMUP_PRINT_FIRST_N:
-                do_print = True
-            elif WARMUP_PRINT_EVERY and ((batch_idx + 1) % WARMUP_PRINT_EVERY == 0):
-                do_print = True
-
-            if do_print:
-                now = time.time()
-                dt = now - last_t
-                total_dt = now - epoch_t0
-                last_t = now
-
-                # throughput (samples/sec) over the last printed interval
-                # (approx, because dt spans multiple batches if print_every>1)
-                bsz = targets.size(0)
-                interval_batches = (batch_idx + 1) - last_print_batch
-                last_print_batch = (batch_idx + 1)
-                sps = (bsz * interval_batches) / dt if dt > 0 else float("inf")
-
-                accuracy = 100.0 * correct / total
-                avg_loss = total_loss / (batch_idx + 1)
-
-                print(
-                    f"[Epoch {epoch}] batch {batch_idx+1}/{len(train_loader)}  "
-                    f"avg_loss={avg_loss:.4f}  acc={accuracy:.2f}%  "
-                    f"dt={dt:.1f}s  total={total_dt/60:.1f}min  "
-                    f"{sps:.1f} samples/s",
-                    flush=True
-                )
-            #---- delete later ----
-
         if rank == 0 and (batch_idx + 1) % 50 == 0:
             accuracy = 100.0 * correct / total
             avg_loss = total_loss / (batch_idx + 1)
             print(f"  Batch [{batch_idx+1}/{len(train_loader)}] "
                   f"Loss: {avg_loss:.4f}, Acc: {accuracy:.2f}%")
-        
-        #delete later ---
-        if MAX_TRAIN_BATCHES and (batch_idx + 1) >= MAX_TRAIN_BATCHES:
-            if rank == 0:
-                print(f"[Warmup] Stopping early after {batch_idx+1} train batches "
-                        f"(MAX_TRAIN_BATCHES={MAX_TRAIN_BATCHES})", flush=True)
-            break
-        #----   
 
-    #restore this later ---
-    #return total_loss / len(train_loader), 100.0 * correct / total
-    #delete later
-    denom = min(len(train_loader), MAX_TRAIN_BATCHES) if MAX_TRAIN_BATCHES else len(train_loader)
-    return total_loss / denom, 100.0 * correct / total
-    #---
-
+    return total_loss / len(train_loader), 100.0 * correct / total
 
 def validate(
     model: DDP,
@@ -203,24 +144,8 @@ def validate(
     correct = 0
     total = 0
 
-    #restore this later ---
-    #with torch.no_grad():
-    #    for inputs, targets in val_loader:
-    #        inputs, targets = inputs.to(device), targets.to(device)
-    #        outputs = model(inputs)
-    #        total_loss += criterion(outputs, targets).item()
-    #        _, predicted = outputs.max(1)
-    #        total += targets.size(0)
-    #        correct += predicted.eq(targets).sum().item()
-
-    # return total_loss / len(val_loader), 100.0 * correct / total
-    #----
-
-    #to delete later ---
-    max_val_batches = int(os.getenv("MAX_VAL_BATCHES", "0"))  # 0 = no limit
-
     with torch.no_grad():
-        for batch_idx, (inputs, targets) in enumerate(val_loader):
+        for inputs, targets in val_loader:
             inputs, targets = inputs.to(device), targets.to(device)
             outputs = model(inputs)
             total_loss += criterion(outputs, targets).item()
@@ -228,13 +153,7 @@ def validate(
             total += targets.size(0)
             correct += predicted.eq(targets).sum().item()
 
-            if max_val_batches and (batch_idx + 1) >= max_val_batches:
-                break
-
-    denom = min(len(val_loader), max_val_batches) if max_val_batches else len(val_loader)
-    return total_loss / denom, 100.0 * correct / total
-    #---
-
+    return total_loss / len(val_loader), 100.0 * correct / total
 
 def print_gradient_stats(model: DDP, epoch: int, rank: int, max_params: int = 10):
     """
@@ -263,7 +182,6 @@ def print_gradient_stats(model: DDP, epoch: int, rank: int, max_params: int = 10
         printed += 1
     print(flush=True)
 
-
 def verify_gradient_sync(model: DDP, rank: int, world_size: int):
     """
     Check that gradients are identical across all ranks after backward().
@@ -282,7 +200,6 @@ def verify_gradient_sync(model: DDP, rank: int, world_size: int):
             print(f"[Rank {rank}] grad[:5] = "
                   f"{[f'{v:.10f}' for v in grad_sample]}", flush=True)
         dist.barrier()
-
 
 def train(config: TrainingConfig) -> None:
     """
@@ -369,30 +286,41 @@ def train(config: TrainingConfig) -> None:
               f"Batch/rank: {config.batch_size}, "
               f"Effective batch: {config.batch_size * world_size}")
         print(f"LR: {config.learning_rate}, Device: {device}\n")
+    
+    # ── Pretrained weights cache location (explicit name) ───────────────────
+    # TorchVision pretrained weights are cached under: $TORCH_HOME/hub/checkpoints/
+    pretrained_cache_root = os.environ.get(
+        "PRETRAINED_WEIGHTS_CACHE",
+        os.path.join(config.data_dir, "pretrained_weights_cache"),
+    )
+    os.makedirs(pretrained_cache_root, exist_ok=True)
+    os.environ["TORCH_HOME"] = pretrained_cache_root
+    if rank == 0:
+        print(f"[Cache] Pretrained weights cache (TORCH_HOME) = {pretrained_cache_root}")
 
-    # Model: take all the configurations option from interface
+    # Ensure only rank 0 can download pretrained weights; others wait.
+    if config.pretrained and rank != 0:
+        dist.barrier()
+
     model = create_model(
         config.model_name,
         config.num_classes,
         cifar_stem=config.cifar_stem,
         pretrained=config.pretrained,
-        init_cifar_stem_from_pretrained_center=(
-            config.init_cifar_stem_from_pretrained_center
-        ),
+        init_cifar_stem_from_pretrained_center=config.init_cifar_stem_from_pretrained_center,
     ).to(device)
+
+    if config.pretrained and rank == 0:
+        dist.barrier()
+
     model = DDP(
         model,
         device_ids=[local_rank],
         broadcast_buffers=False,
-        # find_unused_parameters=False: ResNet50 uses all parameters every forward.
-        # Setting True triggers an extra autograd graph traversal every iteration.
         find_unused_parameters=False,
-        # static_graph=True: tells DDP the autograd graph never changes.
-        # Buckets are built once and never rebuilt, so we don't need a dummy
-        # backward pass to force a rebuild.  This also makes bucket-to-hook
-        # dispatch permanently stable — no risk of hooks being silently
-        # dropped after a rebuild.
-        static_graph=True,
+        static_graph=False,
+        bucket_cap_mb=30,                 # try 1, 5, 10, 25, 50
+        gradient_as_bucket_view=False,   # try False first
     )
 
     if rank == 0:
@@ -433,13 +361,12 @@ def train(config: TrainingConfig) -> None:
     else:
         warmup_epochs = config.warmup_epochs
 
-        def lr_lambda(epoch: int) -> float:
-            if epoch < warmup_epochs:
-                return 1e-3 + (1.0 - 1e-3) * epoch / max(warmup_epochs, 1)
-            progress = (
-                (epoch - warmup_epochs)
-                / max(config.num_epochs - warmup_epochs, 1)
-            )
+        def lr_lambda(e: int) -> float:
+            # e is an integer "epoch index" used by the scheduler (0,1,2,...)
+            if warmup_epochs > 0 and e < warmup_epochs:
+                return float(e + 1) / float(warmup_epochs)  # 1/warmup ... 1.0
+
+            progress = (e - warmup_epochs) / max(config.num_epochs - warmup_epochs, 1)
             return 0.5 * (1.0 + math.cos(math.pi * progress))
 
         scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
@@ -457,8 +384,10 @@ def train(config: TrainingConfig) -> None:
     start_time = time.time()
     epoch_times = []  # track per-epoch wall time
 
-    for epoch in range(1, config.num_epochs + 1):
-        train_sampler.set_epoch(epoch)
+    for e in range(config.num_epochs):  # e = 0,1,2,...,num_epochs-1
+        epoch = e + 1  # for human-readable prints/logs
+
+        train_sampler.set_epoch(e)  # DistributedSampler expects an int; using e is standard
 
         if rank == 0:
             cur_lr = optimizer.param_groups[0]['lr']
@@ -468,15 +397,20 @@ def train(config: TrainingConfig) -> None:
         _nvtx_range_push(f"epoch {epoch}")
         try:
             train_loss, train_acc = train_epoch(
-                model, train_loader, criterion, optimizer, epoch, rank, device,
+                model, train_loader, criterion, optimizer,
+                epoch,  # keep passing the human epoch to your prints/NVTX markers
+                rank, device,
                 verify_last_batch=(epoch == config.num_epochs),
                 grad_clip=config.grad_clip,
             )
         finally:
             _nvtx_range_pop()
+
         val_loss, val_acc = validate(model, val_loader, criterion, device)
-        epoch_lr = optimizer.param_groups[0]['lr']   # LR used this epoch (before step)
-        scheduler.step()
+
+        epoch_lr = optimizer.param_groups[0]['lr']  # LR used during this epoch
+        scheduler.step()  # advances schedule by one epoch
+
         epoch_elapsed = time.time() - epoch_start
         epoch_times.append(epoch_elapsed)
 
@@ -485,6 +419,7 @@ def train(config: TrainingConfig) -> None:
                   f"Acc: {train_acc:.2f}%  |  "
                   f"Val Loss: {val_loss:.4f}, Acc: {val_acc:.2f}%  |  "
                   f"Time: {epoch_elapsed:.1f}s")
+
             csv_writer.writerow([
                 epoch, f"{epoch_lr:.8f}",
                 f"{train_loss:.6f}", f"{train_acc:.4f}",
@@ -515,7 +450,7 @@ def train(config: TrainingConfig) -> None:
                     'val_acc': val_acc,
                 }, path)
                 print(f"  -> Best model saved ({val_acc:.2f}%)")
-                
+
             print(f"[Epoch {epoch}] Summarizing hook timing...", flush=True)
             summarize_hook_timing(epoch)
             print(f"[Epoch {epoch}] Hook timing summary done", flush=True)

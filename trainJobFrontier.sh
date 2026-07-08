@@ -1,18 +1,16 @@
 #!/bin/bash -l
 #SBATCH -A gen243
 #SBATCH -p extended
-#SBATCH -J ddp-train-frontier_different_lr
+#SBATCH -J ddp-train-frontier_testBucketCap30
 #SBATCH -N 1  
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=4
 #SBATCH --gpus-per-node=4
 #SBATCH --cpus-per-task=8                  
-#SBATCH -t 08:00:00   
+#SBATCH -t 03:00:00   
 #SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier_different_lr.%j.out       
-#SBATCH -e ddp_train_frontier_different_lr.%j.err       
+#SBATCH -o ddp_train_frontier_testBucketCap30.%j.out       
+#SBATCH -e ddp_train_frontier_testBucketCap30.%j.err       
 
-# srun <your_program>
-# Frontier modules
 
 #ask for a compute node 
 # salloc -A gen243 -p batch -J installingPyTorch -N 1 --gres=gpu:4 -t 01:00:00 -o installingPyTorch.%j.out -e installingPyTorch.%j.out
@@ -31,6 +29,7 @@ source envScriptFrontier.sh
 # For enabling profiling time for communication hooks.
 export DDP_HOOK_TIMING=1
 export DDP_HOOK_TIMING_RANK0_ONLY=1
+export PRETRAINED_WEIGHTS_CACHE=/lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
 
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
@@ -55,7 +54,7 @@ NUM_CLASSES_LIST=(
 
 IMAGE_SIZES=(
     "32"       # CIFAR
-    # "224"   # ImageNet / ImageNet-like
+    #"224"   # ImageNet / ImageNet-like
 )
 
 NUM_EPOCHS_LIST=(
@@ -66,7 +65,7 @@ NUM_EPOCHS_LIST=(
 
 BATCH_SIZES=(
     "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
-    # "32"       # strong global 128 on 4 GPUs
+    "32"       # strong global 128 on 4 GPUs
     # "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
@@ -74,7 +73,7 @@ BATCH_SIZES=(
 LEARNING_RATES=(
     #"0.0001"
     "0.001"    # paper-style CIFAR reproduction
-    "0.01"
+    # "0.01"
     # "0.05"
     # "0.1"
 )
@@ -86,6 +85,7 @@ SCHEDULERS=(
 
 WARMUP_EPOCHS_LIST=(
     "0"
+   # "1"      # paper-style CIFAR reproduction
     # "5"      # ImageNet-style from scratch
 )
 
@@ -97,17 +97,17 @@ GRAD_CLIPS=(
 
 PRETRAINED_VALUES=(
     "false"    # from scratch
-    # "true"   # fine-tuning
+   # "true"   # fine-tuning
 )
 
 CIFAR_STEM_VALUES=(
     "true"     # CIFAR from scratch
-    # "false"  # ImageNet / ImageNet-like
+    #"false"  # ImageNet / ImageNet-like
 )
 
 DROP_LAST_VALUES=(
-    "false"
-    # "true"
+    #"false"
+    "true"
 )
 
 BACKENDS=(
@@ -123,10 +123,10 @@ EXPERIMENTS=(
     "ring_zfp_naive:16"
     "ring_zfp_online_coll:16"
     "ring_zfp_online_coll:10"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:16"
-    "recursive_doubling_zfp_online_coll:8"
+   #"recursive_doubling:"
+   # "recursive_doubling_zfp_naive:16"
+    #"recursive_doubling_zfp_online_coll:16"
+    #"recursive_doubling_zfp_online_coll:8"
 )
 
 for MODEL_NAME in "${MODELS[@]}"; do
