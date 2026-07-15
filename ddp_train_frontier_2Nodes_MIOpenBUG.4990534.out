@@ -1,0 +1,697 @@
+=== Job started: Tue Jul 14 03:30:24 PM EDT 2026 ===
+=== Node: frontier09323 ===
+=== Copying golden cache from Lustre to local NVMe on  frontier09324  ===
+=== Copying golden cache from Lustre to local NVMe on  frontier09323  ===
+Using ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz
+Using ENV_DIR=/mnt/bb/matilderestelli/torch_env
+Deactivating conda environments
+Deactivating conda environments
+PyTorch: 2.14.0a0
+Location: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/__init__.py
+HIP available: True gpus: 8
+MPI available: True
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed508820>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed5087f0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed508820>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed5087f0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7ffee8529ed0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed508850>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed508820>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed5087f0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed508850>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7ffee9144640>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed508880>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7ffee85cca60>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed5087f0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7fffed5088b0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7ffee81f38b0>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+python 3.10.20 | packaged by conda-forge | (main, Jun 11 2026, 03:31:56) [GCC 14.3.0]
+torchvision._C spec: ModuleSpec(name='torchvision._C', loader=<_frozen_importlib_external.ExtensionFileLoader object at 0x7ffee831ca60>, origin='/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')
+origin: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+-rwxr-xr-x 1 matilderestelli matilderestelli 1495168 Jun 26 11:13 /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+-rwxr-xr-x 1 matilderestelli matilderestelli 1495168 Jun 26 11:13 /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so
+torchvision package dir: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision
+C candidates: [PosixPath('/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')]
+torchvision package dir: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision
+C candidates: [PosixPath('/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C.so')]
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=8, lr=0.001, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none at Tue Jul 14 03:31:26 PM EDT 2026 ===
+MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_4990534/miopen_db
+MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_4990534/kernel_cache
+drwxr-sr-x 2 matilderestelli gen243 103 Jul 14 05:38 /mnt/bb/matilderestelli/miopen_cache_4990534/miopen_db
+==== GPU visibility debug (batch shell) ====
+frontier09323
+ROCR_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+SLURM_JOB_GPUS=0,1,2,3,4,5,6,7
+[37mROCk module version 6.16.13 is loaded[0m
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.18
+Runtime Ext Version:     1.14
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+XNACK enabled:           NO
+DMAbuf Support:          YES
+VMM Support:             YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD EPYC 7A53 64-Core Processor    
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD EPYC 7A53 64-Core Processor    
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 8
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: built-in (no hook)
+================================================================================
+Ranks: 16, Epochs: 20, Batch/rank: 8, Effective batch: 128
+LR: 0.001, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = /lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] No hook — using DDP built-in MPI allreduce
+[Data] Train batches: 390, Val batches: 79
+
+
+[Epoch 1] Training... (lr=0.001000)
+  Batch [50/390] Loss: 2.3332, Acc: 11.25%
+  Batch [100/390] Loss: 2.2753, Acc: 14.00%
+  Batch [150/390] Loss: 2.2696, Acc: 14.50%
+  Batch [200/390] Loss: 2.2382, Acc: 14.50%
+  Batch [250/390] Loss: 2.2185, Acc: 15.45%
+  Batch [300/390] Loss: 2.1884, Acc: 16.33%
+  Batch [350/390] Loss: 2.1644, Acc: 17.46%
+[Epoch 1] Train Loss: 2.1519, Acc: 18.04%  |  Val Loss: 2.0706, Acc: 25.12%  |  Time: 45.7s
+  -> Best model saved (25.12%)
+[Epoch 1] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=1 no hook timing samples
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.000994)
+  Batch [50/390] Loss: 1.9498, Acc: 25.75%
+  Batch [100/390] Loss: 1.9679, Acc: 25.12%
+  Batch [150/390] Loss: 1.9722, Acc: 25.33%
+  Batch [200/390] Loss: 1.9639, Acc: 25.56%
+  Batch [250/390] Loss: 1.9456, Acc: 26.60%
+  Batch [300/390] Loss: 1.9253, Acc: 28.00%
+  Batch [350/390] Loss: 1.9336, Acc: 27.29%
+[Epoch 2] Train Loss: 1.9304, Acc: 27.53%  |  Val Loss: 1.7774, Acc: 34.56%  |  Time: 23.0s
+  -> Best model saved (34.56%)
+[Epoch 2] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=2 no hook timing samples
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000976)
+  Batch [50/390] Loss: 1.8163, Acc: 29.50%
+  Batch [100/390] Loss: 1.8249, Acc: 30.38%
+  Batch [150/390] Loss: 1.8574, Acc: 31.25%
+  Batch [200/390] Loss: 1.8466, Acc: 32.19%
+  Batch [250/390] Loss: 1.8323, Acc: 32.65%
+  Batch [300/390] Loss: 1.8130, Acc: 33.33%
+  Batch [350/390] Loss: 1.8137, Acc: 33.00%
+[Epoch 3] Train Loss: 1.8103, Acc: 33.24%  |  Val Loss: 1.7036, Acc: 39.20%  |  Time: 23.0s
+  -> Best model saved (39.20%)
+[Epoch 3] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=3 no hook timing samples
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000946)
+  Batch [50/390] Loss: 1.7837, Acc: 32.25%
+  Batch [100/390] Loss: 1.7826, Acc: 33.00%
+  Batch [150/390] Loss: 1.7612, Acc: 34.08%
+  Batch [200/390] Loss: 1.7510, Acc: 35.06%
+  Batch [250/390] Loss: 1.7455, Acc: 35.45%
+  Batch [300/390] Loss: 1.7334, Acc: 36.62%
+  Batch [350/390] Loss: 1.7346, Acc: 36.86%
+[Epoch 4] Train Loss: 1.7277, Acc: 36.86%  |  Val Loss: 1.7489, Acc: 37.60%  |  Time: 23.4s
+[Epoch 4] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=4 no hook timing samples
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000905)
+  Batch [50/390] Loss: 1.7211, Acc: 39.00%
+  Batch [100/390] Loss: 1.7461, Acc: 35.62%
+  Batch [150/390] Loss: 1.7000, Acc: 36.58%
+  Batch [200/390] Loss: 1.6930, Acc: 36.62%
+  Batch [250/390] Loss: 1.6884, Acc: 37.80%
+  Batch [300/390] Loss: 1.6828, Acc: 37.46%
+  Batch [350/390] Loss: 1.6755, Acc: 38.14%
+[Epoch 5] Train Loss: 1.6734, Acc: 38.46%  |  Val Loss: 1.4903, Acc: 45.76%  |  Time: 23.4s
+  -> Best model saved (45.76%)
+[Epoch 5] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=5 no hook timing samples
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000854)
+  Batch [50/390] Loss: 1.5837, Acc: 42.00%
+  Batch [100/390] Loss: 1.5958, Acc: 42.50%
+  Batch [150/390] Loss: 1.5862, Acc: 43.00%
+  Batch [200/390] Loss: 1.5585, Acc: 44.31%
+  Batch [250/390] Loss: 1.5730, Acc: 43.25%
+  Batch [300/390] Loss: 1.5749, Acc: 43.00%
+  Batch [350/390] Loss: 1.5908, Acc: 42.32%
+[Epoch 6] Train Loss: 1.5929, Acc: 42.56%  |  Val Loss: 1.6460, Acc: 47.20%  |  Time: 23.2s
+  -> Best model saved (47.20%)
+[Epoch 6] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=6 no hook timing samples
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000794)
+  Batch [50/390] Loss: 1.4951, Acc: 46.25%
+  Batch [100/390] Loss: 1.5213, Acc: 43.50%
+  Batch [150/390] Loss: 1.5341, Acc: 43.75%
+  Batch [200/390] Loss: 1.5473, Acc: 43.44%
+  Batch [250/390] Loss: 1.5440, Acc: 43.60%
+  Batch [300/390] Loss: 1.5434, Acc: 43.17%
+  Batch [350/390] Loss: 1.5404, Acc: 43.64%
+[Epoch 7] Train Loss: 1.5427, Acc: 43.88%  |  Val Loss: 1.4100, Acc: 48.48%  |  Time: 23.5s
+  -> Best model saved (48.48%)
+[Epoch 7] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=7 no hook timing samples
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000727)
+  Batch [50/390] Loss: 1.5351, Acc: 44.25%
+  Batch [100/390] Loss: 1.4799, Acc: 46.38%
+  Batch [150/390] Loss: 1.4747, Acc: 45.67%
+  Batch [200/390] Loss: 1.4845, Acc: 45.50%
+  Batch [250/390] Loss: 1.4840, Acc: 45.75%
+  Batch [300/390] Loss: 1.4779, Acc: 45.75%
+  Batch [350/390] Loss: 1.4781, Acc: 45.25%
+[Epoch 8] Train Loss: 1.4799, Acc: 45.38%  |  Val Loss: 1.3111, Acc: 56.16%  |  Time: 23.4s
+  -> Best model saved (56.16%)
+[Epoch 8] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=8 no hook timing samples
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000655)
+  Batch [50/390] Loss: 1.4186, Acc: 48.25%
+  Batch [100/390] Loss: 1.4276, Acc: 49.12%
+  Batch [150/390] Loss: 1.4463, Acc: 47.42%
+  Batch [200/390] Loss: 1.4410, Acc: 47.75%
+  Batch [250/390] Loss: 1.4443, Acc: 48.55%
+  Batch [300/390] Loss: 1.4521, Acc: 47.67%
+  Batch [350/390] Loss: 1.4579, Acc: 47.32%
+[Epoch 9] Train Loss: 1.4463, Acc: 47.72%  |  Val Loss: 1.3785, Acc: 52.00%  |  Time: 23.1s
+[Epoch 9] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=9 no hook timing samples
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000578)
+  Batch [50/390] Loss: 1.3814, Acc: 51.75%
+  Batch [100/390] Loss: 1.4464, Acc: 48.50%
+  Batch [150/390] Loss: 1.4237, Acc: 49.83%
+  Batch [200/390] Loss: 1.4266, Acc: 49.50%
+  Batch [250/390] Loss: 1.4220, Acc: 49.05%
+  Batch [300/390] Loss: 1.4216, Acc: 48.71%
+  Batch [350/390] Loss: 1.4141, Acc: 48.82%
+[Epoch 10] Train Loss: 1.4217, Acc: 48.78%  |  Val Loss: 1.2712, Acc: 56.00%  |  Time: 22.9s
+[Epoch 10] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=10 no hook timing samples
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000500)
+  Batch [50/390] Loss: 1.4148, Acc: 47.25%
+  Batch [100/390] Loss: 1.3805, Acc: 49.38%
+  Batch [150/390] Loss: 1.3875, Acc: 49.67%
+  Batch [200/390] Loss: 1.4011, Acc: 49.62%
+  Batch [250/390] Loss: 1.3994, Acc: 49.00%
+  Batch [300/390] Loss: 1.3958, Acc: 48.75%
+  Batch [350/390] Loss: 1.3951, Acc: 48.71%
+[Epoch 11] Train Loss: 1.3901, Acc: 49.36%  |  Val Loss: 1.2285, Acc: 58.88%  |  Time: 23.0s
+  -> Best model saved (58.88%)
+[Epoch 11] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=11 no hook timing samples
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000422)
+  Batch [50/390] Loss: 1.2630, Acc: 55.75%
+  Batch [100/390] Loss: 1.3032, Acc: 54.00%
+  Batch [150/390] Loss: 1.3540, Acc: 51.33%
+  Batch [200/390] Loss: 1.3626, Acc: 50.69%
+  Batch [250/390] Loss: 1.3512, Acc: 51.10%
+  Batch [300/390] Loss: 1.3383, Acc: 51.79%
+  Batch [350/390] Loss: 1.3310, Acc: 52.43%
+[Epoch 12] Train Loss: 1.3336, Acc: 52.34%  |  Val Loss: 1.2358, Acc: 55.84%  |  Time: 23.1s
+[Epoch 12] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=12 no hook timing samples
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000345)
+  Batch [50/390] Loss: 1.3258, Acc: 53.00%
+  Batch [100/390] Loss: 1.3468, Acc: 51.38%
+  Batch [150/390] Loss: 1.3372, Acc: 52.00%
+  Batch [200/390] Loss: 1.3146, Acc: 52.56%
+  Batch [250/390] Loss: 1.3061, Acc: 52.10%
+  Batch [300/390] Loss: 1.3066, Acc: 51.75%
+  Batch [350/390] Loss: 1.3074, Acc: 51.71%
+[Epoch 13] Train Loss: 1.2936, Acc: 52.37%  |  Val Loss: 1.2255, Acc: 55.68%  |  Time: 23.0s
+[Epoch 13] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=13 no hook timing samples
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000273)
+  Batch [50/390] Loss: 1.3455, Acc: 49.25%
+  Batch [100/390] Loss: 1.3526, Acc: 51.00%
+  Batch [150/390] Loss: 1.3339, Acc: 52.50%
+  Batch [200/390] Loss: 1.3231, Acc: 52.19%
+  Batch [250/390] Loss: 1.3095, Acc: 53.25%
+  Batch [300/390] Loss: 1.3116, Acc: 53.17%
+  Batch [350/390] Loss: 1.3012, Acc: 53.29%
+[Epoch 14] Train Loss: 1.2929, Acc: 53.65%  |  Val Loss: 1.1463, Acc: 59.36%  |  Time: 23.2s
+  -> Best model saved (59.36%)
+[Epoch 14] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=14 no hook timing samples
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000206)
+  Batch [50/390] Loss: 1.3169, Acc: 50.50%
+  Batch [100/390] Loss: 1.3368, Acc: 51.50%
+  Batch [150/390] Loss: 1.3155, Acc: 52.33%
+  Batch [200/390] Loss: 1.3085, Acc: 52.81%
+  Batch [250/390] Loss: 1.3001, Acc: 53.25%
+  Batch [300/390] Loss: 1.2896, Acc: 53.92%
+  Batch [350/390] Loss: 1.2850, Acc: 53.86%
+[Epoch 15] Train Loss: 1.2874, Acc: 53.72%  |  Val Loss: 1.1675, Acc: 59.84%  |  Time: 23.1s
+  -> Best model saved (59.84%)
+[Epoch 15] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=15 no hook timing samples
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000146)
+  Batch [50/390] Loss: 1.3060, Acc: 51.00%
+  Batch [100/390] Loss: 1.3537, Acc: 49.75%
+  Batch [150/390] Loss: 1.3345, Acc: 51.00%
+  Batch [200/390] Loss: 1.3099, Acc: 52.25%
+  Batch [250/390] Loss: 1.3007, Acc: 53.05%
+  Batch [300/390] Loss: 1.2895, Acc: 53.58%
+  Batch [350/390] Loss: 1.2902, Acc: 53.64%
+[Epoch 16] Train Loss: 1.2884, Acc: 53.59%  |  Val Loss: 1.1285, Acc: 59.84%  |  Time: 22.9s
+[Epoch 16] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=16 no hook timing samples
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000095)
+  Batch [50/390] Loss: 1.2194, Acc: 57.50%
+  Batch [100/390] Loss: 1.2447, Acc: 57.12%
+  Batch [150/390] Loss: 1.2577, Acc: 56.00%
+  Batch [200/390] Loss: 1.2354, Acc: 56.56%
+  Batch [250/390] Loss: 1.2272, Acc: 57.30%
+  Batch [300/390] Loss: 1.2307, Acc: 57.04%
+  Batch [350/390] Loss: 1.2310, Acc: 56.82%
+[Epoch 17] Train Loss: 1.2414, Acc: 56.38%  |  Val Loss: 1.1503, Acc: 59.52%  |  Time: 23.0s
+[Epoch 17] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=17 no hook timing samples
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000054)
+  Batch [50/390] Loss: 1.2517, Acc: 52.75%
+  Batch [100/390] Loss: 1.2451, Acc: 53.88%
+  Batch [150/390] Loss: 1.2163, Acc: 55.50%
+  Batch [200/390] Loss: 1.2170, Acc: 55.81%
+  Batch [250/390] Loss: 1.2256, Acc: 55.55%
+  Batch [300/390] Loss: 1.2208, Acc: 56.50%
+  Batch [350/390] Loss: 1.2243, Acc: 56.39%
+[Epoch 18] Train Loss: 1.2393, Acc: 55.96%  |  Val Loss: 1.1607, Acc: 60.00%  |  Time: 23.1s
+  -> Best model saved (60.00%)
+[Epoch 18] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=18 no hook timing samples
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000024)
+  Batch [50/390] Loss: 1.2440, Acc: 52.75%
+  Batch [100/390] Loss: 1.2687, Acc: 55.88%
+  Batch [150/390] Loss: 1.2584, Acc: 56.83%
+  Batch [200/390] Loss: 1.2347, Acc: 58.12%
+  Batch [250/390] Loss: 1.2346, Acc: 57.95%
+  Batch [300/390] Loss: 1.2522, Acc: 56.83%
+  Batch [350/390] Loss: 1.2560, Acc: 56.50%
+[Epoch 19] Train Loss: 1.2512, Acc: 56.54%  |  Val Loss: 1.1220, Acc: 59.68%  |  Time: 23.0s
+[Epoch 19] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=19 no hook timing samples
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000006)

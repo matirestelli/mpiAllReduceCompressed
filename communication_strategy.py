@@ -473,6 +473,121 @@ def _default_allreduce_hook(
 nccl_default_allreduce_hook = _default_allreduce_hook
 mpi_default_allreduce_hook = _default_allreduce_hook
 
+def _default_allreduce_sync_hook(state, bucket):
+    t = bucket.buffer()
+    rank = dist.get_rank()
+    ws = dist.get_world_size()
+
+    if t.is_cuda:
+        torch.cuda.synchronize(t.device)   # IMPORTANT: before isfinite/div_
+
+    if not torch.isfinite(t).all():
+        raise RuntimeError(f"[Rank {rank}] bucket {bucket.index()} non-finite BEFORE allreduce")
+
+    t.div_(ws)
+
+    if t.is_cuda:
+        torch.cuda.synchronize(t.device)   # ensure div_ finished before MPI touches it
+
+    # For debugging, you may even want async_op=False to remove more timing variables
+    work = dist.all_reduce(t, op=dist.ReduceOp.SUM, async_op=True)
+    fut = work.get_future()
+
+    def _finish(f):
+        out = f.value()[0]
+        if t.is_cuda:
+            torch.cuda.synchronize(t.device)
+        if not torch.isfinite(out).all():
+            raise RuntimeError(f"[Rank {rank}] bucket {bucket.index()} non-finite AFTER allreduce")
+        return out
+
+    return fut.then(_finish)
+
+def _default_allreduce_clone_hook(
+    state: Optional[object],
+    bucket: dist.GradBucket,
+    ) -> torch.futures.Future[torch.Tensor]:
+    """Diagnostic default hook: allreduce a fresh cloned GPU tensor."""
+    tensor = bucket.buffer()
+    backend = dist.get_backend()
+    rank = dist.get_rank()
+    numel = tensor.numel()
+    label = f"{backend}:default_clone"
+
+    if not torch.isfinite(tensor).all():
+        raise RuntimeError(
+            f"[Rank {rank}] bucket {bucket.index()} non-finite BEFORE clone allreduce"
+        )
+
+    tmp = tensor.detach().clone()
+    tmp.div_(dist.get_world_size())
+
+    if tmp.is_cuda:
+        torch.cuda.synchronize(tmp.device)
+
+    work_start = time.perf_counter()
+    fut = dist.all_reduce(tmp, op=dist.ReduceOp.SUM, async_op=True).get_future()
+
+    def _finish(f):
+        out = f.value()[0]
+
+        if not torch.isfinite(out).all():
+            raise RuntimeError(
+                f"[Rank {rank}] bucket {bucket.index()} non-finite AFTER clone allreduce"
+            )
+
+        tensor.copy_(out)
+
+        work_ms = (time.perf_counter() - work_start) * 1000.0
+        _record_hook_work_timing(label, work_ms)
+
+        return tensor
+
+    return fut.then(_finish)
+
+def _default_allreduce_cpu_stage_hook(
+    state: Optional[object],
+    bucket: dist.GradBucket,
+    ) -> torch.futures.Future[torch.Tensor]:
+    """Diagnostic default hook: stage bucket through CPU before MPI allreduce."""
+    tensor = bucket.buffer()
+    backend = dist.get_backend()
+    rank = dist.get_rank()
+    label = f"{backend}:default_cpu_stage"
+
+    if not torch.isfinite(tensor).all():
+        raise RuntimeError(
+            f"[Rank {rank}] bucket {bucket.index()} non-finite BEFORE cpu-stage allreduce"
+        )
+
+    work_start = time.perf_counter()
+
+    cpu = tensor.detach().cpu()
+    dist.all_reduce(cpu, op=dist.ReduceOp.SUM)
+    cpu.div_(dist.get_world_size())
+    tensor.copy_(cpu.to(tensor.device, non_blocking=False))
+
+    work_ms = (time.perf_counter() - work_start) * 1000.0
+    _record_hook_work_timing(label, work_ms)
+
+    if not torch.isfinite(tensor).all():
+        raise RuntimeError(
+            f"[Rank {rank}] bucket {bucket.index()} non-finite AFTER cpu-stage allreduce"
+        )
+
+    fut = torch.futures.Future()
+    fut.set_result(tensor)
+    return fut
+
+nccl_default_sync_allreduce_hook = _default_allreduce_sync_hook
+mpi_default_sync_allreduce_hook = _default_allreduce_sync_hook
+
+nccl_default_clone_allreduce_hook = _default_allreduce_clone_hook
+mpi_default_clone_allreduce_hook = _default_allreduce_clone_hook
+
+nccl_default_cpu_stage_allreduce_hook = _default_allreduce_cpu_stage_hook
+mpi_default_cpu_stage_allreduce_hook = _default_allreduce_cpu_stage_hook
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # RING ALLREDUCE — state
@@ -548,7 +663,6 @@ class RingAllreduceState:
             bs.initialize(tensor, world_size, bucket_index)
             self.buckets[bucket_index] = bs
         return bs
-
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -2377,6 +2491,13 @@ _HOOK_REGISTRY = {
     ("mpi",  "recursive_doubling_zfp_naive"): mpi_recursive_doubling_zfp_naive_allreduce_hook,
     ("mpi",  "ring_zfp_online_coll"): mpi_ring_zfp_online_coll_allreduce_hook,
     ("mpi", "recursive_doubling_zfp_online_coll"): mpi_recursive_doubling_zfp_online_coll_allreduce_hook,
+    ("nccl", "default_sync"): nccl_default_sync_allreduce_hook,
+    ("nccl", "default_clone"): nccl_default_clone_allreduce_hook,
+    ("nccl", "default_cpu_stage"): nccl_default_cpu_stage_allreduce_hook,
+
+    ("mpi", "default_sync"): mpi_default_sync_allreduce_hook,
+    ("mpi", "default_clone"): mpi_default_clone_allreduce_hook,
+    ("mpi", "default_cpu_stage"): mpi_default_cpu_stage_allreduce_hook,
 }
 
 

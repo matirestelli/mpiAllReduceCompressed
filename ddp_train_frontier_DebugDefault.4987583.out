@@ -1,0 +1,1349 @@
+=== Job started: Tue Jul 14 09:26:02 AM EDT 2026 ===
+=== Node: frontier10371 ===
+=== Copying golden cache from Lustre to local NVMe on  frontier10371  ===
+Using ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz
+Using ENV_DIR=/mnt/bb/matilderestelli/torch_env
+Deactivating conda environments
+PyTorch: 2.14.0a0
+Location: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/__init__.py
+HIP available: True gpus: 8
+MPI available: True
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none at Tue Jul 14 09:26:55 AM EDT 2026 ===
+MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_4987583/miopen_db
+MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_4987583/kernel_cache
+drwxr-sr-x 2 matilderestelli gen243 103 Jul 14 05:38 /mnt/bb/matilderestelli/miopen_cache_4987583/miopen_db
+==== GPU visibility debug (batch shell) ====
+frontier10371
+ROCR_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+SLURM_JOB_GPUS=0,1,2,3,4,5,6,7
+[37mROCk module version 6.16.13 is loaded[0m
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.18
+Runtime Ext Version:     1.14
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+XNACK enabled:           NO
+DMAbuf Support:          YES
+VMM Support:             YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD EPYC 7A53 64-Core Processor    
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD EPYC 7A53 64-Core Processor    
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: built-in (no hook)
+================================================================================
+Ranks: 4, Epochs: 20, Batch/rank: 16, Effective batch: 64
+LR: 0.001, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = /lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] No hook — using DDP built-in MPI allreduce
+[Data] Train batches: 781, Val batches: 157
+
+
+[Epoch 1] Training... (lr=0.001000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/781] Loss: 2.3369, Acc: 14.25%
+  Batch [100/781] Loss: 2.3189, Acc: 14.25%
+  Batch [150/781] Loss: nan, Acc: 15.46%
+  Batch [200/781] Loss: nan, Acc: 14.50%
+  Batch [250/781] Loss: nan, Acc: 13.35%
+  Batch [300/781] Loss: nan, Acc: 13.06%
+  Batch [350/781] Loss: nan, Acc: 12.73%
+  Batch [400/781] Loss: nan, Acc: 12.36%
+  Batch [450/781] Loss: nan, Acc: 12.07%
+  Batch [500/781] Loss: nan, Acc: 11.79%
+  Batch [550/781] Loss: nan, Acc: 11.42%
+  Batch [600/781] Loss: nan, Acc: 11.24%
+  Batch [650/781] Loss: nan, Acc: 10.98%
+  Batch [700/781] Loss: nan, Acc: 10.97%
+  Batch [750/781] Loss: nan, Acc: 10.68%
+[Epoch 1] Train Loss: nan, Acc: 10.69%  |  Val Loss: nan, Acc: 10.68%  |  Time: 50.9s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+  -> Best model saved (10.68%)
+[Epoch 1] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=1 no hook timing samples
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.000994)
+  Batch [50/781] Loss: nan, Acc: 10.12%
+  Batch [100/781] Loss: nan, Acc: 11.00%
+  Batch [150/781] Loss: nan, Acc: 10.50%
+  Batch [200/781] Loss: nan, Acc: 10.19%
+  Batch [250/781] Loss: nan, Acc: 10.28%
+  Batch [300/781] Loss: nan, Acc: 10.54%
+  Batch [350/781] Loss: nan, Acc: 10.45%
+  Batch [400/781] Loss: nan, Acc: 10.31%
+  Batch [450/781] Loss: nan, Acc: 10.18%
+  Batch [500/781] Loss: nan, Acc: 10.01%
+  Batch [550/781] Loss: nan, Acc: 9.89%
+  Batch [600/781] Loss: nan, Acc: 9.99%
+  Batch [650/781] Loss: nan, Acc: 9.91%
+  Batch [700/781] Loss: nan, Acc: 9.94%
+  Batch [750/781] Loss: nan, Acc: 9.93%
+[Epoch 2] Train Loss: nan, Acc: 10.04%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.6s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 2] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=2 no hook timing samples
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000976)
+  Batch [50/781] Loss: nan, Acc: 10.75%
+  Batch [100/781] Loss: nan, Acc: 10.69%
+  Batch [150/781] Loss: nan, Acc: 10.00%
+  Batch [200/781] Loss: nan, Acc: 10.03%
+  Batch [250/781] Loss: nan, Acc: 9.68%
+  Batch [300/781] Loss: nan, Acc: 9.54%
+  Batch [350/781] Loss: nan, Acc: 9.27%
+  Batch [400/781] Loss: nan, Acc: 9.23%
+  Batch [450/781] Loss: nan, Acc: 9.07%
+  Batch [500/781] Loss: nan, Acc: 9.24%
+  Batch [550/781] Loss: nan, Acc: 9.27%
+  Batch [600/781] Loss: nan, Acc: 9.31%
+  Batch [650/781] Loss: nan, Acc: 9.26%
+  Batch [700/781] Loss: nan, Acc: 9.33%
+  Batch [750/781] Loss: nan, Acc: 9.25%
+[Epoch 3] Train Loss: nan, Acc: 9.27%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.5s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 3] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=3 no hook timing samples
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000946)
+  Batch [50/781] Loss: nan, Acc: 11.38%
+  Batch [100/781] Loss: nan, Acc: 10.19%
+  Batch [150/781] Loss: nan, Acc: 9.67%
+  Batch [200/781] Loss: nan, Acc: 9.84%
+  Batch [250/781] Loss: nan, Acc: 10.15%
+  Batch [300/781] Loss: nan, Acc: 10.46%
+  Batch [350/781] Loss: nan, Acc: 10.39%
+  Batch [400/781] Loss: nan, Acc: 10.20%
+  Batch [450/781] Loss: nan, Acc: 10.43%
+  Batch [500/781] Loss: nan, Acc: 10.45%
+  Batch [550/781] Loss: nan, Acc: 10.32%
+  Batch [600/781] Loss: nan, Acc: 10.28%
+  Batch [650/781] Loss: nan, Acc: 10.40%
+  Batch [700/781] Loss: nan, Acc: 10.37%
+  Batch [750/781] Loss: nan, Acc: 10.32%
+[Epoch 4] Train Loss: nan, Acc: 10.28%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.6s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 4] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=4 no hook timing samples
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000905)
+  Batch [50/781] Loss: nan, Acc: 9.12%
+  Batch [100/781] Loss: nan, Acc: 10.19%
+  Batch [150/781] Loss: nan, Acc: 9.62%
+  Batch [200/781] Loss: nan, Acc: 9.84%
+  Batch [250/781] Loss: nan, Acc: 9.72%
+  Batch [300/781] Loss: nan, Acc: 9.71%
+  Batch [350/781] Loss: nan, Acc: 9.59%
+  Batch [400/781] Loss: nan, Acc: 9.56%
+  Batch [450/781] Loss: nan, Acc: 9.42%
+  Batch [500/781] Loss: nan, Acc: 9.49%
+  Batch [550/781] Loss: nan, Acc: 9.83%
+  Batch [600/781] Loss: nan, Acc: 9.82%
+  Batch [650/781] Loss: nan, Acc: 9.83%
+  Batch [700/781] Loss: nan, Acc: 9.98%
+  Batch [750/781] Loss: nan, Acc: 9.98%
+[Epoch 5] Train Loss: nan, Acc: 9.95%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.6s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 5] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=5 no hook timing samples
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000854)
+  Batch [50/781] Loss: nan, Acc: 9.50%
+  Batch [100/781] Loss: nan, Acc: 9.38%
+  Batch [150/781] Loss: nan, Acc: 9.54%
+  Batch [200/781] Loss: nan, Acc: 9.53%
+  Batch [250/781] Loss: nan, Acc: 9.82%
+  Batch [300/781] Loss: nan, Acc: 9.92%
+  Batch [350/781] Loss: nan, Acc: 10.00%
+  Batch [400/781] Loss: nan, Acc: 10.00%
+  Batch [450/781] Loss: nan, Acc: 9.60%
+  Batch [500/781] Loss: nan, Acc: 9.53%
+  Batch [550/781] Loss: nan, Acc: 9.67%
+  Batch [600/781] Loss: nan, Acc: 9.77%
+  Batch [650/781] Loss: nan, Acc: 9.89%
+  Batch [700/781] Loss: nan, Acc: 9.91%
+  Batch [750/781] Loss: nan, Acc: 9.96%
+[Epoch 6] Train Loss: nan, Acc: 10.06%  |  Val Loss: nan, Acc: 10.68%  |  Time: 37.2s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 6] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=6 no hook timing samples
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000794)
+  Batch [50/781] Loss: nan, Acc: 10.12%
+  Batch [100/781] Loss: nan, Acc: 10.44%
+  Batch [150/781] Loss: nan, Acc: 9.83%
+  Batch [200/781] Loss: nan, Acc: 10.16%
+  Batch [250/781] Loss: nan, Acc: 9.80%
+  Batch [300/781] Loss: nan, Acc: 9.67%
+  Batch [350/781] Loss: nan, Acc: 9.59%
+  Batch [400/781] Loss: nan, Acc: 9.62%
+  Batch [450/781] Loss: nan, Acc: 9.62%
+  Batch [500/781] Loss: nan, Acc: 9.82%
+  Batch [550/781] Loss: nan, Acc: 9.91%
+  Batch [600/781] Loss: nan, Acc: 9.92%
+  Batch [650/781] Loss: nan, Acc: 9.87%
+  Batch [700/781] Loss: nan, Acc: 9.90%
+  Batch [750/781] Loss: nan, Acc: 10.00%
+[Epoch 7] Train Loss: nan, Acc: 10.05%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.6s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 7] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=7 no hook timing samples
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000727)
+  Batch [50/781] Loss: nan, Acc: 11.38%
+  Batch [100/781] Loss: nan, Acc: 10.94%
+  Batch [150/781] Loss: nan, Acc: 11.17%
+  Batch [200/781] Loss: nan, Acc: 10.62%
+  Batch [250/781] Loss: nan, Acc: 10.60%
+  Batch [300/781] Loss: nan, Acc: 10.52%
+  Batch [350/781] Loss: nan, Acc: 10.61%
+  Batch [400/781] Loss: nan, Acc: 10.70%
+  Batch [450/781] Loss: nan, Acc: 10.53%
+  Batch [500/781] Loss: nan, Acc: 10.57%
+  Batch [550/781] Loss: nan, Acc: 10.59%
+  Batch [600/781] Loss: nan, Acc: 10.53%
+  Batch [650/781] Loss: nan, Acc: 10.53%
+  Batch [700/781] Loss: nan, Acc: 10.44%
+  Batch [750/781] Loss: nan, Acc: 10.40%
+[Epoch 8] Train Loss: nan, Acc: 10.43%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.6s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 8] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=8 no hook timing samples
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000655)
+  Batch [50/781] Loss: nan, Acc: 9.88%
+  Batch [100/781] Loss: nan, Acc: 9.50%
+  Batch [150/781] Loss: nan, Acc: 9.38%
+  Batch [200/781] Loss: nan, Acc: 9.84%
+  Batch [250/781] Loss: nan, Acc: 9.65%
+  Batch [300/781] Loss: nan, Acc: 9.67%
+  Batch [350/781] Loss: nan, Acc: 9.64%
+  Batch [400/781] Loss: nan, Acc: 9.94%
+  Batch [450/781] Loss: nan, Acc: 10.12%
+  Batch [500/781] Loss: nan, Acc: 10.15%
+  Batch [550/781] Loss: nan, Acc: 10.11%
+  Batch [600/781] Loss: nan, Acc: 9.95%
+  Batch [650/781] Loss: nan, Acc: 9.90%
+  Batch [700/781] Loss: nan, Acc: 9.89%
+  Batch [750/781] Loss: nan, Acc: 9.88%
+[Epoch 9] Train Loss: nan, Acc: 9.84%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 9] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=9 no hook timing samples
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000578)
+  Batch [50/781] Loss: nan, Acc: 11.25%
+  Batch [100/781] Loss: nan, Acc: 10.50%
+  Batch [150/781] Loss: nan, Acc: 9.96%
+  Batch [200/781] Loss: nan, Acc: 10.16%
+  Batch [250/781] Loss: nan, Acc: 10.05%
+  Batch [300/781] Loss: nan, Acc: 10.10%
+  Batch [350/781] Loss: nan, Acc: 10.04%
+  Batch [400/781] Loss: nan, Acc: 10.03%
+  Batch [450/781] Loss: nan, Acc: 9.89%
+  Batch [500/781] Loss: nan, Acc: 9.95%
+  Batch [550/781] Loss: nan, Acc: 10.06%
+  Batch [600/781] Loss: nan, Acc: 9.94%
+  Batch [650/781] Loss: nan, Acc: 9.86%
+  Batch [700/781] Loss: nan, Acc: 9.80%
+  Batch [750/781] Loss: nan, Acc: 9.76%
+[Epoch 10] Train Loss: nan, Acc: 9.67%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 10] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=10 no hook timing samples
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000500)
+  Batch [50/781] Loss: nan, Acc: 10.25%
+  Batch [100/781] Loss: nan, Acc: 9.31%
+  Batch [150/781] Loss: nan, Acc: 9.67%
+  Batch [200/781] Loss: nan, Acc: 9.41%
+  Batch [250/781] Loss: nan, Acc: 9.45%
+  Batch [300/781] Loss: nan, Acc: 9.48%
+  Batch [350/781] Loss: nan, Acc: 9.59%
+  Batch [400/781] Loss: nan, Acc: 9.47%
+  Batch [450/781] Loss: nan, Acc: 9.54%
+  Batch [500/781] Loss: nan, Acc: 9.56%
+  Batch [550/781] Loss: nan, Acc: 9.78%
+  Batch [600/781] Loss: nan, Acc: 9.93%
+  Batch [650/781] Loss: nan, Acc: 9.81%
+  Batch [700/781] Loss: nan, Acc: 9.87%
+  Batch [750/781] Loss: nan, Acc: 9.89%
+[Epoch 11] Train Loss: nan, Acc: 9.91%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.1s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 11] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=11 no hook timing samples
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000422)
+  Batch [50/781] Loss: nan, Acc: 9.12%
+  Batch [100/781] Loss: nan, Acc: 10.12%
+  Batch [150/781] Loss: nan, Acc: 9.88%
+  Batch [200/781] Loss: nan, Acc: 10.12%
+  Batch [250/781] Loss: nan, Acc: 10.43%
+  Batch [300/781] Loss: nan, Acc: 10.25%
+  Batch [350/781] Loss: nan, Acc: 10.29%
+  Batch [400/781] Loss: nan, Acc: 10.17%
+  Batch [450/781] Loss: nan, Acc: 10.21%
+  Batch [500/781] Loss: nan, Acc: 10.26%
+  Batch [550/781] Loss: nan, Acc: 10.34%
+  Batch [600/781] Loss: nan, Acc: 10.29%
+  Batch [650/781] Loss: nan, Acc: 10.31%
+  Batch [700/781] Loss: nan, Acc: 10.35%
+  Batch [750/781] Loss: nan, Acc: 10.32%
+[Epoch 12] Train Loss: nan, Acc: 10.28%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.1s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 12] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=12 no hook timing samples
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000345)
+  Batch [50/781] Loss: nan, Acc: 9.25%
+  Batch [100/781] Loss: nan, Acc: 9.50%
+  Batch [150/781] Loss: nan, Acc: 9.50%
+  Batch [200/781] Loss: nan, Acc: 9.28%
+  Batch [250/781] Loss: nan, Acc: 8.93%
+  Batch [300/781] Loss: nan, Acc: 9.27%
+  Batch [350/781] Loss: nan, Acc: 9.21%
+  Batch [400/781] Loss: nan, Acc: 9.23%
+  Batch [450/781] Loss: nan, Acc: 9.57%
+  Batch [500/781] Loss: nan, Acc: 9.66%
+  Batch [550/781] Loss: nan, Acc: 9.67%
+  Batch [600/781] Loss: nan, Acc: 9.70%
+  Batch [650/781] Loss: nan, Acc: 9.63%
+  Batch [700/781] Loss: nan, Acc: 9.66%
+  Batch [750/781] Loss: nan, Acc: 9.81%
+[Epoch 13] Train Loss: nan, Acc: 9.84%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.1s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 13] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=13 no hook timing samples
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000273)
+  Batch [50/781] Loss: nan, Acc: 11.12%
+  Batch [100/781] Loss: nan, Acc: 10.12%
+  Batch [150/781] Loss: nan, Acc: 10.50%
+  Batch [200/781] Loss: nan, Acc: 10.47%
+  Batch [250/781] Loss: nan, Acc: 10.22%
+  Batch [300/781] Loss: nan, Acc: 10.10%
+  Batch [350/781] Loss: nan, Acc: 10.21%
+  Batch [400/781] Loss: nan, Acc: 10.00%
+  Batch [450/781] Loss: nan, Acc: 10.01%
+  Batch [500/781] Loss: nan, Acc: 10.14%
+  Batch [550/781] Loss: nan, Acc: 10.12%
+  Batch [600/781] Loss: nan, Acc: 10.19%
+  Batch [650/781] Loss: nan, Acc: 10.14%
+  Batch [700/781] Loss: nan, Acc: 10.14%
+  Batch [750/781] Loss: nan, Acc: 10.17%
+[Epoch 14] Train Loss: nan, Acc: 10.08%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.2s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 14] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=14 no hook timing samples
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000206)
+  Batch [50/781] Loss: nan, Acc: 8.12%
+  Batch [100/781] Loss: nan, Acc: 9.75%
+  Batch [150/781] Loss: nan, Acc: 10.00%
+  Batch [200/781] Loss: nan, Acc: 9.94%
+  Batch [250/781] Loss: nan, Acc: 9.72%
+  Batch [300/781] Loss: nan, Acc: 10.35%
+  Batch [350/781] Loss: nan, Acc: 10.36%
+  Batch [400/781] Loss: nan, Acc: 10.41%
+  Batch [450/781] Loss: nan, Acc: 10.46%
+  Batch [500/781] Loss: nan, Acc: 10.31%
+  Batch [550/781] Loss: nan, Acc: 10.24%
+  Batch [600/781] Loss: nan, Acc: 10.26%
+  Batch [650/781] Loss: nan, Acc: 10.06%
+  Batch [700/781] Loss: nan, Acc: 9.98%
+  Batch [750/781] Loss: nan, Acc: 10.00%
+[Epoch 15] Train Loss: nan, Acc: 9.94%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.4s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 15] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=15 no hook timing samples
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000146)
+  Batch [50/781] Loss: nan, Acc: 11.25%
+  Batch [100/781] Loss: nan, Acc: 10.38%
+  Batch [150/781] Loss: nan, Acc: 10.33%
+  Batch [200/781] Loss: nan, Acc: 9.94%
+  Batch [250/781] Loss: nan, Acc: 10.18%
+  Batch [300/781] Loss: nan, Acc: 10.25%
+  Batch [350/781] Loss: nan, Acc: 10.04%
+  Batch [400/781] Loss: nan, Acc: 10.14%
+  Batch [450/781] Loss: nan, Acc: 10.11%
+  Batch [500/781] Loss: nan, Acc: 10.07%
+  Batch [550/781] Loss: nan, Acc: 9.94%
+  Batch [600/781] Loss: nan, Acc: 9.94%
+  Batch [650/781] Loss: nan, Acc: 9.77%
+  Batch [700/781] Loss: nan, Acc: 9.87%
+  Batch [750/781] Loss: nan, Acc: 9.94%
+[Epoch 16] Train Loss: nan, Acc: 9.93%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.4s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 16] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=16 no hook timing samples
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000095)
+  Batch [50/781] Loss: nan, Acc: 10.38%
+  Batch [100/781] Loss: nan, Acc: 11.25%
+  Batch [150/781] Loss: nan, Acc: 10.75%
+  Batch [200/781] Loss: nan, Acc: 10.47%
+  Batch [250/781] Loss: nan, Acc: 10.43%
+  Batch [300/781] Loss: nan, Acc: 10.27%
+  Batch [350/781] Loss: nan, Acc: 10.39%
+  Batch [400/781] Loss: nan, Acc: 10.39%
+  Batch [450/781] Loss: nan, Acc: 10.38%
+  Batch [500/781] Loss: nan, Acc: 10.29%
+  Batch [550/781] Loss: nan, Acc: 10.33%
+  Batch [600/781] Loss: nan, Acc: 10.35%
+  Batch [650/781] Loss: nan, Acc: 10.21%
+  Batch [700/781] Loss: nan, Acc: 10.25%
+  Batch [750/781] Loss: nan, Acc: 10.24%
+[Epoch 17] Train Loss: nan, Acc: 10.14%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.1s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 17] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=17 no hook timing samples
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000054)
+  Batch [50/781] Loss: nan, Acc: 9.00%
+  Batch [100/781] Loss: nan, Acc: 9.75%
+  Batch [150/781] Loss: nan, Acc: 9.88%
+  Batch [200/781] Loss: nan, Acc: 9.69%
+  Batch [250/781] Loss: nan, Acc: 9.82%
+  Batch [300/781] Loss: nan, Acc: 9.62%
+  Batch [350/781] Loss: nan, Acc: 9.84%
+  Batch [400/781] Loss: nan, Acc: 9.81%
+  Batch [450/781] Loss: nan, Acc: 9.86%
+  Batch [500/781] Loss: nan, Acc: 9.99%
+  Batch [550/781] Loss: nan, Acc: 9.97%
+  Batch [600/781] Loss: nan, Acc: 9.99%
+  Batch [650/781] Loss: nan, Acc: 10.08%
+  Batch [700/781] Loss: nan, Acc: 10.12%
+  Batch [750/781] Loss: nan, Acc: 10.13%
+[Epoch 18] Train Loss: nan, Acc: 10.04%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.7s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 18] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=18 no hook timing samples
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000024)
+  Batch [50/781] Loss: nan, Acc: 9.75%
+  Batch [100/781] Loss: nan, Acc: 9.25%
+  Batch [150/781] Loss: nan, Acc: 9.46%
+  Batch [200/781] Loss: nan, Acc: 9.69%
+  Batch [250/781] Loss: nan, Acc: 9.40%
+  Batch [300/781] Loss: nan, Acc: 9.56%
+  Batch [350/781] Loss: nan, Acc: 9.93%
+  Batch [400/781] Loss: nan, Acc: 9.98%
+  Batch [450/781] Loss: nan, Acc: 10.04%
+  Batch [500/781] Loss: nan, Acc: 10.07%
+  Batch [550/781] Loss: nan, Acc: 10.01%
+  Batch [600/781] Loss: nan, Acc: 10.01%
+  Batch [650/781] Loss: nan, Acc: 10.06%
+  Batch [700/781] Loss: nan, Acc: 10.12%
+  Batch [750/781] Loss: nan, Acc: 10.13%
+[Epoch 19] Train Loss: nan, Acc: 10.12%  |  Val Loss: nan, Acc: 10.68%  |  Time: 34.8s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 19] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=19 no hook timing samples
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000006)
+  Batch [50/781] Loss: nan, Acc: 9.50%
+  Batch [100/781] Loss: nan, Acc: 9.25%
+  Batch [150/781] Loss: nan, Acc: 9.29%
+  Batch [200/781] Loss: nan, Acc: 9.62%
+  Batch [250/781] Loss: nan, Acc: 9.62%
+  Batch [300/781] Loss: nan, Acc: 9.52%
+  Batch [350/781] Loss: nan, Acc: 9.52%
+  Batch [400/781] Loss: nan, Acc: 9.67%
+  Batch [450/781] Loss: nan, Acc: 9.82%
+  Batch [500/781] Loss: nan, Acc: 9.79%
+  Batch [550/781] Loss: nan, Acc: 9.78%
+  Batch [600/781] Loss: nan, Acc: 9.91%
+  Batch [650/781] Loss: nan, Acc: 9.87%
+  Batch [700/781] Loss: nan, Acc: 9.85%
+  Batch [750/781] Loss: nan, Acc: 9.86%
+[Epoch 20] Train Loss: nan, Acc: 9.92%  |  Val Loss: nan, Acc: 10.68%  |  Time: 35.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 20] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=20 no hook timing samples
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 718.5s | Best val acc: 10.68%
+Epoch times: mean=35.8s  min=34.5s  max=50.9s
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none, status=0 at Tue Jul 14 09:39:02 AM EDT 2026 ===
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=default, zfp_rate=none at Tue Jul 14 09:39:02 AM EDT 2026 ===
+MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_4987583/miopen_db
+MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_4987583/kernel_cache
+drwxr-sr-x 2 matilderestelli gen243 103 Jul 14 05:38 /mnt/bb/matilderestelli/miopen_cache_4987583/miopen_db
+==== GPU visibility debug (batch shell) ====
+frontier10371
+ROCR_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+SLURM_JOB_GPUS=0,1,2,3,4,5,6,7
+[37mROCk module version 6.16.13 is loaded[0m
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.18
+Runtime Ext Version:     1.14
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+XNACK enabled:           NO
+DMAbuf Support:          YES
+VMM Support:             YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD EPYC 7A53 64-Core Processor    
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD EPYC 7A53 64-Core Processor    
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: default
+================================================================================
+Ranks: 4, Epochs: 20, Batch/rank: 16, Effective batch: 64
+LR: 0.001, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = /lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/default
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+[Data] Train batches: 781, Val batches: 157
+
+
+[Epoch 1] Training... (lr=0.001000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/781] Loss: 2.3431, Acc: 13.62%
+  Batch [100/781] Loss: 2.3382, Acc: 14.19%
+  Batch [150/781] Loss: 2.3150, Acc: 14.96%
+  Batch [200/781] Loss: 2.3050, Acc: 15.41%
+  Batch [250/781] Loss: 2.2805, Acc: 16.35%
+  Batch [300/781] Loss: 2.2589, Acc: 17.02%
+  Batch [350/781] Loss: 2.2387, Acc: 17.71%
+  Batch [400/781] Loss: 2.2163, Acc: 18.27%
+  Batch [450/781] Loss: 2.2055, Acc: 18.58%
+  Batch [500/781] Loss: 2.1894, Acc: 19.26%
+  Batch [550/781] Loss: 2.1733, Acc: 19.65%
+  Batch [600/781] Loss: 2.1584, Acc: 20.25%
+  Batch [650/781] Loss: 2.1424, Acc: 20.77%
+  Batch [700/781] Loss: 2.1294, Acc: 21.17%
+  Batch [750/781] Loss: 2.1163, Acc: 21.64%
+[Epoch 1] Train Loss: 2.1077, Acc: 21.94%  |  Val Loss: 1.9873, Acc: 30.48%  |  Time: 37.5s
+  -> Best model saved (30.48%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6241 work_total_ms=49728.476 work_mean_ms=7.968 work_min_ms=0.450 work_max_ms=107.287
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=782 tail_total_ms=6184.296 tail_mean_ms=7.908 tail_min_ms=1.808 tail_max_ms=107.517
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.000994)
+  Batch [50/781] Loss: 1.9322, Acc: 27.00%
+  Batch [100/781] Loss: 1.9006, Acc: 28.38%
+  Batch [150/781] Loss: 1.9065, Acc: 28.75%
+  Batch [200/781] Loss: 1.9053, Acc: 28.84%
+  Batch [250/781] Loss: 1.9103, Acc: 29.60%
+  Batch [300/781] Loss: 1.9161, Acc: 29.02%
+  Batch [350/781] Loss: 1.9111, Acc: 28.98%
+  Batch [400/781] Loss: 1.9056, Acc: 29.36%
+  Batch [450/781] Loss: 1.8989, Acc: 29.72%
+  Batch [500/781] Loss: 1.8929, Acc: 29.93%
+  Batch [550/781] Loss: 1.8857, Acc: 30.22%
+  Batch [600/781] Loss: 1.8784, Acc: 30.57%
+  Batch [650/781] Loss: 1.8754, Acc: 30.54%
+  Batch [700/781] Loss: 1.8723, Acc: 30.58%
+  Batch [750/781] Loss: 1.8673, Acc: 30.84%
+[Epoch 2] Train Loss: 1.8614, Acc: 30.97%  |  Val Loss: 1.7244, Acc: 38.80%  |  Time: 35.2s
+  -> Best model saved (38.80%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=50430.768 work_mean_ms=8.072 work_min_ms=0.460 work_max_ms=12.917
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6292.731 tail_mean_ms=8.057 tail_min_ms=7.304 tail_max_ms=8.476
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000976)
+  Batch [50/781] Loss: 1.7454, Acc: 35.88%
+  Batch [100/781] Loss: 1.7422, Acc: 35.38%
+  Batch [150/781] Loss: 1.7520, Acc: 35.38%
+  Batch [200/781] Loss: 1.7646, Acc: 34.88%
+  Batch [250/781] Loss: 1.7643, Acc: 35.17%
+  Batch [300/781] Loss: 1.7822, Acc: 34.81%
+  Batch [350/781] Loss: 1.7903, Acc: 34.64%
+  Batch [400/781] Loss: 1.7981, Acc: 34.59%
+  Batch [450/781] Loss: 1.8184, Acc: 34.12%
+  Batch [500/781] Loss: 1.8193, Acc: 34.33%
+  Batch [550/781] Loss: 1.8212, Acc: 34.38%
+  Batch [600/781] Loss: 1.8226, Acc: 34.43%
+  Batch [650/781] Loss: 1.8273, Acc: 34.44%
+  Batch [700/781] Loss: 1.8317, Acc: 34.23%
+  Batch [750/781] Loss: 1.8302, Acc: 34.38%
+[Epoch 3] Train Loss: 1.8325, Acc: 34.40%  |  Val Loss: 1.7682, Acc: 39.60%  |  Time: 35.3s
+  -> Best model saved (39.60%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=50389.744 work_mean_ms=8.065 work_min_ms=0.455 work_max_ms=13.940
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6292.806 tail_mean_ms=8.057 tail_min_ms=7.416 tail_max_ms=9.508
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000946)
+  Batch [50/781] Loss: 1.8516, Acc: 34.75%
+  Batch [100/781] Loss: 1.8048, Acc: 35.25%
+  Batch [150/781] Loss: 1.7913, Acc: 35.92%
+  Batch [200/781] Loss: 1.7906, Acc: 35.88%
+  Batch [250/781] Loss: 1.7779, Acc: 35.83%
+  Batch [300/781] Loss: 1.7637, Acc: 36.31%
+  Batch [350/781] Loss: 1.7712, Acc: 36.12%
+  Batch [400/781] Loss: 1.7719, Acc: 36.27%
+  Batch [450/781] Loss: 1.7593, Acc: 36.60%
+  Batch [500/781] Loss: 1.7554, Acc: 36.70%
+  Batch [550/781] Loss: 1.7528, Acc: 36.77%
+  Batch [600/781] Loss: 1.7467, Acc: 36.99%
+  Batch [650/781] Loss: 1.7497, Acc: 36.81%
+  Batch [700/781] Loss: 1.7499, Acc: 36.68%
+  Batch [750/781] Loss: 1.7482, Acc: 36.86%
+[Epoch 4] Train Loss: 1.7438, Acc: 37.03%  |  Val Loss: 1.5716, Acc: 43.44%  |  Time: 35.8s
+  -> Best model saved (43.44%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49637.055 work_mean_ms=7.944 work_min_ms=0.440 work_max_ms=12.744
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6015.580 tail_mean_ms=7.702 tail_min_ms=6.390 tail_max_ms=8.187
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000905)
+  Batch [50/781] Loss: 1.6106, Acc: 41.25%
+  Batch [100/781] Loss: 1.6221, Acc: 41.38%
+  Batch [150/781] Loss: 1.6522, Acc: 40.29%
+  Batch [200/781] Loss: 1.6599, Acc: 40.38%
+  Batch [250/781] Loss: 1.6495, Acc: 40.73%
+  Batch [300/781] Loss: 1.6345, Acc: 41.04%
+  Batch [350/781] Loss: 1.6402, Acc: 40.82%
+  Batch [400/781] Loss: 1.6387, Acc: 40.77%
+  Batch [450/781] Loss: 1.6426, Acc: 40.67%
+  Batch [500/781] Loss: 1.6403, Acc: 40.58%
+  Batch [550/781] Loss: 1.6385, Acc: 40.78%
+  Batch [600/781] Loss: 1.6335, Acc: 40.88%
+  Batch [650/781] Loss: 1.6314, Acc: 41.07%
+  Batch [700/781] Loss: 1.6294, Acc: 41.06%
+  Batch [750/781] Loss: 1.6235, Acc: 41.28%
+[Epoch 5] Train Loss: 1.6271, Acc: 41.24%  |  Val Loss: 1.5341, Acc: 46.92%  |  Time: 35.8s
+  -> Best model saved (46.92%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49659.747 work_mean_ms=7.948 work_min_ms=0.447 work_max_ms=14.775
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6016.374 tail_mean_ms=7.703 tail_min_ms=6.228 tail_max_ms=10.167
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000854)
+  Batch [50/781] Loss: 1.5259, Acc: 44.12%
+  Batch [100/781] Loss: 1.5288, Acc: 44.88%
+  Batch [150/781] Loss: 1.5189, Acc: 45.38%
+  Batch [200/781] Loss: 1.5183, Acc: 45.53%
+  Batch [250/781] Loss: 1.5275, Acc: 45.12%
+  Batch [300/781] Loss: 1.5242, Acc: 45.31%
+  Batch [350/781] Loss: 1.5145, Acc: 45.34%
+  Batch [400/781] Loss: 1.5128, Acc: 45.34%
+  Batch [450/781] Loss: 1.5124, Acc: 45.24%
+  Batch [500/781] Loss: 1.5182, Acc: 45.20%
+  Batch [550/781] Loss: 1.5218, Acc: 45.02%
+  Batch [600/781] Loss: 1.5279, Acc: 44.83%
+  Batch [650/781] Loss: 1.5252, Acc: 44.91%
+  Batch [700/781] Loss: 1.5337, Acc: 44.60%
+  Batch [750/781] Loss: 1.5318, Acc: 44.67%
+[Epoch 6] Train Loss: 1.5279, Acc: 44.88%  |  Val Loss: 1.3789, Acc: 51.84%  |  Time: 35.9s
+  -> Best model saved (51.84%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49507.043 work_mean_ms=7.924 work_min_ms=0.449 work_max_ms=12.706
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5978.243 tail_mean_ms=7.655 tail_min_ms=7.071 tail_max_ms=8.121
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000794)
+  Batch [50/781] Loss: 1.6001, Acc: 43.25%
+  Batch [100/781] Loss: 1.5727, Acc: 43.06%
+  Batch [150/781] Loss: 1.5474, Acc: 43.88%
+  Batch [200/781] Loss: 1.5325, Acc: 44.50%
+  Batch [250/781] Loss: 1.5281, Acc: 44.85%
+  Batch [300/781] Loss: 1.5228, Acc: 45.12%
+  Batch [350/781] Loss: 1.5259, Acc: 45.04%
+  Batch [400/781] Loss: 1.5226, Acc: 45.05%
+  Batch [450/781] Loss: 1.5177, Acc: 45.08%
+  Batch [500/781] Loss: 1.5168, Acc: 45.24%
+  Batch [550/781] Loss: 1.5181, Acc: 45.32%
+  Batch [600/781] Loss: 1.5153, Acc: 45.55%
+  Batch [650/781] Loss: 1.5079, Acc: 45.80%
+  Batch [700/781] Loss: 1.5066, Acc: 45.93%
+  Batch [750/781] Loss: 1.5063, Acc: 45.88%
+[Epoch 7] Train Loss: 1.5060, Acc: 45.85%  |  Val Loss: 1.3203, Acc: 53.84%  |  Time: 35.4s
+  -> Best model saved (53.84%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=50380.194 work_mean_ms=8.063 work_min_ms=0.459 work_max_ms=14.933
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6263.529 tail_mean_ms=8.020 tail_min_ms=7.094 tail_max_ms=10.477
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000727)
+  Batch [50/781] Loss: 1.4449, Acc: 49.25%
+  Batch [100/781] Loss: 1.4774, Acc: 47.56%
+  Batch [150/781] Loss: 1.4637, Acc: 48.33%
+  Batch [200/781] Loss: 1.4555, Acc: 47.78%
+  Batch [250/781] Loss: 1.4496, Acc: 47.88%
+  Batch [300/781] Loss: 1.4453, Acc: 47.81%
+  Batch [350/781] Loss: 1.4431, Acc: 48.04%
+  Batch [400/781] Loss: 1.4373, Acc: 48.33%
+  Batch [450/781] Loss: 1.4410, Acc: 48.36%
+  Batch [500/781] Loss: 1.4353, Acc: 48.38%
+  Batch [550/781] Loss: 1.4357, Acc: 48.45%
+  Batch [600/781] Loss: 1.4306, Acc: 48.81%
+  Batch [650/781] Loss: 1.4239, Acc: 48.88%
+  Batch [700/781] Loss: 1.4182, Acc: 49.17%
+  Batch [750/781] Loss: 1.4159, Acc: 49.26%
+[Epoch 8] Train Loss: 1.4152, Acc: 49.30%  |  Val Loss: 1.4663, Acc: 51.64%  |  Time: 35.9s
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49530.492 work_mean_ms=7.927 work_min_ms=0.449 work_max_ms=14.867
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5982.803 tail_mean_ms=7.660 tail_min_ms=5.313 tail_max_ms=10.298
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000655)
+  Batch [50/781] Loss: 1.4575, Acc: 47.62%
+  Batch [100/781] Loss: 1.4038, Acc: 48.88%
+  Batch [150/781] Loss: 1.4223, Acc: 49.17%
+  Batch [200/781] Loss: 1.4117, Acc: 49.66%
+  Batch [250/781] Loss: 1.4170, Acc: 49.40%
+  Batch [300/781] Loss: 1.4163, Acc: 49.50%
+  Batch [350/781] Loss: 1.3943, Acc: 50.32%
+  Batch [400/781] Loss: 1.3855, Acc: 50.62%
+  Batch [450/781] Loss: 1.3820, Acc: 50.43%
+  Batch [500/781] Loss: 1.3751, Acc: 50.59%
+  Batch [550/781] Loss: 1.3796, Acc: 50.36%
+  Batch [600/781] Loss: 1.3724, Acc: 50.64%
+  Batch [650/781] Loss: 1.3687, Acc: 50.86%
+  Batch [700/781] Loss: 1.3697, Acc: 50.73%
+  Batch [750/781] Loss: 1.3655, Acc: 50.82%
+[Epoch 9] Train Loss: 1.3634, Acc: 50.91%  |  Val Loss: 1.1956, Acc: 58.56%  |  Time: 38.0s
+  -> Best model saved (58.56%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=50306.327 work_mean_ms=8.052 work_min_ms=0.444 work_max_ms=12.885
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6254.705 tail_mean_ms=8.009 tail_min_ms=6.033 tail_max_ms=8.674
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000578)
+  Batch [50/781] Loss: 1.2661, Acc: 54.12%
+  Batch [100/781] Loss: 1.3055, Acc: 53.44%
+  Batch [150/781] Loss: 1.2984, Acc: 53.92%
+  Batch [200/781] Loss: 1.3149, Acc: 53.44%
+  Batch [250/781] Loss: 1.3102, Acc: 53.12%
+  Batch [300/781] Loss: 1.3115, Acc: 53.29%
+  Batch [350/781] Loss: 1.3170, Acc: 53.11%
+  Batch [400/781] Loss: 1.3198, Acc: 53.00%
+  Batch [450/781] Loss: 1.3154, Acc: 53.19%
+  Batch [500/781] Loss: 1.3140, Acc: 52.92%
+  Batch [550/781] Loss: 1.3170, Acc: 53.14%
+  Batch [600/781] Loss: 1.3192, Acc: 53.07%
+  Batch [650/781] Loss: 1.3163, Acc: 52.89%
+  Batch [700/781] Loss: 1.3174, Acc: 52.95%
+  Batch [750/781] Loss: 1.3178, Acc: 52.87%
+[Epoch 10] Train Loss: 1.3189, Acc: 52.99%  |  Val Loss: 1.1779, Acc: 59.00%  |  Time: 35.9s
+  -> Best model saved (59.00%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49273.576 work_mean_ms=7.886 work_min_ms=0.444 work_max_ms=12.591
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5894.301 tail_mean_ms=7.547 tail_min_ms=5.517 tail_max_ms=7.986
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000500)
+  Batch [50/781] Loss: 1.2098, Acc: 56.62%
+  Batch [100/781] Loss: 1.2133, Acc: 55.75%
+  Batch [150/781] Loss: 1.2486, Acc: 54.25%
+  Batch [200/781] Loss: 1.2541, Acc: 54.75%
+  Batch [250/781] Loss: 1.2581, Acc: 54.45%
+  Batch [300/781] Loss: 1.2680, Acc: 54.35%
+  Batch [350/781] Loss: 1.2701, Acc: 54.23%
+  Batch [400/781] Loss: 1.2759, Acc: 54.14%
+  Batch [450/781] Loss: 1.2758, Acc: 54.10%
+  Batch [500/781] Loss: 1.2673, Acc: 54.44%
+  Batch [550/781] Loss: 1.2717, Acc: 54.47%
+  Batch [600/781] Loss: 1.2647, Acc: 54.62%
+  Batch [650/781] Loss: 1.2607, Acc: 54.75%
+  Batch [700/781] Loss: 1.2588, Acc: 54.94%
+  Batch [750/781] Loss: 1.2602, Acc: 54.85%
+[Epoch 11] Train Loss: 1.2574, Acc: 54.87%  |  Val Loss: 1.1716, Acc: 59.16%  |  Time: 35.9s
+  -> Best model saved (59.16%)
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49416.276 work_mean_ms=7.909 work_min_ms=0.450 work_max_ms=12.715
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5958.110 tail_mean_ms=7.629 tail_min_ms=4.934 tail_max_ms=8.096
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000422)
+  Batch [50/781] Loss: 1.2234, Acc: 57.25%
+  Batch [100/781] Loss: 1.2103, Acc: 56.88%
+  Batch [150/781] Loss: 1.2061, Acc: 56.25%
+  Batch [200/781] Loss: 1.2147, Acc: 56.38%
+  Batch [250/781] Loss: 1.2168, Acc: 56.08%
+  Batch [300/781] Loss: 1.2209, Acc: 56.12%
+  Batch [350/781] Loss: 1.2271, Acc: 55.89%
+  Batch [400/781] Loss: 1.2234, Acc: 56.08%
+  Batch [450/781] Loss: 1.2258, Acc: 55.78%
+  Batch [500/781] Loss: 1.2264, Acc: 56.02%
+  Batch [550/781] Loss: 1.2218, Acc: 56.16%
+  Batch [600/781] Loss: 1.2198, Acc: 56.21%
+  Batch [650/781] Loss: 1.2171, Acc: 56.28%
+  Batch [700/781] Loss: 1.2147, Acc: 56.39%
+  Batch [750/781] Loss: 1.2155, Acc: 56.48%
+[Epoch 12] Train Loss: 1.2143, Acc: 56.58%  |  Val Loss: 1.1411, Acc: 59.72%  |  Time: 36.0s
+  -> Best model saved (59.72%)
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49532.795 work_mean_ms=7.928 work_min_ms=0.447 work_max_ms=12.842
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5977.895 tail_mean_ms=7.654 tail_min_ms=5.234 tail_max_ms=8.269
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000345)
+  Batch [50/781] Loss: 1.2425, Acc: 54.75%
+  Batch [100/781] Loss: 1.2063, Acc: 56.44%
+  Batch [150/781] Loss: 1.2009, Acc: 56.54%
+  Batch [200/781] Loss: 1.2018, Acc: 56.47%
+  Batch [250/781] Loss: 1.1833, Acc: 57.45%
+  Batch [300/781] Loss: 1.1815, Acc: 57.44%
+  Batch [350/781] Loss: 1.1762, Acc: 57.64%
+  Batch [400/781] Loss: 1.1736, Acc: 57.75%
+  Batch [450/781] Loss: 1.1700, Acc: 57.88%
+  Batch [500/781] Loss: 1.1649, Acc: 58.15%
+  Batch [550/781] Loss: 1.1666, Acc: 58.20%
+  Batch [600/781] Loss: 1.1669, Acc: 58.24%
+  Batch [650/781] Loss: 1.1669, Acc: 58.33%
+  Batch [700/781] Loss: 1.1741, Acc: 58.10%
+  Batch [750/781] Loss: 1.1678, Acc: 58.38%
+[Epoch 13] Train Loss: 1.1689, Acc: 58.45%  |  Val Loss: 1.0750, Acc: 62.12%  |  Time: 35.9s
+  -> Best model saved (62.12%)
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49490.971 work_mean_ms=7.921 work_min_ms=0.446 work_max_ms=12.799
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5964.019 tail_mean_ms=7.636 tail_min_ms=3.984 tail_max_ms=8.230
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000273)
+  Batch [50/781] Loss: 1.1356, Acc: 58.12%
+  Batch [100/781] Loss: 1.1389, Acc: 59.19%
+  Batch [150/781] Loss: 1.1339, Acc: 59.58%
+  Batch [200/781] Loss: 1.1216, Acc: 59.88%
+  Batch [250/781] Loss: 1.1336, Acc: 59.58%
+  Batch [300/781] Loss: 1.1425, Acc: 59.23%
+  Batch [350/781] Loss: 1.1488, Acc: 59.16%
+  Batch [400/781] Loss: 1.1500, Acc: 59.25%
+  Batch [450/781] Loss: 1.1470, Acc: 59.44%
+  Batch [500/781] Loss: 1.1442, Acc: 59.64%
+  Batch [550/781] Loss: 1.1449, Acc: 59.75%
+  Batch [600/781] Loss: 1.1436, Acc: 59.76%
+  Batch [650/781] Loss: 1.1430, Acc: 59.74%
+  Batch [700/781] Loss: 1.1423, Acc: 59.65%
+  Batch [750/781] Loss: 1.1417, Acc: 59.78%
+[Epoch 14] Train Loss: 1.1397, Acc: 59.81%  |  Val Loss: 1.0740, Acc: 62.68%  |  Time: 35.5s
+  -> Best model saved (62.68%)
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=50276.011 work_mean_ms=8.047 work_min_ms=0.457 work_max_ms=14.332
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6233.288 tail_mean_ms=7.981 tail_min_ms=4.659 tail_max_ms=9.844
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000206)
+  Batch [50/781] Loss: 1.1181, Acc: 59.12%
+  Batch [100/781] Loss: 1.1030, Acc: 60.25%
+  Batch [150/781] Loss: 1.1062, Acc: 60.29%
+  Batch [200/781] Loss: 1.1153, Acc: 59.88%
+  Batch [250/781] Loss: 1.1172, Acc: 59.88%
+  Batch [300/781] Loss: 1.1183, Acc: 59.94%
+  Batch [350/781] Loss: 1.1117, Acc: 60.34%
+  Batch [400/781] Loss: 1.1107, Acc: 60.38%
+  Batch [450/781] Loss: 1.1100, Acc: 60.40%
+  Batch [500/781] Loss: 1.1123, Acc: 60.40%
+  Batch [550/781] Loss: 1.1102, Acc: 60.50%
+  Batch [600/781] Loss: 1.1120, Acc: 60.45%
+  Batch [650/781] Loss: 1.1122, Acc: 60.41%
+  Batch [700/781] Loss: 1.1151, Acc: 60.37%
+  Batch [750/781] Loss: 1.1130, Acc: 60.34%
+[Epoch 15] Train Loss: 1.1126, Acc: 60.31%  |  Val Loss: 1.0378, Acc: 64.24%  |  Time: 36.0s
+  -> Best model saved (64.24%)
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49440.285 work_mean_ms=7.913 work_min_ms=0.451 work_max_ms=12.687
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5944.814 tail_mean_ms=7.612 tail_min_ms=4.191 tail_max_ms=8.103
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000146)
+  Batch [50/781] Loss: 1.0956, Acc: 61.38%
+  Batch [100/781] Loss: 1.1027, Acc: 61.44%
+  Batch [150/781] Loss: 1.1308, Acc: 60.33%
+  Batch [200/781] Loss: 1.1309, Acc: 60.44%
+  Batch [250/781] Loss: 1.1145, Acc: 60.88%
+  Batch [300/781] Loss: 1.1123, Acc: 60.73%
+  Batch [350/781] Loss: 1.1131, Acc: 60.86%
+  Batch [400/781] Loss: 1.1169, Acc: 60.69%
+  Batch [450/781] Loss: 1.1120, Acc: 60.86%
+  Batch [500/781] Loss: 1.1173, Acc: 60.76%
+  Batch [550/781] Loss: 1.1169, Acc: 60.68%
+  Batch [600/781] Loss: 1.1151, Acc: 60.68%
+  Batch [650/781] Loss: 1.1168, Acc: 60.60%
+  Batch [700/781] Loss: 1.1139, Acc: 60.76%
+  Batch [750/781] Loss: 1.1110, Acc: 60.79%
+[Epoch 16] Train Loss: 1.1098, Acc: 60.86%  |  Val Loss: 1.0284, Acc: 64.40%  |  Time: 36.0s
+  -> Best model saved (64.40%)
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49379.904 work_mean_ms=7.903 work_min_ms=0.446 work_max_ms=12.762
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5939.737 tail_mean_ms=7.605 tail_min_ms=3.486 tail_max_ms=8.092
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000095)
+  Batch [50/781] Loss: 1.0374, Acc: 65.38%
+  Batch [100/781] Loss: 1.0504, Acc: 63.00%
+  Batch [150/781] Loss: 1.0679, Acc: 62.12%
+  Batch [200/781] Loss: 1.0886, Acc: 61.38%
+  Batch [250/781] Loss: 1.0905, Acc: 61.27%
+  Batch [300/781] Loss: 1.0779, Acc: 61.44%
+  Batch [350/781] Loss: 1.0818, Acc: 61.29%
+  Batch [400/781] Loss: 1.0806, Acc: 61.53%
+  Batch [450/781] Loss: 1.0712, Acc: 61.78%
+  Batch [500/781] Loss: 1.0706, Acc: 61.76%
+  Batch [550/781] Loss: 1.0707, Acc: 61.70%
+  Batch [600/781] Loss: 1.0732, Acc: 61.65%
+  Batch [650/781] Loss: 1.0688, Acc: 61.86%
+  Batch [700/781] Loss: 1.0655, Acc: 61.93%
+  Batch [750/781] Loss: 1.0659, Acc: 61.93%
+[Epoch 17] Train Loss: 1.0660, Acc: 61.87%  |  Val Loss: 1.0167, Acc: 64.72%  |  Time: 36.1s
+  -> Best model saved (64.72%)
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49415.885 work_mean_ms=7.909 work_min_ms=0.449 work_max_ms=15.380
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=5945.434 tail_mean_ms=7.613 tail_min_ms=3.552 tail_max_ms=10.716
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000054)
+  Batch [50/781] Loss: 1.0589, Acc: 61.38%
+  Batch [100/781] Loss: 1.0699, Acc: 61.19%
+  Batch [150/781] Loss: 1.0656, Acc: 62.21%
+  Batch [200/781] Loss: 1.0712, Acc: 62.03%
+  Batch [250/781] Loss: 1.0660, Acc: 62.30%
+  Batch [300/781] Loss: 1.0595, Acc: 62.54%
+  Batch [350/781] Loss: 1.0596, Acc: 62.38%
+  Batch [400/781] Loss: 1.0603, Acc: 62.66%
+  Batch [450/781] Loss: 1.0591, Acc: 62.65%
+  Batch [500/781] Loss: 1.0624, Acc: 62.66%
+  Batch [550/781] Loss: 1.0648, Acc: 62.53%
+  Batch [600/781] Loss: 1.0627, Acc: 62.73%
+  Batch [650/781] Loss: 1.0628, Acc: 62.64%
+  Batch [700/781] Loss: 1.0609, Acc: 62.62%
+  Batch [750/781] Loss: 1.0640, Acc: 62.46%
+[Epoch 18] Train Loss: 1.0662, Acc: 62.38%  |  Val Loss: 0.9862, Acc: 66.16%  |  Time: 36.2s
+  -> Best model saved (66.16%)
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=49991.901 work_mean_ms=8.001 work_min_ms=0.449 work_max_ms=19.232
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6040.844 tail_mean_ms=7.735 tail_min_ms=3.917 tail_max_ms=14.650
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000024)
+  Batch [50/781] Loss: 1.0358, Acc: 63.25%
+  Batch [100/781] Loss: 1.0171, Acc: 63.50%
+  Batch [150/781] Loss: 1.0328, Acc: 63.58%
+  Batch [200/781] Loss: 1.0365, Acc: 63.56%
+  Batch [250/781] Loss: 1.0322, Acc: 63.58%
+  Batch [300/781] Loss: 1.0419, Acc: 63.04%
+  Batch [350/781] Loss: 1.0375, Acc: 63.09%
+  Batch [400/781] Loss: 1.0474, Acc: 62.72%
+  Batch [450/781] Loss: 1.0568, Acc: 62.49%
+  Batch [500/781] Loss: 1.0547, Acc: 62.58%
+  Batch [550/781] Loss: 1.0523, Acc: 62.68%
+  Batch [600/781] Loss: 1.0527, Acc: 62.52%
+  Batch [650/781] Loss: 1.0536, Acc: 62.43%
+  Batch [700/781] Loss: 1.0514, Acc: 62.53%
+  Batch [750/781] Loss: 1.0528, Acc: 62.43%
+[Epoch 19] Train Loss: 1.0511, Acc: 62.49%  |  Val Loss: 0.9842, Acc: 65.84%  |  Time: 35.7s
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=51014.145 work_mean_ms=8.165 work_min_ms=0.461 work_max_ms=13.543
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6318.972 tail_mean_ms=8.091 tail_min_ms=4.229 tail_max_ms=8.942
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000006)
+  Batch [50/781] Loss: 1.0407, Acc: 64.00%
+  Batch [100/781] Loss: 1.0276, Acc: 63.81%
+  Batch [150/781] Loss: 1.0353, Acc: 62.96%
+  Batch [200/781] Loss: 1.0500, Acc: 62.41%
+  Batch [250/781] Loss: 1.0496, Acc: 62.55%
+  Batch [300/781] Loss: 1.0595, Acc: 62.58%
+  Batch [350/781] Loss: 1.0632, Acc: 62.30%
+  Batch [400/781] Loss: 1.0653, Acc: 62.27%
+  Batch [450/781] Loss: 1.0628, Acc: 62.35%
+  Batch [500/781] Loss: 1.0699, Acc: 62.14%
+  Batch [550/781] Loss: 1.0661, Acc: 62.32%
+  Batch [600/781] Loss: 1.0706, Acc: 62.06%
+  Batch [650/781] Loss: 1.0703, Acc: 62.04%
+  Batch [700/781] Loss: 1.0700, Acc: 62.12%
+  Batch [750/781] Loss: 1.0693, Acc: 62.08%
+[Epoch 20] Train Loss: 1.0681, Acc: 62.08%  |  Val Loss: 0.9892, Acc: 66.44%  |  Time: 35.7s
+  -> Best model saved (66.44%)
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=mpi:default calls=6248 work_total_ms=50287.538 work_mean_ms=8.049 work_min_ms=0.446 work_max_ms=12.927
+[HOOK_TAIL_SUMMARY] label=mpi:default steps=781 tail_total_ms=6230.692 tail_mean_ms=7.978 tail_min_ms=3.097 tail_max_ms=8.415
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 746.6s | Best val acc: 66.44%
+Epoch times: mean=36.0s  min=35.2s  max=38.0s
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=default, zfp_rate=none, status=0 at Tue Jul 14 09:51:35 AM EDT 2026 ===
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=default_sync, zfp_rate=none at Tue Jul 14 09:51:35 AM EDT 2026 ===
+MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_4987583/miopen_db
+MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_4987583/kernel_cache
+drwxr-sr-x 2 matilderestelli gen243 103 Jul 14 05:38 /mnt/bb/matilderestelli/miopen_cache_4987583/miopen_db
+==== GPU visibility debug (batch shell) ====
+frontier10371
+ROCR_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+SLURM_JOB_GPUS=0,1,2,3,4,5,6,7
+[37mROCk module version 6.16.13 is loaded[0m
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.18
+Runtime Ext Version:     1.14
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+XNACK enabled:           NO
+DMAbuf Support:          YES
+VMM Support:             YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD EPYC 7A53 64-Core Processor    
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD EPYC 7A53 64-Core Processor    
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default_sync
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: default_sync
+================================================================================
+Ranks: 4, Epochs: 20, Batch/rank: 16, Effective batch: 64
+LR: 0.001, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = /lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/default_sync
+[Data] Train batches: 781, Val batches: 157
+
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default_sync
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+[Epoch 1] Training... (lr=0.001000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default_sync
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  Backend:    mpi
+  Algorithm:  default_sync
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/781] Loss: 2.3198, Acc: 15.00%
+  Batch [100/781] Loss: 2.3188, Acc: 14.75%
+  Batch [150/781] Loss: 2.2923, Acc: 15.67%
+  Batch [200/781] Loss: 2.2646, Acc: 16.34%
+  Batch [250/781] Loss: 2.2391, Acc: 17.57%

@@ -2,15 +2,18 @@
 #SBATCH -A gen243
 #SBATCH -p batch
 #SBATCH -q debug
-#SBATCH -J ddp-train-frontier_adam_differentLR
-#SBATCH -N 1  
+#SBATCH -J ddp-train-frontier_2NodesBenchmarkTrue
+#SBATCH -N 2
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=1                  
-#SBATCH -t 02:00:00   
-#SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier_adam_differentLR.%j.out       
-#SBATCH -e ddp_train_frontier_adam_differentLR.%j.err       
+#SBATCH --gpus-per-task=1
+#SBATCH --cpus-per-task=1
+#SBATCH --gpu-bind=closest
+#SBATCH -t 01:45:00
+#SBATCH -C nvme
+#SBATCH -o ddp_train_frontier_2NodesBenchmarkTrue.%j.out
+#SBATCH -e ddp_train_frontier_2NodesBenchmarkTrue.%j.err
+ 
 
 
 #ask for a compute node 
@@ -41,7 +44,7 @@ export MPICH_OFI_NIC_POLICY=GPU
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
 
-NUM_PROCS=8
+NUM_PROCS=16
 PPN=8
 # processes per node
 
@@ -72,8 +75,8 @@ NUM_EPOCHS_LIST=(
 )
 
 BATCH_SIZES=(
-    # "8"       # weak scaling local batch 8, total 128
-    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    "8"       # weak scaling local batch 8, total 128
+    # "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
     #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
     # "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
@@ -82,11 +85,9 @@ BATCH_SIZES=(
 LEARNING_RATES=(
     #"0.0001"
     "0.001"    # paper-style CIFAR reproduction
-    "0.003" 
-    #"0.01"
-    #"0.05"
-    #"0.1"
-    #"0.2"
+    # "0.01"
+    # "0.05"
+    # "0.1"
 )
 
 MOMENTUMS=(
@@ -95,14 +96,13 @@ MOMENTUMS=(
 )
 
 OPTIMIZERS=(
-    # "sgd"        # A1–A5
-    "adamw"    # A6–A7 (paper's lr=0.001 is probably an Adam LR)
+    "sgd"        # A1–A5
+    # "adamw"    # A6–A7 (paper's lr=0.001 is probably an Adam LR)
 )
 
 WEIGHT_DECAYS=(
-    # "5e-4"     # standard CIFAR WRN
-    "0.05"  #adam 
-    # "1e-4"   # B3 and imagenet
+    "5e-4"     # standard CIFAR WRN
+    # "1e-4"   # B3
 )
 
 NESTEROV_VALUES=(
@@ -166,11 +166,31 @@ EXPERIMENTS=(
     #"recursive_doubling_zfp_naive:16"
     #"recursive_doubling_zfp_online_coll:16"
     #"recursive_doubling_zfp_online_coll:8"
-    #"default:"
-    #"default_sync:"
-    #"default_clone:"
-    #"default_cpu_stage:"
+    # "default:"
 )
+
+#check to see if every rank are seeing the right python and pytorch because segfaults can happen if the wrong python is used
+srun --exact -n "${NUM_PROCS}" --ntasks-per-node="${PPN}" \
+     --gpus-per-task=1 --gpu-bind=closest \
+     bash -lc 'python - <<'"'"'PY'"'"'
+import importlib.util, sys
+spec = importlib.util.find_spec("torchvision._C")
+print("python", sys.version)
+print("torchvision._C spec:", spec)
+if spec is not None:
+    print("origin:", spec.origin)
+PY'
+
+# one task per node is enough
+srun -N 2 --ntasks-per-node=1 bash -c '
+ls -l /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torchvision/_C* || true
+python - <<'"'"'PY'"'"'
+import torchvision, pathlib
+p = pathlib.Path(torchvision.__file__).resolve().parent
+print("torchvision package dir:", p)
+print("C candidates:", list(p.glob("_C*")))
+PY
+'
 
 for MODEL_NAME in "${MODELS[@]}"; do
 for DATASET in "${DATASETS[@]}"; do
@@ -252,6 +272,7 @@ for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
         srun --exact -n "${NUM_PROCS}" --ntasks-per-node="${PPN}" \
             --cpus-per-task="${SLURM_CPUS_PER_TASK:-1}" \
             --gpus-per-task=1 \
+            --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 \
             python -u interface.py
 
         status=$?
@@ -286,3 +307,6 @@ echo "=== Job finished: $(date) ==="
 
 # salloc -A gen243 -p batch -J torch-build-and-pack -N 1 -t 00:30:00 -c 16 -C nvme
 # squeue -j <jobid> -o "%.18i %.9P %.10T %.8u %.10M %.20S %.6D %R"
+
+
+# salloc -A gen243 -p extended -J ddp-train-frontier_test2Nodes -N 2 --ntasks-per-node=8 --gpus-per-node=8 --gpus-per-task=1 --gpu-bind=closest --cpus-per-task=8  -t 03:30:00 -C nvme   

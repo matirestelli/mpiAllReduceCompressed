@@ -35,17 +35,21 @@ class TrainingConfig:
     batch_size: int = 128
     learning_rate: float = 0.001
     momentum: float = 0.9
+    optimizer: str = "sgd"          # "sgd" | "adamw"
+    nesterov: bool = True
     weight_decay: float = 5e-4
+    wd_on_bn_bias: bool = False # Nesterov=False (B1) = exclude BN gamma/beta + all biases from WD
+                                   #Nesterov=True  (B4) = apply WD to every param (old behaviour)
     grad_clip: Optional[float] = None
 
     # Scheduler
-    scheduler: str = "constant"
+    scheduler: str = "cosine"
     warmup_epochs: int = 0
 
     # DataLoader behavior
     num_workers: int = 4
     pin_memory: bool = True
-    drop_last: bool = False
+    drop_last: bool = True
 
     # Distributed training
     backend: str = "mpi"
@@ -77,6 +81,9 @@ class TrainingConfig:
         assert self.batch_size > 0
         assert self.learning_rate > 0
         assert self.num_workers >= 0
+        assert self.optimizer in ("sgd", "adamw"), f"Unknown optimizer: {self.optimizer}"
+        assert not (self.optimizer == "sgd" and self.nesterov and self.momentum == 0), \
+            "nesterov=True requires momentum > 0"
 
         if self.dataset.startswith("cifar"):
             assert self.image_size == 32, "CIFAR experiments should use image_size=32"
@@ -281,14 +288,7 @@ def get_data_loaders(
         rank=rank,
         shuffle=True,
         seed=config.seed,
-    )
-
-    val_sampler = DistributedSampler(
-        val_dataset,
-        num_replicas=world_size,
-        rank=rank,
-        shuffle=False,
-        seed=config.seed,
+        drop_last=config.drop_last,  
     )
 
     train_loader = DataLoader(
@@ -300,10 +300,14 @@ def get_data_loaders(
         drop_last=config.drop_last,
     )
 
+    # Validation is NOT sharded. Every rank could evaluate the full 10k test set
+    # and get an identical answer (DDP keeps weights in sync), so no reduction is
+    # needed — which keeps the ONLY collective in the run the gradient allreduce
+    # performed by the custom comm hook. In practice only rank 0 runs it.
     val_loader = DataLoader(
         val_dataset,
         batch_size=config.batch_size,
-        sampler=val_sampler,
+        shuffle=False,              # ← replaces sampler=val_sampler
         num_workers=config.num_workers,
         pin_memory=config.pin_memory,
     )

@@ -85,7 +85,10 @@ def apply_job_overrides(config):
     _set_if_present(config, "batch_size", _read_int_env("BATCH_SIZE"))
     _set_if_present(config, "learning_rate", _read_float_env("LEARNING_RATE"))
     _set_if_present(config, "momentum", _read_float_env("MOMENTUM"))
+    _set_if_present(config, "optimizer", _read_optional_env("OPTIMIZER"))
     _set_if_present(config, "weight_decay", _read_float_env("WEIGHT_DECAY"))
+    _set_if_present(config, "nesterov", _read_bool_env("NESTEROV"))              # NEW
+    _set_if_present(config, "wd_on_bn_bias", _read_bool_env("WD_ON_BN_BIAS"))    # NEW
     _set_if_present(config, "grad_clip", _read_float_env("GRAD_CLIP"))
 
     _set_if_present(config, "scheduler", _read_optional_env("SCHEDULER"))
@@ -123,8 +126,8 @@ if __name__ == "__main__":
         # model_name="resnet18",
         # model_name="resnet50",
         # model_name="resnet101",
-        # model_name="wide_resnet50_2",
-        model_name="resnext101_32x8d",
+        model_name="wide_resnet50_2",
+        # model_name="resnext101_32x8d",
         # model_name="convnext_tiny",
         # model_name="convnext_small",
 
@@ -137,25 +140,26 @@ if __name__ == "__main__":
         # Training
         num_epochs=20,
         batch_size=16,          # local/per-rank batch size
-        learning_rate=0.001,
+        learning_rate=0.1,
         momentum=0.9,
+        optimizer="sgd",
         weight_decay=5e-4,
         grad_clip=None,
 
         # Scheduler
-        scheduler="constant",   # paper-style LR=0.001 reproduction
+        scheduler="cosine",   # paper-style LR=0.001 reproduction
         # scheduler="cosine",
         warmup_epochs=0,
 
         # DataLoader
-        num_workers=4,
+        num_workers=7,
         pin_memory=True,
-        drop_last=False,
+        drop_last=True,
 
         # Distributed / communication
         backend="mpi",
-        # comm_algorithm=None,
-        comm_algorithm="default",
+        comm_algorithm=None,
+        # comm_algorithm="default",
         # comm_algorithm="ring",
         # comm_algorithm="recursive_doubling",
         # comm_algorithm="ring_zfp_naive",
@@ -186,6 +190,10 @@ if __name__ == "__main__":
           f"{' (pretrained)' if config.pretrained else ' (from scratch)'}")
     print(f"  Dataset:    {config.dataset} ({config.num_classes} classes)")
     print(f"  Image size: {config.image_size}")
+    print(f"  LR:         {config.learning_rate}")
+    print(f"  Momentum:   {config.momentum} (nesterov={config.nesterov})")     # NEW
+    print(f"  Optimizer:  {config.optimizer}")
+    print(f"  Weight dec: {config.weight_decay} (on BN/bias={config.wd_on_bn_bias})")  # NEW
     print(f"  Backend:    {config.backend}")
     print(f"  Algorithm:  {config.comm_algorithm or 'built-in (no hook)'}")
     if config.comm_algorithm and "zfp" in config.comm_algorithm:
