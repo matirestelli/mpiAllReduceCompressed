@@ -1,0 +1,234 @@
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 628.1s | Best val acc: 86.40%
+Epoch times (train+val): mean=30.3s  min=29.1s  max=45.4s
+Train-only epoch time (epochs 2..N): median=21.45s  min=21.21s  max=21.67s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 721.9s | Best val acc: 89.57%
+Epoch times (train+val): mean=34.8s  min=33.9s  max=36.9s
+Train-only epoch time (epochs 2..N): median=26.59s  min=26.13s  max=26.85s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.95 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 606.3s | Best val acc: 89.70%
+Epoch times (train+val): mean=28.9s  min=28.3s  max=30.8s
+Train-only epoch time (epochs 2..N): median=20.52s  min=20.30s  max=20.77s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.95 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 735.4s | Best val acc: 88.26%
+Epoch times (train+val): mean=35.3s  min=34.2s  max=41.8s
+Train-only epoch time (epochs 2..N): median=26.81s  min=26.42s  max=27.18s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 642.2s | Best val acc: 89.11%
+Epoch times (train+val): mean=30.8s  min=29.8s  max=45.3s
+Train-only epoch time (epochs 2..N): median=21.85s  min=21.71s  max=22.22s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 744.8s | Best val acc: 90.83%
+Epoch times (train+val): mean=35.9s  min=35.3s  max=37.7s
+Train-only epoch time (epochs 2..N): median=27.54s  min=27.32s  max=27.89s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=False)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 606.4s | Best val acc: 87.95%
+Epoch times (train+val): mean=29.0s  min=28.5s  max=30.7s
+Train-only epoch time (epochs 2..N): median=20.71s  min=20.43s  max=21.12s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=False)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+================================================================================
+Done in 714.4s | Best val acc: 87.89%
+Epoch times (train+val): mean=34.3s  min=33.5s  max=36.3s
+Train-only epoch time (epochs 2..N): median=25.97s  min=25.65s  max=26.33s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+
+-> Nothing wins. Your frozen recipe survives unchallenged — which is the ideal outcome.
+Keep exactly what you had:
+SGD, momentum 0.9, nesterov=True, WD 5e-4 (excl. BN/bias), LR_REF=0.1

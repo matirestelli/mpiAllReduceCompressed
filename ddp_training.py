@@ -17,6 +17,7 @@ import time
 import csv
 import json
 import statistics
+import socket
 from datetime import datetime
 
 from config import TrainingConfig, create_model, get_data_loaders
@@ -350,22 +351,67 @@ def train(config: TrainingConfig) -> None:
 
     # ── Initialize process group ─────────────────────────────────────────
     if config.backend == "nccl":
-        # NCCL uses env:// init — set env vars from MPI rank info
-        from mpi4py import MPI
-        mpi_rank = MPI.COMM_WORLD.Get_rank()
-        mpi_world_size = MPI.COMM_WORLD.Get_size()
-        os.environ['RANK'] = str(mpi_rank)
-        os.environ['WORLD_SIZE'] = str(mpi_world_size)
-        os.environ.setdefault('MASTER_ADDR', 'localhost')
-        os.environ.setdefault('MASTER_PORT', '29500')
-        _local_rank = mpi_rank % torch.cuda.device_count()
-        torch.cuda.set_device(_local_rank)
-        dist.init_process_group(
-            backend=config.backend,
-            device_id=torch.device(f"cuda:{_local_rank}"),
-        )
+        # NCCL uses env:// init.
+        # On Slurm systems like Frontier, use Slurm rank metadata.
+        # On mpiexec-based systems like Polaris, fall back to MPI rank metadata.
+        if "SLURM_PROCID" in os.environ:
+            rank = int(os.environ["SLURM_PROCID"])
+            world_size = int(os.environ["SLURM_NTASKS"])
+
+            os.environ["RANK"] = str(rank)
+            os.environ["WORLD_SIZE"] = str(world_size)
+            os.environ.setdefault("MASTER_ADDR", "localhost")
+            os.environ.setdefault("MASTER_PORT", "29500")
+
+            # With --gpus-per-task=1, each task typically sees only one GPU.
+            local_rank = 0
+            torch.cuda.set_device(local_rank)
+
+            print(
+                f"[PRE-INIT] rank={rank}/{world_size} "
+                f"host={socket.gethostname()} "
+                f"local_rank={local_rank} "
+                f"current_device={torch.cuda.current_device()} "
+                f"device_count={torch.cuda.device_count()} "
+                f"visible={os.environ.get('ROCR_VISIBLE_DEVICES')} "
+                f"device_name={torch.cuda.get_device_name(torch.cuda.current_device())}",
+                flush=True,
+            )
+
+            dist.init_process_group(
+                backend=config.backend,
+                device_id=torch.device(f"cuda:{local_rank}"),
+            )
+
+            dist.barrier()
+            print(
+                f"[POST-INIT] rank={dist.get_rank()}/{dist.get_world_size()} "
+                f"host={socket.gethostname()} "
+                f"current_device={torch.cuda.current_device()} "
+                f"visible={os.environ.get('ROCR_VISIBLE_DEVICES')} "
+                f"device_name={torch.cuda.get_device_name(torch.cuda.current_device())}",
+                flush=True,
+            )
+            dist.barrier()
+
+
+        else:
+            from mpi4py import MPI
+            mpi_rank = MPI.COMM_WORLD.Get_rank()
+            mpi_world_size = MPI.COMM_WORLD.Get_size()
+            os.environ["RANK"] = str(mpi_rank)
+            os.environ["WORLD_SIZE"] = str(mpi_world_size)
+            os.environ.setdefault("MASTER_ADDR", "localhost")
+            os.environ.setdefault("MASTER_PORT", "29500")
+            _local_rank = mpi_rank % torch.cuda.device_count()
+            torch.cuda.set_device(_local_rank)
+            dist.init_process_group(
+                backend=config.backend,
+                device_id=torch.device(f"cuda:{_local_rank}"),
+            )
     else:
         dist.init_process_group(backend=config.backend)
+
 
     rank = dist.get_rank()
     world_size = dist.get_world_size()

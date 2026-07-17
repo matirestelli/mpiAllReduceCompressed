@@ -1,18 +1,17 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p batch
-#SBATCH -q debug
-#SBATCH -J ddp-train-frontier_2NodesBenchmarkTrue
+#SBATCH -p extended
+#SBATCH -J ddp-train-frontier_16gpus_8b_32b
 #SBATCH -N 2
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
 #SBATCH --gpus-per-task=1
 #SBATCH --cpus-per-task=1
 #SBATCH --gpu-bind=closest
-#SBATCH -t 01:45:00
+#SBATCH -t 08:00:00
 #SBATCH -C nvme
-#SBATCH -o ddp_train_frontier_2NodesBenchmarkTrue.%j.out
-#SBATCH -e ddp_train_frontier_2NodesBenchmarkTrue.%j.err
+#SBATCH -o ddp_train_frontier_16gpus_8b_32b.%j.out
+#SBATCH -e ddp_train_frontier_16gpus_8b_32b.%j.err
  
 
 
@@ -77,17 +76,17 @@ NUM_EPOCHS_LIST=(
 BATCH_SIZES=(
     "8"       # weak scaling local batch 8, total 128
     # "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
-    #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
+    "32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
     # "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
 
 LEARNING_RATES=(
     #"0.0001"
-    "0.001"    # paper-style CIFAR reproduction
+    #"0.001"    # paper-style CIFAR reproduction
     # "0.01"
     # "0.05"
-    # "0.1"
+    "0.1"
 )
 
 MOMENTUMS=(
@@ -159,13 +158,13 @@ BACKENDS=(
 EXPERIMENTS=(
     "none:"
     "ring:"
-    #"ring_zfp_naive:16"
-    #"ring_zfp_online_coll:16"
-    #"ring_zfp_online_coll:10"
-    #"recursive_doubling:"
-    #"recursive_doubling_zfp_naive:16"
-    #"recursive_doubling_zfp_online_coll:16"
-    #"recursive_doubling_zfp_online_coll:8"
+    "ring_zfp_naive:16"
+    "ring_zfp_online_coll:16"
+    "ring_zfp_online_coll:10"
+    "recursive_doubling:"
+    "recursive_doubling_zfp_naive:16"
+    "recursive_doubling_zfp_online_coll:16"
+    "recursive_doubling_zfp_online_coll:8"
     # "default:"
 )
 

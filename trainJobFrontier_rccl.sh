@@ -1,15 +1,16 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p extended
-#SBATCH -J ddp-train-frontier_8gpus_64b
+#SBATCH -p batch
+#SBATCH -q debug
+#SBATCH -J ddp-train-frontier_rccl
 #SBATCH -N 1  
 #SBATCH --ntasks-per-node=8
-#SBATCH --gpus-per-node=8
+#SBATCH --gpus-per-node=8   
 #SBATCH --cpus-per-task=1                  
-#SBATCH -t 08:00:00   
+#SBATCH -t 02:00:00   
 #SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier_8gpus_64b.%j.out       
-#SBATCH -e ddp_train_frontier_8gpus_64b.%j.err       
+#SBATCH -o ddp_train_frontier_rccl.%j.out       
+#SBATCH -e ddp_train_frontier_rccl.%j.err       
 
 
 #ask for a compute node 
@@ -24,7 +25,7 @@ cd "${SLURM_SUBMIT_DIR}"
 echo "=== Job started: $(date) ==="
 echo "=== Node: $(hostname) ==="
 
-source envScriptFrontier.sh
+source envScriptFrontier_rccl.sh
 
 # For enabling profiling time for communication hooks.
 export DDP_HOOK_TIMING=1
@@ -32,10 +33,7 @@ export DDP_HOOK_TIMING_RANK0_ONLY=1
 export PRETRAINED_WEIGHTS_CACHE=/lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
 export DDP_ITER_LOG=0        # per-rank JSONL off (space); set 1 for a few configs
 export DDP_PROFILE_BARRIER=0 # MUST stay 0 for timing runs — it kills bwd/comm overlap
-
-# Fix change cray mpich policy from NUMA for multiple nodes with the ranks export MPICH_OFI_NIC_POLICY=GPU
-export MPICH_OFI_NIC_POLICY=GPU
-
+unset MPICH_OFI_NIC_POLICY
 
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
@@ -72,9 +70,9 @@ NUM_EPOCHS_LIST=(
 
 BATCH_SIZES=(
     # "8"       # weak scaling local batch 8, total 128
-    #"16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
     #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
-    "64"    # strong global 256 on 4 GPUs
+    # "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
 
@@ -149,8 +147,8 @@ DROP_LAST_VALUES=(
 )
 
 BACKENDS=(
-    "mpi"
-    # "nccl"
+    # "mpi"
+    "nccl"
 )
 
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
@@ -158,13 +156,13 @@ BACKENDS=(
 EXPERIMENTS=(
     "none:"
     "ring:"
-    "ring_zfp_naive:16"
-    "ring_zfp_online_coll:16"
-    "ring_zfp_online_coll:10"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:16"
-    "recursive_doubling_zfp_online_coll:8"
+    #"ring_zfp_naive:16"
+    #"ring_zfp_online_coll:16"
+   #"ring_zfp_online_coll:10"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    #"recursive_doubling_zfp_online_coll:16"
+    #"recursive_doubling_zfp_online_coll:8"
     #"default:"
     #"default_sync:"
     #"default_clone:"
