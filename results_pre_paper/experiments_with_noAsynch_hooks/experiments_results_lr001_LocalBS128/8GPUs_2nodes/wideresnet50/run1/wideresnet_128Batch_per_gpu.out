@@ -1,0 +1,194 @@
+=== Job started: Wed May 20 07:31:43 PM UTC 2026 ===
+=== Node: x3004c0s7b0n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3004c0s7b0n0
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: default
+================================================================================
+Ranks: 4, Epochs: 20, Batch/rank: 128, Effective batch: 512
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/default
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  default
+  Epochs:     20
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000001)
+  Batch [50/98] Loss: 2.3590, Acc: 10.80%
+[Epoch 1] Train Loss: 2.3572, Acc: 10.83%  |  Val Loss: 2.6174, Acc: 11.32%  |  Time: 7.1s
+  -> Best model saved (11.32%)
+
+[Epoch 2] Training... (lr=0.000201)
+  Batch [50/98] Loss: 2.3577, Acc: 11.12%
+[Epoch 2] Train Loss: 2.3526, Acc: 11.03%  |  Val Loss: 2.7199, Acc: 11.92%  |  Time: 2.9s
+  -> Best model saved (11.92%)
+
+[Epoch 3] Training... (lr=0.000401)
+  Batch [50/98] Loss: 2.3215, Acc: 12.27%
+[Epoch 3] Train Loss: 2.3128, Acc: 12.83%  |  Val Loss: 2.5324, Acc: 14.52%  |  Time: 2.9s
+  -> Best model saved (14.52%)
+
+[Epoch 4] Training... (lr=0.000600)
+  Batch [50/98] Loss: 2.2795, Acc: 14.42%
+[Epoch 4] Train Loss: 2.2696, Acc: 15.30%  |  Val Loss: 3.1196, Acc: 17.48%  |  Time: 2.9s
+  -> Best model saved (17.48%)
+
+[Epoch 5] Training... (lr=0.000800)
+  Batch [50/98] Loss: 2.2071, Acc: 19.61%
+[Epoch 5] Train Loss: 2.1914, Acc: 20.93%  |  Val Loss: 2.2516, Acc: 24.20%  |  Time: 2.9s
+  -> Best model saved (24.20%)
+
+[Epoch 6] Training... (lr=0.001000)
+  Batch [50/98] Loss: 2.1274, Acc: 25.70%
+[Epoch 6] Train Loss: 2.1057, Acc: 26.90%  |  Val Loss: 2.1276, Acc: 31.24%  |  Time: 2.9s
+  -> Best model saved (31.24%)
+
+[Epoch 7] Training... (lr=0.000989)
+  Batch [50/98] Loss: 2.0371, Acc: 30.08%
+[Epoch 7] Train Loss: 2.0097, Acc: 31.43%  |  Val Loss: 2.0008, Acc: 35.28%  |  Time: 2.9s
+  -> Best model saved (35.28%)
+
+[Epoch 8] Training... (lr=0.000957)
+  Batch [50/98] Loss: 1.9239, Acc: 35.86%
+[Epoch 8] Train Loss: 1.9097, Acc: 35.98%  |  Val Loss: 1.9215, Acc: 39.56%  |  Time: 2.9s
+  -> Best model saved (39.56%)
+
+[Epoch 9] Training... (lr=0.000905)
+  Batch [50/98] Loss: 1.8523, Acc: 38.00%
+[Epoch 9] Train Loss: 1.8256, Acc: 39.14%  |  Val Loss: 1.8347, Acc: 41.76%  |  Time: 2.9s
+  -> Best model saved (41.76%)
+
+[Epoch 10] Training... (lr=0.000835)
+  Batch [50/98] Loss: 1.7693, Acc: 40.09%
+[Epoch 10] Train Loss: 1.7563, Acc: 40.77%  |  Val Loss: 1.7628, Acc: 43.04%  |  Time: 2.8s
+  -> Best model saved (43.04%)
+
+[Epoch 11] Training... (lr=0.000750)
+  Batch [50/98] Loss: 1.7124, Acc: 42.50%
+[Epoch 11] Train Loss: 1.6949, Acc: 43.18%  |  Val Loss: 1.6809, Acc: 45.40%  |  Time: 2.9s
+  -> Best model saved (45.40%)
+
+[Epoch 12] Training... (lr=0.000655)
+  Batch [50/98] Loss: 1.6937, Acc: 43.41%
+[Epoch 12] Train Loss: 1.6606, Acc: 44.64%  |  Val Loss: 1.6384, Acc: 46.68%  |  Time: 2.9s
+  -> Best model saved (46.68%)
+
+[Epoch 13] Training... (lr=0.000552)
+  Batch [50/98] Loss: 1.6230, Acc: 45.48%
+[Epoch 13] Train Loss: 1.6134, Acc: 46.22%  |  Val Loss: 1.5895, Acc: 48.00%  |  Time: 2.9s
+  -> Best model saved (48.00%)
+
+[Epoch 14] Training... (lr=0.000448)
+  Batch [50/98] Loss: 1.5918, Acc: 46.47%
+[Epoch 14] Train Loss: 1.5848, Acc: 46.64%  |  Val Loss: 1.5666, Acc: 48.76%  |  Time: 2.9s
+  -> Best model saved (48.76%)
+
+[Epoch 15] Training... (lr=0.000345)
+  Batch [50/98] Loss: 1.5854, Acc: 46.50%
+[Epoch 15] Train Loss: 1.5760, Acc: 46.43%  |  Val Loss: 1.5527, Acc: 48.36%  |  Time: 2.9s
+
+[Epoch 16] Training... (lr=0.000250)
+  Batch [50/98] Loss: 1.5345, Acc: 48.67%
+[Epoch 16] Train Loss: 1.5353, Acc: 48.41%  |  Val Loss: 1.5367, Acc: 50.48%  |  Time: 2.9s
+  -> Best model saved (50.48%)
+
+[Epoch 17] Training... (lr=0.000165)
+  Batch [50/98] Loss: 1.5289, Acc: 48.73%
+[Epoch 17] Train Loss: 1.5220, Acc: 48.95%  |  Val Loss: 1.5287, Acc: 50.56%  |  Time: 2.9s
+  -> Best model saved (50.56%)
+
+[Epoch 18] Training... (lr=0.000095)
+  Batch [50/98] Loss: 1.5263, Acc: 49.03%
+[Epoch 18] Train Loss: 1.5293, Acc: 48.50%  |  Val Loss: 1.5409, Acc: 50.72%  |  Time: 2.8s
+  -> Best model saved (50.72%)
+
+[Epoch 19] Training... (lr=0.000043)
+  Batch [50/98] Loss: 1.5167, Acc: 48.55%
+[Epoch 19] Train Loss: 1.5221, Acc: 48.42%  |  Val Loss: 1.5345, Acc: 50.20%  |  Time: 2.9s
+
+[Epoch 20] Training... (lr=0.000011)
+  Batch [50/98] Loss: 1.5049, Acc: 48.81%
+[Epoch 20] Train Loss: 1.5087, Acc: 49.11%  |  Val Loss: 1.5412, Acc: 50.08%  |  Time: 2.9s
+
+================================================================================
+Done in 76.4s | Best val acc: 50.72%
+Epoch times: mean=3.1s  min=2.8s  max=7.1s
+================================================================================
+=== Job finished: Wed May 20 07:33:53 PM UTC 2026 ===

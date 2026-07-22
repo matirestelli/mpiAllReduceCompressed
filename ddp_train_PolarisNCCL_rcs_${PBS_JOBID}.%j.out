@@ -1,0 +1,1183 @@
+=== Job started: Wed Jul 15 10:25:57 PM UTC 2026 ===
+=== Node: x3003c0s19b1n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+=============================================
+  Polaris NCCL test — GTL NOT loaded
+=============================================
+Node              : x3003c0s19b1n0
+GTL               : NOT loaded (NCCL test)
+MPICH_GPU_SUPPORT : NOT set (NCCL test)
+
+PyTorch version   : 2.8.0
+PyTorch location  : /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/__init__.py
+CUDA available    : True 4
+cuDNN             : 91300
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+ZFP lib           : lrwxrwxrwx 1 mrest users 11 May 17 22:11 /home/mrest/mpiAllReduceCompressed/zfp-install/lib64/libzfp.so -> libzfp.so.1
+ZFP include       : -rw-r--r-- 1 mrest users 35180 May 17 18:17 /home/mrest/mpiAllReduceCompressed/zfp-install/include/zfp.h
+=============================================
+MASTER_ADDR=x3003c0s19b1n0.hsn.cm.polaris.alcf.anl.gov
+MASTER_PORT=29500
+=== Starting: model=wide_resnet50_2, ws=8, bs=16, gb=128, lr=0.1, sched=cosine, warmup=0, mom=0.9, wd=5e-4, nesterov=true, wd_bn_bias=false, backend=nccl, hook=recursive_doubling, zfp=none at Wed Jul 15 10:26:15 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: NCCL, Algorithm: recursive_doubling
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 16, Effective batch: 128
+LR: 0.1, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = ./data/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: nccl/recursive_doubling
+[Optim] SGD: lr=0.1 momentum=0.9 nesterov=True wd=0.0005 wd_on_bn_bias=False
+[Optim]   group 0: 66,778,816 params, wd=0.0005
+[Optim]   group 1: 68,234 params, wd=0.0
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+[Data] Train batches: 390, Val batches: 625
+
+[Sched] cosine: steps/epoch=390, total_steps=7800, warmup_steps=0 (0 epochs)
+
+
+[Epoch 1] Training... (lr at epoch start=0.100000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/390] Loss: 12.7502, Acc: 10.38%, lr: 0.099990
+  Batch [100/390] Loss: 7.6677, Acc: 10.56%, lr: 0.099959
+  Batch [150/390] Loss: 5.9302, Acc: 11.17%, lr: 0.099909
+  Batch [200/390] Loss: 5.0289, Acc: 11.56%, lr: 0.099838
+  Batch [250/390] Loss: 4.4838, Acc: 12.65%, lr: 0.099747
+  Batch [300/390] Loss: 4.0939, Acc: 13.85%, lr: 0.099635
+  Batch [350/390] Loss: 3.8027, Acc: 14.64%, lr: 0.099504
+[Epoch 1] Train Loss: 3.6184, Acc: 15.58%  |  Val Loss: 2.9796, Acc: 19.32%  |  Time: 104.6s
+[Epoch 1] t_iter median: 226.87 ms  (fwd 7.69 | bwd+comm 215.73 | opt 3.33 | data 0.11)  |  train-only epoch: 100.4s
+  -> Best model saved (19.32%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3113 work_total_ms=93310.668 work_mean_ms=29.975 work_min_ms=10.783 work_max_ms=1063.558
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=391 tail_total_ms=89642.962 tail_mean_ms=229.266 tail_min_ms=167.786 tail_max_ms=1064.656
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr at epoch start=0.099384)
+  Batch [50/390] Loss: 2.0225, Acc: 19.25%, lr: 0.099217
+  Batch [100/390] Loss: 2.0258, Acc: 19.25%, lr: 0.099029
+  Batch [150/390] Loss: 2.0303, Acc: 19.88%, lr: 0.098822
+  Batch [200/390] Loss: 2.0207, Acc: 20.31%, lr: 0.098595
+  Batch [250/390] Loss: 2.0020, Acc: 21.40%, lr: 0.098348
+  Batch [300/390] Loss: 1.9732, Acc: 22.31%, lr: 0.098082
+  Batch [350/390] Loss: 1.9547, Acc: 23.30%, lr: 0.097796
+[Epoch 2] Train Loss: 1.9450, Acc: 24.25%  |  Val Loss: 2.0531, Acc: 33.52%  |  Time: 97.8s
+[Epoch 2] t_iter median: 220.76 ms  (fwd 7.91 | bwd+comm 209.44 | opt 3.46 | data 0.15)  |  train-only epoch: 93.6s
+  -> Best model saved (33.52%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=88494.882 work_mean_ms=28.364 work_min_ms=9.828 work_max_ms=70.675
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=84626.828 tail_mean_ms=216.992 tail_min_ms=182.818 tail_max_ms=311.947
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr at epoch start=0.097553)
+  Batch [50/390] Loss: 1.7605, Acc: 31.25%, lr: 0.097232
+  Batch [100/390] Loss: 1.7546, Acc: 31.62%, lr: 0.096892
+  Batch [150/390] Loss: 1.7868, Acc: 31.67%, lr: 0.096533
+  Batch [200/390] Loss: 1.7692, Acc: 32.56%, lr: 0.096155
+  Batch [250/390] Loss: 1.7543, Acc: 33.12%, lr: 0.095759
+  Batch [300/390] Loss: 1.7438, Acc: 33.90%, lr: 0.095344
+  Batch [350/390] Loss: 1.7423, Acc: 33.82%, lr: 0.094910
+[Epoch 3] Train Loss: 1.7378, Acc: 34.12%  |  Val Loss: 1.7934, Acc: 42.99%  |  Time: 103.8s
+[Epoch 3] t_iter median: 239.30 ms  (fwd 7.81 | bwd+comm 228.21 | opt 3.33 | data 0.12)  |  train-only epoch: 99.6s
+  -> Best model saved (42.99%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=94435.362 work_mean_ms=30.268 work_min_ms=10.456 work_max_ms=68.951
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=90585.278 tail_mean_ms=232.270 tail_min_ms=191.098 tail_max_ms=307.475
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr at epoch start=0.094550)
+  Batch [50/390] Loss: 1.6256, Acc: 37.62%, lr: 0.094084
+  Batch [100/390] Loss: 1.6220, Acc: 39.12%, lr: 0.093600
+  Batch [150/390] Loss: 1.6075, Acc: 39.17%, lr: 0.093098
+  Batch [200/390] Loss: 1.6041, Acc: 39.47%, lr: 0.092579
+  Batch [250/390] Loss: 1.6062, Acc: 39.75%, lr: 0.092043
+  Batch [300/390] Loss: 1.5946, Acc: 40.48%, lr: 0.091489
+  Batch [350/390] Loss: 1.5954, Acc: 40.71%, lr: 0.090919
+[Epoch 4] Train Loss: 1.5813, Acc: 41.07%  |  Val Loss: 1.3491, Acc: 51.84%  |  Time: 95.3s
+[Epoch 4] t_iter median: 216.47 ms  (fwd 7.95 | bwd+comm 204.96 | opt 3.41 | data 0.15)  |  train-only epoch: 91.1s
+  -> Best model saved (51.84%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=85921.107 work_mean_ms=27.539 work_min_ms=10.074 work_max_ms=64.699
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=82076.127 tail_mean_ms=210.452 tail_min_ms=178.062 tail_max_ms=270.267
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr at epoch start=0.090451)
+  Batch [50/390] Loss: 1.5124, Acc: 45.50%, lr: 0.089851
+  Batch [100/390] Loss: 1.4870, Acc: 45.81%, lr: 0.089235
+  Batch [150/390] Loss: 1.4593, Acc: 46.54%, lr: 0.088603
+  Batch [200/390] Loss: 1.4419, Acc: 46.69%, lr: 0.087955
+  Batch [250/390] Loss: 1.4176, Acc: 47.77%, lr: 0.087292
+  Batch [300/390] Loss: 1.4061, Acc: 48.88%, lr: 0.086613
+  Batch [350/390] Loss: 1.3916, Acc: 49.41%, lr: 0.085920
+[Epoch 5] Train Loss: 1.3758, Acc: 50.21%  |  Val Loss: 1.3494, Acc: 56.73%  |  Time: 100.3s
+[Epoch 5] t_iter median: 235.82 ms  (fwd 7.75 | bwd+comm 224.33 | opt 3.35 | data 0.13)  |  train-only epoch: 96.1s
+  -> Best model saved (56.73%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=90839.160 work_mean_ms=29.115 work_min_ms=10.658 work_max_ms=80.581
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=86963.489 tail_mean_ms=222.983 tail_min_ms=183.804 tail_max_ms=334.201
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr at epoch start=0.085355)
+  Batch [50/390] Loss: 1.2264, Acc: 56.50%, lr: 0.084636
+  Batch [100/390] Loss: 1.2251, Acc: 57.31%, lr: 0.083903
+  Batch [150/390] Loss: 1.2315, Acc: 56.50%, lr: 0.083156
+  Batch [200/390] Loss: 1.2163, Acc: 56.47%, lr: 0.082396
+  Batch [250/390] Loss: 1.2124, Acc: 56.62%, lr: 0.081622
+  Batch [300/390] Loss: 1.2048, Acc: 57.04%, lr: 0.080836
+  Batch [350/390] Loss: 1.1965, Acc: 57.36%, lr: 0.080037
+[Epoch 6] Train Loss: 1.1797, Acc: 57.96%  |  Val Loss: 1.0411, Acc: 63.79%  |  Time: 96.2s
+[Epoch 6] t_iter median: 235.16 ms  (fwd 7.95 | bwd+comm 223.59 | opt 3.38 | data 0.15)  |  train-only epoch: 92.0s
+  -> Best model saved (63.79%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=86825.484 work_mean_ms=27.829 work_min_ms=10.165 work_max_ms=69.730
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=83038.246 tail_mean_ms=212.919 tail_min_ms=190.507 tail_max_ms=277.399
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr at epoch start=0.079389)
+  Batch [50/390] Loss: 1.0508, Acc: 65.25%, lr: 0.078569
+  Batch [100/390] Loss: 1.0273, Acc: 65.38%, lr: 0.077737
+  Batch [150/390] Loss: 1.0150, Acc: 65.88%, lr: 0.076893
+  Batch [200/390] Loss: 1.0071, Acc: 65.97%, lr: 0.076039
+  Batch [250/390] Loss: 1.0199, Acc: 65.12%, lr: 0.075174
+  Batch [300/390] Loss: 1.0239, Acc: 64.90%, lr: 0.074299
+  Batch [350/390] Loss: 1.0264, Acc: 64.55%, lr: 0.073414
+[Epoch 7] Train Loss: 1.0274, Acc: 64.47%  |  Val Loss: 1.2527, Acc: 68.85%  |  Time: 105.1s
+[Epoch 7] t_iter median: 245.17 ms  (fwd 7.84 | bwd+comm 234.16 | opt 3.30 | data 0.12)  |  train-only epoch: 100.9s
+  -> Best model saved (68.85%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=95824.167 work_mean_ms=30.713 work_min_ms=9.441 work_max_ms=71.424
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=92168.915 tail_mean_ms=236.331 tail_min_ms=186.883 tail_max_ms=331.225
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr at epoch start=0.072700)
+  Batch [50/390] Loss: 1.0067, Acc: 66.25%, lr: 0.071798
+  Batch [100/390] Loss: 0.9663, Acc: 67.06%, lr: 0.070887
+  Batch [150/390] Loss: 0.9473, Acc: 67.38%, lr: 0.069968
+  Batch [200/390] Loss: 0.9213, Acc: 68.62%, lr: 0.069041
+  Batch [250/390] Loss: 0.9262, Acc: 68.05%, lr: 0.068106
+  Batch [300/390] Loss: 0.9173, Acc: 68.29%, lr: 0.067164
+  Batch [350/390] Loss: 0.9085, Acc: 68.57%, lr: 0.066215
+[Epoch 8] Train Loss: 0.9129, Acc: 68.43%  |  Val Loss: 0.8256, Acc: 71.30%  |  Time: 96.6s
+[Epoch 8] t_iter median: 243.49 ms  (fwd 7.92 | bwd+comm 232.11 | opt 3.45 | data 0.14)  |  train-only epoch: 92.4s
+  -> Best model saved (71.30%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=87191.118 work_mean_ms=27.946 work_min_ms=10.521 work_max_ms=61.444
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=83396.550 tail_mean_ms=213.837 tail_min_ms=181.686 tail_max_ms=258.439
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr at epoch start=0.065451)
+  Batch [50/390] Loss: 0.8928, Acc: 68.38%, lr: 0.064490
+  Batch [100/390] Loss: 0.8722, Acc: 68.94%, lr: 0.063524
+  Batch [150/390] Loss: 0.8857, Acc: 68.96%, lr: 0.062551
+  Batch [200/390] Loss: 0.8741, Acc: 69.56%, lr: 0.061574
+  Batch [250/390] Loss: 0.8685, Acc: 69.65%, lr: 0.060592
+  Batch [300/390] Loss: 0.8480, Acc: 70.25%, lr: 0.059606
+  Batch [350/390] Loss: 0.8377, Acc: 70.66%, lr: 0.058616
+[Epoch 9] Train Loss: 0.8327, Acc: 70.83%  |  Val Loss: 0.7612, Acc: 73.07%  |  Time: 98.2s
+[Epoch 9] t_iter median: 222.81 ms  (fwd 8.00 | bwd+comm 211.14 | opt 3.49 | data 0.15)  |  train-only epoch: 93.9s
+  -> Best model saved (73.07%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=88572.318 work_mean_ms=28.389 work_min_ms=10.453 work_max_ms=63.276
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=84876.874 tail_mean_ms=217.633 tail_min_ms=180.210 tail_max_ms=259.349
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr at epoch start=0.057822)
+  Batch [50/390] Loss: 0.7691, Acc: 72.25%, lr: 0.056826
+  Batch [100/390] Loss: 0.7846, Acc: 72.38%, lr: 0.055827
+  Batch [150/390] Loss: 0.7628, Acc: 73.33%, lr: 0.054826
+  Batch [200/390] Loss: 0.7645, Acc: 72.81%, lr: 0.053823
+  Batch [250/390] Loss: 0.7536, Acc: 73.40%, lr: 0.052818
+  Batch [300/390] Loss: 0.7400, Acc: 74.04%, lr: 0.051812
+  Batch [350/390] Loss: 0.7388, Acc: 74.38%, lr: 0.050806
+[Epoch 10] Train Loss: 0.7380, Acc: 74.33%  |  Val Loss: 0.6863, Acc: 75.87%  |  Time: 93.7s
+[Epoch 10] t_iter median: 215.88 ms  (fwd 7.98 | bwd+comm 204.62 | opt 3.40 | data 0.15)  |  train-only epoch: 89.5s
+  -> Best model saved (75.87%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=84341.859 work_mean_ms=27.033 work_min_ms=10.668 work_max_ms=62.700
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=80563.214 tail_mean_ms=206.572 tail_min_ms=180.450 tail_max_ms=268.993
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr at epoch start=0.050000)
+  Batch [50/390] Loss: 0.6381, Acc: 78.12%, lr: 0.048993
+  Batch [100/390] Loss: 0.6630, Acc: 77.19%, lr: 0.047987
+  Batch [150/390] Loss: 0.6653, Acc: 76.67%, lr: 0.046981
+  Batch [200/390] Loss: 0.6700, Acc: 76.53%, lr: 0.045977
+  Batch [250/390] Loss: 0.6643, Acc: 76.92%, lr: 0.044974
+  Batch [300/390] Loss: 0.6638, Acc: 77.04%, lr: 0.043973
+  Batch [350/390] Loss: 0.6609, Acc: 77.16%, lr: 0.042975
+[Epoch 11] Train Loss: 0.6599, Acc: 77.16%  |  Val Loss: 0.6046, Acc: 79.61%  |  Time: 99.0s
+[Epoch 11] t_iter median: 220.90 ms  (fwd 7.65 | bwd+comm 209.37 | opt 3.29 | data 0.13)  |  train-only epoch: 94.9s
+  -> Best model saved (79.61%)
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=89877.005 work_mean_ms=28.807 work_min_ms=10.223 work_max_ms=62.420
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=86064.764 tail_mean_ms=220.679 tail_min_ms=179.244 tail_max_ms=260.867
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr at epoch start=0.042178)
+  Batch [50/390] Loss: 0.5714, Acc: 79.50%, lr: 0.041185
+  Batch [100/390] Loss: 0.6082, Acc: 78.88%, lr: 0.040196
+  Batch [150/390] Loss: 0.6222, Acc: 78.38%, lr: 0.039211
+  Batch [200/390] Loss: 0.6229, Acc: 78.00%, lr: 0.038230
+  Batch [250/390] Loss: 0.6075, Acc: 78.58%, lr: 0.037254
+  Batch [300/390] Loss: 0.5935, Acc: 78.98%, lr: 0.036283
+  Batch [350/390] Loss: 0.5898, Acc: 79.09%, lr: 0.035317
+[Epoch 12] Train Loss: 0.5864, Acc: 79.31%  |  Val Loss: 0.5463, Acc: 81.50%  |  Time: 98.1s
+[Epoch 12] t_iter median: 245.67 ms  (fwd 7.82 | bwd+comm 234.48 | opt 3.28 | data 0.12)  |  train-only epoch: 93.9s
+  -> Best model saved (81.50%)
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=88712.398 work_mean_ms=28.433 work_min_ms=10.090 work_max_ms=68.218
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=84758.554 tail_mean_ms=217.330 tail_min_ms=180.863 tail_max_ms=277.273
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr at epoch start=0.034549)
+  Batch [50/390] Loss: 0.5357, Acc: 80.88%, lr: 0.033595
+  Batch [100/390] Loss: 0.5360, Acc: 81.06%, lr: 0.032647
+  Batch [150/390] Loss: 0.5283, Acc: 81.21%, lr: 0.031706
+  Batch [200/390] Loss: 0.5210, Acc: 81.47%, lr: 0.030773
+  Batch [250/390] Loss: 0.5184, Acc: 81.78%, lr: 0.029847
+  Batch [300/390] Loss: 0.5242, Acc: 81.90%, lr: 0.028930
+  Batch [350/390] Loss: 0.5299, Acc: 81.82%, lr: 0.028021
+[Epoch 13] Train Loss: 0.5280, Acc: 81.88%  |  Val Loss: 0.5009, Acc: 82.72%  |  Time: 87.6s
+[Epoch 13] t_iter median: 213.55 ms  (fwd 7.96 | bwd+comm 202.02 | opt 3.44 | data 0.14)  |  train-only epoch: 83.5s
+  -> Best model saved (82.72%)
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=78232.117 work_mean_ms=25.074 work_min_ms=9.843 work_max_ms=59.536
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=74351.768 tail_mean_ms=190.646 tail_min_ms=181.133 tail_max_ms=220.190
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr at epoch start=0.027300)
+  Batch [50/390] Loss: 0.5108, Acc: 82.12%, lr: 0.026408
+  Batch [100/390] Loss: 0.4845, Acc: 82.69%, lr: 0.025525
+  Batch [150/390] Loss: 0.4864, Acc: 82.75%, lr: 0.024652
+  Batch [200/390] Loss: 0.5002, Acc: 82.06%, lr: 0.023789
+  Batch [250/390] Loss: 0.4938, Acc: 82.70%, lr: 0.022937
+  Batch [300/390] Loss: 0.4809, Acc: 83.38%, lr: 0.022096
+  Batch [350/390] Loss: 0.4752, Acc: 83.62%, lr: 0.021266
+[Epoch 14] Train Loss: 0.4732, Acc: 83.72%  |  Val Loss: 0.4768, Acc: 84.00%  |  Time: 88.9s
+[Epoch 14] t_iter median: 216.11 ms  (fwd 7.87 | bwd+comm 204.69 | opt 3.44 | data 0.16)  |  train-only epoch: 84.7s
+  -> Best model saved (84.00%)
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=79450.846 work_mean_ms=25.465 work_min_ms=9.348 work_max_ms=60.454
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=75355.907 tail_mean_ms=193.220 tail_min_ms=175.487 tail_max_ms=257.810
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr at epoch start=0.020611)
+  Batch [50/390] Loss: 0.4729, Acc: 81.75%, lr: 0.019802
+  Batch [100/390] Loss: 0.4558, Acc: 83.50%, lr: 0.019006
+  Batch [150/390] Loss: 0.4490, Acc: 83.83%, lr: 0.018222
+  Batch [200/390] Loss: 0.4410, Acc: 84.62%, lr: 0.017451
+  Batch [250/390] Loss: 0.4332, Acc: 85.03%, lr: 0.016693
+  Batch [300/390] Loss: 0.4326, Acc: 85.04%, lr: 0.015949
+  Batch [350/390] Loss: 0.4302, Acc: 85.11%, lr: 0.015219
+[Epoch 15] Train Loss: 0.4253, Acc: 85.27%  |  Val Loss: 0.4107, Acc: 85.91%  |  Time: 89.1s
+[Epoch 15] t_iter median: 216.99 ms  (fwd 7.95 | bwd+comm 205.54 | opt 3.41 | data 0.15)  |  train-only epoch: 84.9s
+  -> Best model saved (85.91%)
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=79646.021 work_mean_ms=25.528 work_min_ms=9.639 work_max_ms=55.616
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=75669.698 tail_mean_ms=194.025 tail_min_ms=181.239 tail_max_ms=248.864
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr at epoch start=0.014645)
+  Batch [50/390] Loss: 0.3439, Acc: 86.62%, lr: 0.013940
+  Batch [100/390] Loss: 0.3951, Acc: 85.69%, lr: 0.013250
+  Batch [150/390] Loss: 0.3807, Acc: 86.33%, lr: 0.012574
+  Batch [200/390] Loss: 0.3853, Acc: 86.16%, lr: 0.011914
+  Batch [250/390] Loss: 0.3761, Acc: 86.65%, lr: 0.011270
+  Batch [300/390] Loss: 0.3772, Acc: 86.69%, lr: 0.010641
+  Batch [350/390] Loss: 0.3713, Acc: 86.89%, lr: 0.010028
+[Epoch 16] Train Loss: 0.3706, Acc: 87.00%  |  Val Loss: 0.3708, Acc: 87.31%  |  Time: 88.6s
+[Epoch 16] t_iter median: 215.05 ms  (fwd 8.07 | bwd+comm 203.31 | opt 3.49 | data 0.15)  |  train-only epoch: 84.4s
+  -> Best model saved (87.31%)
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=79011.095 work_mean_ms=25.324 work_min_ms=8.972 work_max_ms=66.583
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=75187.323 tail_mean_ms=192.788 tail_min_ms=180.807 tail_max_ms=277.194
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr at epoch start=0.009549)
+  Batch [50/390] Loss: 0.3292, Acc: 89.75%, lr: 0.008966
+  Batch [100/390] Loss: 0.3188, Acc: 89.00%, lr: 0.008399
+  Batch [150/390] Loss: 0.3168, Acc: 89.04%, lr: 0.007848
+  Batch [200/390] Loss: 0.3084, Acc: 89.19%, lr: 0.007315
+  Batch [250/390] Loss: 0.3090, Acc: 88.92%, lr: 0.006800
+  Batch [300/390] Loss: 0.3134, Acc: 88.85%, lr: 0.006302
+  Batch [350/390] Loss: 0.3205, Acc: 88.68%, lr: 0.005821
+[Epoch 17] Train Loss: 0.3177, Acc: 88.77%  |  Val Loss: 0.3554, Acc: 88.16%  |  Time: 92.3s
+[Epoch 17] t_iter median: 215.98 ms  (fwd 7.67 | bwd+comm 204.83 | opt 3.28 | data 0.15)  |  train-only epoch: 88.1s
+  -> Best model saved (88.16%)
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=83073.846 work_mean_ms=26.626 work_min_ms=10.478 work_max_ms=73.006
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=79488.385 tail_mean_ms=203.816 tail_min_ms=181.692 tail_max_ms=308.732
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr at epoch start=0.005450)
+  Batch [50/390] Loss: 0.2750, Acc: 89.75%, lr: 0.005002
+  Batch [100/390] Loss: 0.2581, Acc: 90.56%, lr: 0.004572
+  Batch [150/390] Loss: 0.2791, Acc: 90.21%, lr: 0.004160
+  Batch [200/390] Loss: 0.2736, Acc: 90.62%, lr: 0.003768
+  Batch [250/390] Loss: 0.2764, Acc: 90.50%, lr: 0.003394
+  Batch [300/390] Loss: 0.2749, Acc: 90.54%, lr: 0.003038
+  Batch [350/390] Loss: 0.2723, Acc: 90.62%, lr: 0.002702
+[Epoch 18] Train Loss: 0.2794, Acc: 90.34%  |  Val Loss: 0.3373, Acc: 88.83%  |  Time: 90.3s
+[Epoch 18] t_iter median: 215.76 ms  (fwd 8.04 | bwd+comm 204.08 | opt 3.48 | data 0.16)  |  train-only epoch: 86.0s
+  -> Best model saved (88.83%)
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=80659.274 work_mean_ms=25.852 work_min_ms=10.040 work_max_ms=104.309
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=76900.588 tail_mean_ms=197.181 tail_min_ms=175.425 tail_max_ms=335.383
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr at epoch start=0.002447)
+  Batch [50/390] Loss: 0.2478, Acc: 91.88%, lr: 0.002146
+  Batch [100/390] Loss: 0.2531, Acc: 91.31%, lr: 0.001864
+  Batch [150/390] Loss: 0.2541, Acc: 91.42%, lr: 0.001601
+  Batch [200/390] Loss: 0.2482, Acc: 91.81%, lr: 0.001358
+  Batch [250/390] Loss: 0.2569, Acc: 91.47%, lr: 0.001135
+  Batch [300/390] Loss: 0.2588, Acc: 91.17%, lr: 0.000931
+  Batch [350/390] Loss: 0.2574, Acc: 91.18%, lr: 0.000748
+[Epoch 19] Train Loss: 0.2549, Acc: 91.30%  |  Val Loss: 0.3218, Acc: 89.37%  |  Time: 95.6s
+[Epoch 19] t_iter median: 229.93 ms  (fwd 7.54 | bwd+comm 218.91 | opt 3.28 | data 0.12)  |  train-only epoch: 91.4s
+  -> Best model saved (89.37%)
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=86494.563 work_mean_ms=27.723 work_min_ms=10.602 work_max_ms=60.674
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=82933.138 tail_mean_ms=212.649 tail_min_ms=193.500 tail_max_ms=264.073
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr at epoch start=0.000616)
+  Batch [50/390] Loss: 0.1820, Acc: 94.62%, lr: 0.000468
+  Batch [100/390] Loss: 0.1951, Acc: 93.94%, lr: 0.000341
+  Batch [150/390] Loss: 0.1898, Acc: 94.00%, lr: 0.000233
+  Batch [200/390] Loss: 0.1950, Acc: 93.53%, lr: 0.000146
+  Batch [250/390] Loss: 0.2055, Acc: 92.97%, lr: 0.000079
+  Batch [300/390] Loss: 0.2049, Acc: 92.94%, lr: 0.000033
+  Batch [350/390] Loss: 0.2080, Acc: 93.02%, lr: 0.000006
+[Epoch 20] Train Loss: 0.2129, Acc: 92.76%  |  Val Loss: 0.3174, Acc: 89.52%  |  Time: 99.3s
+[Epoch 20] t_iter median: 221.91 ms  (fwd 8.07 | bwd+comm 210.34 | opt 3.46 | data 0.16)  |  train-only epoch: 95.0s
+  -> Best model saved (89.52%)
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling calls=3120 work_total_ms=89657.584 work_mean_ms=28.736 work_min_ms=9.016 work_max_ms=67.357
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling steps=390 tail_total_ms=85792.398 tail_mean_ms=219.981 tail_min_ms=185.115 tail_max_ms=266.430
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 1938.2s | Best val acc: 89.52%
+Epoch times (train+val): mean=96.0s  min=87.6s  max=105.1s
+Train-only epoch time (epochs 2..N): median=91.98s  min=83.51s  max=100.92s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=nccl, hook=recursive_doubling, zfp_rate=none, status=0 at Wed Jul 15 10:58:48 PM UTC 2026 ===
+=== Starting: model=wide_resnet50_2, ws=8, bs=16, gb=128, lr=0.1, sched=cosine, warmup=0, mom=0.9, wd=5e-4, nesterov=true, wd_bn_bias=false, backend=nccl, hook=recursive_doubling_zfp_naive, zfp=16 at Wed Jul 15 10:58:48 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: NCCL, Algorithm: recursive_doubling_zfp_naive
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 16, Effective batch: 128
+LR: 0.1, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = ./data/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: nccl/recursive_doubling_zfp_naive
+[Optim] SGD: lr=0.1 momentum=0.9 nesterov=True wd=0.0005 wd_on_bn_bias=False
+[Optim]   group 0: 66,778,816 params, wd=0.0005
+[Optim]   group 1: 68,234 params, wd=0.0
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+[Data] Train batches: 390, Val batches: 625
+
+[Sched] cosine: steps/epoch=390, total_steps=7800, warmup_steps=0 (0 epochs)
+
+
+[Epoch 1] Training... (lr at epoch start=0.100000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  ZFP rate:   16
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/390] Loss: 9.4608, Acc: 9.12%, lr: 0.099990
+  Batch [100/390] Loss: 5.9257, Acc: 10.00%, lr: 0.099959
+  Batch [150/390] Loss: 4.7231, Acc: 10.83%, lr: 0.099909
+  Batch [200/390] Loss: 4.1216, Acc: 10.41%, lr: 0.099838
+  Batch [250/390] Loss: 3.7577, Acc: 10.75%, lr: 0.099747
+  Batch [300/390] Loss: 3.5130, Acc: 11.12%, lr: 0.099635
+  Batch [350/390] Loss: 3.3353, Acc: 11.54%, lr: 0.099504
+[Epoch 1] Train Loss: 3.2152, Acc: 12.60%  |  Val Loss: 2.1324, Acc: 17.71%  |  Time: 72.3s
+[Epoch 1] t_iter median: 164.90 ms  (fwd 7.65 | bwd+comm 153.84 | opt 3.33 | data 0.12)  |  train-only epoch: 68.0s
+  -> Best model saved (17.71%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3113 work_total_ms=60868.890 work_mean_ms=19.553 work_min_ms=7.555 work_max_ms=652.268
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=391 tail_total_ms=57009.561 tail_mean_ms=145.805 tail_min_ms=44.221 tail_max_ms=653.714
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr at epoch start=0.099384)
+  Batch [50/390] Loss: 2.1133, Acc: 18.12%, lr: 0.099217
+  Batch [100/390] Loss: 2.1078, Acc: 18.94%, lr: 0.099029
+  Batch [150/390] Loss: 2.1021, Acc: 19.12%, lr: 0.098822
+  Batch [200/390] Loss: 2.0882, Acc: 19.53%, lr: 0.098595
+  Batch [250/390] Loss: 2.0738, Acc: 19.82%, lr: 0.098348
+  Batch [300/390] Loss: 2.0551, Acc: 19.88%, lr: 0.098082
+  Batch [350/390] Loss: 2.0459, Acc: 20.27%, lr: 0.097796
+[Epoch 2] Train Loss: 2.0366, Acc: 20.61%  |  Val Loss: 2.2471, Acc: 24.00%  |  Time: 65.6s
+[Epoch 2] t_iter median: 151.62 ms  (fwd 7.71 | bwd+comm 140.36 | opt 3.37 | data 0.12)  |  train-only epoch: 61.4s
+  -> Best model saved (24.00%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=56333.320 work_mean_ms=18.056 work_min_ms=7.465 work_max_ms=239.410
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=52702.142 tail_mean_ms=135.134 tail_min_ms=120.394 tail_max_ms=376.939
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr at epoch start=0.097553)
+  Batch [50/390] Loss: 1.9383, Acc: 21.88%, lr: 0.097232
+  Batch [100/390] Loss: 1.9501, Acc: 22.44%, lr: 0.096892
+  Batch [150/390] Loss: 1.9591, Acc: 22.88%, lr: 0.096533
+  Batch [200/390] Loss: 1.9283, Acc: 24.78%, lr: 0.096155
+  Batch [250/390] Loss: 1.9093, Acc: 25.55%, lr: 0.095759
+  Batch [300/390] Loss: 1.8951, Acc: 26.31%, lr: 0.095344
+  Batch [350/390] Loss: 1.8827, Acc: 27.00%, lr: 0.094910
+[Epoch 3] Train Loss: 1.8760, Acc: 27.32%  |  Val Loss: 1.8927, Acc: 37.53%  |  Time: 74.0s
+[Epoch 3] t_iter median: 182.16 ms  (fwd 7.79 | bwd+comm 170.76 | opt 3.38 | data 0.13)  |  train-only epoch: 69.7s
+  -> Best model saved (37.53%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=64529.619 work_mean_ms=20.683 work_min_ms=7.456 work_max_ms=39.819
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=60840.874 tail_mean_ms=156.002 tail_min_ms=124.639 tail_max_ms=167.450
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr at epoch start=0.094550)
+  Batch [50/390] Loss: 1.7758, Acc: 32.75%, lr: 0.094084
+  Batch [100/390] Loss: 1.7753, Acc: 32.75%, lr: 0.093600
+  Batch [150/390] Loss: 1.7553, Acc: 33.83%, lr: 0.093098
+  Batch [200/390] Loss: 1.7487, Acc: 34.31%, lr: 0.092579
+  Batch [250/390] Loss: 1.7403, Acc: 34.58%, lr: 0.092043
+  Batch [300/390] Loss: 1.7304, Acc: 35.19%, lr: 0.091489
+  Batch [350/390] Loss: 1.7281, Acc: 35.48%, lr: 0.090919
+[Epoch 4] Train Loss: 1.7172, Acc: 35.83%  |  Val Loss: 1.6103, Acc: 43.87%  |  Time: 74.5s
+[Epoch 4] t_iter median: 185.27 ms  (fwd 7.81 | bwd+comm 174.02 | opt 3.35 | data 0.14)  |  train-only epoch: 70.3s
+  -> Best model saved (43.87%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=65091.795 work_mean_ms=20.863 work_min_ms=7.631 work_max_ms=38.788
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=61253.023 tail_mean_ms=157.059 tail_min_ms=123.796 tail_max_ms=171.507
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr at epoch start=0.090451)
+  Batch [50/390] Loss: 1.6770, Acc: 38.38%, lr: 0.089851
+  Batch [100/390] Loss: 1.6507, Acc: 39.75%, lr: 0.089235
+  Batch [150/390] Loss: 1.6154, Acc: 40.75%, lr: 0.088603
+  Batch [200/390] Loss: 1.6081, Acc: 40.69%, lr: 0.087955
+  Batch [250/390] Loss: 1.5874, Acc: 41.40%, lr: 0.087292
+  Batch [300/390] Loss: 1.5688, Acc: 41.94%, lr: 0.086613
+  Batch [350/390] Loss: 1.5554, Acc: 42.75%, lr: 0.085920
+[Epoch 5] Train Loss: 1.5435, Acc: 43.41%  |  Val Loss: 1.4622, Acc: 50.54%  |  Time: 75.2s
+[Epoch 5] t_iter median: 185.18 ms  (fwd 7.96 | bwd+comm 173.59 | opt 3.46 | data 0.15)  |  train-only epoch: 70.9s
+  -> Best model saved (50.54%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=65699.194 work_mean_ms=21.057 work_min_ms=8.246 work_max_ms=38.731
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=61831.932 tail_mean_ms=158.543 tail_min_ms=125.105 tail_max_ms=169.010
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr at epoch start=0.085355)
+  Batch [50/390] Loss: 1.4519, Acc: 46.62%, lr: 0.084636
+  Batch [100/390] Loss: 1.4289, Acc: 48.94%, lr: 0.083903
+  Batch [150/390] Loss: 1.4021, Acc: 49.38%, lr: 0.083156
+  Batch [200/390] Loss: 1.3868, Acc: 50.34%, lr: 0.082396
+  Batch [250/390] Loss: 1.3829, Acc: 50.27%, lr: 0.081622
+  Batch [300/390] Loss: 1.3715, Acc: 50.56%, lr: 0.080836
+  Batch [350/390] Loss: 1.3634, Acc: 50.71%, lr: 0.080037
+[Epoch 6] Train Loss: 1.3537, Acc: 51.06%  |  Val Loss: 1.1340, Acc: 58.49%  |  Time: 74.5s
+[Epoch 6] t_iter median: 177.84 ms  (fwd 7.94 | bwd+comm 166.20 | opt 3.44 | data 0.14)  |  train-only epoch: 70.3s
+  -> Best model saved (58.49%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=65069.614 work_mean_ms=20.856 work_min_ms=8.892 work_max_ms=40.877
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=61258.497 tail_mean_ms=157.073 tail_min_ms=143.564 tail_max_ms=173.114
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr at epoch start=0.079389)
+  Batch [50/390] Loss: 1.1973, Acc: 58.50%, lr: 0.078569
+  Batch [100/390] Loss: 1.1997, Acc: 57.19%, lr: 0.077737
+  Batch [150/390] Loss: 1.1781, Acc: 58.29%, lr: 0.076893
+  Batch [200/390] Loss: 1.1668, Acc: 58.44%, lr: 0.076039
+  Batch [250/390] Loss: 1.1629, Acc: 58.85%, lr: 0.075174
+  Batch [300/390] Loss: 1.1620, Acc: 58.71%, lr: 0.074299
+  Batch [350/390] Loss: 1.1539, Acc: 59.18%, lr: 0.073414
+[Epoch 7] Train Loss: 1.1498, Acc: 59.44%  |  Val Loss: 0.9636, Acc: 65.63%  |  Time: 73.8s
+[Epoch 7] t_iter median: 175.47 ms  (fwd 7.59 | bwd+comm 164.46 | opt 3.27 | data 0.13)  |  train-only epoch: 69.6s
+  -> Best model saved (65.63%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=64619.258 work_mean_ms=20.711 work_min_ms=7.935 work_max_ms=38.237
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=60839.648 tail_mean_ms=155.999 tail_min_ms=137.927 tail_max_ms=170.122
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr at epoch start=0.072700)
+  Batch [50/390] Loss: 1.0753, Acc: 61.38%, lr: 0.071798
+  Batch [100/390] Loss: 1.0141, Acc: 63.81%, lr: 0.070887
+  Batch [150/390] Loss: 1.0003, Acc: 64.46%, lr: 0.069968
+  Batch [200/390] Loss: 0.9827, Acc: 65.44%, lr: 0.069041
+  Batch [250/390] Loss: 0.9869, Acc: 65.08%, lr: 0.068106
+  Batch [300/390] Loss: 0.9693, Acc: 65.75%, lr: 0.067164
+  Batch [350/390] Loss: 0.9456, Acc: 66.71%, lr: 0.066215
+[Epoch 8] Train Loss: 0.9416, Acc: 66.81%  |  Val Loss: 0.7931, Acc: 71.97%  |  Time: 73.1s
+[Epoch 8] t_iter median: 174.30 ms  (fwd 8.02 | bwd+comm 162.60 | opt 3.45 | data 0.15)  |  train-only epoch: 68.8s
+  -> Best model saved (71.97%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=63507.970 work_mean_ms=20.355 work_min_ms=8.370 work_max_ms=44.016
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=59802.737 tail_mean_ms=153.340 tail_min_ms=130.790 tail_max_ms=173.635
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr at epoch start=0.065451)
+  Batch [50/390] Loss: 0.8884, Acc: 68.25%, lr: 0.064490
+  Batch [100/390] Loss: 0.8718, Acc: 68.50%, lr: 0.063524
+  Batch [150/390] Loss: 0.8799, Acc: 68.96%, lr: 0.062551
+  Batch [200/390] Loss: 0.8703, Acc: 69.53%, lr: 0.061574
+  Batch [250/390] Loss: 0.8625, Acc: 70.00%, lr: 0.060592
+  Batch [300/390] Loss: 0.8497, Acc: 70.60%, lr: 0.059606
+  Batch [350/390] Loss: 0.8369, Acc: 71.07%, lr: 0.058616
+[Epoch 9] Train Loss: 0.8306, Acc: 71.15%  |  Val Loss: 0.7526, Acc: 74.26%  |  Time: 70.7s
+[Epoch 9] t_iter median: 169.59 ms  (fwd 7.63 | bwd+comm 158.57 | opt 3.33 | data 0.12)  |  train-only epoch: 66.5s
+  -> Best model saved (74.26%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=61478.938 work_mean_ms=19.705 work_min_ms=9.092 work_max_ms=40.896
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=57643.123 tail_mean_ms=147.803 tail_min_ms=141.341 tail_max_ms=168.209
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr at epoch start=0.057822)
+  Batch [50/390] Loss: 0.7231, Acc: 74.50%, lr: 0.056826
+  Batch [100/390] Loss: 0.7629, Acc: 73.69%, lr: 0.055827
+  Batch [150/390] Loss: 0.7431, Acc: 74.46%, lr: 0.054826
+  Batch [200/390] Loss: 0.7398, Acc: 74.69%, lr: 0.053823
+  Batch [250/390] Loss: 0.7280, Acc: 75.00%, lr: 0.052818
+  Batch [300/390] Loss: 0.7185, Acc: 75.62%, lr: 0.051812
+  Batch [350/390] Loss: 0.7221, Acc: 75.55%, lr: 0.050806
+[Epoch 10] Train Loss: 0.7226, Acc: 75.51%  |  Val Loss: 0.6109, Acc: 78.85%  |  Time: 72.7s
+[Epoch 10] t_iter median: 175.30 ms  (fwd 7.89 | bwd+comm 164.34 | opt 3.37 | data 0.13)  |  train-only epoch: 68.4s
+  -> Best model saved (78.85%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=63325.875 work_mean_ms=20.297 work_min_ms=7.911 work_max_ms=37.529
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=59563.492 tail_mean_ms=152.727 tail_min_ms=133.527 tail_max_ms=165.481
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr at epoch start=0.050000)
+  Batch [50/390] Loss: 0.6010, Acc: 78.75%, lr: 0.048993
+  Batch [100/390] Loss: 0.6140, Acc: 78.69%, lr: 0.047987
+  Batch [150/390] Loss: 0.6052, Acc: 78.21%, lr: 0.046981
+  Batch [200/390] Loss: 0.6174, Acc: 77.91%, lr: 0.045977
+  Batch [250/390] Loss: 0.6132, Acc: 78.22%, lr: 0.044974
+  Batch [300/390] Loss: 0.6109, Acc: 78.31%, lr: 0.043973
+  Batch [350/390] Loss: 0.6113, Acc: 78.46%, lr: 0.042975
+[Epoch 11] Train Loss: 0.6127, Acc: 78.59%  |  Val Loss: 0.5834, Acc: 80.15%  |  Time: 73.1s
+[Epoch 11] t_iter median: 177.66 ms  (fwd 7.56 | bwd+comm 166.62 | opt 3.29 | data 0.11)  |  train-only epoch: 68.9s
+  -> Best model saved (80.15%)
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=63914.732 work_mean_ms=20.485 work_min_ms=7.689 work_max_ms=41.029
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=60206.795 tail_mean_ms=154.376 tail_min_ms=132.719 tail_max_ms=168.432
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr at epoch start=0.042178)
+  Batch [50/390] Loss: 0.5701, Acc: 80.50%, lr: 0.041185
+  Batch [100/390] Loss: 0.5901, Acc: 80.69%, lr: 0.040196
+  Batch [150/390] Loss: 0.5941, Acc: 79.92%, lr: 0.039211
+  Batch [200/390] Loss: 0.5801, Acc: 80.25%, lr: 0.038230
+  Batch [250/390] Loss: 0.5674, Acc: 80.47%, lr: 0.037254
+  Batch [300/390] Loss: 0.5568, Acc: 80.85%, lr: 0.036283
+  Batch [350/390] Loss: 0.5545, Acc: 81.11%, lr: 0.035317
+[Epoch 12] Train Loss: 0.5527, Acc: 81.20%  |  Val Loss: 0.5232, Acc: 81.88%  |  Time: 74.2s
+[Epoch 12] t_iter median: 183.99 ms  (fwd 7.66 | bwd+comm 172.83 | opt 3.34 | data 0.13)  |  train-only epoch: 69.8s
+  -> Best model saved (81.88%)
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=64735.129 work_mean_ms=20.748 work_min_ms=7.884 work_max_ms=42.415
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=60784.976 tail_mean_ms=155.859 tail_min_ms=134.336 tail_max_ms=169.802
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr at epoch start=0.034549)
+  Batch [50/390] Loss: 0.5136, Acc: 80.75%, lr: 0.033595
+  Batch [100/390] Loss: 0.5308, Acc: 80.50%, lr: 0.032647
+  Batch [150/390] Loss: 0.5107, Acc: 81.46%, lr: 0.031706
+  Batch [200/390] Loss: 0.4913, Acc: 82.31%, lr: 0.030773
+  Batch [250/390] Loss: 0.4846, Acc: 82.75%, lr: 0.029847
+  Batch [300/390] Loss: 0.4925, Acc: 82.62%, lr: 0.028930
+  Batch [350/390] Loss: 0.4947, Acc: 82.57%, lr: 0.028021
+[Epoch 13] Train Loss: 0.4903, Acc: 82.87%  |  Val Loss: 0.4719, Acc: 83.72%  |  Time: 71.0s
+[Epoch 13] t_iter median: 169.15 ms  (fwd 7.59 | bwd+comm 158.15 | opt 3.30 | data 0.13)  |  train-only epoch: 66.8s
+  -> Best model saved (83.72%)
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=61796.744 work_mean_ms=19.807 work_min_ms=7.333 work_max_ms=39.686
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=57986.692 tail_mean_ms=148.684 tail_min_ms=119.575 tail_max_ms=172.190
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr at epoch start=0.027300)
+  Batch [50/390] Loss: 0.4566, Acc: 85.12%, lr: 0.026408
+  Batch [100/390] Loss: 0.4399, Acc: 84.81%, lr: 0.025525
+  Batch [150/390] Loss: 0.4401, Acc: 84.62%, lr: 0.024652
+  Batch [200/390] Loss: 0.4570, Acc: 84.03%, lr: 0.023789
+  Batch [250/390] Loss: 0.4549, Acc: 84.10%, lr: 0.022937
+  Batch [300/390] Loss: 0.4442, Acc: 84.48%, lr: 0.022096
+  Batch [350/390] Loss: 0.4363, Acc: 84.84%, lr: 0.021266
+[Epoch 14] Train Loss: 0.4357, Acc: 84.81%  |  Val Loss: 0.4571, Acc: 84.46%  |  Time: 66.7s
+[Epoch 14] t_iter median: 156.53 ms  (fwd 7.74 | bwd+comm 145.35 | opt 3.37 | data 0.13)  |  train-only epoch: 62.4s
+  -> Best model saved (84.46%)
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=57389.600 work_mean_ms=18.394 work_min_ms=7.007 work_max_ms=39.053
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=53620.554 tail_mean_ms=137.489 tail_min_ms=121.134 tail_max_ms=166.052
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr at epoch start=0.020611)
+  Batch [50/390] Loss: 0.4388, Acc: 84.62%, lr: 0.019802
+  Batch [100/390] Loss: 0.4211, Acc: 85.62%, lr: 0.019006
+  Batch [150/390] Loss: 0.4256, Acc: 85.62%, lr: 0.018222
+  Batch [200/390] Loss: 0.4183, Acc: 86.12%, lr: 0.017451
+  Batch [250/390] Loss: 0.4133, Acc: 86.35%, lr: 0.016693
+  Batch [300/390] Loss: 0.4160, Acc: 86.38%, lr: 0.015949
+  Batch [350/390] Loss: 0.4122, Acc: 86.46%, lr: 0.015219
+[Epoch 15] Train Loss: 0.4075, Acc: 86.39%  |  Val Loss: 0.3858, Acc: 86.75%  |  Time: 75.4s
+[Epoch 15] t_iter median: 185.14 ms  (fwd 7.67 | bwd+comm 174.05 | opt 3.33 | data 0.12)  |  train-only epoch: 71.2s
+  -> Best model saved (86.75%)
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=66225.783 work_mean_ms=21.226 work_min_ms=8.230 work_max_ms=45.620
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=62510.054 tail_mean_ms=160.282 tail_min_ms=135.116 tail_max_ms=174.366
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr at epoch start=0.014645)
+  Batch [50/390] Loss: 0.3316, Acc: 88.75%, lr: 0.013940
+  Batch [100/390] Loss: 0.3698, Acc: 86.94%, lr: 0.013250
+  Batch [150/390] Loss: 0.3542, Acc: 87.58%, lr: 0.012574
+  Batch [200/390] Loss: 0.3536, Acc: 87.91%, lr: 0.011914
+  Batch [250/390] Loss: 0.3470, Acc: 88.28%, lr: 0.011270
+  Batch [300/390] Loss: 0.3450, Acc: 88.44%, lr: 0.010641
+  Batch [350/390] Loss: 0.3375, Acc: 88.68%, lr: 0.010028
+[Epoch 16] Train Loss: 0.3347, Acc: 88.81%  |  Val Loss: 0.3641, Acc: 87.76%  |  Time: 70.8s
+[Epoch 16] t_iter median: 172.64 ms  (fwd 7.73 | bwd+comm 161.46 | opt 3.32 | data 0.13)  |  train-only epoch: 66.7s
+  -> Best model saved (87.76%)
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=61697.319 work_mean_ms=19.775 work_min_ms=8.219 work_max_ms=36.969
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=57906.036 tail_mean_ms=148.477 tail_min_ms=130.885 tail_max_ms=159.066
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr at epoch start=0.009549)
+  Batch [50/390] Loss: 0.3174, Acc: 90.12%, lr: 0.008966
+  Batch [100/390] Loss: 0.3031, Acc: 89.81%, lr: 0.008399
+  Batch [150/390] Loss: 0.3028, Acc: 89.58%, lr: 0.007848
+  Batch [200/390] Loss: 0.2876, Acc: 90.19%, lr: 0.007315
+  Batch [250/390] Loss: 0.2898, Acc: 90.03%, lr: 0.006800
+  Batch [300/390] Loss: 0.2932, Acc: 89.90%, lr: 0.006302
+  Batch [350/390] Loss: 0.2971, Acc: 89.82%, lr: 0.005821
+[Epoch 17] Train Loss: 0.2939, Acc: 89.89%  |  Val Loss: 0.3303, Acc: 89.08%  |  Time: 71.2s
+[Epoch 17] t_iter median: 162.81 ms  (fwd 7.79 | bwd+comm 151.36 | opt 3.35 | data 0.13)  |  train-only epoch: 67.0s
+  -> Best model saved (89.08%)
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=61909.872 work_mean_ms=19.843 work_min_ms=7.604 work_max_ms=40.132
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=58072.117 tail_mean_ms=148.903 tail_min_ms=123.694 tail_max_ms=174.476
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr at epoch start=0.005450)
+  Batch [50/390] Loss: 0.2582, Acc: 91.12%, lr: 0.005002
+  Batch [100/390] Loss: 0.2394, Acc: 91.69%, lr: 0.004572
+  Batch [150/390] Loss: 0.2604, Acc: 90.75%, lr: 0.004160
+  Batch [200/390] Loss: 0.2541, Acc: 91.28%, lr: 0.003768
+  Batch [250/390] Loss: 0.2560, Acc: 91.17%, lr: 0.003394
+  Batch [300/390] Loss: 0.2541, Acc: 91.23%, lr: 0.003038
+  Batch [350/390] Loss: 0.2529, Acc: 91.30%, lr: 0.002702
+[Epoch 18] Train Loss: 0.2642, Acc: 90.98%  |  Val Loss: 0.3171, Acc: 89.56%  |  Time: 66.6s
+[Epoch 18] t_iter median: 149.36 ms  (fwd 7.83 | bwd+comm 138.04 | opt 3.32 | data 0.14)  |  train-only epoch: 62.4s
+  -> Best model saved (89.56%)
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=57334.522 work_mean_ms=18.376 work_min_ms=7.219 work_max_ms=118.106
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=53345.791 tail_mean_ms=136.784 tail_min_ms=119.699 tail_max_ms=171.346
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr at epoch start=0.002447)
+  Batch [50/390] Loss: 0.2352, Acc: 91.50%, lr: 0.002146
+  Batch [100/390] Loss: 0.2434, Acc: 90.88%, lr: 0.001864
+  Batch [150/390] Loss: 0.2408, Acc: 91.12%, lr: 0.001601
+  Batch [200/390] Loss: 0.2341, Acc: 91.56%, lr: 0.001358
+  Batch [250/390] Loss: 0.2430, Acc: 91.22%, lr: 0.001135
+  Batch [300/390] Loss: 0.2431, Acc: 91.33%, lr: 0.000931
+  Batch [350/390] Loss: 0.2413, Acc: 91.38%, lr: 0.000748
+[Epoch 19] Train Loss: 0.2373, Acc: 91.47%  |  Val Loss: 0.3083, Acc: 89.88%  |  Time: 69.6s
+[Epoch 19] t_iter median: 172.11 ms  (fwd 7.69 | bwd+comm 160.98 | opt 3.30 | data 0.13)  |  train-only epoch: 65.4s
+  -> Best model saved (89.88%)
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=60339.905 work_mean_ms=19.340 work_min_ms=7.410 work_max_ms=40.442
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=56487.885 tail_mean_ms=144.841 tail_min_ms=121.014 tail_max_ms=155.942
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr at epoch start=0.000616)
+  Batch [50/390] Loss: 0.1754, Acc: 93.75%, lr: 0.000468
+  Batch [100/390] Loss: 0.1870, Acc: 93.56%, lr: 0.000341
+  Batch [150/390] Loss: 0.1887, Acc: 93.62%, lr: 0.000233
+  Batch [200/390] Loss: 0.1961, Acc: 93.53%, lr: 0.000146
+  Batch [250/390] Loss: 0.2030, Acc: 92.88%, lr: 0.000079
+  Batch [300/390] Loss: 0.2006, Acc: 93.02%, lr: 0.000033
+  Batch [350/390] Loss: 0.2014, Acc: 93.12%, lr: 0.000006
+[Epoch 20] Train Loss: 0.2039, Acc: 93.03%  |  Val Loss: 0.3032, Acc: 90.06%  |  Time: 69.2s
+[Epoch 20] t_iter median: 168.35 ms  (fwd 7.78 | bwd+comm 157.29 | opt 3.34 | data 0.12)  |  train-only epoch: 65.1s
+  -> Best model saved (90.06%)
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_WORK_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 calls=3120 work_total_ms=59931.356 work_mean_ms=19.209 work_min_ms=7.359 work_max_ms=39.451
+[HOOK_TAIL_SUMMARY] label=nccl:recursive_doubling_zfp_naive:rate16 steps=390 tail_total_ms=56132.286 tail_mean_ms=143.929 tail_min_ms=120.547 tail_max_ms=166.107
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 1451.8s | Best val acc: 90.06%
+Epoch times (train+val): mean=71.7s  min=65.6s  max=75.4s
+Train-only epoch time (epochs 2..N): median=68.42s  min=61.37s  max=71.19s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=nccl, hook=recursive_doubling_zfp_naive, zfp_rate=16, status=0 at Wed Jul 15 11:23:11 PM UTC 2026 ===
+=== Job finished: Wed Jul 15 11:23:11 PM UTC 2026 ===

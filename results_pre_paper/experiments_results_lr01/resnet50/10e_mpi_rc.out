@@ -1,0 +1,146 @@
+=== Job started: Tue May  5 02:57:38 PM UTC 2026 ===
+=== Node: x3003c0s7b0n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3003c0s7b0n0
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  recursive_doubling
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+Distributed Training: RESNET50 on CIFAR10
+Backend: MPI, Algorithm: recursive_doubling
+================================================================================
+Ranks: 4, Epochs: 10, Batch/rank: 128, Effective batch: 512
+LR: 0.01, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/recursive_doubling
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000010)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  recursive_doubling
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  recursive_doubling
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  recursive_doubling
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+  Batch [50/98] Loss: 2.3994, Acc: 10.83%
+[Epoch 1] Train Loss: 2.3522, Acc: 11.76%  |  Val Loss: 2.2920, Acc: 11.64%  |  Time: 10.3s
+  -> Best model saved (11.64%)
+
+[Epoch 2] Training... (lr=0.010000)
+  Batch [50/98] Loss: 3.3227, Acc: 12.50%
+[Epoch 2] Train Loss: 2.7219, Acc: 17.03%  |  Val Loss: 1.9668, Acc: 25.68%  |  Time: 5.8s
+  -> Best model saved (25.68%)
+
+[Epoch 3] Training... (lr=0.009698)
+  Batch [50/98] Loss: 1.8765, Acc: 28.48%
+[Epoch 3] Train Loss: 1.8170, Acc: 31.22%  |  Val Loss: 1.8618, Acc: 32.48%  |  Time: 5.8s
+  -> Best model saved (32.48%)
+
+[Epoch 4] Training... (lr=0.008830)
+  Batch [50/98] Loss: 1.7032, Acc: 35.72%
+[Epoch 4] Train Loss: 1.6762, Acc: 37.30%  |  Val Loss: 1.5127, Acc: 43.76%  |  Time: 5.8s
+  -> Best model saved (43.76%)
+
+[Epoch 5] Training... (lr=0.007500)
+  Batch [50/98] Loss: 1.4771, Acc: 44.44%
+[Epoch 5] Train Loss: 1.4853, Acc: 44.23%  |  Val Loss: 1.3906, Acc: 48.72%  |  Time: 5.8s
+  -> Best model saved (48.72%)
+
+[Epoch 6] Training... (lr=0.005868)
+  Batch [50/98] Loss: 1.3971, Acc: 48.08%
+[Epoch 6] Train Loss: 1.3924, Acc: 48.59%  |  Val Loss: 1.3797, Acc: 51.04%  |  Time: 5.8s
+  -> Best model saved (51.04%)
+
+[Epoch 7] Training... (lr=0.004132)
+  Batch [50/98] Loss: 1.3385, Acc: 51.56%
+[Epoch 7] Train Loss: 1.3150, Acc: 52.04%  |  Val Loss: 1.2641, Acc: 54.84%  |  Time: 5.8s
+  -> Best model saved (54.84%)
+
+[Epoch 8] Training... (lr=0.002500)
+  Batch [50/98] Loss: 1.2484, Acc: 54.08%
+[Epoch 8] Train Loss: 1.2440, Acc: 54.33%  |  Val Loss: 1.2295, Acc: 56.36%  |  Time: 5.8s
+  -> Best model saved (56.36%)
+
+[Epoch 9] Training... (lr=0.001170)
+  Batch [50/98] Loss: 1.2218, Acc: 55.88%
+[Epoch 9] Train Loss: 1.2237, Acc: 55.72%  |  Val Loss: 1.1929, Acc: 58.60%  |  Time: 5.8s
+  -> Best model saved (58.60%)
+
+[Epoch 10] Training... (lr=0.000302)
+  Batch [50/98] Loss: 1.2091, Acc: 56.02%
+[Epoch 10] Train Loss: 1.1945, Acc: 56.69%  |  Val Loss: 1.1646, Acc: 58.68%  |  Time: 5.8s
+  -> Best model saved (58.68%)
+
+================================================================================
+Done in 65.9s | Best val acc: 58.68%
+Epoch times: mean=6.3s  min=5.8s  max=10.3s
+================================================================================
+=== Job finished: Tue May  5 02:59:44 PM UTC 2026 ===

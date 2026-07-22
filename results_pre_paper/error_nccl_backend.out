@@ -1,0 +1,463 @@
+=== Job started: Mon May 18 04:08:49 AM UTC 2026 ===
+=== Node: x3006c0s13b0n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3006c0s13b0n0
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+Distributed Training: RESNET50 on CIFAR10
+Backend: MPI, Algorithm: ring_zfp_online_coll
+================================================================================
+Ranks: 4, Epochs: 10, Batch/rank: 128, Effective batch: 512
+LR: 0.01, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/ring_zfp_online_coll
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000010)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+  Batch [50/98] Loss: 2.4001, Acc: 10.69%
+[Epoch 1] Train Loss: 2.3522, Acc: 11.66%  |  Val Loss: 2.2932, Acc: 12.44%  |  Time: 7.6s
+  -> Best model saved (12.44%)
+
+[Epoch 2] Training... (lr=0.010000)
+  Batch [50/98] Loss: 3.0011, Acc: 14.97%
+[Epoch 2] Train Loss: 2.5381, Acc: 19.01%  |  Val Loss: 2.0321, Acc: 28.48%  |  Time: 6.0s
+  -> Best model saved (28.48%)
+
+[Epoch 3] Training... (lr=0.009698)
+  Batch [50/98] Loss: 1.9214, Acc: 27.39%
+[Epoch 3] Train Loss: 1.8471, Acc: 30.02%  |  Val Loss: 1.7541, Acc: 33.28%  |  Time: 6.0s
+  -> Best model saved (33.28%)
+
+[Epoch 4] Training... (lr=0.008830)
+  Batch [50/98] Loss: 1.7104, Acc: 36.59%
+[Epoch 4] Train Loss: 1.6641, Acc: 37.86%  |  Val Loss: 1.5320, Acc: 43.84%  |  Time: 6.0s
+  -> Best model saved (43.84%)
+
+[Epoch 5] Training... (lr=0.007500)
+  Batch [50/98] Loss: 1.4805, Acc: 44.42%
+[Epoch 5] Train Loss: 1.4866, Acc: 44.60%  |  Val Loss: 1.4105, Acc: 48.60%  |  Time: 6.0s
+  -> Best model saved (48.60%)
+
+[Epoch 6] Training... (lr=0.005868)
+  Batch [50/98] Loss: 1.4250, Acc: 47.36%
+[Epoch 6] Train Loss: 1.4104, Acc: 48.07%  |  Val Loss: 1.3118, Acc: 53.28%  |  Time: 6.0s
+  -> Best model saved (53.28%)
+
+[Epoch 7] Training... (lr=0.004132)
+  Batch [50/98] Loss: 1.3368, Acc: 51.69%
+[Epoch 7] Train Loss: 1.3143, Acc: 52.27%  |  Val Loss: 1.2916, Acc: 54.60%  |  Time: 6.0s
+  -> Best model saved (54.60%)
+
+[Epoch 8] Training... (lr=0.002500)
+  Batch [50/98] Loss: 1.2588, Acc: 54.17%
+[Epoch 8] Train Loss: 1.2516, Acc: 54.58%  |  Val Loss: 1.2089, Acc: 56.92%  |  Time: 6.0s
+  -> Best model saved (56.92%)
+
+[Epoch 9] Training... (lr=0.001170)
+  Batch [50/98] Loss: 1.2283, Acc: 55.08%
+[Epoch 9] Train Loss: 1.2197, Acc: 55.71%  |  Val Loss: 1.1665, Acc: 59.40%  |  Time: 6.0s
+  -> Best model saved (59.40%)
+
+[Epoch 10] Training... (lr=0.000302)
+  Batch [50/98] Loss: 1.2003, Acc: 56.98%
+[Epoch 10] Train Loss: 1.1852, Acc: 57.28%  |  Val Loss: 1.1462, Acc: 59.92%  |  Time: 6.0s
+  -> Best model saved (59.92%)
+
+================================================================================
+Done in 64.8s | Best val acc: 59.92%
+Epoch times: mean=6.1s  min=6.0s  max=7.6s
+================================================================================
+=== Job finished: Mon May 18 04:10:14 AM UTC 2026 ===
+=== Job started: Mon May 18 04:11:34 AM UTC 2026 ===
+=== Node: x3111c0s7b0n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3111c0s7b0n0
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+Distributed Training: RESNET50 on CIFAR10
+Backend: NCCL, Algorithm: ring_zfp_online_coll
+================================================================================
+Ranks: 4, Epochs: 10, Batch/rank: 128, Effective batch: 512
+LR: 0.01, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: nccl/ring_zfp_online_coll
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000010)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp_online_coll
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+[rank2]:[W518 04:21:59.510777787 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=74, addr=[localhost.localdomain]:49742, remote=[localhost.localdomain]:29500) returned 0, likely a timeout
+[rank2]:[W518 04:21:59.526378431 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=74, addr=[localhost.localdomain]:49742, remote=[localhost.localdomain]:29500) timed out after 600000ms
+[rank1]:[W518 04:22:00.562051685 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=72, addr=[localhost.localdomain]:49738, remote=[localhost.localdomain]:29500) returned 0, likely a timeout
+[rank1]:[W518 04:22:00.562274472 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=72, addr=[localhost.localdomain]:49738, remote=[localhost.localdomain]:29500) timed out after 600000ms
+[rank3]:[W518 04:22:00.571346276 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=76, addr=[localhost.localdomain]:49746, remote=[localhost.localdomain]:29500) returned 0, likely a timeout
+[rank3]:[W518 04:22:00.571506666 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=76, addr=[localhost.localdomain]:49746, remote=[localhost.localdomain]:29500) timed out after 600000ms
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 94, in <module>
+[rank2]:     train(config)
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 378, in train
+[rank2]:     train_loss, train_acc = train_epoch(
+[rank2]:                             ^^^^^^^^^^^^
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 96, in train_epoch
+[rank2]:     loss.backward()
+[rank2]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/_tensor.py", line 647, in backward
+[rank2]:     torch.autograd.backward(
+[rank2]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/autograd/__init__.py", line 354, in backward
+[rank2]:     _engine_run_backward(
+[rank2]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank2]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1841, in hook
+[rank2]:     return _profiled_hook(f"{backend}:{algorithm}", base_hook, state_obj, bucket)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 237, in _profiled_hook
+[rank2]:     fut = hook_fn(state, bucket)
+[rank2]:           ^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1757, in _ring_allreduce_zfp_online_coll_hook
+[rank2]:     _ring_allreduce_zfp_online_coll_sum(
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1565, in _ring_allreduce_zfp_online_coll_sum
+[rank2]:     recv_req = dist.irecv(
+[rank2]:                ^^^^^^^^^^^
+[rank2]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/distributed/distributed_c10d.py", line 2455, in irecv
+[rank2]:     return group.recv([tensor], group_src, tag)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]: torch.distributed.DistBackendError: [2] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '1:2', but store->get('1:2') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//1:2
+[rank2]: Exception raised from doWait at /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank2]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x154e680510a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libc10.so)
+[rank2]: frame #1: <unknown function> + 0x118753b (0x154e72bd053b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #2: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x33 (0x154e7754f3d3 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #3: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x105 (0x154e77550565 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #4: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x154e774ef9a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x154e774ef9a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 94, in <module>
+[rank3]:     train(config)
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 378, in train
+[rank3]:     train_loss, train_acc = train_epoch(
+[rank3]:                             ^^^^^^^^^^^^
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 96, in train_epoch
+[rank3]:     loss.backward()
+[rank3]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/_tensor.py", line 647, in backward
+[rank3]:     torch.autograd.backward(
+[rank3]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/autograd/__init__.py", line 354, in backward
+[rank3]:     _engine_run_backward(
+[rank3]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank3]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1841, in hook
+[rank3]:     return _profiled_hook(f"{backend}:{algorithm}", base_hook, state_obj, bucket)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 237, in _profiled_hook
+[rank3]:     fut = hook_fn(state, bucket)
+[rank3]:           ^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1757, in _ring_allreduce_zfp_online_coll_hook
+[rank3]:     _ring_allreduce_zfp_online_coll_sum(
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1565, in _ring_allreduce_zfp_online_coll_sum
+[rank3]:     recv_req = dist.irecv(
+[rank3]:                ^^^^^^^^^^^
+[rank3]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/distributed/distributed_c10d.py", line 2455, in irecv
+[rank3]:     return group.recv([tensor], group_src, tag)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]: torch.distributed.DistBackendError: [3] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '2:3', but store->get('2:3') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//2:3
+[rank3]: Exception raised from doWait at /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank3]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x1554f34420a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libc10.so)
+[rank3]: frame #1: <unknown function> + 0x118753b (0x1554fdfc153b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #2: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x33 (0x1555029403d3 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #3: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x105 (0x155502941565 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #4: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x1555028e09a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x1555028e09a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 94, in <module>
+[rank1]:     train(config)
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 378, in train
+[rank1]:     train_loss, train_acc = train_epoch(
+[rank1]:                             ^^^^^^^^^^^^
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 96, in train_epoch
+[rank1]:     loss.backward()
+[rank1]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/_tensor.py", line 647, in backward
+[rank1]:     torch.autograd.backward(
+[rank1]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/autograd/__init__.py", line 354, in backward
+[rank1]:     _engine_run_backward(
+[rank1]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1841, in hook
+[rank1]:     return _profiled_hook(f"{backend}:{algorithm}", base_hook, state_obj, bucket)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 237, in _profiled_hook
+[rank1]:     fut = hook_fn(state, bucket)
+[rank1]:           ^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1757, in _ring_allreduce_zfp_online_coll_hook
+[rank1]:     _ring_allreduce_zfp_online_coll_sum(
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/communication_strategy.py", line 1565, in _ring_allreduce_zfp_online_coll_sum
+[rank1]:     recv_req = dist.irecv(
+[rank1]:                ^^^^^^^^^^^
+[rank1]:   File "/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/distributed/distributed_c10d.py", line 2455, in irecv
+[rank1]:     return group.recv([tensor], group_src, tag)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: torch.distributed.DistBackendError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0:1', but store->get('0:1') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//0:1
+[rank1]: Exception raised from doWait at /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank1]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x14de3b7600a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libc10.so)
+[rank1]: frame #1: <unknown function> + 0x118753b (0x14de462df53b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #2: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x33 (0x14de4ac5e3d3 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #3: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x105 (0x14de4ac5f565 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #4: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14de4abfe9a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14de4abfe9a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x154e774ef9a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #7: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ed (0x154e68e6111d in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank2]: frame #8: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x1afb (0x154e68e63acb in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank2]: frame #9: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1462 (0x154e68e81db2 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank2]: frame #10: <unknown function> + 0x5a95695 (0x154e774de695 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #11: <unknown function> + 0x5aa43d8 (0x154e774ed3d8 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #12: <unknown function> + 0x508f516 (0x154e76ad8516 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #13: <unknown function> + 0x5ab0bd9 (0x154e774f9bd9 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #14: <unknown function> + 0x5ab5bd9 (0x154e774febd9 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #15: <unknown function> + 0xcc62fb (0x154e7f5062fb in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #16: <unknown function> + 0x3a0855 (0x154e7ebe0855 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #17: <unknown function> + 0x21bc08 (0x558c9ce37c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #18: _PyObject_MakeTpCall + 0x2cc (0x558c9ce1b17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #19: <unknown function> + 0x112b23 (0x558c9cd2eb23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #20: c10d::PythonCommHook::runHook(c10d::GradBucket&) + 0x52 (0x154e7f549692 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #21: c10d::Reducer::run_comm_hook(c10d::GradBucket&) + 0x19 (0x154e775adb89 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #22: c10d::Reducer::all_reduce_bucket(c10d::Reducer::Bucket&) + 0x34d (0x154e775b098d in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #23: c10d::Reducer::delay_all_reduce() + 0x15b (0x154e775bcf5b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #24: <unknown function> + 0xccfd6b (0x154e7f50fd6b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #25: <unknown function> + 0x3a0855 (0x154e7ebe0855 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #26: <unknown function> + 0x21bc08 (0x558c9ce37c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #27: _PyObject_MakeTpCall + 0x2cc (0x558c9ce1b17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #28: <unknown function> + 0x244dd0 (0x558c9ce60dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #29: <unknown function> + 0x21b8ee (0x558c9ce378e.so)
+[rank3]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x1555028e09a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #7: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ed (0x1554f425211d in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank3]: frame #8: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x1afb (0x1554f4254acb in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank3]: frame #9: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1462 (0x1554f4272db2 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank3]: frame #10: <unknown function> + 0x5a95695 (0x1555028cf695 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #11: <unknown function> + 0x5aa43d8 (0x1555028de3d8 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #12: <unknown function> + 0x508f516 (0x155501ec9516 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #13: <unknown function> + 0x5ab0bd9 (0x1555028eabd9 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #14: <unknown function> + 0x5ab5bd9 (0x1555028efbd9 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #15: <unknown function> + 0xcc62fb (0x15550a8f72fb in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #16: <unknown function> + 0x3a0855 (0x155509fd1855 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #17: <unknown function> + 0x21bc08 (0x55ecf37a0c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #18: _PyObject_MakeTpCall + 0x2cc (0x55ecf378417c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #19: <unknown function> + 0x112b23 (0x55ecf3697b23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #20: c10d::PythonCommHook::runHook(c10d::GradBucket&) + 0x52 (0x15550a93a692 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #21: c10d::Reducer::run_comm_hook(c10d::GradBucket&) + 0x19 (0x15550299eb89 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #22: c10d::Reducer::all_reduce_bucket(c10d::Reducer::Bucket&) + 0x34d (0x1555029a198d in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #23: c10d::Reducer::delay_all_reduce() + 0x15b (0x1555029adf5b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #24: <unknown function> + 0xccfd6b (0x15550a900d6b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #25: <unknown function> + 0x3a0855 (0x155509fd1855 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #26: <unknown function> + 0x21bc08 (0x55ecf37a0c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #27: _PyObject_MakeTpCall + 0x2cc (0x55ecf378417c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #28: <unknown function> + 0x244dd0 (0x55ecf37c9dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #29: <unknown function> + 0x21b8ee (0x55ecf37a08e.so)
+[rank1]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14de4abfe9a0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #7: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ed (0x14de3c57011d in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank1]: frame #8: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x1afb (0x14de3c572acb in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank1]: frame #9: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1462 (0x14de3c590db2 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cuda.so)
+[rank1]: frame #10: <unknown function> + 0x5a95695 (0x14de4abed695 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #11: <unknown function> + 0x5aa43d8 (0x14de4abfc3d8 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #12: <unknown function> + 0x508f516 (0x14de4a1e7516 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #13: <unknown function> + 0x5ab0bd9 (0x14de4ac08bd9 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #14: <unknown function> + 0x5ab5bd9 (0x14de4ac0dbd9 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #15: <unknown function> + 0xcc62fb (0x14de52c152fb in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #16: <unknown function> + 0x3a0855 (0x14de522ef855 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #17: <unknown function> + 0x21bc08 (0x5648038e9c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #18: _PyObject_MakeTpCall + 0x2cc (0x5648038cd17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #19: <unknown function> + 0x112b23 (0x5648037e0b23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #20: c10d::PythonCommHook::runHook(c10d::GradBucket&) + 0x52 (0x14de52c58692 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #21: c10d::Reducer::run_comm_hook(c10d::GradBucket&) + 0x19 (0x14de4acbcb89 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #22: c10d::Reducer::all_reduce_bucket(c10d::Reducer::Bucket&) + 0x34d (0x14de4acbf98d in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #23: c10d::Reducer::delay_all_reduce() + 0x15b (0x14de4accbf5b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #24: <unknown function> + 0xccfd6b (0x14de52c1ed6b in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #25: <unknown function> + 0x3a0855 (0x14de522ef855 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #26: <unknown function> + 0x21bc08 (0x5648038e9c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #27: _PyObject_MakeTpCall + 0x2cc (0x5648038cd17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #28: <unknown function> + 0x244dd0 (0x564803912dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #29: <unknown function> + 0x21b8ee (0x5648038e98ee in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #30: PyObject_CallFunctionObjArgs + 0xa8 (0x558c9cece228 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #31: <unknown function> + 0x6d28f7 (0x154e7ef128f7 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #32: <unknown function> + 0x509f0bc (0x154e76ae80bc in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #33: <unknown function> + 0x50a1741 (0x154e76aea741 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #34: torch::autograd::Engine::thread_main(std::shared_ptr<torch::autograd::GraphTask> const&) + 0x1aa (0x154e76aeeb6a in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #35: torch::autograd::Engine::thread_init(int, std::shared_ptr<torch::autograd::ReadyQueue> const&, bool) + 0x3a0 (0x154e76ae50d0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank2]: frame #36: <unknown function> + 0x6d429f (0x154e7ef1429f in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank2]: frame #37: <unknown function> + 0xd8198 (0x154e82226198 in /soft/applications/conda/2025-09-28/mconda3/bin/../lib/libstdc++.so.6)
+[rank2]: frame #38: <unknown function> + 0xa6f6c (0x154e86cb2f6c in /lib64/libc.so.6)
+[rank2]: frame #39: <unknown function> + 0x12e388 (0x154e86d3a388 in /lib64/libc.so.6)
+[rank2]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+e in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #30: PyObject_CallFunctionObjArgs + 0xa8 (0x55ecf3837228 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #31: <unknown function> + 0x6d28f7 (0x15550a3038f7 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #32: <unknown function> + 0x509f0bc (0x155501ed90bc in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #33: <unknown function> + 0x50a1741 (0x155501edb741 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #34: torch::autograd::Engine::thread_main(std::shared_ptr<torch::autograd::GraphTask> const&) + 0x1aa (0x155501edfb6a in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #35: torch::autograd::Engine::thread_init(int, std::shared_ptr<torch::autograd::ReadyQueue> const&, bool) + 0x3a0 (0x155501ed60d0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank3]: frame #36: <unknown function> + 0x6d429f (0x15550a30529f in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank3]: frame #37: <unknown function> + 0xd8198 (0x15550d626198 in /soft/applications/conda/2025-09-28/mconda3/bin/../lib/libstdc++.so.6)
+[rank3]: frame #38: <unknown function> + 0xa6f6c (0x155511fa3f6c in /lib64/libc.so.6)
+[rank3]: frame #39: <unknown function> + 0x12e388 (0x15551202b388 in /lib64/libc.so.6)
+[rank3]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+e in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #30: PyObject_CallFunctionObjArgs + 0xa8 (0x564803980228 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #31: <unknown function> + 0x6d28f7 (0x14de526218f7 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #32: <unknown function> + 0x509f0bc (0x14de4a1f70bc in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #33: <unknown function> + 0x50a1741 (0x14de4a1f9741 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #34: torch::autograd::Engine::thread_main(std::shared_ptr<torch::autograd::GraphTask> const&) + 0x1aa (0x14de4a1fdb6a in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #35: torch::autograd::Engine::thread_init(int, std::shared_ptr<torch::autograd::ReadyQueue> const&, bool) + 0x3a0 (0x14de4a1f40d0 in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_cpu.so)
+[rank1]: frame #36: <unknown function> + 0x6d429f (0x14de5262329f in /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/lib/libtorch_python.so)
+[rank1]: frame #37: <unknown function> + 0xd8198 (0x14de55826198 in /soft/applications/conda/2025-09-28/mconda3/bin/../lib/libstdc++.so.6)
+[rank1]: frame #38: <unknown function> + 0xa6f6c (0x14de5a2c1f6c in /lib64/libc.so.6)
+[rank1]: frame #39: <unknown function> + 0x12e388 (0x14de5a349388 in /lib64/libc.so.6)
+[rank1]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+=>> PBS: job killed: walltime 3630 exceeded limit 3600

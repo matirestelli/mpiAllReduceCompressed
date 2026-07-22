@@ -1,0 +1,98 @@
+=== Job started: Thu Jul  9 10:13:33 PM UTC 2026 ===
+=== Node: sophia-gpu-05 ===
+=== PBS_JOBID: 164400.sophia-pbs-01.lab.alcf.anl.gov ===
+=============================================
+ Sophia PyTorch source build env
+=============================================
+TEST_ROOT     : /lus/eagle/projects/UIC-HPC/mrest/pytorch_sophia_try2
+PYTORCH_SOURCE: /lus/eagle/projects/UIC-HPC/mrest/pytorch_sophia_try2/src/pytorch
+Python        : /lus/eagle/projects/UIC-HPC/mrest/pytorch_sophia_try2/conda/pt-mpi-py311/bin/python
+Python ver    : Python 3.11.15
+pip           : pip 26.0.1 from /lus/eagle/projects/UIC-HPC/mrest/pytorch_sophia_try2/conda/pt-mpi-py311/lib/python3.11/site-packages/pip (python 3.11)
+gcc           : /soft/spack/base/0.7.1/install/linux-rhel9-x86_64/gcc-11.4.1/gcc-13.2.0-2x4g6223t3wjizzxewkwsygmnmtjhwfa/bin/gcc
+gcc ver       : gcc (Spack GCC) 13.2.0
+g++           : /soft/spack/base/0.7.1/install/linux-rhel9-x86_64/gcc-11.4.1/gcc-13.2.0-2x4g6223t3wjizzxewkwsygmnmtjhwfa/bin/g++
+GCC_LIBDIR    : /soft/spack/base/0.7.1/install/linux-rhel9-x86_64/gcc-11.4.1/gcc-13.2.0-2x4g6223t3wjizzxewkwsygmnmtjhwfa/lib64/../lib64
+CUDA_HOME     : /soft/compilers/cudatoolkit/cuda-13.2.1
+nvcc          : /soft/compilers/cudatoolkit/cuda-13.2.1/bin/nvcc
+nvcc ver      : Cuda compilation tools, release 13.2, V13.2.78
+MPI_HOME      : /soft/compilers/openmpi/5.0.10
+mpicc         : /soft/compilers/openmpi/5.0.10/bin/mpicc
+mpirun        : /soft/compilers/openmpi/5.0.10/bin/mpirun
+USE_MPI       : 1
+USE_CUDA      : 1
+USE_NCCL      : 1
+MAX_JOBS      : 8
+=============================================
+[OK] libstdc++ has GLIBCXX_3.4.30
+mca:mpi:base:param:mpi_built_with_cuda_support:value:true
+2.14.0a0+git337d62b /lus/eagle/projects/UIC-HPC/mrest/pytorch_sophia_try2/src/pytorch/torch/__init__.py
+mpi True
+2.14.0a0+git337d62b /lus/eagle/projects/UIC-HPC/mrest/pytorch_sophia_try2/src/pytorch/torch/__init__.py
+CUDA built: 13.2
+CUDA visible: True 4
+MPI: True
+NCCL: True
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'mpi4py'
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none at Thu Jul  9 10:14:14 PM UTC 2026 ===
+--------------------------------------------------------------------------
+PRTE has detected that the head of the session directory tree (where
+scratch files and shared memory backing storage will be placed)
+resides on a shared file system:
+
+   Directory: /home/mrest/.tmp
+   File system type: lustre
+
+For performance reasons, it is strongly recommended that the session
+directory be located on a local file system. This can be controlled by
+setting the system temporary directory to be used by PRTE using either
+the TMPDIR envar or the "prte_tmpdir_base" MCA param.
+
+If you need the temporary directory to be different on remote nodes
+from the local one where prterun is running (e.g., when a login node is
+being employed), then you can set the local temporary directory using
+the "prte_local_tmpdir_base" MCA param and the one to be used on all
+other nodes using the "prte_remote_tmpdir_base" param.
+
+This is only a warning advisory and your job will continue. You can
+disable this warning in the future by setting the
+"prte_silence_shared_fs" MCA param to "1".
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+Warning: Could not find the environment variable: UCX_ROOT
+--------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/mrest/mpiAllReduceCompressed/interface.py", line 24, in <module>
+    from config import TrainingConfig
+  File "/home/mrest/mpiAllReduceCompressed/config.py", line 20, in <module>
+Traceback (most recent call last):
+    from torchvision import datasets, models, transforms
+  File "/home/mrest/mpiAllReduceCompressed/interface.py", line 24, in <module>
+ModuleNotFoundError: No module named 'torchvision'
+    from config import TrainingConfig
+  File "/home/mrest/mpiAllReduceCompressed/config.py", line 20, in <module>
+    from torchvision import datasets, models, transforms
+ModuleNotFoundError: No module named 'torchvision'
+Traceback (most recent call last):
+  File "/home/mrest/mpiAllReduceCompressed/interface.py", line 24, in <module>
+    from config import TrainingConfig
+  File "/home/mrest/mpiAllReduceCompressed/config.py", line 20, in <module>
+    from torchvision import datasets, models, transforms
+ModuleNotFoundError: No module named 'torchvision'
+Traceback (most recent call last):
+  File "/home/mrest/mpiAllReduceCompressed/interface.py", line 24, in <module>
+    from config import TrainingConfig
+  File "/home/mrest/mpiAllReduceCompressed/config.py", line 20, in <module>
+    from torchvision import datasets, models, transforms
+ModuleNotFoundError: No module named 'torchvision'
+--------------------------------------------------------------------------
+prterun detected that one or more processes exited with non-zero status,
+thus causing the job to be terminated. The first process to do so was:
+
+   Process name: [prterun-sophia-gpu-05-252290@1,2]
+   Exit code:    1
+--------------------------------------------------------------------------
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.001, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none, status=1 at Thu Jul  9 10:14:17 PM UTC 2026 ===
+=== Stopping job because training failed ===

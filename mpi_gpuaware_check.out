@@ -1,0 +1,256 @@
+=== Start: Tue Jun 23 05:29:55 PM UTC 2026 ===
+Host: sophia-gpu-01
+Workdir: /home/mrest/mpiAllReduceCompressed
+=============================================
+  Sophia DDP + Installed PyTorch + OpenMPI
+=============================================
+Node               : sophia-gpu-01
+Python             : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+NVCC               : /usr/local/cuda-12.9/bin/nvcc
+MPI launcher       : /soft/compilers/openmpi/5.0.10/bin/mpirun
+CUDA_HOME          : /usr/local/cuda-12.9
+PYTORCH_MPI_BUILD  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia
+PYTORCH_SOURCE     : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/src/pytorch
+EAGLE_PYTHON_PREFIX: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi
+ZFP_HOME           : /home/mrest/mpiAllReduceCompressed/zfp-install-sophia
+PYTHONPATH         : <unset>
+=============================================
+Python version    : 3.11.14
+Python executable : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+PyTorch version   : 2.8.0a0
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+Built CUDA        : 12.9
+CUDA available    : True 4
+MPI available     : True
+NCCL available    : True
+Gloo available    : True
+[WARN] mpi4py check failed: ModuleNotFoundError("No module named 'mpi4py'")
+
+=== Which MPI / UCX ===
+/soft/compilers/openmpi/5.0.10/bin/mpirun
+--------------------------------------------------------------------------
+PRTE has detected that the head of the session directory tree (where
+scratch files and shared memory backing storage will be placed)
+resides on a shared file system:
+
+   Directory: /home/mrest/.tmp
+   File system type: lustre
+
+For performance reasons, it is strongly recommended that the session
+directory be located on a local file system. This can be controlled by
+setting the system temporary directory to be used by PRTE using either
+the TMPDIR envar or the "prte_tmpdir_base" MCA param.
+
+If you need the temporary directory to be different on remote nodes
+from the local one where prterun is running (e.g., when a login node is
+being employed), then you can set the local temporary directory using
+the "prte_local_tmpdir_base" MCA param and the one to be used on all
+other nodes using the "prte_remote_tmpdir_base" param.
+
+This is only a warning advisory and your job will continue. You can
+disable this warning in the future by setting the
+"prte_silence_shared_fs" MCA param to "1".
+--------------------------------------------------------------------------
+mpirun (Open MPI) 5.0.10
+
+Report bugs to https://www.open-mpi.org/community/help/
+
+/soft/compilers/openmpi/5.0.10/bin/ompi_info
+/soft/libraries/ucx/1.20.0/bin/ucx_info
+
+=== OpenMPI reports CUDA support? (ompi_info) ===
+  Configure command line: '--with-ucx=/soft/libraries/ucx/1.17.0' '--enable-openib-udcm' '--enable-openib-rdmacm' '--with-cuda=/usr/local/cuda-12.9' '--enable-openib-udcm' '--prefix=/soft/compilers/openmpi/5.0.10'
+          MPI extensions: affinity, cuda, ftmpi, rocm
+         MCA accelerator: cuda (MCA v2.1.0, API v1.0.0, Component v5.0.10)
+                 MCA btl: smcuda (MCA v2.1.0, API v3.3.0, Component v5.0.10)
+                MCA coll: cuda (MCA v2.1.0, API v2.4.0, Component v5.0.10)
+                 MCA osc: ucx (MCA v2.1.0, API v3.0.0, Component v5.0.10)
+                 MCA pml: ucx (MCA v2.1.0, API v2.1.0, Component v5.0.10)
+           MCA opal base: informational "opal_built_with_cuda_support" (current value: "true", data source: default, level: 4 tuner/basic, type: bool, synonyms: mpi_built_with_cuda_support)
+                          Whether CUDA GPU buffer support is built into library or not
+           MCA opal base: parameter "opal_cuda_support" (current value: "true", data source: default, level: 3 user/all, type: bool, synonyms: mpi_cuda_support)
+                          Whether CUDA GPU buffer support is enabled or not
+           MCA opal base: parameter "opal_warn_on_missing_libcuda" (current value: "true", data source: default, level: 3 user/all, type: bool)
+                          Whether to print a message when CUDA support is enabled but libcuda is not found
+                          Maximum size (in bytes) of a single GPU "phase 2" fragment of a long message when using the pipeline protocol (must be >= 1) (only valid on smcuda btl)
+                          Maximum size (in bytes) of a single GPU "phase 2" fragment of a long message when using the pipeline protocol (must be >= 1) (only valid on smcuda btl)
+                          Maximum size (in bytes) of a single GPU "phase 2" fragment of a long message when using the pipeline protocol (must be >= 1) (only valid on smcuda btl)
+                          Maximum size (in bytes) of a single GPU "phase 2" fragment of a long message when using the pipeline protocol (must be >= 1) (only valid on smcuda btl)
+                          Comma-delimited list of transports to use sorted by increasing priority. The list of transports available can be queried using ucx_info. Specialvalues: any (any available) (default: dc_mlx5,rc_mlx5,ud,any)
+             MCA btl uct: parameter "btl_uct_disable_ucx_memory_hooks" (current value: "true", data source: default, level: 3 user/all, type: bool)
+                          Disable the munmap memory hook inside UCX. These hooks are not necessary when using the uct btl and tend to cause performance problems when using multiple threads (default: true)
+                          Maximum size (in bytes) of a single GPU "phase 2" fragment of a long message when using the pipeline protocol (must be >= 1) (only valid on smcuda btl)
+          MCA btl smcuda: ---------------------------------------------------
+          MCA btl smcuda: parameter "btl_smcuda_min_size" (current value: "134217728", data source: default, level: 9 dev/all, type: unsigned_long)
+          MCA btl smcuda: parameter "btl_smcuda_free_list_num" (current value: "8", data source: default, level: 5 tuner/detail, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_free_list_max" (current value: "-1", data source: default, level: 5 tuner/detail, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_free_list_inc" (current value: "64", data source: default, level: 5 tuner/detail, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_max_procs" (current value: "-1", data source: default, level: 5 tuner/detail, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_fifo_size" (current value: "4096", data source: default, level: 4 tuner/basic, type: unsigned_int)
+          MCA btl smcuda: parameter "btl_smcuda_num_fifos" (current value: "1", data source: default, level: 4 tuner/basic, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_fifo_lazy_free" (current value: "120", data source: default, level: 5 tuner/detail, type: unsigned_int)
+          MCA btl smcuda: parameter "btl_smcuda_sm_extra_procs" (current value: "0", data source: default, level: 9 dev/all, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_allocator" (current value: "bucket", data source: default, level: 9 dev/all, type: string)
+                          Name of allocator component to use for btl/smcuda allocations
+          MCA btl smcuda: parameter "btl_smcuda_use_cuda_ipc" (current value: "1", data source: default, level: 4 tuner/basic, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_use_cuda_ipc_same_gpu" (current value: "1", data source: default, level: 4 tuner/basic, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_cuda_ipc_verbose" (current value: "0", data source: default, level: 4 tuner/basic, type: int)
+          MCA btl smcuda: parameter "btl_smcuda_exclusivity" (current value: "0", data source: default, level: 7 dev/basic, type: unsigned_int)
+          MCA btl smcuda: parameter "btl_smcuda_flags" (current value: "send", data source: default, level: 5 tuner/detail, type: unsigned_int)
+          MCA btl smcuda: informational "btl_smcuda_atomic_flags" (current value: "", data source: default, level: 5 tuner/detail, type: unsigned_int)
+          MCA btl smcuda: parameter "btl_smcuda_rndv_eager_limit" (current value: "4096", data source: default, level: 4 tuner/basic, type: size_t)
+          MCA btl smcuda: parameter "btl_smcuda_eager_limit" (current value: "4096", data source: default, level: 4 tuner/basic, type: size_t)
+          MCA btl smcuda: parameter "btl_smcuda_accelerator_eager_limit" (current value: "18446744073709551615", data source: default, level: 5 tuner/detail, type: size_t)
+          MCA btl smcuda: parameter "btl_smcuda_accelerator_rdma_limit" (current value: "18446744073709551615", data source: default, level: 5 tuner/detail, type: size_t)
+          MCA btl smcuda: parameter "btl_smcuda_accelerator_max_send_size" (current value: "131072", data source: default, level: 4 tuner/basic, type: size_t)
+                          Maximum size (in bytes) of a single GPU "phase 2" fragment of a long message when using the pipeline protocol (must be >= 1) (only valid on smcuda btl)
+          MCA btl smcuda: parameter "btl_smcuda_max_send_size" (current value: "32768", data source: default, level: 4 tuner/basic, type: size_t)
+            MCA mpi base: parameter "mpi_cuda_support" (current value: "true", data source: default, level: 3 user/all, type: bool, deprecated, synonym of: opal_cuda_support)
+                          Whether CUDA GPU buffer support is enabled or not
+            MCA mpi base: parameter "mpi_built_with_cuda_support" (current value: "true", data source: default, level: 4 tuner/basic, type: bool, synonym of: opal_built_with_cuda_support)
+                          Whether CUDA GPU buffer support is built into library or not
+           MCA coll cuda: ---------------------------------------------------
+           MCA coll cuda: parameter "coll_cuda_priority" (current value: "78", data source: default, level: 6 tuner/all, type: int)
+                          Priority of the cuda coll component; only relevant if barrier_before or barrier_after is > 0
+           MCA coll cuda: parameter "coll_cuda_disable_cuda_coll" (current value: "0", data source: default, level: 2 user/detail, type: int)
+                          Automatically handle the CUDA buffers for the MPI collective.
+         MCA io romio341: informational "io_romio341_complete_configure_params" (current value: " FROM_OMPI=yes CC='gcc' CFLAGS='-O3 -DNDEBUG  -finline-functions -D__EXTENSIONS__' CPPFLAGS='' FFLAGS='' LDFLAGS='' --enable-shared --disable-static  --prefix=/soft/compilers/openmpi/5.0.10 --disable-aio --disable-weak-symbols --enable-strict --disable-f77 --disable-f90 ac_cv_lib_cuda_cuMemGetAddressRange=no ac_cv_lib_cudart_cudaStreamSynchronize=no", data source: default, level: 9 dev/all, type: string)
+             MCA osc ucx: ---------------------------------------------------
+             MCA osc ucx: parameter "osc_ucx_priority" (current value: "60", data source: default, level: 3 user/all, type: unsigned_int)
+                          Priority of the osc/ucx component (default: 60)
+             MCA osc ucx: parameter "osc_ucx_no_locks" (current value: "false", data source: default, level: 5 tuner/detail, type: bool)
+             MCA osc ucx: parameter "osc_ucx_acc_single_intrinsic" (current value: "false", data source: default, level: 5 tuner/detail, type: bool)
+             MCA osc ucx: parameter "osc_ucx_enable_nonblocking_accumulate" (current value: "false", data source: default, level: 5 tuner/detail, type: bool)
+             MCA osc ucx: parameter "osc_ucx_enable_wpool_thread_multiple" (current value: "false", data source: default, level: 5 tuner/detail, type: bool)
+             MCA osc ucx: parameter "osc_ucx_outstanding_ops_flush_threshold" (current value: "64", data source: default, level: 5 tuner/detail, type: int)
+             MCA osc ucx: parameter "osc_ucx_verbose" (current value: "0", data source: default, level: 3 user/all, type: int, synonym of: opal_common_ucx_verbose)
+                          Verbose level of the UCX components
+             MCA osc ucx: parameter "osc_ucx_progress_iterations" (current value: "100", data source: default, level: 3 user/all, type: int, synonym of: opal_common_ucx_progress_iterations)
+                          Set number of calls of internal UCX progress calls per opal_progress call
+             MCA osc ucx: parameter "osc_ucx_opal_mem_hooks" (current value: "true", data source: default, level: 3 user/all, type: bool, synonym of: opal_common_ucx_opal_mem_hooks)
+                          Use OPAL memory hooks, instead of UCX internal memory hooks
+             MCA osc ucx: parameter "osc_ucx_tls" (current value: "rc_verbs,ud_verbs,rc_mlx5,dc_mlx5,ud_mlx5,cuda_ipc,rocm_ipc", data source: default, level: 3 user/all, type: string, synonym of: opal_common_ucx_tls)
+                          List of UCX transports which should be supported on the system, to enable selecting the UCX component. Special values: any (any available). A '^' prefix negates the list. For example, in order to exclude on shared memory and TCP transports, please set to '^posix,sysv,self,tcp,cma,knem,xpmem'.
+             MCA osc ucx: parameter "osc_ucx_devices" (current value: "mlx*", data source: default, level: 3 user/all, type: string, synonym of: opal_common_ucx_devices)
+                          List of device driver pattern names, which, if supported by UCX, will bump its priority above ob1. Special values: any (any available)
+             MCA osc ucx: parameter "osc_ucx_backing_directory" (current value: "/dev/shm", data source: default, level: 3 user/all, type: string)
+             MCA pml ucx: ---------------------------------------------------
+             MCA pml ucx: parameter "pml_ucx_priority" (current value: "51", data source: default, level: 3 user/all, type: int)
+                          Priority of the UCX component
+             MCA pml ucx: parameter "pml_ucx_num_disconnect" (current value: "1", data source: default, level: 3 user/all, type: int)
+             MCA pml ucx: parameter "pml_ucx_request_leak_check" (current value: "false", data source: default, level: 3 user/all, type: bool)
+             MCA pml ucx: parameter "pml_ucx_multi_send_nb" (current value: "false", data source: default, level: 3 user/all, type: bool)
+             MCA pml ucx: parameter "pml_ucx_verbose" (current value: "0", data source: default, level: 3 user/all, type: int, synonym of: opal_common_ucx_verbose)
+                          Verbose level of the UCX components
+             MCA pml ucx: parameter "pml_ucx_progress_iterations" (current value: "100", data source: default, level: 3 user/all, type: int, synonym of: opal_common_ucx_progress_iterations)
+                          Set number of calls of internal UCX progress calls per opal_progress call
+             MCA pml ucx: parameter "pml_ucx_opal_mem_hooks" (current value: "true", data source: default, level: 3 user/all, type: bool, synonym of: opal_common_ucx_opal_mem_hooks)
+                          Use OPAL memory hooks, instead of UCX internal memory hooks
+             MCA pml ucx: parameter "pml_ucx_tls" (current value: "rc_verbs,ud_verbs,rc_mlx5,dc_mlx5,ud_mlx5,cuda_ipc,rocm_ipc", data source: default, level: 3 user/all, type: string, synonym of: opal_common_ucx_tls)
+                          List of UCX transports which should be supported on the system, to enable selecting the UCX component. Special values: any (any available). A '^' prefix negates the list. For example, in order to exclude on shared memory and TCP transports, please set to '^posix,sysv,self,tcp,cma,knem,xpmem'.
+             MCA pml ucx: parameter "pml_ucx_devices" (current value: "mlx*", data source: default, level: 3 user/all, type: string, synonym of: opal_common_ucx_devices)
+                          List of device driver pattern names, which, if supported by UCX, will bump its priority above ob1. Special values: any (any available)
+
+=== UCX reports CUDA components? (ucx_info) ===
+
+=== nvidia-smi topo (sanity) ===
+	[4mGPU0	GPU1	GPU2	GPU3	NIC0	NIC1	NIC2	NIC3	NIC4	NIC5	NIC6	NIC7	NIC8	NIC9	NIC10	NIC11	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV12	NV12	NV12	NODE	NODE	PXB	PXB	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	16-31,144-159	1		N/A
+GPU1	NV12	 X 	NV12	NV12	NODE	NODE	PXB	PXB	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	16-31,144-159	1		N/A
+GPU2	NV12	NV12	 X 	NV12	SYS	SYS	SYS	SYS	SYS	SYS	PXB	PXB	NODE	NODE	NODE	NODE	112-127,240-255	7		N/A
+GPU3	NV12	NV12	NV12	 X 	SYS	SYS	SYS	SYS	SYS	SYS	PXB	PXB	NODE	NODE	NODE	NODE	112-127,240-255	7		N/A
+NIC0	NODE	NODE	SYS	SYS	 X 	PXB	NODE	NODE	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS				
+NIC1	NODE	NODE	SYS	SYS	PXB	 X 	NODE	NODE	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS				
+NIC2	PXB	PXB	SYS	SYS	NODE	NODE	 X 	PXB	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS				
+NIC3	PXB	PXB	SYS	SYS	NODE	NODE	PXB	 X 	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS				
+NIC4	NODE	NODE	SYS	SYS	NODE	NODE	NODE	NODE	 X 	PIX	SYS	SYS	SYS	SYS	SYS	SYS				
+NIC5	NODE	NODE	SYS	SYS	NODE	NODE	NODE	NODE	PIX	 X 	SYS	SYS	SYS	SYS	SYS	SYS				
+NIC6	SYS	SYS	PXB	PXB	SYS	SYS	SYS	SYS	SYS	SYS	 X 	PXB	NODE	NODE	NODE	NODE				
+NIC7	SYS	SYS	PXB	PXB	SYS	SYS	SYS	SYS	SYS	SYS	PXB	 X 	NODE	NODE	NODE	NODE				
+NIC8	SYS	SYS	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	 X 	PXB	NODE	NODE				
+NIC9	SYS	SYS	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	PXB	 X 	NODE	NODE				
+NIC10	SYS	SYS	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	NODE	NODE	 X 	PIX				
+NIC11	SYS	SYS	NODE	NODE	SYS	SYS	SYS	SYS	SYS	SYS	NODE	NODE	NODE	NODE	PIX	 X 				
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+
+NIC Legend:
+
+  NIC0: mlx5_0
+  NIC1: mlx5_1
+  NIC2: mlx5_2
+  NIC3: mlx5_3
+  NIC4: mlx5_4
+  NIC5: mlx5_5
+  NIC6: mlx5_6
+  NIC7: mlx5_7
+  NIC8: mlx5_8
+  NIC9: mlx5_9
+  NIC10: mlx5_10
+  NIC11: mlx5_11
+
+
+=== Effective knobs ===
+OMPI_MCA_pml=ucx
+OMPI_MCA_osc=ucx
+OMPI_MCA_opal_cuda_support=true
+UCX_TLS=self,sm,cuda_ipc,cuda_copy,rc,tcp
+UCX_MEMTYPE_CACHE=n
+UCX_LOG_LEVEL=warn
+
+=== Launching MPI backend test (4 ranks, 4 GPUs) ===
+--------------------------------------------------------------------------
+PRTE has detected that the head of the session directory tree (where
+scratch files and shared memory backing storage will be placed)
+resides on a shared file system:
+
+   Directory: /home/mrest/.tmp
+   File system type: lustre
+
+For performance reasons, it is strongly recommended that the session
+directory be located on a local file system. This can be controlled by
+setting the system temporary directory to be used by PRTE using either
+the TMPDIR envar or the "prte_tmpdir_base" MCA param.
+
+If you need the temporary directory to be different on remote nodes
+from the local one where prterun is running (e.g., when a login node is
+being employed), then you can set the local temporary directory using
+the "prte_local_tmpdir_base" MCA param and the one to be used on all
+other nodes using the "prte_remote_tmpdir_base" param.
+
+This is only a warning advisory and your job will continue. You can
+disable this warning in the future by setting the
+"prte_silence_shared_fs" MCA param to "1".
+--------------------------------------------------------------------------
+torch: 2.8.0a0
+torch.version.cuda: 12.9
+world: 4
+cuda devices: 4
+OMPI_MCA_opal_cuda_support: true
+OMPI_MCA_pml: ucx
+UCX_TLS: self,sm,cuda_ipc,cuda_copy,rc,tcp
+UCX_MEMTYPE_CACHE: n
+
+=== CUDA allreduce benchmark ===
+tensor bytes: 268435456 (0.250 GiB)
+rank 0: median 1.059524s  min 0.987549s  max 1.133328s  est_bw 0.35 GiB/s
+rank 1: median 1.059422s  min 0.988626s  max 1.133856s  est_bw 0.35 GiB/s
+rank 2: median 1.058540s  min 0.987747s  max 1.108734s  est_bw 0.35 GiB/s
+rank 3: median 1.059469s  min 0.990125s  max 1.107091s  est_bw 0.35 GiB/s
+post-check x[0] (should be world_size): 1.329227995784916e+36
+
+=== Toy step (matmul + allreduce) median step time ===
+rank 0: 1.084978s
+rank 1: 1.084665s
+rank 2: 1.084499s
+rank 3: 1.084426s
+
+=== Done: Tue Jun 23 05:31:52 PM UTC 2026 ===

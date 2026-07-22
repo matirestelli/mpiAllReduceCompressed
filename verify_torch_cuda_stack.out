@@ -1,0 +1,248 @@
+=== Job started: Tue Jun 23 03:45:04 PM UTC 2026 ===
+=== Host: sophia-gpu-01 ===
+=== Workdir: /home/mrest/mpiAllReduceCompressed ===
+=== PBS_JOBID: 159898.sophia-pbs-01.lab.alcf.anl.gov ===
+=============================================
+  Sophia DDP + Installed PyTorch + OpenMPI
+=============================================
+Node               : sophia-gpu-01
+Python             : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+NVCC               : /usr/local/cuda-12.9/bin/nvcc
+MPI launcher       : /soft/compilers/openmpi/5.0.10/bin/mpirun
+CUDA_HOME          : /usr/local/cuda-12.9
+PYTORCH_MPI_BUILD  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia
+PYTORCH_SOURCE     : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/src/pytorch
+EAGLE_PYTHON_PREFIX: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi
+ZFP_HOME           : /home/mrest/mpiAllReduceCompressed/zfp-install-sophia
+PYTHONPATH         : <unset>
+=============================================
+Python version    : 3.11.14
+Python executable : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+PyTorch version   : 2.8.0a0
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+Built CUDA        : 12.9
+CUDA available    : True 1
+MPI available     : True
+NCCL available    : True
+Gloo available    : True
+[WARN] mpi4py check failed: ModuleNotFoundError("No module named 'mpi4py'")
+
+=== Environment (filtered) ===
+CMAKE_PREFIX_PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia:
+CPATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/include:/soft/libraries/ucx/1.20.0/include:/soft/compilers/openmpi/5.0.10/include
+CUDA_HOME=/usr/local/cuda-12.9
+DEBUGINFOD_IMA_CERT_PATH=/etc/keys/ima:
+EAGLE_PYTHON_PREFIX=/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi
+FPATH=/usr/share/lmod/lmod/init/ksh_funcs
+LD_LIBRARY_PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib:/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib64:/usr/local/cuda-12.9/lib64:/soft/libraries/ucx/1.20.0/lib:/soft/compilers/openmpi/5.0.10/lib
+LIBRARY_PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib:/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib64:
+__LMOD_REF_COUNT_CPATH=/soft/libraries/ucx/1.20.0/include:1;/soft/compilers/openmpi/5.0.10/include:1
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/soft/libraries/ucx/1.20.0/lib:1;/soft/compilers/openmpi/5.0.10/lib:1
+__LMOD_REF_COUNT_MANPATH=/soft/compilers/openmpi/5.0.10/share/man:1;/usr/share/lmod/lmod/share/man:1;:1;/opt/pbs/share/man:2
+__LMOD_REF_COUNT_MODULEPATH=/soft/modulefiles:2;/etc/modulefiles:1;/usr/share/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1
+__LMOD_REF_COUNT_PATH=/soft/libraries/ucx/1.20.0/bin:1;/soft/compilers/openmpi/5.0.10/bin:1;/home/mrest/bin:6;/usr/local/cuda/bin:2;/opt/bin:2;/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/pbs/bin:2;/home/mrest/.local/bin:2
+MANPATH=/soft/compilers/openmpi/5.0.10/share/man:/usr/share/lmod/lmod/share/man::/opt/pbs/share/man
+MKL_NUM_THREADS=1
+MODULEPATH_ROOT=/usr/share/modulefiles
+MODULEPATH=/soft/modulefiles:/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+NUMEXPR_NUM_THREADS=1
+NVIDIA_TF32_OVERRIDE=0
+OMP_NUM_THREADS=1
+OPENBLAS_NUM_THREADS=1
+PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/bin:/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin:/usr/local/cuda-12.9/bin:/soft/libraries/ucx/1.20.0/bin:/soft/compilers/openmpi/5.0.10/bin:/home/mrest/bin:/usr/local/cuda/bin:/opt/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/home/mrest/.local/bin
+PBS_MOMPORT=15003
+PBS_O_PATH=/home/mrest/bin:/home/mrest/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/mrest/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/mrest/.vscode-server/cli/servers/Stable-6928394f91b684055b873eecb8bc281365131f1c/server/bin/remote-cli:/home/mrest/bin:/home/mrest/bin:/home/mrest/bin:/home/mrest/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin:/home/mrest/.local/bin:/home/mrest/bin:/opt/pbs/bin:/opt/pbs/bin:/home/mrest/.local/bin:/home/mrest/bin:/opt/pbs/bin:/opt/pbs/bin
+PYTHONNOUSERSITE=1
+
+=== nvidia-smi ===
+Tue Jun 23 15:45:34 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:0F:00.0 Off |                    0 |
+| N/A   22C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+=== Python / Torch basic info ===
+python: 3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]
+torch: 2.8.0a0
+torch.cuda.is_available: True
+torch.version.cuda: 12.9
+device: NVIDIA A100-SXM4-40GB
+capability: (8, 0)
+cudnn.enabled: True
+cudnn.version: 92200
+matmul.allow_tf32: False
+cudnn.allow_tf32: True
+cudnn.benchmark: False
+cudnn.deterministic: False
+deterministic_algs: False
+NVIDIA_TF32_OVERRIDE: 0
+LD_LIBRARY_PATH: /home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib:/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib64:/usr/local/cuda-12.9/lib64:/soft/libraries/ucx/1.20.0/lib:/soft/compilers/openmpi/5.0.10/lib
+
+=== Show torch._C path + linked CUDA libs (ldd grep) ===
+torch._C = /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/_C.cpython-311-x86_64-linux-gnu.so
+	libtorch_cuda.so => /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so (0x000014f40622d000)
+	libc10_cuda.so => /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/lib/libc10_cuda.so (0x000014f41e8b2000)
+	libcudart.so.12 => /usr/local/cuda-12.9/lib64/libcudart.so.12 (0x000014f405e00000)
+	libcudnn.so.9 => /lib64/libcudnn.so.9 (0x000014f405a00000)
+	libcupti.so.12 => /usr/local/cuda-12.9/lib64/libcupti.so.12 (0x000014f402800000)
+	libcusparse.so.12 => /usr/local/cuda-12.9/lib64/libcusparse.so.12 (0x000014f3e5200000)
+	libcufft.so.11 => /usr/local/cuda-12.9/lib64/libcufft.so.11 (0x000014f3d3400000)
+	libcurand.so.10 => /usr/local/cuda-12.9/lib64/libcurand.so.10 (0x000014f3c8c00000)
+	libcublas.so.12 => /usr/local/cuda-12.9/lib64/libcublas.so.12 (0x000014f3c2400000)
+	libcublasLt.so.12 => /usr/local/cuda-12.9/lib64/libcublasLt.so.12 (0x000014f390000000)
+	libnvJitLink.so.12 => /usr/local/cuda-12.9/lib64/libnvJitLink.so.12 (0x000014f389e00000)
+
+=== GEMM benchmark FP16 (cuBLAS / tensor cores) ===
+FP16 GEMM time(s): 0.8558905124664307
+matmul.allow_tf32: True
+
+=== GEMM benchmark FP32 (TF32 impact shows here) ===
+FP32 GEMM time(s): 1.446305751800537
+matmul.allow_tf32: True
+
+=== cuDNN Conv2D benchmark (tests cuDNN fast paths) ===
+Conv2D FP16 time(s): 0.0669550895690918
+cudnn.version: 92200
+cudnn.benchmark: True
+cudnn.deterministic: False
+
+=== Done: Tue Jun 23 03:45:50 PM UTC 2026 ===
+=== Job started: Tue Jun 23 05:28:15 PM UTC 2026 ===
+=== Host: sophia-gpu-01 ===
+=== Workdir: /home/mrest/mpiAllReduceCompressed ===
+=== PBS_JOBID: 159910.sophia-pbs-01.lab.alcf.anl.gov ===
+=============================================
+  Sophia DDP + Installed PyTorch + OpenMPI
+=============================================
+Node               : sophia-gpu-01
+Python             : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+NVCC               : /usr/local/cuda-12.9/bin/nvcc
+MPI launcher       : /soft/compilers/openmpi/5.0.10/bin/mpirun
+CUDA_HOME          : /usr/local/cuda-12.9
+PYTORCH_MPI_BUILD  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia
+PYTORCH_SOURCE     : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/src/pytorch
+EAGLE_PYTHON_PREFIX: /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi
+ZFP_HOME           : /home/mrest/mpiAllReduceCompressed/zfp-install-sophia
+PYTHONPATH         : <unset>
+=============================================
+Python version    : 3.11.14
+Python executable : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin/python
+PyTorch version   : 2.8.0a0
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/__init__.py
+Built CUDA        : 12.9
+CUDA available    : True 1
+MPI available     : True
+NCCL available    : True
+Gloo available    : True
+[WARN] mpi4py check failed: ModuleNotFoundError("No module named 'mpi4py'")
+
+=== Environment (filtered) ===
+CMAKE_PREFIX_PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia:
+CPATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/include:/soft/libraries/ucx/1.20.0/include:/soft/compilers/openmpi/5.0.10/include
+CUDA_HOME=/usr/local/cuda-12.9
+DEBUGINFOD_IMA_CERT_PATH=/etc/keys/ima:
+EAGLE_PYTHON_PREFIX=/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi
+FPATH=/usr/share/lmod/lmod/init/ksh_funcs
+LD_LIBRARY_PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib:/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib64:/usr/local/cuda-12.9/lib64:/soft/libraries/ucx/1.20.0/lib:/soft/compilers/openmpi/5.0.10/lib
+LIBRARY_PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib:/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib64:
+__LMOD_REF_COUNT_CPATH=/soft/libraries/ucx/1.20.0/include:1;/soft/compilers/openmpi/5.0.10/include:1
+__LMOD_REF_COUNT_LD_LIBRARY_PATH=/soft/libraries/ucx/1.20.0/lib:1;/soft/compilers/openmpi/5.0.10/lib:1
+__LMOD_REF_COUNT_MANPATH=/soft/compilers/openmpi/5.0.10/share/man:1;/usr/share/lmod/lmod/share/man:1;:1;/opt/pbs/share/man:2
+__LMOD_REF_COUNT_MODULEPATH=/soft/modulefiles:2;/etc/modulefiles:1;/usr/share/modulefiles:1;/usr/share/modulefiles/Linux:1;/usr/share/modulefiles/Core:1;/usr/share/lmod/lmod/modulefiles/Core:1
+__LMOD_REF_COUNT_PATH=/soft/libraries/ucx/1.20.0/bin:1;/soft/compilers/openmpi/5.0.10/bin:1;/home/mrest/bin:6;/usr/local/cuda/bin:2;/opt/bin:2;/bin:1;/usr/bin:1;/usr/local/sbin:1;/usr/sbin:1;/opt/pbs/bin:2;/home/mrest/.local/bin:2
+MANPATH=/soft/compilers/openmpi/5.0.10/share/man:/usr/share/lmod/lmod/share/man::/opt/pbs/share/man
+MKL_NUM_THREADS=1
+MODULEPATH_ROOT=/usr/share/modulefiles
+MODULEPATH=/soft/modulefiles:/etc/modulefiles:/usr/share/modulefiles:/usr/share/modulefiles/Linux:/usr/share/modulefiles/Core:/usr/share/lmod/lmod/modulefiles/Core
+NUMEXPR_NUM_THREADS=1
+NVIDIA_TF32_OVERRIDE=0
+OMP_NUM_THREADS=1
+OPENBLAS_NUM_THREADS=1
+PATH=/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/bin:/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/bin:/usr/local/cuda-12.9/bin:/soft/libraries/ucx/1.20.0/bin:/soft/compilers/openmpi/5.0.10/bin:/home/mrest/bin:/usr/local/cuda/bin:/opt/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/home/mrest/.local/bin
+PBS_MOMPORT=15003
+PBS_O_PATH=/home/mrest/bin:/home/mrest/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/mrest/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/mrest/.vscode-server/cli/servers/Stable-6928394f91b684055b873eecb8bc281365131f1c/server/bin/remote-cli:/home/mrest/bin:/home/mrest/bin:/home/mrest/bin:/home/mrest/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/pbs/bin:/opt/pbs/bin:/home/mrest/.local/bin:/home/mrest/bin:/opt/pbs/bin:/opt/pbs/bin:/home/mrest/.local/bin:/home/mrest/bin:/opt/pbs/bin:/opt/pbs/bin
+PYTHONNOUSERSITE=1
+
+=== nvidia-smi ===
+Tue Jun 23 17:28:49 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:0F:00.0 Off |                    0 |
+| N/A   21C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+=== Python / Torch basic info ===
+python: 3.11.14 (main, Oct 21 2025, 18:31:21) [GCC 11.2.0]
+torch: 2.8.0a0
+torch.cuda.is_available: True
+torch.version.cuda: 12.9
+device: NVIDIA A100-SXM4-40GB
+capability: (8, 0)
+cudnn.enabled: True
+cudnn.version: 92200
+matmul.allow_tf32: False
+cudnn.allow_tf32: True
+cudnn.benchmark: False
+cudnn.deterministic: False
+deterministic_algs: False
+NVIDIA_TF32_OVERRIDE: 0
+LD_LIBRARY_PATH: /home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib:/home/mrest/mpiAllReduceCompressed/zfp-install-sophia/lib64:/usr/local/cuda-12.9/lib64:/soft/libraries/ucx/1.20.0/lib:/soft/compilers/openmpi/5.0.10/lib
+
+=== Show torch._C path + linked CUDA libs (ldd grep) ===
+torch._C = /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/_C.cpython-311-x86_64-linux-gnu.so
+	libtorch_cuda.so => /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/lib/libtorch_cuda.so (0x000014b75c22d000)
+	libc10_cuda.so => /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build_sophia/conda/pt-sophia-openmpi/lib/python3.11/site-packages/torch/lib/libc10_cuda.so (0x000014b774939000)
+	libcudart.so.12 => /usr/local/cuda-12.9/lib64/libcudart.so.12 (0x000014b75be00000)
+	libcudnn.so.9 => /lib64/libcudnn.so.9 (0x000014b75ba00000)
+	libcupti.so.12 => /usr/local/cuda-12.9/lib64/libcupti.so.12 (0x000014b758800000)
+	libcusparse.so.12 => /usr/local/cuda-12.9/lib64/libcusparse.so.12 (0x000014b73b200000)
+	libcufft.so.11 => /usr/local/cuda-12.9/lib64/libcufft.so.11 (0x000014b729400000)
+	libcurand.so.10 => /usr/local/cuda-12.9/lib64/libcurand.so.10 (0x000014b71ec00000)
+	libcublas.so.12 => /usr/local/cuda-12.9/lib64/libcublas.so.12 (0x000014b718400000)
+	libcublasLt.so.12 => /usr/local/cuda-12.9/lib64/libcublasLt.so.12 (0x000014b6e6000000)
+	libnvJitLink.so.12 => /usr/local/cuda-12.9/lib64/libnvJitLink.so.12 (0x000014b6dfe00000)
+
+=== GEMM benchmark FP16 (cuBLAS / tensor cores) ===
+FP16 GEMM time(s): 0.8653779029846191
+matmul.allow_tf32: True
+
+=== GEMM benchmark FP32 (TF32 impact shows here) ===
+FP32 GEMM time(s): 1.445436716079712
+matmul.allow_tf32: True
+
+=== cuDNN Conv2D benchmark (tests cuDNN fast paths) ===
+Conv2D FP16 time(s): 0.06715893745422363
+cudnn.version: 92200
+cudnn.benchmark: True
+cudnn.deterministic: False
+
+=== Done: Tue Jun 23 05:29:05 PM UTC 2026 ===

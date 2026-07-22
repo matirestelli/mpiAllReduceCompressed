@@ -535,7 +535,7 @@ def train(config: TrainingConfig) -> None:
         device_ids=[local_rank],
         broadcast_buffers=False,
         find_unused_parameters=False,
-        static_graph=False,
+        static_graph=True,
         # bucket_cap_mb=30,                 # try 1, 5, 10, 25, 50
         gradient_as_bucket_view=False,   # try False first
     )

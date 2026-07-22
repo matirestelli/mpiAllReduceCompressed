@@ -1,0 +1,538 @@
+=== Job started: Fri Jul 17 03:57:39 PM UTC 2026 ===
+=== Node: x3112c0s37b0n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3112c0s37b0n0
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none at Fri Jul 17 03:58:11 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: built-in (no hook)
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 16, Effective batch: 128
+LR: 0.1, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = ./data/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] No hook — using DDP built-in MPI allreduce
+[Optim] SGD: lr=0.1 momentum=0.9 nesterov=True wd=0.0005 wd_on_bn_bias=False
+[Optim]   group 0: 66,778,816 params, wd=0.0005
+[Optim]   group 1: 68,234 params, wd=0.0
+[Data] Train batches: 390, Val batches: 625
+
+[Sched] cosine: steps/epoch=390, total_steps=7800, warmup_steps=0 (0 epochs)
+
+
+[Epoch 1] Training... (lr at epoch start=0.100000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/390] Loss: 9.8680, Acc: 9.38%, lr: 0.099990
+  Batch [100/390] Loss: 6.0928, Acc: 10.44%, lr: 0.099959
+  Batch [150/390] Loss: 4.8268, Acc: 11.08%, lr: 0.099909
+  Batch [200/390] Loss: 4.1933, Acc: 11.56%, lr: 0.099838
+  Batch [250/390] Loss: 3.8135, Acc: 11.97%, lr: 0.099747
+  Batch [300/390] Loss: 3.5361, Acc: 13.15%, lr: 0.099635
+  Batch [350/390] Loss: 3.3257, Acc: 13.98%, lr: 0.099504
+[Epoch 1] Train Loss: 3.1909, Acc: 14.97%  |  Val Loss: 1.9996, Acc: 22.55%  |  Time: 23.5s
+[Epoch 1] t_iter median: 40.68 ms  (fwd 6.89 | bwd+comm 30.39 | opt 3.29 | data 0.11)  |  train-only epoch: 19.4s
+  -> Best model saved (22.55%)
+[Epoch 1] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=1 no hook timing samples
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr at epoch start=0.099384)
+  Batch [50/390] Loss: 2.0156, Acc: 19.50%, lr: 0.099217
+  Batch [100/390] Loss: 2.0263, Acc: 20.62%, lr: 0.099029
+  Batch [150/390] Loss: 2.0367, Acc: 21.04%, lr: 0.098822
+  Batch [200/390] Loss: 2.0286, Acc: 20.16%, lr: 0.098595
+  Batch [250/390] Loss: 2.0109, Acc: 20.73%, lr: 0.098348
+  Batch [300/390] Loss: 1.9924, Acc: 21.33%, lr: 0.098082
+  Batch [350/390] Loss: 1.9824, Acc: 21.73%, lr: 0.097796
+[Epoch 2] Train Loss: 1.9777, Acc: 22.26%  |  Val Loss: 5.3665, Acc: 14.80%  |  Time: 19.8s
+[Epoch 2] t_iter median: 40.56 ms  (fwd 6.88 | bwd+comm 30.32 | opt 3.25 | data 0.07)  |  train-only epoch: 16.0s
+[Epoch 2] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=2 no hook timing samples
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr at epoch start=0.097553)
+  Batch [50/390] Loss: 1.8173, Acc: 29.62%, lr: 0.097232
+  Batch [100/390] Loss: 1.8336, Acc: 28.44%, lr: 0.096892
+  Batch [150/390] Loss: 1.8362, Acc: 28.92%, lr: 0.096533
+  Batch [200/390] Loss: 1.8184, Acc: 30.56%, lr: 0.096155
+  Batch [250/390] Loss: 1.8062, Acc: 31.15%, lr: 0.095759
+  Batch [300/390] Loss: 1.7929, Acc: 31.73%, lr: 0.095344
+  Batch [350/390] Loss: 1.7918, Acc: 31.91%, lr: 0.094910
+[Epoch 3] Train Loss: 1.7867, Acc: 32.15%  |  Val Loss: 1.7610, Acc: 37.05%  |  Time: 19.7s
+[Epoch 3] t_iter median: 40.32 ms  (fwd 6.93 | bwd+comm 30.04 | opt 3.24 | data 0.11)  |  train-only epoch: 15.9s
+  -> Best model saved (37.05%)
+[Epoch 3] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=3 no hook timing samples
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr at epoch start=0.094550)
+  Batch [50/390] Loss: 1.6983, Acc: 35.00%, lr: 0.094084
+  Batch [100/390] Loss: 1.6997, Acc: 34.69%, lr: 0.093600
+  Batch [150/390] Loss: 1.6827, Acc: 35.88%, lr: 0.093098
+  Batch [200/390] Loss: 1.6647, Acc: 37.12%, lr: 0.092579
+  Batch [250/390] Loss: 1.6561, Acc: 38.40%, lr: 0.092043
+  Batch [300/390] Loss: 1.6435, Acc: 39.04%, lr: 0.091489
+  Batch [350/390] Loss: 1.6446, Acc: 39.29%, lr: 0.090919
+[Epoch 4] Train Loss: 1.6318, Acc: 39.60%  |  Val Loss: 1.4654, Acc: 47.50%  |  Time: 20.1s
+[Epoch 4] t_iter median: 40.45 ms  (fwd 6.94 | bwd+comm 30.05 | opt 3.32 | data 0.12)  |  train-only epoch: 16.0s
+  -> Best model saved (47.50%)
+[Epoch 4] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=4 no hook timing samples
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr at epoch start=0.090451)
+  Batch [50/390] Loss: 1.5170, Acc: 45.00%, lr: 0.089851
+  Batch [100/390] Loss: 1.5132, Acc: 44.56%, lr: 0.089235
+  Batch [150/390] Loss: 1.4895, Acc: 45.88%, lr: 0.088603
+  Batch [200/390] Loss: 1.4833, Acc: 45.75%, lr: 0.087955
+  Batch [250/390] Loss: 1.4618, Acc: 46.55%, lr: 0.087292
+  Batch [300/390] Loss: 1.4492, Acc: 47.42%, lr: 0.086613
+  Batch [350/390] Loss: 1.4372, Acc: 47.84%, lr: 0.085920
+[Epoch 5] Train Loss: 1.4280, Acc: 48.30%  |  Val Loss: 1.3711, Acc: 50.30%  |  Time: 19.8s
+[Epoch 5] t_iter median: 40.84 ms  (fwd 6.85 | bwd+comm 30.62 | opt 3.24 | data 0.07)  |  train-only epoch: 16.1s
+  -> Best model saved (50.30%)
+[Epoch 5] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=5 no hook timing samples
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr at epoch start=0.085355)
+  Batch [50/390] Loss: 1.3537, Acc: 51.88%, lr: 0.084636
+  Batch [100/390] Loss: 1.3210, Acc: 54.12%, lr: 0.083903
+  Batch [150/390] Loss: 1.3090, Acc: 53.92%, lr: 0.083156
+  Batch [200/390] Loss: 1.2966, Acc: 54.22%, lr: 0.082396
+  Batch [250/390] Loss: 1.2946, Acc: 53.67%, lr: 0.081622
+  Batch [300/390] Loss: 1.2923, Acc: 53.73%, lr: 0.080836
+  Batch [350/390] Loss: 1.2903, Acc: 53.86%, lr: 0.080037
+[Epoch 6] Train Loss: 1.2758, Acc: 54.36%  |  Val Loss: 1.5491, Acc: 56.88%  |  Time: 19.8s
+[Epoch 6] t_iter median: 40.64 ms  (fwd 6.91 | bwd+comm 30.39 | opt 3.24 | data 0.07)  |  train-only epoch: 16.0s
+  -> Best model saved (56.88%)
+[Epoch 6] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=6 no hook timing samples
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr at epoch start=0.079389)
+  Batch [50/390] Loss: 1.1022, Acc: 61.00%, lr: 0.078569
+  Batch [100/390] Loss: 1.1136, Acc: 59.44%, lr: 0.077737
+  Batch [150/390] Loss: 1.0948, Acc: 60.21%, lr: 0.076893
+  Batch [200/390] Loss: 1.0867, Acc: 60.16%, lr: 0.076039
+  Batch [250/390] Loss: 1.0920, Acc: 60.20%, lr: 0.075174
+  Batch [300/390] Loss: 1.1019, Acc: 60.06%, lr: 0.074299
+  Batch [350/390] Loss: 1.1047, Acc: 60.14%, lr: 0.073414
+[Epoch 7] Train Loss: 1.1041, Acc: 60.30%  |  Val Loss: 1.0096, Acc: 63.93%  |  Time: 19.8s
+[Epoch 7] t_iter median: 40.54 ms  (fwd 6.92 | bwd+comm 30.19 | opt 3.31 | data 0.11)  |  train-only epoch: 16.0s
+  -> Best model saved (63.93%)
+[Epoch 7] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=7 no hook timing samples
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr at epoch start=0.072700)
+  Batch [50/390] Loss: 1.0433, Acc: 64.25%, lr: 0.071798
+  Batch [100/390] Loss: 1.0110, Acc: 64.19%, lr: 0.070887
+  Batch [150/390] Loss: 0.9979, Acc: 65.08%, lr: 0.069968
+  Batch [200/390] Loss: 0.9878, Acc: 65.41%, lr: 0.069041
+  Batch [250/390] Loss: 0.9913, Acc: 65.33%, lr: 0.068106
+  Batch [300/390] Loss: 0.9800, Acc: 65.83%, lr: 0.067164
+  Batch [350/390] Loss: 0.9704, Acc: 66.20%, lr: 0.066215
+[Epoch 8] Train Loss: 0.9722, Acc: 66.11%  |  Val Loss: 0.9556, Acc: 68.09%  |  Time: 19.7s
+[Epoch 8] t_iter median: 40.43 ms  (fwd 6.95 | bwd+comm 30.02 | opt 3.33 | data 0.12)  |  train-only epoch: 15.9s
+  -> Best model saved (68.09%)
+[Epoch 8] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=8 no hook timing samples
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr at epoch start=0.065451)
+  Batch [50/390] Loss: 0.9487, Acc: 63.38%, lr: 0.064490
+  Batch [100/390] Loss: 0.9416, Acc: 65.81%, lr: 0.063524
+  Batch [150/390] Loss: nan, Acc: 56.58%, lr: 0.062551
+  Batch [200/390] Loss: nan, Acc: 45.31%, lr: 0.061574
+  Batch [250/390] Loss: nan, Acc: 38.33%, lr: 0.060592
+  Batch [300/390] Loss: nan, Acc: 33.56%, lr: 0.059606
+  Batch [350/390] Loss: nan, Acc: 30.18%, lr: 0.058616
+[Epoch 9] Train Loss: nan, Acc: 27.95%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 9] t_iter median: 40.27 ms  (fwd 6.90 | bwd+comm 29.99 | opt 3.25 | data 0.11)  |  train-only epoch: 15.9s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 9] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=9 no hook timing samples
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr at epoch start=0.057822)
+  Batch [50/390] Loss: nan, Acc: 8.75%, lr: 0.056826
+  Batch [100/390] Loss: nan, Acc: 10.00%, lr: 0.055827
+  Batch [150/390] Loss: nan, Acc: 10.00%, lr: 0.054826
+  Batch [200/390] Loss: nan, Acc: 10.00%, lr: 0.053823
+  Batch [250/390] Loss: nan, Acc: 9.75%, lr: 0.052818
+  Batch [300/390] Loss: nan, Acc: 9.73%, lr: 0.051812
+  Batch [350/390] Loss: nan, Acc: 9.80%, lr: 0.050806
+[Epoch 10] Train Loss: nan, Acc: 9.66%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 10] t_iter median: 40.46 ms  (fwd 6.91 | bwd+comm 30.26 | opt 3.21 | data 0.06)  |  train-only epoch: 16.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 10] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=10 no hook timing samples
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr at epoch start=0.050000)
+  Batch [50/390] Loss: nan, Acc: 10.62%, lr: 0.048993
+  Batch [100/390] Loss: nan, Acc: 10.00%, lr: 0.047987
+  Batch [150/390] Loss: nan, Acc: 9.92%, lr: 0.046981
+  Batch [200/390] Loss: nan, Acc: 9.44%, lr: 0.045977
+  Batch [250/390] Loss: nan, Acc: 9.57%, lr: 0.044974
+  Batch [300/390] Loss: nan, Acc: 9.94%, lr: 0.043973
+  Batch [350/390] Loss: nan, Acc: 9.91%, lr: 0.042975
+[Epoch 11] Train Loss: nan, Acc: 9.90%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.8s
+[Epoch 11] t_iter median: 40.55 ms  (fwd 6.90 | bwd+comm 30.15 | opt 3.40 | data 0.11)  |  train-only epoch: 16.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 11] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=11 no hook timing samples
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr at epoch start=0.042178)
+  Batch [50/390] Loss: nan, Acc: 9.88%, lr: 0.041185
+  Batch [100/390] Loss: nan, Acc: 10.56%, lr: 0.040196
+  Batch [150/390] Loss: nan, Acc: 10.33%, lr: 0.039211
+  Batch [200/390] Loss: nan, Acc: 10.31%, lr: 0.038230
+  Batch [250/390] Loss: nan, Acc: 10.55%, lr: 0.037254
+  Batch [300/390] Loss: nan, Acc: 10.58%, lr: 0.036283
+  Batch [350/390] Loss: nan, Acc: 10.46%, lr: 0.035317
+[Epoch 12] Train Loss: nan, Acc: 10.45%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.8s
+[Epoch 12] t_iter median: 40.54 ms  (fwd 6.90 | bwd+comm 30.27 | opt 3.22 | data 0.11)  |  train-only epoch: 16.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 12] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=12 no hook timing samples
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr at epoch start=0.034549)
+  Batch [50/390] Loss: nan, Acc: 8.25%, lr: 0.033595
+  Batch [100/390] Loss: nan, Acc: 9.00%, lr: 0.032647
+  Batch [150/390] Loss: nan, Acc: 8.79%, lr: 0.031706
+  Batch [200/390] Loss: nan, Acc: 9.09%, lr: 0.030773
+  Batch [250/390] Loss: nan, Acc: 9.45%, lr: 0.029847
+  Batch [300/390] Loss: nan, Acc: 9.56%, lr: 0.028930
+  Batch [350/390] Loss: nan, Acc: 9.59%, lr: 0.028021
+[Epoch 13] Train Loss: nan, Acc: 9.78%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 13] t_iter median: 40.52 ms  (fwd 6.92 | bwd+comm 30.31 | opt 3.20 | data 0.07)  |  train-only epoch: 16.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 13] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=13 no hook timing samples
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr at epoch start=0.027300)
+  Batch [50/390] Loss: nan, Acc: 11.00%, lr: 0.026408
+  Batch [100/390] Loss: nan, Acc: 10.44%, lr: 0.025525
+  Batch [150/390] Loss: nan, Acc: 10.42%, lr: 0.024652
+  Batch [200/390] Loss: nan, Acc: 10.31%, lr: 0.023789
+  Batch [250/390] Loss: nan, Acc: 10.38%, lr: 0.022937
+  Batch [300/390] Loss: nan, Acc: 10.38%, lr: 0.022096
+  Batch [350/390] Loss: nan, Acc: 10.36%, lr: 0.021266
+[Epoch 14] Train Loss: nan, Acc: 10.30%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.8s
+[Epoch 14] t_iter median: 40.58 ms  (fwd 6.93 | bwd+comm 30.33 | opt 3.20 | data 0.11)  |  train-only epoch: 16.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 14] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=14 no hook timing samples
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr at epoch start=0.020611)
+  Batch [50/390] Loss: nan, Acc: 10.88%, lr: 0.019802
+  Batch [100/390] Loss: nan, Acc: 10.31%, lr: 0.019006
+  Batch [150/390] Loss: nan, Acc: 10.42%, lr: 0.018222
+  Batch [200/390] Loss: nan, Acc: 10.16%, lr: 0.017451
+  Batch [250/390] Loss: nan, Acc: 10.20%, lr: 0.016693
+  Batch [300/390] Loss: nan, Acc: 10.33%, lr: 0.015949
+  Batch [350/390] Loss: nan, Acc: 10.07%, lr: 0.015219
+[Epoch 15] Train Loss: nan, Acc: 9.87%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 15] t_iter median: 40.36 ms  (fwd 6.91 | bwd+comm 30.10 | opt 3.24 | data 0.11)  |  train-only epoch: 15.9s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 15] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=15 no hook timing samples
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr at epoch start=0.014645)
+  Batch [50/390] Loss: nan, Acc: 10.88%, lr: 0.013940
+  Batch [100/390] Loss: nan, Acc: 10.25%, lr: 0.013250
+  Batch [150/390] Loss: nan, Acc: 9.71%, lr: 0.012574
+  Batch [200/390] Loss: nan, Acc: 10.06%, lr: 0.011914
+  Batch [250/390] Loss: nan, Acc: 10.10%, lr: 0.011270
+  Batch [300/390] Loss: nan, Acc: 9.85%, lr: 0.010641
+  Batch [350/390] Loss: nan, Acc: 9.79%, lr: 0.010028
+[Epoch 16] Train Loss: nan, Acc: 10.00%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.9s
+[Epoch 16] t_iter median: 40.79 ms  (fwd 6.87 | bwd+comm 30.59 | opt 3.24 | data 0.10)  |  train-only epoch: 16.1s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 16] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=16 no hook timing samples
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr at epoch start=0.009549)
+  Batch [50/390] Loss: nan, Acc: 10.75%, lr: 0.008966
+  Batch [100/390] Loss: nan, Acc: 10.38%, lr: 0.008399
+  Batch [150/390] Loss: nan, Acc: 10.33%, lr: 0.007848
+  Batch [200/390] Loss: nan, Acc: 10.22%, lr: 0.007315
+  Batch [250/390] Loss: nan, Acc: 9.97%, lr: 0.006800
+  Batch [300/390] Loss: nan, Acc: 10.08%, lr: 0.006302
+  Batch [350/390] Loss: nan, Acc: 9.93%, lr: 0.005821
+[Epoch 17] Train Loss: nan, Acc: 9.81%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.8s
+[Epoch 17] t_iter median: 40.65 ms  (fwd 6.89 | bwd+comm 30.41 | opt 3.24 | data 0.11)  |  train-only epoch: 16.0s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 17] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=17 no hook timing samples
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr at epoch start=0.005450)
+  Batch [50/390] Loss: nan, Acc: 9.50%, lr: 0.005002
+  Batch [100/390] Loss: nan, Acc: 9.50%, lr: 0.004572
+  Batch [150/390] Loss: nan, Acc: 9.08%, lr: 0.004160
+  Batch [200/390] Loss: nan, Acc: 9.47%, lr: 0.003768
+  Batch [250/390] Loss: nan, Acc: 9.72%, lr: 0.003394
+  Batch [300/390] Loss: nan, Acc: 9.83%, lr: 0.003038
+  Batch [350/390] Loss: nan, Acc: 10.00%, lr: 0.002702
+[Epoch 18] Train Loss: nan, Acc: 9.98%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 18] t_iter median: 40.32 ms  (fwd 6.91 | bwd+comm 29.91 | opt 3.41 | data 0.11)  |  train-only epoch: 15.9s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 18] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=18 no hook timing samples
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr at epoch start=0.002447)
+  Batch [50/390] Loss: nan, Acc: 9.00%, lr: 0.002146
+  Batch [100/390] Loss: nan, Acc: 9.75%, lr: 0.001864
+  Batch [150/390] Loss: nan, Acc: 9.96%, lr: 0.001601
+  Batch [200/390] Loss: nan, Acc: 10.28%, lr: 0.001358
+  Batch [250/390] Loss: nan, Acc: 10.18%, lr: 0.001135
+  Batch [300/390] Loss: nan, Acc: 9.96%, lr: 0.000931
+  Batch [350/390] Loss: nan, Acc: 10.00%, lr: 0.000748
+[Epoch 19] Train Loss: nan, Acc: 9.98%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 19] t_iter median: 40.31 ms  (fwd 6.83 | bwd+comm 30.15 | opt 3.23 | data 0.07)  |  train-only epoch: 15.9s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 19] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=19 no hook timing samples
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr at epoch start=0.000616)
+  Batch [50/390] Loss: nan, Acc: 10.12%, lr: 0.000468
+  Batch [100/390] Loss: nan, Acc: 10.19%, lr: 0.000341
+  Batch [150/390] Loss: nan, Acc: 9.83%, lr: 0.000233
+  Batch [200/390] Loss: nan, Acc: 9.97%, lr: 0.000146
+  Batch [250/390] Loss: nan, Acc: 10.20%, lr: 0.000079
+  Batch [300/390] Loss: nan, Acc: 10.21%, lr: 0.000033
+  Batch [350/390] Loss: nan, Acc: 10.05%, lr: 0.000006
+[Epoch 20] Train Loss: nan, Acc: 10.10%  |  Val Loss: nan, Acc: 10.00%  |  Time: 19.7s
+[Epoch 20] t_iter median: 40.44 ms  (fwd 6.91 | bwd+comm 30.07 | opt 3.36 | data 0.11)  |  train-only epoch: 15.9s
+  WARNING: train_loss is nan — possible gradient explosion from hook bug. Check that hook divides by world_size exactly once.
+[Epoch 20] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=20 no hook timing samples
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 405.7s | Best val acc: 68.09%
+Epoch times (train+val): mean=20.0s  min=19.7s  max=23.5s
+Train-only epoch time (epochs 2..N): median=15.97s  min=15.88s  max=16.10s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=mpi, hook=none, zfp_rate=none, status=0 at Fri Jul 17 04:05:17 PM UTC 2026 ===
+=== Job finished: Fri Jul 17 04:05:17 PM UTC 2026 ===

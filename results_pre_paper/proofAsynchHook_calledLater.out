@@ -1,0 +1,897 @@
+=== Job started: Thu May 21 05:51:08 PM UTC 2026 ===
+=== Node: x3111c0s25b1n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3111c0s25b1n0
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training: backend=mpi, hook=ring_async at Thu May 21 05:51:45 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: ring_async
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 16, Effective batch: 128
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/ring_async
+[Data] Train batches: 391, Val batches: 79
+
+
+[Epoch 1] Training... (lr=0.000001)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring_async
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+  Batch [50/391] Loss: 2.3763, Acc: 10.12%
+  Batch [100/391] Loss: 2.3738, Acc: 9.88%
+  Batch [150/391] Loss: 2.3701, Acc: 10.04%
+  Batch [200/391] Loss: 2.3714, Acc: 9.81%
+  Batch [250/391] Loss: 2.3688, Acc: 9.82%
+  Batch [300/391] Loss: 2.3733, Acc: 9.73%
+  Batch [350/391] Loss: 2.3688, Acc: 10.05%
+[Epoch 1] Train Loss: 2.3723, Acc: 10.02%  |  Val Loss: 7326.2725, Acc: 9.92%  |  Time: 24.9s
+  -> Best model saved (9.92%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3114 dispatch_mean_ms=0.029 comm_mean_ms=20.827 comm_min_ms=3.374 comm_max_ms=48.666
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.001000)
+  Batch [50/391] Loss: 2.2670, Acc: 18.25%
+  Batch [100/391] Loss: 2.1983, Acc: 20.00%
+  Batch [150/391] Loss: 2.1286, Acc: 23.12%
+  Batch [200/391] Loss: 2.0499, Acc: 26.72%
+  Batch [250/391] Loss: 1.9901, Acc: 28.70%
+  Batch [300/391] Loss: 1.9301, Acc: 30.79%
+  Batch [350/391] Loss: 1.8800, Acc: 32.91%
+[Epoch 2] Train Loss: 1.8486, Acc: 34.38%  |  Val Loss: 3.1776, Acc: 54.96%  |  Time: 20.2s
+  -> Best model saved (54.96%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.028 comm_mean_ms=20.360 comm_min_ms=3.719 comm_max_ms=32.406
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000993)
+  Batch [50/391] Loss: 1.4334, Acc: 48.25%
+  Batch [100/391] Loss: 1.4080, Acc: 48.69%
+  Batch [150/391] Loss: 1.3665, Acc: 50.75%
+  Batch [200/391] Loss: 1.3433, Acc: 51.91%
+  Batch [250/391] Loss: 1.3213, Acc: 53.10%
+  Batch [300/391] Loss: 1.3039, Acc: 54.15%
+  Batch [350/391] Loss: 1.2903, Acc: 54.79%
+[Epoch 3] Train Loss: 1.2814, Acc: 55.01%  |  Val Loss: 2.9084, Acc: 65.12%  |  Time: 20.4s
+  -> Best model saved (65.12%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=21.009 comm_min_ms=3.730 comm_max_ms=36.534
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000973)
+  Batch [50/391] Loss: 1.1206, Acc: 59.75%
+  Batch [100/391] Loss: 1.1468, Acc: 58.75%
+  Batch [150/391] Loss: 1.1122, Acc: 60.54%
+  Batch [200/391] Loss: 1.0995, Acc: 60.59%
+  Batch [250/391] Loss: 1.0856, Acc: 61.58%
+  Batch [300/391] Loss: 1.0867, Acc: 61.60%
+  Batch [350/391] Loss: 1.0807, Acc: 61.80%
+[Epoch 4] Train Loss: 1.0720, Acc: 62.16%  |  Val Loss: 1.6620, Acc: 70.16%  |  Time: 20.3s
+  -> Best model saved (70.16%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.744 comm_min_ms=3.438 comm_max_ms=31.628
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000940)
+  Batch [50/391] Loss: 1.0030, Acc: 63.62%
+  Batch [100/391] Loss: 0.9920, Acc: 64.25%
+  Batch [150/391] Loss: 0.9865, Acc: 64.79%
+  Batch [200/391] Loss: 0.9762, Acc: 65.31%
+  Batch [250/391] Loss: 0.9713, Acc: 65.45%
+  Batch [300/391] Loss: 0.9688, Acc: 65.85%
+  Batch [350/391] Loss: 0.9756, Acc: 65.66%
+[Epoch 5] Train Loss: 0.9761, Acc: 65.71%  |  Val Loss: 0.9398, Acc: 72.56%  |  Time: 20.2s
+  -> Best model saved (72.56%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.028 comm_mean_ms=19.978 comm_min_ms=3.449 comm_max_ms=31.229
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000895)
+  Batch [50/391] Loss: 0.9695, Acc: 65.50%
+  Batch [100/391] Loss: 0.9422, Acc: 67.25%
+  Batch [150/391] Loss: 0.9456, Acc: 66.88%
+  Batch [200/391] Loss: 0.9386, Acc: 67.22%
+  Batch [250/391] Loss: 0.9380, Acc: 67.20%
+  Batch [300/391] Loss: 0.9382, Acc: 67.38%
+  Batch [350/391] Loss: 0.9383, Acc: 67.34%
+[Epoch 6] Train Loss: 0.9363, Acc: 67.47%  |  Val Loss: 0.8619, Acc: 75.20%  |  Time: 20.3s
+  -> Best model saved (75.20%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.028 comm_mean_ms=19.889 comm_min_ms=3.403 comm_max_ms=30.710
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000839)
+  Batch [50/391] Loss: 0.8976, Acc: 69.75%
+  Batch [100/391] Loss: 0.8435, Acc: 71.44%
+  Batch [150/391] Loss: 0.8421, Acc: 71.71%
+  Batch [200/391] Loss: 0.8340, Acc: 71.66%
+  Batch [250/391] Loss: 0.8355, Acc: 71.58%
+  Batch [300/391] Loss: 0.8232, Acc: 72.04%
+  Batch [350/391] Loss: 0.8235, Acc: 71.89%
+[Epoch 7] Train Loss: 0.8251, Acc: 71.89%  |  Val Loss: 0.8786, Acc: 78.56%  |  Time: 20.0s
+  -> Best model saved (78.56%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.027 comm_mean_ms=20.144 comm_min_ms=3.720 comm_max_ms=31.146
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000773)
+  Batch [50/391] Loss: 0.8277, Acc: 70.00%
+  Batch [100/391] Loss: 0.7839, Acc: 72.00%
+  Batch [150/391] Loss: 0.8001, Acc: 71.79%
+  Batch [200/391] Loss: 0.7972, Acc: 72.31%
+  Batch [250/391] Loss: 0.8083, Acc: 71.80%
+  Batch [300/391] Loss: 0.8010, Acc: 72.06%
+  Batch [350/391] Loss: 0.8052, Acc: 72.07%
+[Epoch 8] Train Loss: 0.8072, Acc: 71.95%  |  Val Loss: 0.6772, Acc: 79.28%  |  Time: 20.0s
+  -> Best model saved (79.28%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.027 comm_mean_ms=20.136 comm_min_ms=3.715 comm_max_ms=31.107
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000701)
+  Batch [50/391] Loss: 0.8208, Acc: 70.88%
+  Batch [100/391] Loss: 0.8260, Acc: 71.56%
+  Batch [150/391] Loss: 0.8148, Acc: 71.67%
+  Batch [200/391] Loss: 0.7995, Acc: 72.12%
+  Batch [250/391] Loss: 0.7899, Acc: 72.62%
+  Batch [300/391] Loss: 0.7847, Acc: 72.88%
+  Batch [350/391] Loss: 0.7880, Acc: 72.88%
+[Epoch 9] Train Loss: 0.7876, Acc: 72.98%  |  Val Loss: 0.6808, Acc: 80.00%  |  Time: 20.2s
+  -> Best model saved (80.00%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.773 comm_min_ms=3.841 comm_max_ms=31.714
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000623)
+  Batch [50/391] Loss: 0.7461, Acc: 74.25%
+  Batch [100/391] Loss: 0.7622, Acc: 73.62%
+  Batch [150/391] Loss: 0.7578, Acc: 73.46%
+  Batch [200/391] Loss: 0.7627, Acc: 73.56%
+  Batch [250/391] Loss: 0.7678, Acc: 73.60%
+  Batch [300/391] Loss: 0.7660, Acc: 74.08%
+  Batch [350/391] Loss: 0.7634, Acc: 74.11%
+[Epoch 10] Train Loss: 0.7593, Acc: 74.16%  |  Val Loss: 0.5972, Acc: 80.56%  |  Time: 20.2s
+  -> Best model saved (80.56%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.839 comm_min_ms=3.657 comm_max_ms=31.659
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000541)
+  Batch [50/391] Loss: 0.7381, Acc: 74.25%
+  Batch [100/391] Loss: 0.7404, Acc: 74.88%
+  Batch [150/391] Loss: 0.7503, Acc: 74.33%
+  Batch [200/391] Loss: 0.7453, Acc: 74.50%
+  Batch [250/391] Loss: 0.7429, Acc: 74.85%
+  Batch [300/391] Loss: 0.7326, Acc: 75.23%
+  Batch [350/391] Loss: 0.7243, Acc: 75.54%
+[Epoch 11] Train Loss: 0.7216, Acc: 75.62%  |  Val Loss: 0.6156, Acc: 82.40%  |  Time: 20.2s
+  -> Best model saved (82.40%)
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.764 comm_min_ms=3.733 comm_max_ms=31.703
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000459)
+  Batch [50/391] Loss: 0.6764, Acc: 76.62%
+  Batch [100/391] Loss: 0.6720, Acc: 76.31%
+  Batch [150/391] Loss: 0.6614, Acc: 77.38%
+  Batch [200/391] Loss: 0.6665, Acc: 77.03%
+  Batch [250/391] Loss: 0.6645, Acc: 77.00%
+  Batch [300/391] Loss: 0.6697, Acc: 76.88%
+  Batch [350/391] Loss: 0.6768, Acc: 76.62%
+[Epoch 12] Train Loss: 0.6798, Acc: 76.45%  |  Val Loss: 0.6232, Acc: 80.96%  |  Time: 20.2s
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.620 comm_min_ms=3.702 comm_max_ms=31.341
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000377)
+  Batch [50/391] Loss: 0.7020, Acc: 76.50%
+  Batch [100/391] Loss: 0.6661, Acc: 77.12%
+  Batch [150/391] Loss: 0.6604, Acc: 77.54%
+  Batch [200/391] Loss: 0.6811, Acc: 76.78%
+  Batch [250/391] Loss: 0.6754, Acc: 76.90%
+  Batch [300/391] Loss: 0.6720, Acc: 77.21%
+  Batch [350/391] Loss: 0.6669, Acc: 77.18%
+[Epoch 13] Train Loss: 0.6636, Acc: 77.23%  |  Val Loss: 0.5608, Acc: 82.32%  |  Time: 20.0s
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.027 comm_mean_ms=20.036 comm_min_ms=3.367 comm_max_ms=31.993
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000299)
+  Batch [50/391] Loss: 0.6821, Acc: 76.88%
+  Batch [100/391] Loss: 0.7094, Acc: 75.31%
+  Batch [150/391] Loss: 0.7161, Acc: 75.04%
+  Batch [200/391] Loss: 0.7064, Acc: 75.53%
+  Batch [250/391] Loss: 0.7059, Acc: 75.60%
+  Batch [300/391] Loss: 0.7098, Acc: 75.65%
+  Batch [350/391] Loss: 0.7021, Acc: 75.80%
+[Epoch 14] Train Loss: 0.7014, Acc: 75.94%  |  Val Loss: 0.5683, Acc: 82.88%  |  Time: 20.1s
+  -> Best model saved (82.88%)
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.417 comm_min_ms=3.726 comm_max_ms=39.490
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000227)
+  Batch [50/391] Loss: 0.6334, Acc: 77.50%
+  Batch [100/391] Loss: 0.6645, Acc: 76.56%
+  Batch [150/391] Loss: 0.6491, Acc: 77.67%
+  Batch [200/391] Loss: 0.6511, Acc: 77.78%
+  Batch [250/391] Loss: 0.6461, Acc: 78.22%
+  Batch [300/391] Loss: 0.6587, Acc: 77.65%
+  Batch [350/391] Loss: 0.6580, Acc: 77.64%
+[Epoch 15] Train Loss: 0.6545, Acc: 77.71%  |  Val Loss: 0.5370, Acc: 82.64%  |  Time: 20.3s
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.866 comm_min_ms=3.934 comm_max_ms=33.412
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000161)
+  Batch [50/391] Loss: 0.6969, Acc: 77.75%
+  Batch [100/391] Loss: 0.6532, Acc: 78.56%
+  Batch [150/391] Loss: 0.6431, Acc: 78.50%
+  Batch [200/391] Loss: 0.6527, Acc: 77.72%
+  Batch [250/391] Loss: 0.6468, Acc: 77.80%
+  Batch [300/391] Loss: 0.6474, Acc: 77.92%
+  Batch [350/391] Loss: 0.6551, Acc: 77.73%
+[Epoch 16] Train Loss: 0.6537, Acc: 77.87%  |  Val Loss: 0.5993, Acc: 82.72%  |  Time: 20.3s
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.029 comm_mean_ms=19.872 comm_min_ms=3.295 comm_max_ms=30.727
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000105)
+  Batch [50/391] Loss: 0.5878, Acc: 79.25%
+  Batch [100/391] Loss: 0.5576, Acc: 80.88%
+  Batch [150/391] Loss: 0.6063, Acc: 79.67%
+  Batch [200/391] Loss: 0.6184, Acc: 78.81%
+  Batch [250/391] Loss: 0.6228, Acc: 78.65%
+  Batch [300/391] Loss: 0.6317, Acc: 78.38%
+  Batch [350/391] Loss: 0.6321, Acc: 78.48%
+[Epoch 17] Train Loss: 0.6463, Acc: 78.00%  |  Val Loss: 0.5871, Acc: 82.88%  |  Time: 20.1s
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.030 comm_mean_ms=19.971 comm_min_ms=3.314 comm_max_ms=61.886
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000060)
+  Batch [50/391] Loss: 0.6504, Acc: 78.12%
+  Batch [100/391] Loss: 0.6448, Acc: 78.69%
+  Batch [150/391] Loss: 0.6302, Acc: 78.96%
+  Batch [200/391] Loss: 0.6357, Acc: 78.72%
+  Batch [250/391] Loss: 0.6427, Acc: 78.50%
+  Batch [300/391] Loss: 0.6430, Acc: 78.31%
+  Batch [350/391] Loss: 0.6437, Acc: 78.30%
+[Epoch 18] Train Loss: 0.6415, Acc: 78.30%  |  Val Loss: 0.5439, Acc: 82.32%  |  Time: 20.3s
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.029 comm_mean_ms=20.291 comm_min_ms=3.776 comm_max_ms=40.916
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000027)
+  Batch [50/391] Loss: 0.5833, Acc: 78.62%
+  Batch [100/391] Loss: 0.6132, Acc: 78.31%
+  Batch [150/391] Loss: 0.6062, Acc: 78.62%
+  Batch [200/391] Loss: 0.6249, Acc: 78.75%
+  Batch [250/391] Loss: 0.6233, Acc: 78.83%
+  Batch [300/391] Loss: 0.6282, Acc: 78.48%
+  Batch [350/391] Loss: 0.6274, Acc: 78.41%
+[Epoch 19] Train Loss: 0.6299, Acc: 78.19%  |  Val Loss: 0.5686, Acc: 82.72%  |  Time: 20.1s
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.357 comm_min_ms=3.943 comm_max_ms=32.073
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000007)
+  Batch [50/391] Loss: 0.6101, Acc: 78.75%
+  Batch [100/391] Loss: 0.6477, Acc: 77.69%
+  Batch [150/391] Loss: 0.6420, Acc: 77.54%
+  Batch [200/391] Loss: 0.6470, Acc: 77.53%
+  Batch [250/391] Loss: 0.6514, Acc: 77.45%
+  Batch [300/391] Loss: 0.6467, Acc: 77.88%
+  Batch [350/391] Loss: 0.6446, Acc: 78.04%
+[Epoch 20] Train Loss: 0.6438, Acc: 78.16%  |  Val Loss: 0.5495, Acc: 83.60%  |  Time: 20.0s
+  -> Best model saved (83.60%)
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_TIMING_SUMMARY] label=mpi:ring_async calls=3128 dispatch_mean_ms=0.026 comm_mean_ms=20.333 comm_min_ms=3.765 comm_max_ms=30.861
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 419.6s | Best val acc: 83.60%
+Epoch times: mean=20.4s  min=20.0s  max=24.9s
+================================================================================
+=== Finished training: backend=mpi, hook=ring_async, status=0 at Thu May 21 05:59:10 PM UTC 2026 ===
+=== Starting training: backend=mpi, hook=ring at Thu May 21 05:59:10 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: ring
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 16, Effective batch: 128
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/ring
+[Data] Train batches: 391, Val batches: 79
+
+
+[Epoch 1] Training... (lr=0.000001)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    mpi
+  Algorithm:  ring
+  Epochs:     20
+  Batch/rank: 16
+  LR:         0.001
+================================================================================
+
+  Batch [50/391] Loss: 2.3764, Acc: 10.00%
+  Batch [100/391] Loss: 2.3738, Acc: 9.81%
+  Batch [150/391] Loss: 2.3703, Acc: 10.17%
+  Batch [200/391] Loss: 2.3713, Acc: 9.81%
+  Batch [250/391] Loss: 2.3687, Acc: 9.80%
+  Batch [300/391] Loss: 2.3731, Acc: 9.65%
+  Batch [350/391] Loss: 2.3685, Acc: 9.93%
+[Epoch 1] Train Loss: 2.3721, Acc: 9.95%  |  Val Loss: 7381.6383, Acc: 9.92%  |  Time: 24.4s
+  -> Best model saved (9.92%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3114 dispatch_mean_ms=4.670 comm_mean_ms=4.677 comm_min_ms=1.967 comm_max_ms=67.633
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr=0.001000)
+  Batch [50/391] Loss: 2.2944, Acc: 15.12%
+  Batch [100/391] Loss: 2.2082, Acc: 19.12%
+  Batch [150/391] Loss: 2.1366, Acc: 22.21%
+  Batch [200/391] Loss: 2.0522, Acc: 26.00%
+  Batch [250/391] Loss: 1.9862, Acc: 29.12%
+  Batch [300/391] Loss: 1.9240, Acc: 31.33%
+  Batch [350/391] Loss: 1.8743, Acc: 33.29%
+[Epoch 2] Train Loss: 1.8391, Acc: 34.64%  |  Val Loss: 1.6511, Acc: 53.04%  |  Time: 23.4s
+  -> Best model saved (53.04%)
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.647 comm_mean_ms=4.654 comm_min_ms=1.945 comm_max_ms=8.589
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr=0.000993)
+  Batch [50/391] Loss: 1.4433, Acc: 50.62%
+  Batch [100/391] Loss: 1.3984, Acc: 51.94%
+  Batch [150/391] Loss: 1.3710, Acc: 52.33%
+  Batch [200/391] Loss: 1.3507, Acc: 52.66%
+  Batch [250/391] Loss: 1.3326, Acc: 53.15%
+  Batch [300/391] Loss: 1.3228, Acc: 53.56%
+  Batch [350/391] Loss: 1.3106, Acc: 54.05%
+[Epoch 3] Train Loss: 1.2989, Acc: 54.53%  |  Val Loss: 2.1872, Acc: 66.00%  |  Time: 23.4s
+  -> Best model saved (66.00%)
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.781 comm_mean_ms=4.787 comm_min_ms=2.035 comm_max_ms=8.497
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr=0.000973)
+  Batch [50/391] Loss: 1.1860, Acc: 59.00%
+  Batch [100/391] Loss: 1.2074, Acc: 58.19%
+  Batch [150/391] Loss: 1.1695, Acc: 59.38%
+  Batch [200/391] Loss: 1.1599, Acc: 59.62%
+  Batch [250/391] Loss: 1.1461, Acc: 60.10%
+  Batch [300/391] Loss: 1.1417, Acc: 60.23%
+  Batch [350/391] Loss: 1.1334, Acc: 60.66%
+[Epoch 4] Train Loss: 1.1238, Acc: 60.85%  |  Val Loss: 2.7610, Acc: 72.24%  |  Time: 23.2s
+  -> Best model saved (72.24%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.707 comm_mean_ms=4.714 comm_min_ms=2.021 comm_max_ms=8.698
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr=0.000940)
+  Batch [50/391] Loss: 1.0713, Acc: 62.38%
+  Batch [100/391] Loss: 1.0653, Acc: 62.44%
+  Batch [150/391] Loss: 1.0349, Acc: 63.58%
+  Batch [200/391] Loss: 1.0221, Acc: 64.44%
+  Batch [250/391] Loss: 1.0267, Acc: 64.33%
+  Batch [300/391] Loss: 1.0185, Acc: 64.56%
+  Batch [350/391] Loss: 1.0230, Acc: 64.48%
+[Epoch 5] Train Loss: 1.0164, Acc: 64.54%  |  Val Loss: 0.8243, Acc: 74.96%  |  Time: 23.4s
+  -> Best model saved (74.96%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.654 comm_mean_ms=4.661 comm_min_ms=1.923 comm_max_ms=8.631
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr=0.000895)
+  Batch [50/391] Loss: 0.9989, Acc: 67.88%
+  Batch [100/391] Loss: 0.9655, Acc: 67.88%
+  Batch [150/391] Loss: 0.9773, Acc: 66.83%
+  Batch [200/391] Loss: 0.9672, Acc: 66.81%
+  Batch [250/391] Loss: 0.9699, Acc: 66.55%
+  Batch [300/391] Loss: 0.9715, Acc: 66.77%
+  Batch [350/391] Loss: 0.9742, Acc: 66.73%
+[Epoch 6] Train Loss: 0.9683, Acc: 66.94%  |  Val Loss: 0.7858, Acc: 76.24%  |  Time: 23.1s
+  -> Best model saved (76.24%)
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.683 comm_mean_ms=4.689 comm_min_ms=2.292 comm_max_ms=8.451
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr=0.000839)
+  Batch [50/391] Loss: 0.8929, Acc: 68.88%
+  Batch [100/391] Loss: 0.8656, Acc: 69.12%
+  Batch [150/391] Loss: 0.8741, Acc: 69.25%
+  Batch [200/391] Loss: 0.8695, Acc: 68.62%
+  Batch [250/391] Loss: 0.8731, Acc: 68.58%
+  Batch [300/391] Loss: 0.8606, Acc: 69.17%
+  Batch [350/391] Loss: 0.8577, Acc: 69.45%
+[Epoch 7] Train Loss: 0.8641, Acc: 69.47%  |  Val Loss: 0.6574, Acc: 78.32%  |  Time: 23.4s
+  -> Best model saved (78.32%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.641 comm_mean_ms=4.647 comm_min_ms=1.928 comm_max_ms=8.400
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr=0.000773)
+  Batch [50/391] Loss: 0.8668, Acc: 70.50%
+  Batch [100/391] Loss: 0.8403, Acc: 70.69%
+  Batch [150/391] Loss: 0.8658, Acc: 69.96%
+  Batch [200/391] Loss: 0.8635, Acc: 70.12%
+  Batch [250/391] Loss: 0.8700, Acc: 69.72%
+  Batch [300/391] Loss: 0.8591, Acc: 70.08%
+  Batch [350/391] Loss: 0.8623, Acc: 69.93%
+[Epoch 8] Train Loss: 0.8660, Acc: 69.71%  |  Val Loss: 0.6338, Acc: 78.96%  |  Time: 23.4s
+  -> Best model saved (78.96%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.627 comm_mean_ms=4.634 comm_min_ms=1.927 comm_max_ms=8.392
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr=0.000701)
+  Batch [50/391] Loss: 0.8834, Acc: 68.25%
+  Batch [100/391] Loss: 0.8658, Acc: 68.75%
+  Batch [150/391] Loss: 0.8338, Acc: 69.96%
+  Batch [200/391] Loss: 0.8217, Acc: 70.69%
+  Batch [250/391] Loss: 0.8178, Acc: 71.12%
+  Batch [300/391] Loss: 0.8169, Acc: 71.44%
+  Batch [350/391] Loss: 0.8211, Acc: 71.52%
+[Epoch 9] Train Loss: 0.8174, Acc: 71.39%  |  Val Loss: 0.9449, Acc: 80.24%  |  Time: 23.4s
+  -> Best model saved (80.24%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.705 comm_mean_ms=4.712 comm_min_ms=1.941 comm_max_ms=8.345
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr=0.000623)
+  Batch [50/391] Loss: 0.7627, Acc: 74.12%
+  Batch [100/391] Loss: 0.7826, Acc: 73.00%
+  Batch [150/391] Loss: 0.7708, Acc: 73.04%
+  Batch [200/391] Loss: 0.7833, Acc: 72.66%
+  Batch [250/391] Loss: 0.7927, Acc: 72.38%
+  Batch [300/391] Loss: 0.7855, Acc: 72.81%
+  Batch [350/391] Loss: 0.7845, Acc: 72.79%
+[Epoch 10] Train Loss: 0.7752, Acc: 72.99%  |  Val Loss: 2.2045, Acc: 80.64%  |  Time: 23.4s
+  -> Best model saved (80.64%)
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.756 comm_mean_ms=4.763 comm_min_ms=2.246 comm_max_ms=8.606
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr=0.000541)
+  Batch [50/391] Loss: 0.7243, Acc: 75.62%
+  Batch [100/391] Loss: 0.7467, Acc: 74.88%
+  Batch [150/391] Loss: 0.7500, Acc: 73.96%
+  Batch [200/391] Loss: 0.7492, Acc: 73.75%
+  Batch [250/391] Loss: 0.7456, Acc: 74.17%
+  Batch [300/391] Loss: 0.7389, Acc: 74.40%
+  Batch [350/391] Loss: 0.7313, Acc: 74.71%
+[Epoch 11] Train Loss: 0.7335, Acc: 74.54%  |  Val Loss: 0.6560, Acc: 80.16%  |  Time: 23.5s
+[Epoch 11] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=11
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.638 comm_mean_ms=4.644 comm_min_ms=1.936 comm_max_ms=8.625
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr=0.000459)
+  Batch [50/391] Loss: 0.7246, Acc: 73.50%
+  Batch [100/391] Loss: 0.7117, Acc: 73.62%
+  Batch [150/391] Loss: 0.7014, Acc: 74.83%
+  Batch [200/391] Loss: 0.6953, Acc: 75.12%
+  Batch [250/391] Loss: 0.6881, Acc: 75.35%
+  Batch [300/391] Loss: 0.6956, Acc: 75.29%
+  Batch [350/391] Loss: 0.6971, Acc: 75.29%
+[Epoch 12] Train Loss: 0.6953, Acc: 75.26%  |  Val Loss: 0.5813, Acc: 81.68%  |  Time: 23.4s
+  -> Best model saved (81.68%)
+[Epoch 12] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=12
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.760 comm_mean_ms=4.766 comm_min_ms=2.475 comm_max_ms=8.342
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr=0.000377)
+  Batch [50/391] Loss: 0.7251, Acc: 75.62%
+  Batch [100/391] Loss: 0.6736, Acc: 76.69%
+  Batch [150/391] Loss: 0.6732, Acc: 76.96%
+  Batch [200/391] Loss: 0.6897, Acc: 76.31%
+  Batch [250/391] Loss: 0.6915, Acc: 76.03%
+  Batch [300/391] Loss: 0.6900, Acc: 76.12%
+  Batch [350/391] Loss: 0.6875, Acc: 76.18%
+[Epoch 13] Train Loss: 0.6893, Acc: 76.02%  |  Val Loss: 0.6672, Acc: 80.32%  |  Time: 23.4s
+[Epoch 13] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=13
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.761 comm_mean_ms=4.768 comm_min_ms=2.028 comm_max_ms=8.639
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr=0.000299)
+  Batch [50/391] Loss: 0.7118, Acc: 75.50%
+  Batch [100/391] Loss: 0.7449, Acc: 74.12%
+  Batch [150/391] Loss: 0.7355, Acc: 74.58%
+  Batch [200/391] Loss: 0.7250, Acc: 75.09%
+  Batch [250/391] Loss: 0.7207, Acc: 75.62%
+  Batch [300/391] Loss: 0.7298, Acc: 75.08%
+  Batch [350/391] Loss: 0.7200, Acc: 75.41%
+[Epoch 14] Train Loss: 0.7195, Acc: 75.44%  |  Val Loss: 1.0784, Acc: 78.08%  |  Time: 23.3s
+[Epoch 14] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=14
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.628 comm_mean_ms=4.634 comm_min_ms=1.885 comm_max_ms=25.029
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr=0.000227)
+  Batch [50/391] Loss: 0.6622, Acc: 76.88%
+  Batch [100/391] Loss: 0.6928, Acc: 76.25%
+  Batch [150/391] Loss: 0.6741, Acc: 76.67%
+  Batch [200/391] Loss: 0.6740, Acc: 76.62%
+  Batch [250/391] Loss: 0.6664, Acc: 76.92%
+  Batch [300/391] Loss: 0.6723, Acc: 76.73%
+  Batch [350/391] Loss: 0.6734, Acc: 76.84%
+[Epoch 15] Train Loss: 0.6712, Acc: 76.90%  |  Val Loss: 0.8245, Acc: 79.84%  |  Time: 23.4s
+[Epoch 15] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=15
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.635 comm_mean_ms=4.642 comm_min_ms=1.923 comm_max_ms=38.848
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr=0.000161)
+  Batch [50/391] Loss: 0.7322, Acc: 75.62%
+  Batch [100/391] Loss: 0.7049, Acc: 76.06%
+  Batch [150/391] Loss: 0.6849, Acc: 77.08%
+  Batch [200/391] Loss: 0.6829, Acc: 76.94%
+  Batch [250/391] Loss: 0.6766, Acc: 77.33%
+  Batch [300/391] Loss: 0.6742, Acc: 77.44%
+  Batch [350/391] Loss: 0.6820, Acc: 77.12%
+[Epoch 16] Train Loss: 0.6807, Acc: 77.04%  |  Val Loss: 1.3646, Acc: 77.12%  |  Time: 23.4s
+[Epoch 16] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=16
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.617 comm_mean_ms=4.623 comm_min_ms=1.903 comm_max_ms=23.342
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr=0.000105)
+  Batch [50/391] Loss: 0.6546, Acc: 77.50%
+  Batch [100/391] Loss: 0.6187, Acc: 79.06%
+  Batch [150/391] Loss: 0.6467, Acc: 78.21%
+  Batch [200/391] Loss: 0.6531, Acc: 77.81%
+  Batch [250/391] Loss: 0.6564, Acc: 77.65%
+  Batch [300/391] Loss: 0.6633, Acc: 77.50%
+  Batch [350/391] Loss: 0.6596, Acc: 77.57%
+[Epoch 17] Train Loss: 0.6701, Acc: 77.15%  |  Val Loss: 1.3280, Acc: 77.28%  |  Time: 23.4s
+[Epoch 17] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=17
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.721 comm_mean_ms=4.728 comm_min_ms=1.986 comm_max_ms=36.495
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr=0.000060)
+  Batch [50/391] Loss: 0.6490, Acc: 77.50%
+  Batch [100/391] Loss: 0.6557, Acc: 77.94%
+  Batch [150/391] Loss: 0.6470, Acc: 78.29%
+  Batch [200/391] Loss: 0.6471, Acc: 78.22%
+  Batch [250/391] Loss: 0.6536, Acc: 78.00%
+  Batch [300/391] Loss: 0.6573, Acc: 77.69%
+  Batch [350/391] Loss: 0.6604, Acc: 77.45%
+[Epoch 18] Train Loss: 0.6572, Acc: 77.49%  |  Val Loss: 0.9580, Acc: 78.32%  |  Time: 23.4s
+[Epoch 18] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=18
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.736 comm_mean_ms=4.743 comm_min_ms=2.300 comm_max_ms=29.027
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr=0.000027)
+  Batch [50/391] Loss: 0.5972, Acc: 78.88%
+  Batch [100/391] Loss: 0.6285, Acc: 78.31%
+  Batch [150/391] Loss: 0.6220, Acc: 78.58%
+  Batch [200/391] Loss: 0.6388, Acc: 78.44%
+  Batch [250/391] Loss: 0.6383, Acc: 78.50%
+  Batch [300/391] Loss: 0.6435, Acc: 78.29%
+  Batch [350/391] Loss: 0.6380, Acc: 78.21%
+[Epoch 19] Train Loss: 0.6372, Acc: 78.24%  |  Val Loss: 0.9626, Acc: 78.00%  |  Time: 23.4s
+[Epoch 19] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=19
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.605 comm_mean_ms=4.612 comm_min_ms=1.921 comm_max_ms=8.516
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr=0.000007)
+  Batch [50/391] Loss: 0.6313, Acc: 77.62%
+  Batch [100/391] Loss: 0.6482, Acc: 77.19%
+  Batch [150/391] Loss: 0.6436, Acc: 77.17%
+  Batch [200/391] Loss: 0.6476, Acc: 77.22%
+  Batch [250/391] Loss: 0.6455, Acc: 77.60%
+  Batch [300/391] Loss: 0.6496, Acc: 77.56%
+  Batch [350/391] Loss: 0.6464, Acc: 77.80%
+[Epoch 20] Train Loss: 0.6473, Acc: 77.84%  |  Val Loss: 0.9805, Acc: 79.44%  |  Time: 23.5s
+[Epoch 20] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=20
+[HOOK_TIMING_SUMMARY] label=mpi:ring calls=3128 dispatch_mean_ms=4.656 comm_mean_ms=4.662 comm_min_ms=1.964 comm_max_ms=19.047
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 477.8s | Best val acc: 81.68%
+Epoch times: mean=23.4s  min=23.1s  max=24.4s
+================================================================================
+=== Finished training: backend=mpi, hook=ring, status=0 at Thu May 21 06:07:18 PM UTC 2026 ===
+=== Job finished: Thu May 21 06:07:18 PM UTC 2026 ===

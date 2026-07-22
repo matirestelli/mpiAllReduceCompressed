@@ -1,0 +1,149 @@
+=== Job started: Wed May 20 02:40:03 PM UTC 2026 ===
+=== Node: x3107c0s25b1n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+=============================================
+  Polaris NCCL test — GTL NOT loaded
+=============================================
+Node              : x3107c0s25b1n0
+GTL               : NOT loaded (NCCL test)
+MPICH_GPU_SUPPORT : NOT set (NCCL test)
+
+PyTorch version   : 2.8.0
+PyTorch location  : /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/__init__.py
+CUDA available    : True 4
+cuDNN             : 91300
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+ZFP lib           : lrwxrwxrwx 1 mrest users 11 May 17 22:11 /home/mrest/mpiAllReduceCompressed/zfp-install/lib64/libzfp.so -> libzfp.so.1
+ZFP include       : -rw-r--r-- 1 mrest users 35180 May 17 18:17 /home/mrest/mpiAllReduceCompressed/zfp-install/include/zfp.h
+=============================================
+=== Starting training ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnext101_32x8d (CIFAR stem) (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+Distributed Training: RESNEXT101_32X8D on CIFAR10
+Backend: NCCL, Algorithm: recursive_doubling_zfp_naive
+================================================================================
+Ranks: 4, Epochs: 10, Batch/rank: 128, Effective batch: 512
+LR: 0.001, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: nccl/recursive_doubling_zfp_naive
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000001)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnext101_32x8d (CIFAR stem) (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnext101_32x8d (CIFAR stem) (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnext101_32x8d (CIFAR stem) (pretrained)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  recursive_doubling_zfp_naive
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.001
+================================================================================
+
+  Batch [50/98] Loss: 2.3110, Acc: 11.08%
+[Epoch 1] Train Loss: 2.3110, Acc: 10.93%  |  Val Loss: 2.3159, Acc: 10.80%  |  Time: 27.9s
+  -> Best model saved (10.80%)
+
+[Epoch 2] Training... (lr=0.000201)
+  Batch [50/98] Loss: 2.3049, Acc: 12.06%
+[Epoch 2] Train Loss: 2.2965, Acc: 12.87%  |  Val Loss: 2.2764, Acc: 16.12%  |  Time: 19.2s
+  -> Best model saved (16.12%)
+
+[Epoch 3] Training... (lr=0.000401)
+  Batch [50/98] Loss: 2.2672, Acc: 16.70%
+[Epoch 3] Train Loss: 2.2507, Acc: 18.86%  |  Val Loss: 2.2082, Acc: 25.28%  |  Time: 19.2s
+  -> Best model saved (25.28%)
+
+[Epoch 4] Training... (lr=0.000600)
+  Batch [50/98] Loss: 2.1950, Acc: 25.00%
+[Epoch 4] Train Loss: 2.1680, Acc: 27.34%  |  Val Loss: 2.0986, Acc: 32.60%  |  Time: 19.2s
+  -> Best model saved (32.60%)
+
+[Epoch 5] Training... (lr=0.000800)
+  Batch [50/98] Loss: 2.0718, Acc: 35.03%
+[Epoch 5] Train Loss: 2.0435, Acc: 35.73%  |  Val Loss: 1.9491, Acc: 40.04%  |  Time: 19.2s
+  -> Best model saved (40.04%)
+
+[Epoch 6] Training... (lr=0.001000)
+  Batch [50/98] Loss: 1.9260, Acc: 39.50%
+[Epoch 6] Train Loss: 1.8816, Acc: 41.24%  |  Val Loss: 1.7726, Acc: 46.32%  |  Time: 19.2s
+  -> Best model saved (46.32%)
+
+[Epoch 7] Training... (lr=0.000905)
+  Batch [50/98] Loss: 1.7556, Acc: 46.25%
+[Epoch 7] Train Loss: 1.7186, Acc: 47.46%  |  Val Loss: 1.6173, Acc: 51.96%  |  Time: 19.1s
+  -> Best model saved (51.96%)
+
+[Epoch 8] Training... (lr=0.000655)
+  Batch [50/98] Loss: 1.6208, Acc: 50.44%
+[Epoch 8] Train Loss: 1.5994, Acc: 50.36%  |  Val Loss: 1.5181, Acc: 54.76%  |  Time: 19.2s
+  -> Best model saved (54.76%)
+
+[Epoch 9] Training... (lr=0.000345)
+  Batch [50/98] Loss: 1.5347, Acc: 52.33%
+[Epoch 9] Train Loss: 1.5171, Acc: 53.22%  |  Val Loss: 1.4680, Acc: 56.32%  |  Time: 19.2s
+  -> Best model saved (56.32%)
+
+[Epoch 10] Training... (lr=0.000095)
+  Batch [50/98] Loss: 1.4815, Acc: 53.70%
+[Epoch 10] Train Loss: 1.4821, Acc: 53.68%  |  Val Loss: 1.4503, Acc: 56.44%  |  Time: 19.2s
+  -> Best model saved (56.44%)
+
+================================================================================
+Done in 211.9s | Best val acc: 56.44%
+Epoch times: mean=20.0s  min=19.1s  max=27.9s
+================================================================================
+=== Job finished: Wed May 20 02:44:22 PM UTC 2026 ===

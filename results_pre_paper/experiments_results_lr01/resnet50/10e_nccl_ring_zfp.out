@@ -1,0 +1,145 @@
+=== Job started: Sat May  9 04:46:37 PM UTC 2026 ===
+=== Node: x3003c0s7b1n0 ===
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3003c0s7b1n0
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+=== Starting training ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+Distributed Training: RESNET50 on CIFAR10
+Backend: NCCL, Algorithm: ring_zfp
+================================================================================
+Ranks: 4, Epochs: 10, Batch/rank: 128, Effective batch: 512
+LR: 0.01, Device: cuda:0
+
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: nccl/ring_zfp
+[Data] Train batches: 98, Val batches: 20
+
+
+[Epoch 1] Training... (lr=0.000010)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      resnet50 (CIFAR stem)
+  Dataset:    cifar10 (10 classes)
+  Backend:    nccl
+  Algorithm:  ring_zfp
+  Epochs:     10
+  Batch/rank: 128
+  LR:         0.01
+================================================================================
+
+  Batch [50/98] Loss: 2.3999, Acc: 10.75%
+[Epoch 1] Train Loss: 2.3521, Acc: 11.80%  |  Val Loss: 2.2884, Acc: 12.20%  |  Time: 8.2s
+  -> Best model saved (12.20%)
+
+[Epoch 2] Training... (lr=0.010000)
+  Batch [50/98] Loss: 3.5359, Acc: 12.91%
+[Epoch 2] Train Loss: 2.8227, Acc: 17.06%  |  Val Loss: 1.9125, Acc: 26.40%  |  Time: 6.5s
+  -> Best model saved (26.40%)
+
+[Epoch 3] Training... (lr=0.009698)
+  Batch [50/98] Loss: 1.8631, Acc: 28.03%
+[Epoch 3] Train Loss: 1.8177, Acc: 30.00%  |  Val Loss: 1.6537, Acc: 37.24%  |  Time: 6.5s
+  -> Best model saved (37.24%)
+
+[Epoch 4] Training... (lr=0.008830)
+  Batch [50/98] Loss: 1.6936, Acc: 36.86%
+[Epoch 4] Train Loss: 1.6615, Acc: 37.92%  |  Val Loss: 1.5062, Acc: 44.16%  |  Time: 6.5s
+  -> Best model saved (44.16%)
+
+[Epoch 5] Training... (lr=0.007500)
+  Batch [50/98] Loss: 1.4711, Acc: 45.14%
+[Epoch 5] Train Loss: 1.4759, Acc: 44.90%  |  Val Loss: 1.3899, Acc: 48.32%  |  Time: 6.5s
+  -> Best model saved (48.32%)
+
+[Epoch 6] Training... (lr=0.005868)
+  Batch [50/98] Loss: 1.3908, Acc: 48.06%
+[Epoch 6] Train Loss: 1.3828, Acc: 49.09%  |  Val Loss: 1.2863, Acc: 53.36%  |  Time: 6.5s
+  -> Best model saved (53.36%)
+
+[Epoch 7] Training... (lr=0.004132)
+  Batch [50/98] Loss: 1.3315, Acc: 52.06%
+[Epoch 7] Train Loss: 1.3062, Acc: 52.42%  |  Val Loss: 1.2605, Acc: 53.36%  |  Time: 6.5s
+
+[Epoch 8] Training... (lr=0.002500)
+  Batch [50/98] Loss: 1.2457, Acc: 54.86%
+[Epoch 8] Train Loss: 1.2320, Acc: 55.02%  |  Val Loss: 1.1896, Acc: 57.24%  |  Time: 6.5s
+  -> Best model saved (57.24%)
+
+[Epoch 9] Training... (lr=0.001170)
+  Batch [50/98] Loss: 1.2168, Acc: 55.70%
+[Epoch 9] Train Loss: 1.2112, Acc: 56.21%  |  Val Loss: 1.1589, Acc: 58.96%  |  Time: 6.5s
+  -> Best model saved (58.96%)
+
+[Epoch 10] Training... (lr=0.000302)
+  Batch [50/98] Loss: 1.1725, Acc: 57.56%
+[Epoch 10] Train Loss: 1.1641, Acc: 57.79%  |  Val Loss: 1.1463, Acc: 59.16%  |  Time: 6.4s
+  -> Best model saved (59.16%)
+
+================================================================================
+Done in 69.5s | Best val acc: 59.16%
+Epoch times: mean=6.6s  min=6.4s  max=8.2s
+================================================================================
+=== Job finished: Sat May  9 04:48:09 PM UTC 2026 ===

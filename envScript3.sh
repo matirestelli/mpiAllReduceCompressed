@@ -41,6 +41,11 @@ export no_proxy="localhost,127.0.0.1,*.local,*.alcf.anl.gov,polaris-*,grand.alcf
 conda activate base
 export PYTHONPATH="/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch:${PYTHONPATH:-}"
 
+# PyTorch shared libs (needed for libc10.so at runtime)
+TORCH_HOME="/lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch"
+export TORCH_HOME
+export LD_LIBRARY_PATH="$TORCH_HOME/torch/lib:$TORCH_HOME/build/lib:${LD_LIBRARY_PATH:-}"
+
 # --- 7. CUDA-aware Cray MPICH ---
 export MPICH_GPU_SUPPORT_ENABLED=1
 export MPICH_GPU_SUPPORT_LEVEL=1

@@ -1,12 +1,12 @@
 #!/bin/bash -l
-#PBS -l select=1:ngpus=4
+#PBS -l select=2:system=polaris
 #PBS -l walltime=01:00:00
 #PBS -l filesystems=home:eagle
 #PBS -q debug-scaling
 #PBS -A UIC-HPC
-#PBS -j oe
-#PBS -o ddp_train.%j.out
-#PBS -N ddp-train
+#PBS -o ddp_train_polaris_8gpu_64b.%j.out
+#PBS -e ddp_train_polaris_8gpu_64b.%j.err
+#PBS -N ddp-train_polaris_8gpu_64b
 
 cd ${PBS_O_WORKDIR}
 
@@ -19,10 +19,16 @@ source ${PBS_O_WORKDIR}/envScript3.sh
 export DDP_HOOK_TIMING=1
 export DDP_HOOK_TIMING_RANK0_ONLY=1
 
+export MASTER_ADDR="$(head -n 1 "${PBS_NODEFILE}")"
+export MASTER_PORT=29500
+
+echo "MASTER_ADDR=${MASTER_ADDR}"
+echo "MASTER_PORT=${MASTER_PORT}"
+
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
 
-NUM_PROCS=4
+NUM_PROCS=8
 PPN=4
 
 MODELS=(
@@ -37,12 +43,12 @@ DATASETS=(
 
 NUM_CLASSES_LIST=(
     "10"       # CIFAR-10
-    # "1000"  # ImageNet
+    #"1000"  # ImageNet
 )
 
 IMAGE_SIZES=(
     "32"       # CIFAR
-    # "224"   # ImageNet / ImageNet-like
+    #"224"   # ImageNet / ImageNet-like
 )
 
 NUM_EPOCHS_LIST=(
@@ -52,33 +58,64 @@ NUM_EPOCHS_LIST=(
 )
 
 BATCH_SIZES=(
-    "32"       # strong global 128 on 4 GPUs
-    # "64"    # strong global 256 on 4 GPUs
+    # "16"       # strong global 128 on 4 GPUs
+    #"32"       # strong global 128 on 4 GPUs
+    "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
 
 LEARNING_RATES=(
-    "0.0001"
+    # "0.0001"
     # "0.001"    # paper-style CIFAR reproduction
+    # "0.025"
     # "0.01"
-    # "0.05"
-    # "0.1"
+    #"0.02"
+    "0.1"
+)
+
+MOMENTUMS=(
+    "0.9"      # standard
+    # "0.95"   # B5 — only relevant at global batch >= 2048
+)
+
+OPTIMIZERS=(
+    "sgd"        # A1–A5
+    #"adamw"    # A6–A7 (paper's lr=0.001 is probably an Adam LR)
+)
+
+WEIGHT_DECAYS=(
+    "5e-4"     # standard CIFAR WRN
+    #"0.05"  #adam 
+    # "1e-4"   # B3 and imagenet
+)
+
+NESTEROV_VALUES=(
+    "true"     # B1 baseline
+    # "false"  # B2
+)
+
+# false = BN gamma/beta and ALL biases get weight_decay=0.0  (B1, recommended)
+# true  = weight decay applied to every parameter            (B4, your old behaviour)
+WD_ON_BN_BIAS_VALUES=(
+    "false"    # B1
+    # "true"   # B4
 )
 
 SCHEDULERS=(
-    "constant" # paper-style LR=0.001 reproduction
-    # "cosine"
+    # "constant" # paper-style LR=0.001 reproduction
+    "cosine"
 )
 
 WARMUP_EPOCHS_LIST=(
     "0"
+    # "1"      # paper-style CIFAR reproduction
     # "5"      # ImageNet-style from scratch
 )
 
 GRAD_CLIPS=(
-    #"none"
+    "none"
     # "0.5"
-    "1.0"
+    # "1.0"
 )
 
 PRETRAINED_VALUES=(
@@ -88,12 +125,12 @@ PRETRAINED_VALUES=(
 
 CIFAR_STEM_VALUES=(
     "true"     # CIFAR from scratch
-    # "false"  # ImageNet / ImageNet-like
+    #"false"  # ImageNet / ImageNet-like
 )
 
 DROP_LAST_VALUES=(
-    "false"
-    # "true"
+    # "false"
+    "true"
 )
 
 BACKENDS=(
@@ -104,16 +141,19 @@ BACKENDS=(
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 EXPERIMENTS=(
-    # "default:"
-    "none:"
-    # "ring:"
-    # "ring_zfp_naive:16"
-    # "ring_zfp_online_coll:16"
-    # "ring_zfp_online_coll:10"
-    # "recursive_doubling:"
-    # "recursive_doubling_zfp_naive:16"
-    # "recursive_doubling_zfp_online_coll:16"
-    # "recursive_doubling_zfp_online_coll:8"
+    #"none:"
+    # "default_sync:"
+    # "default_clone:"
+    #"default_cpu_stage:"
+    #"default:"
+    #"ring:"
+    #"ring_zfp_naive:16"
+    #"ring_zfp_online_coll:16"
+    #"ring_zfp_online_coll:10"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    "recursive_doubling_zfp_online_coll:16"
+    "recursive_doubling_zfp_online_coll:8"
 )
 
 for MODEL_NAME in "${MODELS[@]}"; do
@@ -130,6 +170,11 @@ for PRETRAINED in "${PRETRAINED_VALUES[@]}"; do
 for CIFAR_STEM in "${CIFAR_STEM_VALUES[@]}"; do
 for DROP_LAST in "${DROP_LAST_VALUES[@]}"; do
 for BACKEND in "${BACKENDS[@]}"; do
+for OPTIMIZER in "${OPTIMIZERS[@]}"; do
+for MOMENTUM in "${MOMENTUMS[@]}"; do
+for WEIGHT_DECAY in "${WEIGHT_DECAYS[@]}"; do
+for NESTEROV in "${NESTEROV_VALUES[@]}"; do
+for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
     for EXPERIMENT in "${EXPERIMENTS[@]}"; do
         COMM_ALGORITHM="${EXPERIMENT%%:*}"
         ZFP_RATE="${EXPERIMENT#*:}"
@@ -137,6 +182,8 @@ for BACKEND in "${BACKENDS[@]}"; do
         echo "=== Starting training: model=${MODEL_NAME}, dataset=${DATASET}, batch=${BATCH_SIZE}, lr=${LEARNING_RATE}, scheduler=${SCHEDULER}, backend=${BACKEND}, hook=${COMM_ALGORITHM}, zfp_rate=${ZFP_RATE:-none} at $(date) ==="
 
         MPI_ENV_ARGS=(
+            -env MASTER_ADDR="${MASTER_ADDR}"
+            -env MASTER_PORT="${MASTER_PORT}"
             -env MPICH_GPU_SUPPORT_ENABLED=1
             -env LD_PRELOAD="${LD_PRELOAD}"
             -env LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
@@ -148,8 +195,8 @@ for BACKEND in "${BACKENDS[@]}"; do
             -env NUM_EPOCHS="${NUM_EPOCHS}"
             -env BATCH_SIZE="${BATCH_SIZE}"
             -env LEARNING_RATE="${LEARNING_RATE}"
-            -env MOMENTUM="0.9"
-            -env WEIGHT_DECAY="5e-4"
+            -env MOMENTUM="${MOMENTUM}"
+            -env WEIGHT_DECAY="${WEIGHT_DECAY}"
             -env GRAD_CLIP="${GRAD_CLIP}"
             -env SCHEDULER="${SCHEDULER}"
             -env WARMUP_EPOCHS="${WARMUP_EPOCHS}"
@@ -158,12 +205,15 @@ for BACKEND in "${BACKENDS[@]}"; do
             -env DROP_LAST="${DROP_LAST}"
             -env PRETRAINED="${PRETRAINED}"
             -env CIFAR_STEM="${CIFAR_STEM}"
-            -env INIT_CIFAR_STEM_FROM_PRETRAINED_CENTER="false"
+            -env INIT_CIFAR_STEM_FROM_PRETRAINED_CENTER="true"
             -env DATA_DIR="./data"
             -env CHECKPOINT_DIR="./checkpoints"
             -env SEED="42"
             -env BACKEND="${BACKEND}"
             -env COMM_ALGORITHM="${COMM_ALGORITHM}"
+            -env OPTIMIZER="${OPTIMIZER}"
+            -env NESTEROV="${NESTEROV}"
+            -env WD_ON_BN_BIAS="${WD_ON_BN_BIAS}"
         )
 
         if [[ -n "${ZFP_RATE}" ]]; then
@@ -181,21 +231,26 @@ for BACKEND in "${BACKENDS[@]}"; do
             echo "=== Stopping job because training failed ==="
             exit ${status}
         fi
-    done
-done
-done
-done
-done
-done
-done
-done
-done
-done
-done
-done
-done
-done
-done
+    done   # EXPERIMENTS
+done       # WD_ON_BN_BIAS
+done       # NESTEROV
+done       # WEIGHT_DECAY
+done       # MOMENTUM
+done       # OPTIMIZER
+done       # BACKEND
+done       # DROP_LAST
+done       # CIFAR_STEM
+done       # PRETRAINED
+done       # GRAD_CLIP
+done       # WARMUP_EPOCHS
+done       # SCHEDULER
+done       # LEARNING_RATE
+done       # BATCH_SIZE
+done       # NUM_EPOCHS
+done       # IMAGE_SIZE
+done       # NUM_CLASSES
+done       # DATASET
+done       # MODELS
 
 echo "=== Job finished: $(date) ==="
 
