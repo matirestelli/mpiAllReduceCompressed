@@ -1,0 +1,30 @@
+Deactivating conda environments
+MODULE LIST
+TOOLCHAIN
+/opt/cray/pe/gcc-native/14/bin/gcc
+gcc (SUSE Linux) 14.2.0
+/opt/cray/pe/gcc-native/14/bin/g++
+g++ (SUSE Linux) 14.2.0
+MPI_HOME=/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3
+/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin/mpicc
+gcc -pipe -g -I/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/include -L/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -Wl,-rpath -Wl,/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -Wl,--enable-new-dtags -lmpi
+/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin/mpicxx
+g++ -g -I/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/include -L/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -lmpicxx -Wl,-rpath -Wl,/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -Wl,--enable-new-dtags -lmpi
+/opt/rocm-7.1.1/bin/hipcc
+HIP version: 7.1.52802-26aae437f6
+AMD clang version 20.0.0git (https://github.com/RadeonOpenCompute/llvm-project roc-7.1.1 25444 27682a16360e33e37c4f3cc6adf9a620733f8fe1)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm-7.1.1/lib/llvm/bin
+PYTHON/TOOLS IN ENV
+/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/bin/python
+Python 3.10.20
+pip 26.1.2 from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/pip (python 3.10)
+cmake version 4.4.0
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+deps ok: 2.2.6
+NODE_SCRATCH=/tmp/matilderestelli/pytorch_mvapich_build_5013332
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           252G  632K  252G   1% /tmp
+COPYING PYTORCH SOURCE: Lustre -> /tmp (excluding .git/build/dist)

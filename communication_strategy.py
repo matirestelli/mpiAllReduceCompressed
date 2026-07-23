@@ -2474,6 +2474,504 @@ mpi_recursive_doubling_zfp_naive_allreduce_hook = _recursive_doubling_zfp_hook
 mpi_ring_zfp_online_coll_allreduce_hook = _ring_allreduce_zfp_online_coll_hook
 mpi_recursive_doubling_zfp_online_coll_allreduce_hook = _recursive_doubling_zfp_online_coll_hook
 
+ZFP_HIER_NUM_CHUNKS = int(os.getenv("DDP_ZFP_HIER_CHUNKS", "4"))
+
+#----
+# NCCL/RCCl zfp hierarchical allreduce hooks. These are not in the paper, but they are a natural extension of the online compression idea to hierarchical collectives.
+# They are only implemented for NCCL/RCCl because they require CUDA-aware P2P communication, which is not available in MPI. The hierarchical algorithm splits the tensor into chunks and performs a ring or recursive-doubling allreduce on each chunk in parallel, using separate CUDA streams for each chunk. This allows for better overlap
+
+ 
+# ═══════════════════════════════════════════════════════════════════════════════
+# TOPOLOGY DETECTION
+# ═══════════════════════════════════════════════════════════════════════════════
+ 
+@dataclass
+class _HierTopology:
+    """Resolved node/leader layout for the hierarchical hooks."""
+    world_size: int = 1
+    rank: int = 0
+    ppn: int = 1                     # ranks (GPUs) per node
+    num_nodes: int = 1
+    local_rank: int = 0
+    node_id: int = 0
+    is_leader: bool = False
+    leader_ranks: List[int] = field(default_factory=list)
+    # Filled lazily (needs a live process group):
+    local_group: Optional[object] = None    # this node's ranks
+    leader_group: Optional[object] = None    # one rank per node
+    usable: bool = False            # False → caller must fall back to native
+    reason: str = ""
+ 
+    def describe(self) -> str:
+        return (f"world={self.world_size} rank={self.rank} ppn={self.ppn} "
+                f"nodes={self.num_nodes} local_rank={self.local_rank} "
+                f"node_id={self.node_id} leader={self.is_leader} "
+                f"usable={self.usable} reason='{self.reason}'")
+ 
+ 
+def _ppn_from_env() -> Optional[int]:
+    """Ranks (GPUs) per node, read straight from the launcher environment.
+ 
+    Your srun launch sets SLURM_NTASKS_PER_NODE=PPN. For the Polaris/mpiexec
+    path the MPICH/PMI locals cover it. Set PPN explicitly (export PPN=$PPN in
+    the job script) to override anything. Returns None if nothing is found →
+    caller falls back to native allreduce.
+    """
+    for key in (
+        "PPN",                       # explicit, if you export it
+        "SLURM_NTASKS_PER_NODE",     # srun --ntasks-per-node (your Frontier launch)
+        "LOCAL_WORLD_SIZE",          # torchrun
+        "PALS_LOCAL_SIZE",           # Polaris PALS/mpiexec --ppn
+        "PMI_LOCAL_SIZE",            # PMI / Cray
+        "MPI_LOCALNRANKS",           # MPICH family
+    ):
+        val = os.getenv(key)
+        if not val:
+            continue
+        # Handle SLURM's "8(x4)" form by taking the leading integer.
+        digits = ""
+        for ch in val:
+            if ch.isdigit():
+                digits += ch
+            else:
+                break
+        if digits and int(digits) > 0:
+            return int(digits)
+    return None
+ 
+ 
+def _resolve_topology(tensor: torch.Tensor) -> _HierTopology:
+    """Node/leader layout from ppn + block placement. Never raises — on any
+    problem returns usable=False so the caller falls back to native.
+ 
+    Placement assumption: srun --ntasks-per-node (default block distribution)
+    puts ranks [0..ppn), [ppn..2*ppn), ... on successive nodes. So
+    node_id = rank // ppn, local_rank = rank % ppn, leader = local_rank 0.
+    """
+    topo = _HierTopology()
+    if not (dist.is_available() and dist.is_initialized()):
+        topo.reason = "distributed not initialized"
+        return topo
+ 
+    topo.world_size = dist.get_world_size()
+    topo.rank = dist.get_rank()
+ 
+    if topo.world_size == 1:
+        topo.reason = "world_size==1"
+        return topo
+ 
+    ppn = _ppn_from_env()
+    if ppn is None:
+        topo.reason = "no ppn env var (set PPN or SLURM_NTASKS_PER_NODE)"
+        return topo
+    if topo.world_size % ppn != 0:
+        topo.reason = f"world_size={topo.world_size} not divisible by ppn={ppn}"
+        return topo
+ 
+    topo.ppn = ppn
+    topo.num_nodes = topo.world_size // ppn
+    if topo.num_nodes < 2:
+        topo.reason = "single node → native allreduce is optimal"
+        return topo
+ 
+    topo.node_id = topo.rank // ppn
+    topo.local_rank = topo.rank % ppn
+    topo.is_leader = (topo.local_rank == 0)
+    topo.leader_ranks = [n * ppn for n in range(topo.num_nodes)]
+    topo.usable = True
+    topo.reason = "ok"
+    return topo
+ 
+ 
+# ── Process-group cache ──────────────────────────────────────────────────────
+# new_group() is collective: ALL ranks must call it in the same order. We build
+# the per-node groups and the leader group once, keyed by (ppn, num_nodes).
+_HIER_GROUP_CACHE: Dict[tuple, dict] = {}
+_HIER_GROUP_LOCK = threading.Lock()
+ 
+ 
+def _build_hier_groups(topo: _HierTopology) -> Optional[dict]:
+    """Create (or fetch cached) this node's local group + the leader group.
+ 
+    Every rank iterates the SAME node list in the SAME order and calls new_group
+    for each, so all ranks agree. Returns {'local_group', 'leader_group'} or
+    None on failure (caller falls back to native)."""
+    sig = (topo.ppn, topo.num_nodes)
+    with _HIER_GROUP_LOCK:
+        cached = _HIER_GROUP_CACHE.get(sig)
+        if cached is not None:
+            return cached
+        try:
+            local_group = None
+            for n in range(topo.num_nodes):
+                members = list(range(n * topo.ppn, (n + 1) * topo.ppn))
+                g = dist.new_group(ranks=members)
+                if topo.node_id == n:
+                    local_group = g
+            leader_group = dist.new_group(ranks=topo.leader_ranks)
+            result = {"local_group": local_group, "leader_group": leader_group}
+            _HIER_GROUP_CACHE[sig] = result
+            return result
+        except Exception as exc:
+            print(f"[HIER_ZFP] new_group failed: {exc} — falling back to native",
+                  flush=True)
+            return None
+ 
+ 
+# ═══════════════════════════════════════════════════════════════════════════════
+# STATE
+# ═══════════════════════════════════════════════════════════════════════════════
+ 
+@dataclass
+class ZfpHierBucketState:
+    """Persistent buffers for the hierarchical pipelined ZFP hooks, per bucket.
+ 
+    Only leaders allocate the inter-node compression buffers. Non-leaders keep
+    just the flat scratch used for the intra-node collectives.
+    """
+    flat: Optional[torch.Tensor] = None          # full bucket scratch (all ranks)
+    rate: float = 16.0
+    bucket_id: int = 0
+    call_count: int = 0
+ 
+    # Topology (resolved once, reused).
+    topo: Optional[_HierTopology] = None
+ 
+    # Leader-only inter-node buffers. Sized against the *padded* leader buffer so
+    # that num_leaders and num_chunks both divide it evenly.
+    leader_numel: int = 0                        # padded length used inter-node
+    shard_numel: int = 0                         # leader_numel // num_leaders
+    num_chunks: int = 1
+    chunk_shard: int = 0                         # shard_numel // num_chunks
+ 
+    comp_bytes_shard_chunk: int = 0              # ZFP max bytes for one shard-chunk
+ 
+    # Pipeline streams.
+    comp_stream: Optional[torch.cuda.Stream] = None
+    comm_stream: Optional[torch.cuda.Stream] = None
+    decomp_stream: Optional[torch.cuda.Stream] = None
+ 
+    # Phase-1 (reduce-scatter) buffers, one entry per chunk.
+    p1_send_comp: List[torch.Tensor] = field(default_factory=list)  # [num_leaders*comp_bytes] per chunk
+    p1_recv_comp: List[torch.Tensor] = field(default_factory=list)
+    p1_recv_decomp: List[torch.Tensor] = field(default_factory=list)  # [num_leaders*chunk_shard]
+ 
+    # Phase-2 (all-gather) buffers, one entry per chunk.
+    p2_send_comp: List[torch.Tensor] = field(default_factory=list)  # [comp_bytes] per chunk
+    p2_recv_comp: List[torch.Tensor] = field(default_factory=list)  # [num_leaders*comp_bytes]
+ 
+    leader_buf: Optional[torch.Tensor] = None    # padded leader-group work buffer
+    my_shard: Optional[torch.Tensor] = None      # this leader's reduced shard view
+ 
+    def initialize(self, tensor: torch.Tensor, topo: _HierTopology,
+                   rate: float, num_chunks: int, bucket_id: int) -> None:
+        _require_zfp_cuda()
+        self.rate = rate
+        self.bucket_id = bucket_id
+        self.topo = topo
+        device = tensor.device
+        numel = tensor.numel()
+ 
+        self.flat = torch.empty(numel, dtype=tensor.dtype, device=device)
+ 
+        # Pipeline streams (shared by both phases).
+        self.comp_stream = torch.cuda.Stream(device=device)
+        self.comm_stream = torch.cuda.Stream(device=device)
+        self.decomp_stream = torch.cuda.Stream(device=device)
+ 
+        if not topo.is_leader:
+            # Non-leaders never touch the compressed path.
+            return
+ 
+        cfg = ZfpCompressionConfig(rate=rate)
+        L = topo.num_nodes                      # number of leaders
+ 
+        # Pad the bucket length so L and num_chunks both divide it. Padding lives
+        # only inside the leader buffer; the tail is zero and contributes 0 to the
+        # sum, so correctness is unaffected.
+        nchunks = max(1, num_chunks)
+        gran = L * nchunks
+        padded = ((numel + gran - 1) // gran) * gran
+        self.leader_numel = padded
+        self.shard_numel = padded // L
+        self.num_chunks = nchunks
+        self.chunk_shard = self.shard_numel // nchunks
+ 
+        self.leader_buf = torch.zeros(padded, dtype=tensor.dtype, device=device)
+        # This leader owns shard index == its node_id (its position in the
+        # leader group, which is ordered by node under block placement).
+        my_pos = topo.node_id
+        self.my_shard = self.leader_buf.narrow(
+            0, my_pos * self.shard_numel, self.shard_numel)
+ 
+        # ZFP max bytes for a single shard-chunk (the compression granularity).
+        probe = torch.empty(self.chunk_shard, dtype=tensor.dtype, device=device)
+        cb = int(_zfp_max_output_bytes(probe, cfg.rate))
+        self.comp_bytes_shard_chunk = cb
+ 
+        # Phase-1 buffers: each rank sends L shard-chunks (one per destination
+        # leader) and receives L shard-chunks into a contiguous decomp buffer.
+        self.p1_send_comp = [
+            torch.empty(L * cb, dtype=torch.uint8, device=device)
+            for _ in range(nchunks)
+        ]
+        self.p1_recv_comp = [
+            torch.empty(L * cb, dtype=torch.uint8, device=device)
+            for _ in range(nchunks)
+        ]
+        self.p1_recv_decomp = [
+            torch.empty(L * self.chunk_shard, dtype=tensor.dtype, device=device)
+            for _ in range(nchunks)
+        ]
+ 
+        # Phase-2 buffers: each rank sends its own 1 shard-chunk (compressed) and
+        # all-gathers L of them.
+        self.p2_send_comp = [
+            torch.empty(cb, dtype=torch.uint8, device=device)
+            for _ in range(nchunks)
+        ]
+        self.p2_recv_comp = [
+            torch.empty(L * cb, dtype=torch.uint8, device=device)
+            for _ in range(nchunks)
+        ]
+ 
+ 
+@dataclass
+class ZfpHierAllreduceState:
+    """DDP-hook state: per-bucket ZfpHierBucketState, plus resolved groups."""
+    rate: float = 16.0
+    num_chunks: int = ZFP_HIER_NUM_CHUNKS
+    buckets: Dict[int, ZfpHierBucketState] = field(default_factory=dict)
+    # Cache the group resolution once for the whole run.
+    _groups_ready: bool = False
+    _native_fallback: bool = False
+    _fallback_reason: str = ""
+ 
+    def get_or_init(self, bucket_index: int, tensor: torch.Tensor
+                    ) -> Optional[ZfpHierBucketState]:
+        bs = self.buckets.get(bucket_index)
+        if bs is not None and bs.flat is not None and bs.flat.numel() == tensor.numel():
+            return bs
+ 
+        topo = _resolve_topology(tensor)
+        if not topo.usable:
+            self._native_fallback = True
+            self._fallback_reason = topo.reason
+            return None
+ 
+        groups = _build_hier_groups(topo)
+        if groups is None:
+            self._native_fallback = True
+            self._fallback_reason = "group creation failed"
+            return None
+        topo.local_group = groups["local_group"]
+        topo.leader_group = groups["leader_group"]
+ 
+        bs = ZfpHierBucketState()
+        bs.initialize(tensor, topo, self.rate, self.num_chunks, bucket_index)
+        self.buckets[bucket_index] = bs
+        return bs
+ 
+ 
+# ═══════════════════════════════════════════════════════════════════════════════
+# CORE: hierarchical pipelined allreduce over the leader group
+# ═══════════════════════════════════════════════════════════════════════════════
+ 
+def _leader_compressed_allreduce_(bstate: ZfpHierBucketState, log: bool,
+                                  call_n: int) -> None:
+    """Run the two-phase, chunk-pipelined compressed allreduce IN PLACE on
+    bstate.leader_buf, across the leader group. Leaders only."""
+    topo = bstate.topo
+    lg = topo.leader_group
+    L = topo.num_nodes
+    cfg = ZfpCompressionConfig(rate=bstate.rate)
+    cb = bstate.comp_bytes_shard_chunk
+    cshard = bstate.chunk_shard
+ 
+    comp_s = bstate.comp_stream
+    comm_s = bstate.comm_stream
+    dec_s = bstate.decomp_stream
+ 
+    # All side streams must wait for whatever produced leader_buf (the copy that
+    # staged the node-reduced gradient into it, enqueued on the current stream).
+    cur = torch.cuda.current_stream(device=bstate.leader_buf.device)
+    for s in (comp_s, comm_s, dec_s):
+        s.wait_stream(cur)
+ 
+    view2d = bstate.leader_buf.view(L, bstate.shard_numel)  # [L, shard_numel]
+ 
+    # ── PHASE 1: reduce-scatter (compress the L shard-chunks we send) ─────────
+    for c in range(bstate.num_chunks):
+        off = c * cshard
+        # Gather the c-th shard-chunk of every destination shard into a
+        # contiguous [L, cshard] region and compress each into p1_send_comp[c].
+        send_comp = bstate.p1_send_comp[c]
+        with torch.cuda.stream(comp_s):
+            for j in range(L):
+                src = view2d[j].narrow(0, off, cshard)
+                dst = send_comp.narrow(0, j * cb, cb)
+                used_bits = _zfp_compress_into_current_stream(src, dst, cfg.rate)
+                _zfp_pad_tail_to_B_(dst, used_bits, cb)
+        ev_c = torch.cuda.Event()
+        ev_c.record(comp_s)
+ 
+        # all_to_all_single: rank r sends block j to leader j. Equal split sizes
+        # because fixed-rate ZFP is deterministic → uniform cb per block.
+        comm_s.wait_event(ev_c)
+        recv_comp = bstate.p1_recv_comp[c]
+        with torch.cuda.stream(comm_s):
+            dist.all_to_all_single(recv_comp, send_comp, group=lg)
+        ev_m = torch.cuda.Event()
+        ev_m.record(comm_s)
+ 
+        # Decompress the L received shard-chunks and sum them into my_shard[off:].
+        dec_s.wait_event(ev_m)
+        recv_decomp = bstate.p1_recv_decomp[c]
+        with torch.cuda.stream(dec_s):
+            for j in range(L):
+                comp_blk = recv_comp.narrow(0, j * cb, cb)
+                out_blk = recv_decomp.narrow(0, j * cshard, cshard)
+                _zfp_decompress_into_current_stream(comp_blk, cb, out_blk, cfg.rate)
+            # Sum the L contributions into this leader's shard-chunk.
+            acc = recv_decomp.view(L, cshard).sum(dim=0)
+            bstate.my_shard.narrow(0, off, cshard).copy_(acc)
+ 
+    # Make sure phase-1 reductions are visible before phase-2 compresses my_shard.
+    ev_p1 = torch.cuda.Event()
+    ev_p1.record(dec_s)
+    comp_s.wait_event(ev_p1)
+ 
+    # ── PHASE 2: all-gather (compress our 1 finished shard-chunk each step) ────
+    for c in range(bstate.num_chunks):
+        off = c * cshard
+        send_comp = bstate.p2_send_comp[c]
+        with torch.cuda.stream(comp_s):
+            src = bstate.my_shard.narrow(0, off, cshard)
+            used_bits = _zfp_compress_into_current_stream(src, send_comp, cfg.rate)
+            _zfp_pad_tail_to_B_(send_comp, used_bits, cb)
+        ev_c = torch.cuda.Event()
+        ev_c.record(comp_s)
+ 
+        comm_s.wait_event(ev_c)
+        recv_comp = bstate.p2_recv_comp[c]
+        with torch.cuda.stream(comm_s):
+            dist.all_gather_into_tensor(recv_comp, send_comp, group=lg)
+        ev_m = torch.cuda.Event()
+        ev_m.record(comm_s)
+ 
+        # Decompress leader j's shard-chunk directly into shard j's slot.
+        dec_s.wait_event(ev_m)
+        with torch.cuda.stream(dec_s):
+            for j in range(L):
+                comp_blk = recv_comp.narrow(0, j * cb, cb)
+                out_blk = view2d[j].narrow(0, off, cshard)
+                _zfp_decompress_into_current_stream(comp_blk, cb, out_blk, cfg.rate)
+ 
+    # Serialize the pipeline back onto the current stream before the caller
+    # reads leader_buf.
+    ev_done = torch.cuda.Event()
+    ev_done.record(dec_s)
+    cur.wait_event(ev_done)
+ 
+    if log:
+        print(f"[HIER_ZFP|R{topo.rank}|B{bstate.bucket_id}|C{call_n}] "
+              f"leader allreduce done L={L} chunks={bstate.num_chunks} "
+              f"shard={bstate.shard_numel} cb={cb}", flush=True)
+ 
+ 
+def _hier_zfp_allreduce_sum(tensor: torch.Tensor, bstate: ZfpHierBucketState,
+                            log: bool, call_n: int = 0) -> None:
+    """Full hierarchical allreduce. Produces the AVERAGED gradient in `tensor`.
+ 
+    Step 1: native SUM all_reduce intra-node (NVLink, uncompressed).
+    Step 2: compressed pipelined allreduce across leaders (leaders only).
+    Step 3: native broadcast intra-node from leader.
+    Then divide by world_size.
+    """
+    _require_zfp_cuda()
+    topo = bstate.topo
+    world_size = topo.world_size
+ 
+    flat = bstate.flat
+    flat.copy_(tensor.flatten())
+ 
+    # ── Step 1: intra-node SUM reduce (native, uncompressed) ─────────────────
+    dist.all_reduce(flat, op=dist.ReduceOp.SUM, group=topo.local_group)
+    # Now every rank on the node holds the node-local sum. Leaders proceed to
+    # inter-node; non-leaders wait for the broadcast.
+ 
+    # ── Step 2: inter-node compressed allreduce (leaders only) ───────────────
+    if topo.is_leader:
+        # Stage the node-sum into the padded leader buffer (tail stays zero).
+        bstate.leader_buf.narrow(0, 0, flat.numel()).copy_(flat)
+        if bstate.leader_numel > flat.numel():
+            bstate.leader_buf.narrow(
+                0, flat.numel(),
+                bstate.leader_numel - flat.numel()).zero_()
+        _leader_compressed_allreduce_(bstate, log, call_n)
+        # Copy the reduced (global-sum) result back into flat.
+        flat.copy_(bstate.leader_buf.narrow(0, 0, flat.numel()))
+ 
+    # ── Step 3: intra-node broadcast from the node leader ────────────────────
+    # Leader is local_rank 0 → global src is the first member of this node.
+    src_global = topo.leader_ranks[topo.node_id]
+    dist.broadcast(flat, src=src_global, group=topo.local_group)
+ 
+    # DDP expects the averaged gradient.
+    flat.div_(world_size)
+    tensor.copy_(flat.view_as(tensor))
+    _cuda_sync(tensor)
+ 
+ 
+# ═══════════════════════════════════════════════════════════════════════════════
+# HOOKS
+# ═══════════════════════════════════════════════════════════════════════════════
+ 
+def _hier_zfp_online_coll_hook(
+    state: ZfpHierAllreduceState,
+    bucket: dist.GradBucket,
+) -> torch.futures.Future[torch.Tensor]:
+    """DDP hook: hierarchical pipelined online ZFP allreduce for NCCL/RCCL.
+ 
+    Falls back to native allreduce (with pre-division) when the topology isn't
+    a clean multi-node layout, or when ZFP / group creation is unavailable.
+    """
+    tensor = bucket.buffer()
+    bucket_index = bucket.index()
+ 
+    bstate = state.get_or_init(bucket_index, tensor)
+ 
+    if bstate is None:
+        # Native fallback path — behaves exactly like the default hook.
+        if state._native_fallback and dist.get_rank() == 0 and bucket_index == 0:
+            print(f"[HIER_ZFP] native fallback: {state._fallback_reason}",
+                  flush=True)
+        tensor.div_(dist.get_world_size())
+        return dist.all_reduce(
+            tensor, op=dist.ReduceOp.SUM, async_op=True
+        ).get_future().then(lambda f: f.value()[0])
+ 
+    bstate.call_count += 1
+    call_n = bstate.call_count
+    rank = dist.get_rank()
+    do_full_log = (FULL_LOG_CALLS > 0 and call_n <= FULL_LOG_CALLS)
+ 
+    if do_full_log:
+        print(f"\n[HIER_ZFP_ONLINE_COLL | R{rank}|B{bstate.bucket_id}|C{call_n}] "
+              f"numel={tensor.numel()} {bstate.topo.describe()}", flush=True)
+ 
+    def _work() -> None:
+        _hier_zfp_allreduce_sum(tensor, bstate, log=do_full_log, call_n=call_n)
+ 
+    return _submit_async_hook_work(
+        f"{dist.get_backend()}:hier_zfp_online_coll:rate{bstate.rate:g}",
+        tensor,
+        _work,
+    )
+
+nccl_ring_zfp_online_coll_allreduce_hook = _hier_zfp_online_coll_hook
+nccl_recursive_doubling_zfp_online_coll_allreduce_hook = _hier_zfp_online_coll_hook
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # HOOK FACTORY
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -2491,6 +2989,8 @@ _HOOK_REGISTRY = {
     ("mpi",  "recursive_doubling_zfp_naive"): mpi_recursive_doubling_zfp_naive_allreduce_hook,
     ("mpi",  "ring_zfp_online_coll"): mpi_ring_zfp_online_coll_allreduce_hook,
     ("mpi", "recursive_doubling_zfp_online_coll"): mpi_recursive_doubling_zfp_online_coll_allreduce_hook,
+    ("nccl", "ring_zfp_online_coll"): nccl_ring_zfp_online_coll_allreduce_hook,
+    ("nccl", "recursive_doubling_zfp_online_coll"): nccl_recursive_doubling_zfp_online_coll_allreduce_hook,
     ("nccl", "default_sync"): nccl_default_sync_allreduce_hook,
     ("nccl", "default_clone"): nccl_default_clone_allreduce_hook,
     ("nccl", "default_cpu_stage"): nccl_default_cpu_stage_allreduce_hook,
@@ -2526,14 +3026,21 @@ def get_comm_hook(
     base_hook = _HOOK_REGISTRY[key]
     if algorithm == "ring":
         state = RingAllreduceState()
-    elif algorithm in ("ring_zfp_naive", "ring_zfp_online_coll"):
+    elif algorithm == "ring_zfp_naive":
         state = ZfpRingAllreduceState(rate=zfp_rate)
     elif algorithm == "recursive_doubling":
         state = RecursiveDoublingAllreduceState()
     elif algorithm == "recursive_doubling_zfp_naive":
         state = ZfpRecursiveDoublingAllreduceState(rate=zfp_rate)
-    elif algorithm == "recursive_doubling_zfp_online_coll":
-        state = ZfpRecursiveDoublingOnlineAllreduceState(rate=zfp_rate)
+    # ── online_coll: NCCL/RCCL gets the hierarchical state, MPI keeps its own ──
+    elif algorithm in ("ring_zfp_online_coll",
+                       "recursive_doubling_zfp_online_coll"):
+        if backend in ("nccl", "rccl"):
+            state = ZfpHierAllreduceState(rate=zfp_rate)
+        elif algorithm == "ring_zfp_online_coll":
+            state = ZfpRingAllreduceState(rate=zfp_rate)
+        else:
+            state = ZfpRecursiveDoublingOnlineAllreduceState(rate=zfp_rate)
     else:
         state = None
 

@@ -1,17 +1,17 @@
 #!/bin/bash -l
 #SBATCH -A gen243
 #SBATCH -p extended
-#SBATCH -J ddp-train-frontier_16gpus_8b_32b
-#SBATCH -N 2
+#SBATCH -J ddp-train-frontier_32gpus_4b_16b
+#SBATCH -N 4
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
 #SBATCH --gpus-per-task=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=7
 #SBATCH --gpu-bind=closest
 #SBATCH -t 08:00:00
 #SBATCH -C nvme
-#SBATCH -o ddp_train_frontier_16gpus_8b_32b.%j.out
-#SBATCH -e ddp_train_frontier_16gpus_8b_32b.%j.err
+#SBATCH -o ddp_train_frontier_32gpus_4b_16b.%j.out
+#SBATCH -e ddp_train_frontier_32gpus_4b_16b.%j.err
  
 
 
@@ -43,7 +43,7 @@ export MPICH_OFI_NIC_POLICY=GPU
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
 
-NUM_PROCS=16
+NUM_PROCS=32
 PPN=8
 # processes per node
 
@@ -74,9 +74,11 @@ NUM_EPOCHS_LIST=(
 )
 
 BATCH_SIZES=(
-    "8"       # weak scaling local batch 8, total 128
-    # "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
-    "32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
+
+    #"8"       # weak scaling local batch 8, total 128
+    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
+    "4"
     # "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )

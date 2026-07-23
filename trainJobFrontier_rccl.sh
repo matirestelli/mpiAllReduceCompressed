@@ -1,16 +1,15 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p batch
-#SBATCH -q debug
-#SBATCH -J ddp-train-frontier_rccl
-#SBATCH -N 1  
+#SBATCH -p extended
+#SBATCH -J ddp-train-frontier_8gpus_64b
+#SBATCH -N 2  
 #SBATCH --ntasks-per-node=8
-#SBATCH --gpus-per-node=8   
-#SBATCH --cpus-per-task=1                  
-#SBATCH -t 02:00:00   
+#SBATCH --gpus-per-node=8
+#SBATCH --cpus-per-task=7            
+#SBATCH -t 08:00:00   
 #SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier_rccl.%j.out       
-#SBATCH -e ddp_train_frontier_rccl.%j.err       
+#SBATCH -o ddp_train_frontier_rccl_8gpus_64b.%j.out       
+#SBATCH -e ddp_train_frontier_rccl_8gpus_64b.%j.err           
 
 
 #ask for a compute node 
@@ -70,9 +69,9 @@ NUM_EPOCHS_LIST=(
 
 BATCH_SIZES=(
     # "8"       # weak scaling local batch 8, total 128
-    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    #"16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
     #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
-    # "64"    # strong global 256 on 4 GPUs
+    "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
 
@@ -154,15 +153,15 @@ BACKENDS=(
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 EXPERIMENTS=(
-    "none:"
-    "ring:"
+    #"none:"
+    #"ring:"
     #"ring_zfp_naive:16"
-    #"ring_zfp_online_coll:16"
-   #"ring_zfp_online_coll:10"
-    #"recursive_doubling:"
-    #"recursive_doubling_zfp_naive:16"
-    #"recursive_doubling_zfp_online_coll:16"
-    #"recursive_doubling_zfp_online_coll:8"
+    "ring_zfp_online_coll:4"
+    "ring_zfp_online_coll:8"
+    "recursive_doubling:"
+    "recursive_doubling_zfp_naive:16"
+    "recursive_doubling_zfp_online_coll:4"
+    "recursive_doubling_zfp_online_coll:8"
     #"default:"
     #"default_sync:"
     #"default_clone:"

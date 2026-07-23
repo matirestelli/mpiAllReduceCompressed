@@ -1,0 +1,303 @@
+torch: 2.14.0a0 /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/__init__.py
+torchvision: 0.24.0 /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torchvision/__init__.py
+hip: 7.1.52802
+mpi: True
+lrwxrwxrwx 1 matilderestelli matilderestelli      11 Jul  1 13:14 /ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64/libzfp.so -> libzfp.so.1
+lrwxrwxrwx 1 matilderestelli matilderestelli      15 Jul  1 13:14 /ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64/libzfp.so.1 -> libzfp.so.1.0.1
+-rwxr-xr-x 1 matilderestelli matilderestelli 1688864 Jul  2 10:24 /ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64/libzfp.so.1.0.1
+/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/framework_allreduce_zfp_hip.cpython-310-x86_64-linux-gnu.so
+Existing framework_allreduce_zfp_hip import works
+Building zfp wheel artifact
+STAGING: ZFP extension source
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Running command Preparing metadata (pyproject.toml)
+  running dist_info
+  creating /tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info
+  writing /tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info/PKG-INFO
+  writing dependency_links to /tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info/dependency_links.txt
+  writing top-level names to /tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info/top_level.txt
+  writing manifest file '/tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  writing manifest file '/tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  creating '/tmp/pip-modern-metadata-wym9extg/framework_allreduce_zfp_hip-0.0.0.dist-info'
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: framework_allreduce_zfp_hip
+  Building wheel for framework_allreduce_zfp_hip (pyproject.toml): started
+  Running command Building wheel for framework_allreduce_zfp_hip (pyproject.toml)
+  running bdist_wheel
+  running build
+  running build_ext
+  building 'framework_allreduce_zfp_hip' extension
+  creating /tmp/matilderestelli/zfpext_resume_5044337/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_resume_5044337/csrc
+  [1/1] c++ -MMD -MF /tmp/matilderestelli/zfpext_resume_5044337/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.o.d -pthread -B /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -fno-merge-constants -O2 -isystem /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include -fPIC -fno-merge-constants -O2 -isystem /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include -fPIC -I/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include -I/opt/rocm-7.1.1/include -I/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include -I/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include/python3.10 -c -c /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp -o /tmp/matilderestelli/zfpext_resume_5044337/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.o -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -fPIC -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -fPIC -O3 -std=c++17 -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=framework_allreduce_zfp_hip
+  FAILED: [code=1] /tmp/matilderestelli/zfpext_resume_5044337/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.o
+  c++ -MMD -MF /tmp/matilderestelli/zfpext_resume_5044337/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.o.d -pthread -B /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -fno-merge-constants -O2 -isystem /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include -fPIC -fno-merge-constants -O2 -isystem /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include -fPIC -I/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include -I/opt/rocm-7.1.1/include -I/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include -I/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include/python3.10 -c -c /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp -o /tmp/matilderestelli/zfpext_resume_5044337/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.o -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -fPIC -D__HIP_PLATFORM_AMD__=1 -DUSE_ROCM=1 -DHIPBLAS_V2 -fPIC -O3 -std=c++17 -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=framework_allreduce_zfp_hip
+  In file included from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/InferenceMode.h:4:0,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:9,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:21,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:7,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/extension.h:6,
+                   from /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp:1:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/AutogradState.h:84:25: error: lvalue required as left operand of assignment
+     bool grad_mode_ : 1 = true;
+                           ^~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/AutogradState.h:85:30: error: lvalue required as left operand of assignment
+     bool inference_mode_ : 1 = false;
+                                ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/AutogradState.h:86:28: error: lvalue required as left operand of assignment
+     bool fw_grad_mode_ : 1 = true;
+                              ^~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/AutogradState.h:87:38: error: lvalue required as left operand of assignment
+     bool multithreading_enabled_ : 1 = true;
+                                        ^~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/AutogradState.h:88:35: error: lvalue required as left operand of assignment
+     bool view_replay_enabled_ : 1 = false;
+                                     ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/AutogradState.h:89:47: error: lvalue required as left operand of assignment
+     bool grad_layout_enforcement_enabled_ : 1 = true;
+                                                 ^~~~
+  In file included from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:21:0,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:7,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/extension.h:6,
+                   from /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp:1:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2939:29: error: lvalue required as left operand of assignment
+     bool is_contiguous_ : 1 = true;
+                               ^~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2942:43: error: lvalue required as left operand of assignment
+     bool storage_access_should_throw_ : 1 = false;
+                                             ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2948:32: error: lvalue required as left operand of assignment
+     bool is_channels_last_ : 1 = false;
+                                  ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2952:43: error: lvalue required as left operand of assignment
+     bool is_channels_last_contiguous_ : 1 = false;
+                                             ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2958:35: error: lvalue required as left operand of assignment
+     bool is_channels_last_3d_ : 1 = false;
+                                     ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2962:46: error: lvalue required as left operand of assignment
+     bool is_channels_last_3d_contiguous_ : 1 = false;
+                                                ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2967:44: error: lvalue required as left operand of assignment
+     bool is_non_overlapping_and_dense_ : 1 = true;
+                                              ^~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2969:33: error: lvalue required as left operand of assignment
+     bool is_wrapped_number_ : 1 = false;
+                                   ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2986:44: error: lvalue required as left operand of assignment
+     bool allow_tensor_metadata_change_ : 1 = true;
+                                              ^~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2992:24: error: lvalue required as left operand of assignment
+     bool reserved_ : 1 = false;
+                          ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:2999:55: error: lvalue required as left operand of assignment
+         static_cast<uint8_t>(SizesStridesPolicy::Default);
+                                                         ^
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3002:42: error: lvalue required as left operand of assignment
+     bool has_symbolic_sizes_strides_ : 1 = false;
+                                            ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3007:55: error: lvalue required as left operand of assignment
+         static_cast<uint8_t>(SizesStridesPolicy::Default);
+                                                         ^
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3010:29: error: lvalue required as left operand of assignment
+     bool device_policy_ : 1 = false;
+                               ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3011:29: error: lvalue required as left operand of assignment
+     bool layout_policy_ : 1 = false;
+                               ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3014:29: error: lvalue required as left operand of assignment
+     bool custom_device_ : 1 = false;
+                               ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3017:29: error: lvalue required as left operand of assignment
+     bool custom_layout_ : 1 = false;
+                               ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3022:55: error: lvalue required as left operand of assignment
+         static_cast<uint8_t>(SizesStridesPolicy::Default);
+                                                         ^
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3025:36: error: lvalue required as left operand of assignment
+     bool python_custom_device_ : 1 = false;
+                                      ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorImpl.h:3028:36: error: lvalue required as left operand of assignment
+     bool python_custom_layout_ : 1 = false;
+                                      ^~~~~
+  In file included from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/CheckMemoryFormat.h:2:0,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:33,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/function_hook.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/cpp_hook.h:3,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/variable.h:7,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/autograd.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:4,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/extension.h:6,
+                   from /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp:1:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:551:29: error: lvalue required as left operand of assignment
+     bool requires_grad_ : 1 = false;
+                               ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:552:29: error: lvalue required as left operand of assignment
+     bool pinned_memory_ : 1 = false;
+                               ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:554:26: error: lvalue required as left operand of assignment
+     bool has_device_ : 1 = false;
+                            ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:555:25: error: lvalue required as left operand of assignment
+     bool has_dtype_ : 1 = false;
+                           ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:556:26: error: lvalue required as left operand of assignment
+     bool has_layout_ : 1 = false;
+                            ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:557:33: error: lvalue required as left operand of assignment
+     bool has_requires_grad_ : 1 = false;
+                                   ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:558:33: error: lvalue required as left operand of assignment
+     bool has_pinned_memory_ : 1 = false;
+                                   ^~~~~
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/c10/core/TensorOptions.h:559:33: error: lvalue required as left operand of assignment
+     bool has_memory_format_ : 1 = false;
+                                   ^~~~~
+  In file included from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/autograd/custom_function.h:11:0,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/autograd.h:6,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/extension.h:6,
+                   from /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp:1:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/dynamo/compiled_autograd.h: In member function ‘void torch::dynamo::autograd::CompiledNodeArgs::collect_hooks_from(torch::autograd::Node*)’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/dynamo/compiled_autograd.h:625:21: warning: unused variable ‘_’ [-Wunused-variable]
+       for (auto& [_, i] : fn->retains_grad_hooks()) {
+                       ^
+  In file included from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules.h:21:0,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn.h:8,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:16,
+                   from /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/extension.h:6,
+                   from /tmp/matilderestelli/zfpext_resume_5044337/csrc/zfp_hip_extension.cpp:1:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h: In instantiation of ‘void torch::nn::ConvNdImpl<D, Derived>::reset_parameters() [with long unsigned int D = 3; Derived = torch::nn::ConvTranspose3dImpl]’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:100:21:   required from ‘void torch::nn::ConvNdImpl<D, Derived>::reset() [with long unsigned int D = 3; Derived = torch::nn::ConvTranspose3dImpl]’
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/optim/sgd.h:51:17:   required from here
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:109:28: warning: unused variable ‘fan_out’ [-Wunused-variable]
+         auto [fan_in, fan_out] = init::_calculate_fan_in_and_fan_out(weight);
+                              ^
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h: In instantiation of ‘void torch::nn::ConvNdImpl<D, Derived>::reset_parameters() [with long unsigned int D = 2; Derived = torch::nn::ConvTranspose2dImpl]’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:100:21:   required from ‘void torch::nn::ConvNdImpl<D, Derived>::reset() [with long unsigned int D = 2; Derived = torch::nn::ConvTranspose2dImpl]’
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/optim/sgd.h:51:17:   required from here
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:109:28: warning: unused variable ‘fan_out’ [-Wunused-variable]
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h: In instantiation of ‘void torch::nn::ConvNdImpl<D, Derived>::reset_parameters() [with long unsigned int D = 1; Derived = torch::nn::ConvTranspose1dImpl]’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:100:21:   required from ‘void torch::nn::ConvNdImpl<D, Derived>::reset() [with long unsigned int D = 1; Derived = torch::nn::ConvTranspose1dImpl]’
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/optim/sgd.h:51:17:   required from here
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:109:28: warning: unused variable ‘fan_out’ [-Wunused-variable]
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h: In instantiation of ‘void torch::nn::ConvNdImpl<D, Derived>::reset_parameters() [with long unsigned int D = 3; Derived = torch::nn::Conv3dImpl]’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:100:21:   required from ‘void torch::nn::ConvNdImpl<D, Derived>::reset() [with long unsigned int D = 3; Derived = torch::nn::Conv3dImpl]’
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/optim/sgd.h:51:17:   required from here
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:109:28: warning: unused variable ‘fan_out’ [-Wunused-variable]
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h: In instantiation of ‘void torch::nn::ConvNdImpl<D, Derived>::reset_parameters() [with long unsigned int D = 2; Derived = torch::nn::Conv2dImpl]’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:100:21:   required from ‘void torch::nn::ConvNdImpl<D, Derived>::reset() [with long unsigned int D = 2; Derived = torch::nn::Conv2dImpl]’
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/optim/sgd.h:51:17:   required from here
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:109:28: warning: unused variable ‘fan_out’ [-Wunused-variable]
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h: In instantiation of ‘void torch::nn::ConvNdImpl<D, Derived>::reset_parameters() [with long unsigned int D = 1; Derived = torch::nn::Conv1dImpl]’:
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:100:21:   required from ‘void torch::nn::ConvNdImpl<D, Derived>::reset() [with long unsigned int D = 1; Derived = torch::nn::Conv1dImpl]’
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/optim/sgd.h:51:17:   required from here
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/nn/modules/conv.h:109:28: warning: unused variable ‘fan_out’ [-Wunused-variable]
+  ninja: build stopped: subcommand failed.
+  Traceback (most recent call last):
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 2893, in _run_ninja_build
+      subprocess.run(
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/subprocess.py", line 526, in run
+      raise CalledProcessError(retcode, process.args,
+  subprocess.CalledProcessError: Command '['ninja', '-v']' returned non-zero exit status 1.
+
+  The above exception was the direct cause of the following exception:
+
+  Traceback (most recent call last):
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+      main()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+      json_out["return_val"] = hook(**hook_input["kwargs"])
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 280, in build_wheel
+      return _build_backend().build_wheel(
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/build_meta.py", line 441, in build_wheel
+      return _build(['bdist_wheel', '--dist-info-dir', str(metadata_directory)])
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/build_meta.py", line 429, in _build
+      return self._build_with_temp_dir(
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/build_meta.py", line 410, in _build_with_temp_dir
+      self.run_setup()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/build_meta.py", line 520, in run_setup
+      super().run_setup(setup_script=setup_script)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/build_meta.py", line 317, in run_setup
+      exec(code, locals())
+    File "<string>", line 31, in <module>
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/__init__.py", line 117, in setup
+      return distutils.core.setup(**attrs)  # type: ignore[return-value]
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 186, in setup
+      return run_commands(dist)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 202, in run_commands
+      dist.run_commands()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1000, in run_commands
+      self.run_command(cmd)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/dist.py", line 1107, in run_command
+      super().run_command(command)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1019, in run_command
+      cmd_obj.run()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/command/bdist_wheel.py", line 370, in run
+      self.run_command("build")
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/cmd.py", line 341, in run_command
+      self.distribution.run_command(command)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/dist.py", line 1107, in run_command
+      super().run_command(command)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1019, in run_command
+      cmd_obj.run()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/command/build.py", line 135, in run
+      self.run_command(cmd_name)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/cmd.py", line 341, in run_command
+      self.distribution.run_command(command)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/dist.py", line 1107, in run_command
+      super().run_command(command)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1019, in run_command
+      cmd_obj.run()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/command/build_ext.py", line 97, in run
+      _build_ext.run(self)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 367, in run
+      self.build_extensions()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1289, in build_extensions
+      super().build_extensions()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 483, in build_extensions
+      self._build_extensions_serial()
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 509, in _build_extensions_serial
+      self.build_extension(ext)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/command/build_ext.py", line 262, in build_extension
+      _build_ext.build_extension(self, ext)
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 564, in build_extension
+      objects = self.compiler.compile(
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1027, in unix_wrap_ninja_compile
+      _write_ninja_file_and_compile_objects(
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 2475, in _write_ninja_file_and_compile_objects
+      _run_ninja_build(
+    File "/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 2910, in _run_ninja_build
+      raise RuntimeError(message) from e
+  RuntimeError: Error compiling objects for extension
+  error: subprocess-exited-with-error
+  
+  × Building wheel for framework_allreduce_zfp_hip (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> No available output.
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  full command: /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/bin/python /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py build_wheel /tmp/tmple2ukclc
+  cwd: /tmp/matilderestelli/zfpext_resume_5044337
+  Building wheel for framework_allreduce_zfp_hip (pyproject.toml): finished with status 'error'
+  ERROR: Failed building wheel for framework_allreduce_zfp_hip
+Failed to build framework_allreduce_zfp_hip
+ERROR: Failed to build one or more wheels

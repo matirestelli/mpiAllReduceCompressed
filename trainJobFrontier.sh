@@ -5,7 +5,7 @@
 #SBATCH -N 1  
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=1                  
+#SBATCH --cpus-per-task=7                
 #SBATCH -t 08:00:00   
 #SBATCH -C nvme            
 #SBATCH -o ddp_train_frontier_8gpus_64b.%j.out       
@@ -30,7 +30,7 @@ source envScriptFrontier.sh
 export DDP_HOOK_TIMING=1
 export DDP_HOOK_TIMING_RANK0_ONLY=1
 export PRETRAINED_WEIGHTS_CACHE=/lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
-export DDP_ITER_LOG=0        # per-rank JSONL off (space); set 1 for a few configs
+export DDP_ITER_LOG=1        # per-rank JSONL off (space); set 1 for a few configs (WEAK SCALING   )
 export DDP_PROFILE_BARRIER=0 # MUST stay 0 for timing runs — it kills bwd/comm overlap
 
 # Fix change cray mpich policy from NUMA for multiple nodes with the ranks export MPICH_OFI_NIC_POLICY=GPU
@@ -149,7 +149,7 @@ DROP_LAST_VALUES=(
 )
 
 BACKENDS=(
-    "mpi"
+    @"mpi"
     # "nccl"
 )
 

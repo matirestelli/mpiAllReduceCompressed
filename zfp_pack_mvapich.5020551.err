@@ -1,0 +1,63 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/26.03/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+
+The following have been reloaded with a version change:
+  1) rocm/6.2.0 => rocm/7.1.1
+
+
+Note: the module "darshan-runtime" cannot be unloaded because it was not
+loaded.
+
+
+Currently Loaded Modules:
+  1) cpe/26.03            6) craype/2.7.36         11) libfabric/2.3.1
+  2) craype-network-ofi   7) cray-dsmml/0.3.0      12) craype-accel-amd-gfx90a
+  3) PrgEnv-gnu/8.7.0     8) cray-libsci/26.03.0   13) craype-x86-milan
+  4) ums038/basic         9) mvapich-plus/4.0-gnu  14) miniforge3/23.11.0-0
+  5) gcc-native/14.2     10) rocm/7.1.1
+
+ 
+
+  Running command Preparing metadata (pyproject.toml)
+  running dist_info
+  creating /tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info
+  writing /tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info/PKG-INFO
+  writing dependency_links to /tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info/dependency_links.txt
+  writing top-level names to /tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info/top_level.txt
+  writing manifest file '/tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  writing manifest file '/tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  creating '/tmp/pip-modern-metadata-x06mn8jg/framework_allreduce_zfp_hip-0.0.0.dist-info'
+  Running command Building wheel for framework_allreduce_zfp_hip (pyproject.toml)
+  running bdist_wheel
+  running build
+  running build_ext
+  building 'framework_allreduce_zfp_hip' extension
+  ninja: no work to do.
+  /opt/cray/pe/gcc-native/14/bin/g++ -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -fno-merge-constants -O2 -isystem /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include -fPIC -fno-merge-constants -O2 -isystem /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/include -pthread -B /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/compiler_compat -shared /tmp/matilderestelli/zfpext_mvapich_build_5020551/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/zfpext_mvapich_build_5020551/csrc/zfp_hip_extension.o -L/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64 -L/opt/rocm-7.1.1/lib -L/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/lib -lzfp -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-cpython-310/framework_allreduce_zfp_hip.cpython-310-x86_64-linux-gnu.so -Wl,-rpath,/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64 -Wl,-rpath,/opt/rocm-7.1.1/lib
+  installing to build/bdist.linux-x86_64/wheel
+  running install
+  running install_lib
+  creating build/bdist.linux-x86_64/wheel
+  copying build/lib.linux-x86_64-cpython-310/framework_allreduce_zfp_hip.cpython-310-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/wheel/.
+  running install_egg_info
+  running egg_info
+  writing framework_allreduce_zfp_hip.egg-info/PKG-INFO
+  writing dependency_links to framework_allreduce_zfp_hip.egg-info/dependency_links.txt
+  writing top-level names to framework_allreduce_zfp_hip.egg-info/top_level.txt
+  reading manifest file 'framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  writing manifest file 'framework_allreduce_zfp_hip.egg-info/SOURCES.txt'
+  Copying framework_allreduce_zfp_hip.egg-info to build/bdist.linux-x86_64/wheel/./framework_allreduce_zfp_hip-0.0.0-py3.10.egg-info
+  running install_scripts
+  creating build/bdist.linux-x86_64/wheel/framework_allreduce_zfp_hip-0.0.0.dist-info/WHEEL
+  creating '/tmp/pip-ephem-wheel-cache-50_mbrj2/wheels/f5/1d/8c/770ddd15a3eb56e5b9a437d950c62511327aecb62b4af4db8c/tmpn4yv5qi8/.tmp-_1ejk2q9/framework_allreduce_zfp_hip-0.0.0-cp310-cp310-linux_x86_64.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+  adding 'framework_allreduce_zfp_hip.cpython-310-x86_64-linux-gnu.so'
+  adding 'framework_allreduce_zfp_hip-0.0.0.dist-info/METADATA'
+  adding 'framework_allreduce_zfp_hip-0.0.0.dist-info/WHEEL'
+  adding 'framework_allreduce_zfp_hip-0.0.0.dist-info/top_level.txt'
+  adding 'framework_allreduce_zfp_hip-0.0.0.dist-info/RECORD'
+  removing build/bdist.linux-x86_64/wheel

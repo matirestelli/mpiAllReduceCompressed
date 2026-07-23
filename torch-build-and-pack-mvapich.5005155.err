@@ -1,0 +1,34 @@
+
+The following have been reloaded with a version change:
+  1) gcc-native/14.2 => gcc-native/13.2
+
+
+Lmod is automatically replacing "mvapich-plus/4.0" with "cray-mpich/9.1.0".
+
+
+Lmod is automatically replacing "PrgEnv-gnu/8.7.0" with "PrgEnv-amd/8.7.0".
+
+
+Lmod is automatically replacing "gcc-native/13.2" with "amd/6.2.0".
+
+
+The following have been reloaded with a version change:
+  1) cray-libsci/26.03.0 => cray-libsci/24.11.0
+
+Lmod has detected the following error: This rocm module exists but cannot be
+loaded as requested: rocm/7.1.1
+    ROCM module version must match the currently loaded AMD module version.
+
+    Note: Please use explicit module commands when loading a non-default
+    rocm module.
+
+    To load rocm with the currently loaded amd/6.2.0 module
+    please try:
+          $ module load rocm/6.2.0
+
+While processing the following module(s):
+    Module fullname  Module Filename
+    ---------------  ---------------
+    rocm/7.1.1       /opt/cray/pe/lmod/modulefiles/core/rocm/7.1.1.lua
+
+[ERROR] Failed at line 108 at Wed Jul 15 03:02:41 PM EDT 2026

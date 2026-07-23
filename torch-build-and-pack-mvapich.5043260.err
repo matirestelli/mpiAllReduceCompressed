@@ -1,0 +1,993 @@
+
+The following have been reloaded with a version change:
+  1) rocm/6.2.0 => rocm/7.1.1
+
+
+Note: the module "darshan-runtime" cannot be unloaded because it was not
+loaded.
+
+
+Currently Loaded Modules:
+  1) cpe/26.03            6) craype/2.7.36         11) libfabric/2.3.1
+  2) craype-network-ofi   7) cray-dsmml/0.3.0      12) craype-accel-amd-gfx90a
+  3) PrgEnv-gnu/8.7.0     8) cray-libsci/26.03.0   13) craype-x86-milan
+  4) ums038/basic         9) mvapich-plus/4.0-gnu  14) miniforge3/23.11.0-0
+  5) gcc-native/14.2     10) rocm/7.1.1
+
+ 
+
+
+real	2m46.599s
+user	0m21.815s
+sys	0m52.569s
+[92mSuccessfully preprocessed all matching files.[0m
+
+real	0m0.836s
+user	0m0.093s
+sys	0m0.198s
+  Running command Preparing metadata (pyproject.toml)
+  <string>:14: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  Torchvision build configuration:
+  FORCE_CUDA = False
+  FORCE_MPS = False
+  DEBUG = False
+  USE_PNG = True
+  USE_JPEG = True
+  USE_WEBP = True
+  USE_NVJPEG = True
+  NVCC_FLAGS = None
+  USE_CPU_VIDEO_DECODER = False
+  USE_GPU_VIDEO_DECODER = False
+  TORCHVISION_INCLUDE = []
+  TORCHVISION_LIBRARY = []
+  IS_ROCM = True
+  BUILD_CUDA_SOURCES = True
+  fatal: not a git repository (or any parent up to mount point /)
+  Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+  Building wheel torchvision-0.24.0
+  Building _C extension
+  /tmp/matilderestelli/vision_mvapich_build_5043260/MANIFEST.in -> /tmp/matilderestelli/vision_mvapich_build_5043260/MANIFEST.in [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ops.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ops.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_kernels.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_kernels.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_helpers.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/cuda_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/cuda_helpers.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/cuda_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/hip_helpers.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/roi_pool_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/roi_pool_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/roi_align_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/roi_align_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/ps_roi_pool_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/ps_roi_pool_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/ps_roi_align_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/ps_roi_align_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/nms_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/nms_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/deform_conv2d_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/deform_conv2d_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/cuda_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/hip_helpers.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_jpegs_cuda.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/exif.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/exif.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/openbsd-reallocarray.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/openbsd-reallocarray.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gifalloc.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gifalloc.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/dgif_lib.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/dgif_lib.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util_test.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util_test.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder_test.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder_test.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/test/cpp/test_custom_operators.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/test/cpp/test_custom_operators.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ViewController.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ViewController.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ModelRunner.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ModelRunner.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/AppDelegate.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/AppDelegate.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/examples/cpp/run_model.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/examples/cpp/run_model.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/cmake/TorchVisionConfig.cmake.in -> /tmp/matilderestelli/vision_mvapich_build_5043260/cmake/TorchVisionConfig.cmake.in [skipped, no changes]
+  [92mSuccessfully preprocessed all matching files.[0m
+  Total number of unsupported CUDA function calls: 0
+
+
+  Total number of replaced kernel launches: 16
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision_hip.cpp [skipped, already hipified]
+  [92mSuccessfully preprocessed all matching files.[0m
+  Total number of unsupported CUDA function calls: 0
+
+
+  Total number of replaced kernel launches: 0
+  Building image extension
+  Building torchvision with PNG support
+  png_include_dir = '/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/include/libpng16'
+  png_library_dir = '/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/lib'
+  Searching for jpeglib.h. Didn't find in TORCHVISION_INCLUDE.
+  Searching for jpeglib.h. Didn't find in BUILD_PREFIX.
+  Searching for jpeglib.h. Didn't find in CONDA_PREFIX.
+  Searching for jpeglib.h. Didn't find in /usr/include
+  Searching for jpeglib.h. Didn't find in /usr/local/include
+  <string>:335: UserWarning: Building torchvision without JPEG support
+  Searching for webp/decode.h. Didn't find in TORCHVISION_INCLUDE.
+  Searching for webp/decode.h. Didn't find in BUILD_PREFIX.
+  Searching for webp/decode.h. Didn't find in CONDA_PREFIX.
+  Searching for webp/decode.h. Didn't find in /usr/include
+  Searching for webp/decode.h. Didn't find in /usr/local/include
+  <string>:351: UserWarning: Building torchvision without WEBP support
+  <string>:362: UserWarning: Building torchvision without NVJPEG support
+  Building video decoder extensions
+  Building without video decoders extensions. Couldn't find ffmpeg binary.
+  running dist_info
+  creating /tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info
+  writing /tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/PKG-INFO
+  writing dependency_links to /tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/dependency_links.txt
+  writing requirements to /tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/requires.txt
+  writing top-level names to /tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/top_level.txt
+  writing manifest file '/tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/SOURCES.txt'
+  reading manifest file '/tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  warning: no previously-included files matching '__pycache__' found under directory '*'
+  warning: no previously-included files matching '*.py[co]' found under directory '*'
+  adding license file 'LICENSE'
+  writing manifest file '/tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision.egg-info/SOURCES.txt'
+  creating '/tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-modern-metadata-gswgl5r3/torchvision-0.24.0.dist-info'
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:119: SetuptoolsDeprecationWarning: bdist_wheel.universal is deprecated
+  !!
+
+          ********************************************************************************
+          With Python 2.7 end-of-life, support for building universal wheels
+          (i.e., wheels that support both Python 2 and Python 3)
+          is being obviated.
+          Please discontinue using this option, or if you still need it,
+          file an issue with pypa/setuptools describing your use case.
+
+          This deprecation is overdue, please update your project and remove deprecated
+          calls to avoid build errors in the future.
+          ********************************************************************************
+
+  !!
+    self.finalize_options()
+  Running command Building wheel for torchvision (pyproject.toml)
+  <string>:14: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  Torchvision build configuration:
+  FORCE_CUDA = False
+  FORCE_MPS = False
+  DEBUG = False
+  USE_PNG = True
+  USE_JPEG = True
+  USE_WEBP = True
+  USE_NVJPEG = True
+  NVCC_FLAGS = None
+  USE_CPU_VIDEO_DECODER = False
+  USE_GPU_VIDEO_DECODER = False
+  TORCHVISION_INCLUDE = []
+  TORCHVISION_LIBRARY = []
+  IS_ROCM = True
+  BUILD_CUDA_SOURCES = True
+  fatal: not a git repository (or any parent up to mount point /)
+  Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+  Building wheel torchvision-0.24.0
+  Building _C extension
+  /tmp/matilderestelli/vision_mvapich_build_5043260/MANIFEST.in -> /tmp/matilderestelli/vision_mvapich_build_5043260/MANIFEST.in [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/macros.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ops.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ops.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_kernels.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_kernels.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/mps/mps_helpers.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/cuda_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/cuda_helpers.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/cuda_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/hip_helpers.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/roi_pool_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/roi_pool_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/roi_align_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/roi_align_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/ps_roi_pool_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/ps_roi_pool_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/ps_roi_align_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/ps_roi_align_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/nms_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/nms_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/deform_conv2d_kernel.cu -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/deform_conv2d_kernel.hip [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cuda/cuda_helpers.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/hip/hip_helpers.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video_reader/video_reader.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/video/video.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_jpegs_cuda.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/encode_decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cuda/decode_jpegs_cuda.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/exif.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/exif.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_png.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/openbsd-reallocarray.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/openbsd-reallocarray.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gifalloc.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gifalloc.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib_private.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_lib.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/dgif_lib.c -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/dgif_lib.c [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/video_sampler.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util_test.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util_test.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/util.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/time_keeper.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder_test.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder_test.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/sync_decoder.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/subtitle_sampler.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/seekable_buffer.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/memory_buffer.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/defs.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/decoder.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/cc_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_stream.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/audio_sampler.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/gpu_decoder_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/demuxer.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder_hip.h [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/decoder/gpu/decoder_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/test/cpp/test_custom_operators.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/test/cpp/test_custom_operators.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ViewController.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ViewController.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ModelRunner.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/ModelRunner.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/AppDelegate.h -> /tmp/matilderestelli/vision_mvapich_build_5043260/ios/VisionTestApp/VisionTestApp/AppDelegate.h [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/examples/cpp/run_model.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/examples/cpp/run_model.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/cmake/TorchVisionConfig.cmake.in -> /tmp/matilderestelli/vision_mvapich_build_5043260/cmake/TorchVisionConfig.cmake.in [skipped, no changes]
+  [92mSuccessfully preprocessed all matching files.[0m
+  Total number of unsupported CUDA function calls: 0
+
+
+  Total number of replaced kernel launches: 16
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autocast/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/autograd/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/deform_conv2d_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/nms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_align_kernel_hip.cpp [skipped, already hipified]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/deform_conv2d.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/nms.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/ps_roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qnms_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_align.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/ops/roi_pool.cpp [skipped, no changes]
+  /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision.cpp -> /tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/vision_hip.cpp [skipped, already hipified]
+  [92mSuccessfully preprocessed all matching files.[0m
+  Total number of unsupported CUDA function calls: 0
+
+
+  Total number of replaced kernel launches: 0
+  Building image extension
+  Building torchvision with PNG support
+  png_include_dir = '/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/include/libpng16'
+  png_library_dir = '/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/lib'
+  Searching for jpeglib.h. Didn't find in TORCHVISION_INCLUDE.
+  Searching for jpeglib.h. Didn't find in BUILD_PREFIX.
+  Searching for jpeglib.h. Didn't find in CONDA_PREFIX.
+  Searching for jpeglib.h. Didn't find in /usr/include
+  Searching for jpeglib.h. Didn't find in /usr/local/include
+  <string>:335: UserWarning: Building torchvision without JPEG support
+  Searching for webp/decode.h. Didn't find in TORCHVISION_INCLUDE.
+  Searching for webp/decode.h. Didn't find in BUILD_PREFIX.
+  Searching for webp/decode.h. Didn't find in CONDA_PREFIX.
+  Searching for webp/decode.h. Didn't find in /usr/include
+  Searching for webp/decode.h. Didn't find in /usr/local/include
+  <string>:351: UserWarning: Building torchvision without WEBP support
+  <string>:362: UserWarning: Building torchvision without NVJPEG support
+  Building video decoder extensions
+  Building without video decoders extensions. Couldn't find ffmpeg binary.
+  running bdist_wheel
+  /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/setuptools/_distutils/cmd.py:119: SetuptoolsDeprecationWarning: bdist_wheel.universal is deprecated
+  !!
+
+          ********************************************************************************
+          With Python 2.7 end-of-life, support for building universal wheels
+          (i.e., wheels that support both Python 2 and Python 3)
+          is being obviated.
+          Please discontinue using this option, or if you still need it,
+          file an issue with pypa/setuptools describing your use case.
+
+          This deprecation is overdue, please update your project and remove deprecated
+          calls to avoid build errors in the future.
+          ********************************************************************************
+
+  !!
+    self.finalize_options()
+  running build
+  running build_py
+  copying torchvision/version.py -> build/lib.linux-x86_64-cpython-310/torchvision
+  running build_ext
+  building 'torchvision._C' extension
+  ninja: no work to do.
+  /opt/cray/pe/gcc-native/14/bin/g++ -Wno-error -Wno-pedantic -pthread -B /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/compiler_compat -shared -Wno-error -Wno-pedantic /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autocast/deform_conv2d_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autocast/nms_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autocast/ps_roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autocast/ps_roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autocast/roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autocast/roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autograd/deform_conv2d_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autograd/ps_roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autograd/ps_roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autograd/roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/autograd/roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/cpu/deform_conv2d_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/cpu/nms_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/cpu/ps_roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/cpu/ps_roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/cpu/roi_align_kernel_hip.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/cpu/roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/deform_conv2d.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/hip/deform_conv2d_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/hip/nms_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/hip/ps_roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/hip/ps_roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/hip/roi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/hip/roi_pool_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/nms.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/ps_roi_align.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/ps_roi_pool.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/quantized/cpu/qnms_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/quantized/cpu/qroi_align_kernel.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/roi_align.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/ops/roi_pool.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/torchvision/csrc/vision_hip.o -L/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/lib -L/opt/rocm-7.1.1/lib -L/opt/rocm-7.1.1/hip/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lamdhip64 -lc10_hip -ltorch_hip -o build/lib.linux-x86_64-cpython-310/torchvision/_C.so
+  building 'torchvision.image' extension
+  ninja: no work to do.
+  /opt/cray/pe/gcc-native/14/bin/g++ -Wno-error -Wno-pedantic -pthread -B /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/compiler_compat -shared -Wno-error -Wno-pedantic /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/common.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/common_jpeg.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_gif.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_image.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_jpeg.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_png.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/decode_webp.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_jpeg.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/encode_png.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/dgif_lib.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gif_hash.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/gifalloc.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/giflib/openbsd-reallocarray.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/cpu/read_write_file.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/decode_jpegs_hip.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/hip/encode_jpegs_hip.o /tmp/matilderestelli/vision_mvapich_build_5043260/build/temp.linux-x86_64-cpython-310/tmp/matilderestelli/vision_mvapich_build_5043260/torchvision/csrc/io/image/image_hip.o -L/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/lib -L/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda/lib/python3.10/site-packages/torch/lib -lpng -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-cpython-310/torchvision/image.so
+  installing to build/bdist.linux-x86_64/wheel
+  running install
+  running install_lib
+  creating build/bdist.linux-x86_64/wheel
+  creating build/bdist.linux-x86_64/wheel/torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/image.so -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/_C.so -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/version.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  creating build/bdist.linux-x86_64/wheel/torchvision/datasets
+  creating build/bdist.linux-x86_64/wheel/torchvision/datasets/samplers
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/samplers/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets/samplers
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/samplers/clip_sampler.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets/samplers
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/_optical_flow.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/_stereo_matching.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/caltech.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/celeba.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/cifar.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/cityscapes.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/clevr.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/coco.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/country211.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/dtd.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/eurosat.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/fakedata.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/fer2013.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/fgvc_aircraft.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/flickr.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/flowers102.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/folder.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/food101.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/gtsrb.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/hmdb51.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/imagenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/imagenette.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/inaturalist.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/kinetics.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/kitti.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/lfw.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/lsun.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/mnist.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/moving_mnist.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/omniglot.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/oxford_iiit_pet.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/pcam.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/phototour.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/places365.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/rendered_sst2.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/sbd.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/sbu.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/semeion.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/stanford_cars.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/stl10.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/sun397.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/svhn.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/ucf101.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/usps.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/video_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/vision.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/voc.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  copying build/lib.linux-x86_64-cpython-310/torchvision/datasets/widerface.py -> build/bdist.linux-x86_64/wheel/./torchvision/datasets
+  creating build/bdist.linux-x86_64/wheel/torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/_load_gpu_decoder.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/_video_deprecation_warning.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/_video_opt.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/image.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/video.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  copying build/lib.linux-x86_64-cpython-310/torchvision/io/video_reader.py -> build/bdist.linux-x86_64/wheel/./torchvision/io
+  creating build/bdist.linux-x86_64/wheel/torchvision/models
+  creating build/bdist.linux-x86_64/wheel/torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/anchor_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/backbone_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/faster_rcnn.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/fcos.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/generalized_rcnn.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/image_list.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/keypoint_rcnn.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/mask_rcnn.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/retinanet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/roi_heads.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/rpn.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/ssd.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/ssdlite.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/detection/transform.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/detection
+  creating build/bdist.linux-x86_64/wheel/torchvision/models/optical_flow
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/optical_flow/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/optical_flow
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/optical_flow/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/optical_flow
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/optical_flow/raft.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/optical_flow
+  creating build/bdist.linux-x86_64/wheel/torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/googlenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/inception.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/mobilenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/mobilenetv2.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/mobilenetv3.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/resnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/shufflenetv2.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/quantization/utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/quantization
+  creating build/bdist.linux-x86_64/wheel/torchvision/models/segmentation
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/segmentation/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/segmentation
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/segmentation/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/segmentation
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/segmentation/deeplabv3.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/segmentation
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/segmentation/fcn.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/segmentation
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/segmentation/lraspp.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/segmentation
+  creating build/bdist.linux-x86_64/wheel/torchvision/models/video
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/video/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/video
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/video/mvit.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/video
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/video/resnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/video
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/video/s3d.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/video
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/video/swin_transformer.py -> build/bdist.linux-x86_64/wheel/./torchvision/models/video
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/_api.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/_meta.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/alexnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/convnext.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/densenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/efficientnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/feature_extraction.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/googlenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/inception.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/maxvit.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/mnasnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/mobilenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/mobilenetv2.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/mobilenetv3.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/regnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/resnet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/shufflenetv2.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/squeezenet.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/swin_transformer.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/vgg.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  copying build/lib.linux-x86_64-cpython-310/torchvision/models/vision_transformer.py -> build/bdist.linux-x86_64/wheel/./torchvision/models
+  creating build/bdist.linux-x86_64/wheel/torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/_box_convert.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/_register_onnx_ops.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/boxes.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/ciou_loss.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/deform_conv.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/diou_loss.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/drop_block.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/feature_pyramid_network.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/focal_loss.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/giou_loss.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/misc.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/poolers.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/ps_roi_align.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/ps_roi_pool.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/roi_align.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/roi_pool.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  copying build/lib.linux-x86_64-cpython-310/torchvision/ops/stochastic_depth.py -> build/bdist.linux-x86_64/wheel/./torchvision/ops
+  creating build/bdist.linux-x86_64/wheel/torchvision/transforms
+  creating build/bdist.linux-x86_64/wheel/torchvision/transforms/v2
+  creating build/bdist.linux-x86_64/wheel/torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_augment.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_color.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_deprecated.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_geometry.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_meta.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_misc.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_temporal.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_type_conversion.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/functional/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2/functional
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_augment.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_auto_augment.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_color.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_container.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_deprecated.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_geometry.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_meta.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_misc.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_temporal.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_transform.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_type_conversion.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/v2/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms/v2
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/_functional_pil.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/_functional_tensor.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/_functional_video.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/_presets.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/_transforms_video.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/autoaugment.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/functional.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  copying build/lib.linux-x86_64-cpython-310/torchvision/transforms/transforms.py -> build/bdist.linux-x86_64/wheel/./torchvision/transforms
+  creating build/bdist.linux-x86_64/wheel/torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_bounding_boxes.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_dataset_wrapper.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_image.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_keypoints.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_mask.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_torch_function_helpers.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_tv_tensor.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/tv_tensors/_video.py -> build/bdist.linux-x86_64/wheel/./torchvision/tv_tensors
+  copying build/lib.linux-x86_64-cpython-310/torchvision/__init__.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/_internally_replaced_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/_meta_registrations.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/_utils.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/extension.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  copying build/lib.linux-x86_64-cpython-310/torchvision/utils.py -> build/bdist.linux-x86_64/wheel/./torchvision
+  running install_egg_info
+  running egg_info
+  writing torchvision.egg-info/PKG-INFO
+  writing dependency_links to torchvision.egg-info/dependency_links.txt
+  writing requirements to torchvision.egg-info/requires.txt
+  writing top-level names to torchvision.egg-info/top_level.txt
+  reading manifest file 'torchvision.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  warning: no previously-included files matching '__pycache__' found under directory '*'
+  warning: no previously-included files matching '*.py[co]' found under directory '*'
+  adding license file 'LICENSE'
+  writing manifest file 'torchvision.egg-info/SOURCES.txt'
+  Copying torchvision.egg-info to build/bdist.linux-x86_64/wheel/./torchvision-0.24.0-py3.10.egg-info
+  running install_scripts
+  creating build/bdist.linux-x86_64/wheel/torchvision-0.24.0.dist-info/WHEEL
+  creating '/tmp/matilderestelli/pytorch_mvapich_build_5043260/tmp/pip-ephem-wheel-cache-4zyscoog/wheels/79/0b/1c/df37f8dc42e6a0dba46282f0ca7347dd530f52acf181b628d6/tmpfxqqlf2w/.tmp-54l74odo/torchvision-0.24.0-cp310-cp310-linux_x86_64.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+  adding 'torchvision/_C.so'
+  adding 'torchvision/__init__.py'
+  adding 'torchvision/_internally_replaced_utils.py'
+  adding 'torchvision/_meta_registrations.py'
+  adding 'torchvision/_utils.py'
+  adding 'torchvision/extension.py'
+  adding 'torchvision/image.so'
+  adding 'torchvision/utils.py'
+  adding 'torchvision/version.py'
+  adding 'torchvision/datasets/__init__.py'
+  adding 'torchvision/datasets/_optical_flow.py'
+  adding 'torchvision/datasets/_stereo_matching.py'
+  adding 'torchvision/datasets/caltech.py'
+  adding 'torchvision/datasets/celeba.py'
+  adding 'torchvision/datasets/cifar.py'
+  adding 'torchvision/datasets/cityscapes.py'
+  adding 'torchvision/datasets/clevr.py'
+  adding 'torchvision/datasets/coco.py'
+  adding 'torchvision/datasets/country211.py'
+  adding 'torchvision/datasets/dtd.py'
+  adding 'torchvision/datasets/eurosat.py'
+  adding 'torchvision/datasets/fakedata.py'
+  adding 'torchvision/datasets/fer2013.py'
+  adding 'torchvision/datasets/fgvc_aircraft.py'
+  adding 'torchvision/datasets/flickr.py'
+  adding 'torchvision/datasets/flowers102.py'
+  adding 'torchvision/datasets/folder.py'
+  adding 'torchvision/datasets/food101.py'
+  adding 'torchvision/datasets/gtsrb.py'
+  adding 'torchvision/datasets/hmdb51.py'
+  adding 'torchvision/datasets/imagenet.py'
+  adding 'torchvision/datasets/imagenette.py'
+  adding 'torchvision/datasets/inaturalist.py'
+  adding 'torchvision/datasets/kinetics.py'
+  adding 'torchvision/datasets/kitti.py'
+  adding 'torchvision/datasets/lfw.py'
+  adding 'torchvision/datasets/lsun.py'
+  adding 'torchvision/datasets/mnist.py'
+  adding 'torchvision/datasets/moving_mnist.py'
+  adding 'torchvision/datasets/omniglot.py'
+  adding 'torchvision/datasets/oxford_iiit_pet.py'
+  adding 'torchvision/datasets/pcam.py'
+  adding 'torchvision/datasets/phototour.py'
+  adding 'torchvision/datasets/places365.py'
+  adding 'torchvision/datasets/rendered_sst2.py'
+  adding 'torchvision/datasets/sbd.py'
+  adding 'torchvision/datasets/sbu.py'
+  adding 'torchvision/datasets/semeion.py'
+  adding 'torchvision/datasets/stanford_cars.py'
+  adding 'torchvision/datasets/stl10.py'
+  adding 'torchvision/datasets/sun397.py'
+  adding 'torchvision/datasets/svhn.py'
+  adding 'torchvision/datasets/ucf101.py'
+  adding 'torchvision/datasets/usps.py'
+  adding 'torchvision/datasets/utils.py'
+  adding 'torchvision/datasets/video_utils.py'
+  adding 'torchvision/datasets/vision.py'
+  adding 'torchvision/datasets/voc.py'
+  adding 'torchvision/datasets/widerface.py'
+  adding 'torchvision/datasets/samplers/__init__.py'
+  adding 'torchvision/datasets/samplers/clip_sampler.py'
+  adding 'torchvision/io/__init__.py'
+  adding 'torchvision/io/_load_gpu_decoder.py'
+  adding 'torchvision/io/_video_deprecation_warning.py'
+  adding 'torchvision/io/_video_opt.py'
+  adding 'torchvision/io/image.py'
+  adding 'torchvision/io/video.py'
+  adding 'torchvision/io/video_reader.py'
+  adding 'torchvision/models/__init__.py'
+  adding 'torchvision/models/_api.py'
+  adding 'torchvision/models/_meta.py'
+  adding 'torchvision/models/_utils.py'
+  adding 'torchvision/models/alexnet.py'
+  adding 'torchvision/models/convnext.py'
+  adding 'torchvision/models/densenet.py'
+  adding 'torchvision/models/efficientnet.py'
+  adding 'torchvision/models/feature_extraction.py'
+  adding 'torchvision/models/googlenet.py'
+  adding 'torchvision/models/inception.py'
+  adding 'torchvision/models/maxvit.py'
+  adding 'torchvision/models/mnasnet.py'
+  adding 'torchvision/models/mobilenet.py'
+  adding 'torchvision/models/mobilenetv2.py'
+  adding 'torchvision/models/mobilenetv3.py'
+  adding 'torchvision/models/regnet.py'
+  adding 'torchvision/models/resnet.py'
+  adding 'torchvision/models/shufflenetv2.py'
+  adding 'torchvision/models/squeezenet.py'
+  adding 'torchvision/models/swin_transformer.py'
+  adding 'torchvision/models/vgg.py'
+  adding 'torchvision/models/vision_transformer.py'
+  adding 'torchvision/models/detection/__init__.py'
+  adding 'torchvision/models/detection/_utils.py'
+  adding 'torchvision/models/detection/anchor_utils.py'
+  adding 'torchvision/models/detection/backbone_utils.py'
+  adding 'torchvision/models/detection/faster_rcnn.py'
+  adding 'torchvision/models/detection/fcos.py'
+  adding 'torchvision/models/detection/generalized_rcnn.py'
+  adding 'torchvision/models/detection/image_list.py'
+  adding 'torchvision/models/detection/keypoint_rcnn.py'
+  adding 'torchvision/models/detection/mask_rcnn.py'
+  adding 'torchvision/models/detection/retinanet.py'
+  adding 'torchvision/models/detection/roi_heads.py'
+  adding 'torchvision/models/detection/rpn.py'
+  adding 'torchvision/models/detection/ssd.py'
+  adding 'torchvision/models/detection/ssdlite.py'
+  adding 'torchvision/models/detection/transform.py'
+  adding 'torchvision/models/optical_flow/__init__.py'
+  adding 'torchvision/models/optical_flow/_utils.py'
+  adding 'torchvision/models/optical_flow/raft.py'
+  adding 'torchvision/models/quantization/__init__.py'
+  adding 'torchvision/models/quantization/googlenet.py'
+  adding 'torchvision/models/quantization/inception.py'
+  adding 'torchvision/models/quantization/mobilenet.py'
+  adding 'torchvision/models/quantization/mobilenetv2.py'
+  adding 'torchvision/models/quantization/mobilenetv3.py'
+  adding 'torchvision/models/quantization/resnet.py'
+  adding 'torchvision/models/quantization/shufflenetv2.py'
+  adding 'torchvision/models/quantization/utils.py'
+  adding 'torchvision/models/segmentation/__init__.py'
+  adding 'torchvision/models/segmentation/_utils.py'
+  adding 'torchvision/models/segmentation/deeplabv3.py'
+  adding 'torchvision/models/segmentation/fcn.py'
+  adding 'torchvision/models/segmentation/lraspp.py'
+  adding 'torchvision/models/video/__init__.py'
+  adding 'torchvision/models/video/mvit.py'
+  adding 'torchvision/models/video/resnet.py'
+  adding 'torchvision/models/video/s3d.py'
+  adding 'torchvision/models/video/swin_transformer.py'
+  adding 'torchvision/ops/__init__.py'
+  adding 'torchvision/ops/_box_convert.py'
+  adding 'torchvision/ops/_register_onnx_ops.py'
+  adding 'torchvision/ops/_utils.py'
+  adding 'torchvision/ops/boxes.py'
+  adding 'torchvision/ops/ciou_loss.py'
+  adding 'torchvision/ops/deform_conv.py'
+  adding 'torchvision/ops/diou_loss.py'
+  adding 'torchvision/ops/drop_block.py'
+  adding 'torchvision/ops/feature_pyramid_network.py'
+  adding 'torchvision/ops/focal_loss.py'
+  adding 'torchvision/ops/giou_loss.py'
+  adding 'torchvision/ops/misc.py'
+  adding 'torchvision/ops/poolers.py'
+  adding 'torchvision/ops/ps_roi_align.py'
+  adding 'torchvision/ops/ps_roi_pool.py'
+  adding 'torchvision/ops/roi_align.py'
+  adding 'torchvision/ops/roi_pool.py'
+  adding 'torchvision/ops/stochastic_depth.py'
+  adding 'torchvision/transforms/__init__.py'
+  adding 'torchvision/transforms/_functional_pil.py'
+  adding 'torchvision/transforms/_functional_tensor.py'
+  adding 'torchvision/transforms/_functional_video.py'
+  adding 'torchvision/transforms/_presets.py'
+  adding 'torchvision/transforms/_transforms_video.py'
+  adding 'torchvision/transforms/autoaugment.py'
+  adding 'torchvision/transforms/functional.py'
+  adding 'torchvision/transforms/transforms.py'
+  adding 'torchvision/transforms/v2/__init__.py'
+  adding 'torchvision/transforms/v2/_augment.py'
+  adding 'torchvision/transforms/v2/_auto_augment.py'
+  adding 'torchvision/transforms/v2/_color.py'
+  adding 'torchvision/transforms/v2/_container.py'
+  adding 'torchvision/transforms/v2/_deprecated.py'
+  adding 'torchvision/transforms/v2/_geometry.py'
+  adding 'torchvision/transforms/v2/_meta.py'
+  adding 'torchvision/transforms/v2/_misc.py'
+  adding 'torchvision/transforms/v2/_temporal.py'
+  adding 'torchvision/transforms/v2/_transform.py'
+  adding 'torchvision/transforms/v2/_type_conversion.py'
+  adding 'torchvision/transforms/v2/_utils.py'
+  adding 'torchvision/transforms/v2/functional/__init__.py'
+  adding 'torchvision/transforms/v2/functional/_augment.py'
+  adding 'torchvision/transforms/v2/functional/_color.py'
+  adding 'torchvision/transforms/v2/functional/_deprecated.py'
+  adding 'torchvision/transforms/v2/functional/_geometry.py'
+  adding 'torchvision/transforms/v2/functional/_meta.py'
+  adding 'torchvision/transforms/v2/functional/_misc.py'
+  adding 'torchvision/transforms/v2/functional/_temporal.py'
+  adding 'torchvision/transforms/v2/functional/_type_conversion.py'
+  adding 'torchvision/transforms/v2/functional/_utils.py'
+  adding 'torchvision/tv_tensors/__init__.py'
+  adding 'torchvision/tv_tensors/_bounding_boxes.py'
+  adding 'torchvision/tv_tensors/_dataset_wrapper.py'
+  adding 'torchvision/tv_tensors/_image.py'
+  adding 'torchvision/tv_tensors/_keypoints.py'
+  adding 'torchvision/tv_tensors/_mask.py'
+  adding 'torchvision/tv_tensors/_torch_function_helpers.py'
+  adding 'torchvision/tv_tensors/_tv_tensor.py'
+  adding 'torchvision/tv_tensors/_video.py'
+  adding 'torchvision-0.24.0.dist-info/licenses/LICENSE'
+  adding 'torchvision-0.24.0.dist-info/METADATA'
+  adding 'torchvision-0.24.0.dist-info/WHEEL'
+  adding 'torchvision-0.24.0.dist-info/top_level.txt'
+  adding 'torchvision-0.24.0.dist-info/RECORD'
+  removing build/bdist.linux-x86_64/wheel
+
+real	0m0.062s
+user	0m0.005s
+sys	0m0.007s
+  Running command Preparing metadata (pyproject.toml)
+[2026-07-21T11:55:52.012] error: *** JOB 5043260 ON frontier03535 CANCELLED AT 2026-07-21T11:55:52 DUE TO TIME LIMIT ***

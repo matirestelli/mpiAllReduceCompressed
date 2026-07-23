@@ -1,0 +1,634 @@
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+++ trap 'echo "FAILED at line $LINENO"; exit 1' ERR
+++ unset LD_PRELOAD
+++ unset PYTHONPATH
+++ export PYTHONNOUSERSITE=1
+++ PYTHONNOUSERSITE=1
+++ module purge
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/26.03/restore_lmod_system_defaults.[csh|sh]'. 
+ 
+Sourcing the above script is not necessary if swapping the cpe module with a
+different version. 
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 1
+++ true
+++ module load cpe/26.03
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load PrgEnv-gnu
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load gcc-native/14.2
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module use /sw/frontier/ums/modulefiles
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load ums038/basic
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load mvapich-plus/4.0-gnu
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load rocm/7.1.1
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+
+The following have been reloaded with a version change:
+  1) rocm/6.2.0 => rocm/7.1.1
+
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load libfabric
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load craype-accel-amd-gfx90a
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load craype-x86-milan
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load miniforge3/23.11.0-0
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ source /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/profile.d/conda.sh
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ '[' -z x ']'
+++ conda deactivate
+++ local cmd=deactivate
+++ case "$cmd" in
+++ __conda_activate deactivate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix deactivate
++++ /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda shell.posix deactivate
+++ ask_conda=
+++ eval ''
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ export LD_LIBRARY_PATH=/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/tmp/matilderestelli/rocm_compat_login_mvapich:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib/python3.10/site-packages/torch/lib:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ LD_LIBRARY_PATH=/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/tmp/matilderestelli/rocm_compat_login_mvapich:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib/python3.10/site-packages/torch/lib:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ unset MPICH_GPU_SUPPORT_ENABLED
+++ export MV2_USE_ROCM=1
+++ MV2_USE_ROCM=1
+++ export MV2_SHOW_ENV_INFO=1
+++ MV2_SHOW_ENV_INFO=1
+++ export FI_MR_CACHE_MONITOR=kdreg2
+++ FI_MR_CACHE_MONITOR=kdreg2
+++ export FI_CXI_DEFAULT_CQ_SIZE=131072
+++ FI_CXI_DEFAULT_CQ_SIZE=131072
+++ export FI_CXI_DEFAULT_TX_SIZE=2048
+++ FI_CXI_DEFAULT_TX_SIZE=2048
+++ export FI_CXI_RX_MATCH_MODE=hybrid
+++ FI_CXI_RX_MATCH_MODE=hybrid
+++ export NCCL_NET_GDR_LEVEL=3
+++ NCCL_NET_GDR_LEVEL=3
+++ export NCCL_CROSS_NIC=1
+++ NCCL_CROSS_NIC=1
+++ export NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+++ NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+++ export OMP_NUM_THREADS=1
+++ OMP_NUM_THREADS=1
+++ export OPENBLAS_NUM_THREADS=1
+++ OPENBLAS_NUM_THREADS=1
+++ export MKL_NUM_THREADS=1
+++ MKL_NUM_THREADS=1
+++ export GOTO_NUM_THREADS=1
+++ GOTO_NUM_THREADS=1
+++ export BLIS_NUM_THREADS=1
+++ BLIS_NUM_THREADS=1
+++ export http_proxy=http://proxy.ccs.ornl.gov:3128
+++ http_proxy=http://proxy.ccs.ornl.gov:3128
+++ export https_proxy=http://proxy.ccs.ornl.gov:3128
+++ https_proxy=http://proxy.ccs.ornl.gov:3128
+++ export HTTP_PROXY=http://proxy.ccs.ornl.gov:3128
+++ HTTP_PROXY=http://proxy.ccs.ornl.gov:3128
+++ export HTTPS_PROXY=http://proxy.ccs.ornl.gov:3128
+++ HTTPS_PROXY=http://proxy.ccs.ornl.gov:3128
+++ export ZFP_HOME=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier
+++ ZFP_HOME=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier
+++ export LD_LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/tmp/matilderestelli/rocm_compat_login_mvapich:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib/python3.10/site-packages/torch/lib:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ LD_LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/tmp/matilderestelli/rocm_compat_login_mvapich:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib/python3.10/site-packages/torch/lib:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ export CPATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/include:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include
+++ CPATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/include:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include
+++ export LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ export CMAKE_PREFIX_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier:/opt/rocm-7.1.1/lib/cmake/hip:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier
+++ CMAKE_PREFIX_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier:/opt/rocm-7.1.1/lib/cmake/hip:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier
+++ : 5039911
+++ : 1
+++ export MIOPEN_BASE=/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline
+++ MIOPEN_BASE=/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline
+++ NVME_BASE=/mnt/bb/matilderestelli
+++ export MIOPEN_LOCAL=/mnt/bb/matilderestelli/miopen_cache_5039911
+++ MIOPEN_LOCAL=/mnt/bb/matilderestelli/miopen_cache_5039911
+++ export MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_5039911/miopen_db
+++ MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_5039911/miopen_db
+++ export MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_5039911/kernel_cache
+++ MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_5039911/kernel_cache
+++ srun -N 1 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  mkdir -p '\''/mnt/bb/matilderestelli'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5039911'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5039911/miopen_db'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5039911/kernel_cache'\''
+'
+++ srun -N 1 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  if [[ -d '\''/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline'\'' ]]; then
+    cp -a '\''/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline/.'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5039911/'\'' 2>/dev/null || true
+  fi
+'
+++ export ORIGINAL_HOME=/ccs/home/matilderestelli
+++ ORIGINAL_HOME=/ccs/home/matilderestelli
+++ export HOME=/mnt/bb/matilderestelli/miopen_cache_5039911
+++ HOME=/mnt/bb/matilderestelli/miopen_cache_5039911
+++ srun -N 1 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  mkdir -p '\''/mnt/bb/matilderestelli/miopen_cache_5039911/.cache/miopen'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5039911/.config/miopen'\''
+'
+++ unset MIOPEN_FIND_MODE
+++ unset MIOPEN_FIND_ENFORCE
+++ ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_env.tar.gz
+++ ENV_DIR=/mnt/bb/matilderestelli/torch_env
+++ TARBALL_DST=/mnt/bb/matilderestelli/torch_env.tar.gz
+++ echo 'Using ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_env.tar.gz'
+++ echo 'Using ENV_DIR=/mnt/bb/matilderestelli/torch_env'
+++ srun -N 1 --ntasks-per-node=1 mkdir -p /mnt/bb/matilderestelli
+++ sbcast -pf /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_env.tar.gz /mnt/bb/matilderestelli/torch_env.tar.gz
+++ srun -N 1 --ntasks-per-node=1 rm -rf /mnt/bb/matilderestelli/torch_env
+++ srun -N 1 --ntasks-per-node=1 mkdir -p /mnt/bb/matilderestelli/torch_env
+++ srun -N 1 --ntasks-per-node=1 -c 1 tar --use-compress-program=pigz -xf /mnt/bb/matilderestelli/torch_env.tar.gz -C /mnt/bb/matilderestelli/torch_env
+++ srun -N 1 --ntasks-per-node=1 bash -lc '
+  source /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/profile.d/conda.sh
+  conda activate '\''/mnt/bb/matilderestelli/torch_env'\''
+  conda-unpack
+'
+++ source /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/profile.d/conda.sh
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ '[' -z x ']'
+++ conda activate /mnt/bb/matilderestelli/torch_env
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate /mnt/bb/matilderestelli/torch_env
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate /mnt/bb/matilderestelli/torch_env
++++ /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda shell.posix activate /mnt/bb/matilderestelli/torch_env
+++ ask_conda='PS1='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export PATH='\''/mnt/bb/matilderestelli/torch_env/bin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/startup:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/collective:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/pt2pt:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin:/opt/cray/pe/craype/2.7.36/bin:/opt/cray/pe/gcc-native/14/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin'\''
+export CONDA_PREFIX='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_PROMPT_MODIFIER='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export CONDA_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python'\'''
+++ eval 'PS1='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export PATH='\''/mnt/bb/matilderestelli/torch_env/bin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/startup:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/collective:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/pt2pt:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin:/opt/cray/pe/craype/2.7.36/bin:/opt/cray/pe/gcc-native/14/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin'\''
+export CONDA_PREFIX='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_PROMPT_MODIFIER='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export CONDA_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python'\'''
++++ PS1='(/mnt/bb/matilderestelli/torch_env) '
++++ export PATH=/mnt/bb/matilderestelli/torch_env/bin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/startup:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/collective:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/pt2pt:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin:/opt/cray/pe/craype/2.7.36/bin:/opt/cray/pe/gcc-native/14/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin
++++ PATH=/mnt/bb/matilderestelli/torch_env/bin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/startup:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/collective:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/libexec/osu-micro-benchmarks/mpi/pt2pt:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin:/opt/cray/pe/craype/2.7.36/bin:/opt/cray/pe/gcc-native/14/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin
++++ export CONDA_PREFIX=/mnt/bb/matilderestelli/torch_env
++++ CONDA_PREFIX=/mnt/bb/matilderestelli/torch_env
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=/mnt/bb/matilderestelli/torch_env
++++ CONDA_DEFAULT_ENV=/mnt/bb/matilderestelli/torch_env
++++ export 'CONDA_PROMPT_MODIFIER=(/mnt/bb/matilderestelli/torch_env) '
++++ CONDA_PROMPT_MODIFIER='(/mnt/bb/matilderestelli/torch_env) '
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ export ROCM_HOME=/opt/rocm-7.1.1
+++ ROCM_HOME=/opt/rocm-7.1.1
+++ export ROCM_COMPAT_DIR=/mnt/bb/matilderestelli/rocm_compat_5039911
+++ ROCM_COMPAT_DIR=/mnt/bb/matilderestelli/rocm_compat_5039911
+++ srun -N 1 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  ROCM_HOME='\''/opt/rocm-7.1.1'\''
+  ROCM_LIBDIR="$ROCM_HOME/lib"
+  [[ -d "$ROCM_LIBDIR" ]] || ROCM_LIBDIR="$ROCM_HOME/lib64"
+  mkdir -p '\''/mnt/bb/matilderestelli/rocm_compat_5039911'\''
+  ln -sf "$ROCM_LIBDIR/libamdhip64.so.7" '\''/mnt/bb/matilderestelli/rocm_compat_5039911/libamdhip64.so.7'\''
+  ln -sf "$ROCM_LIBDIR/libamdhip64.so.7" '\''/mnt/bb/matilderestelli/rocm_compat_5039911/libamdhip64.so.6'\''
+  ln -sf "$ROCM_LIBDIR/libamdhip64.so.7" '\''/mnt/bb/matilderestelli/rocm_compat_5039911/libamdhip64.so.5'\''
+'
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+++ ROCM_LIBDIR=/opt/rocm-7.1.1/lib
+++ [[ -d /opt/rocm-7.1.1/lib ]]
+++ TORCH_LIBDIR=/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/lib
+++ export LD_LIBRARY_PATH=/mnt/bb/matilderestelli/rocm_compat_5039911:/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/lib:/mnt/bb/matilderestelli/torch_env/lib:/opt/rocm-7.1.1/lib:/opt/cray/libfabric/2.3.1/lib64:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/tmp/matilderestelli/rocm_compat_login_mvapich:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib/python3.10/site-packages/torch/lib:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ LD_LIBRARY_PATH=/mnt/bb/matilderestelli/rocm_compat_5039911:/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/lib:/mnt/bb/matilderestelli/torch_env/lib:/opt/rocm-7.1.1/lib:/opt/cray/libfabric/2.3.1/lib64:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib:/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib:/tmp/matilderestelli/rocm_compat_login_mvapich:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib/python3.10/site-packages/torch/lib:/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_from_tar/lib:/opt/cray/pe/libsci/26.03.0/GNU/12/x86_64/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64
+++ python -
++ unset MPICH_GPU_SUPPORT_ENABLED
++ export MV2_USE_ROCM=1
++ MV2_USE_ROCM=1
++ export MV2_SHOW_ENV_INFO=1
++ MV2_SHOW_ENV_INFO=1
++ export MV2_USE_CUDA=1
++ MV2_USE_CUDA=1
++ export DDP_HOOK_TIMING=1
++ DDP_HOOK_TIMING=1
++ export DDP_HOOK_TIMING_RANK0_ONLY=1
++ DDP_HOOK_TIMING_RANK0_ONLY=1
++ export PRETRAINED_WEIGHTS_CACHE=/lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
++ PRETRAINED_WEIGHTS_CACHE=/lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
++ export DDP_ITER_LOG=0
++ DDP_ITER_LOG=0
++ export DDP_PROFILE_BARRIER=0
++ DDP_PROFILE_BARRIER=0
++ NUM_PROCS=8
++ PPN=8
++ MODELS=("wide_resnet50_2")
++ DATASETS=("cifar10")
++ NUM_CLASSES_LIST=("10")
++ IMAGE_SIZES=("32")
++ NUM_EPOCHS_LIST=("20")
++ BATCH_SIZES=("64")
++ LEARNING_RATES=("0.1")
++ MOMENTUMS=("0.9")
++ OPTIMIZERS=("sgd")
++ WEIGHT_DECAYS=("5e-4")
++ NESTEROV_VALUES=("true")
++ WD_ON_BN_BIAS_VALUES=("false")
++ SCHEDULERS=("cosine")
++ WARMUP_EPOCHS_LIST=("0")
++ GRAD_CLIPS=("none")
++ PRETRAINED_VALUES=("false")
++ CIFAR_STEM_VALUES=("true")
++ DROP_LAST_VALUES=("true")
++ BACKENDS=("mpi")
++ EXPERIMENTS=("none:" "ring:" "ring_zfp_naive:16" "ring_zfp_online_coll:16" "ring_zfp_online_coll:10" "recursive_doubling:" "recursive_doubling_zfp_naive:16" "recursive_doubling_zfp_online_coll:16" "recursive_doubling_zfp_online_coll:8")
++ for MODEL_NAME in "${MODELS[@]}"
++ for DATASET in "${DATASETS[@]}"
++ for NUM_CLASSES in "${NUM_CLASSES_LIST[@]}"
++ for IMAGE_SIZE in "${IMAGE_SIZES[@]}"
++ for NUM_EPOCHS in "${NUM_EPOCHS_LIST[@]}"
++ for BATCH_SIZE in "${BATCH_SIZES[@]}"
++ for LEARNING_RATE in "${LEARNING_RATES[@]}"
++ for SCHEDULER in "${SCHEDULERS[@]}"
++ for WARMUP_EPOCHS in "${WARMUP_EPOCHS_LIST[@]}"
++ for GRAD_CLIP in "${GRAD_CLIPS[@]}"
++ for PRETRAINED in "${PRETRAINED_VALUES[@]}"
++ for CIFAR_STEM in "${CIFAR_STEM_VALUES[@]}"
++ for DROP_LAST in "${DROP_LAST_VALUES[@]}"
++ for BACKEND in "${BACKENDS[@]}"
++ for OPTIMIZER in "${OPTIMIZERS[@]}"
++ for MOMENTUM in "${MOMENTUMS[@]}"
++ for WEIGHT_DECAY in "${WEIGHT_DECAYS[@]}"
++ for NESTEROV in "${NESTEROV_VALUES[@]}"
++ for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"
++ for EXPERIMENT in "${EXPERIMENTS[@]}"
++ COMM_ALGORITHM=none
++ ZFP_RATE=
+++ date
++ echo '=== Starting: model=wide_resnet50_2, ws=8, bs=64, gb=512, lr=0.1, sched=cosine, warmup=0, mom=0.9, wd=5e-4, nesterov=true, wd_bn_bias=false, backend=mpi, hook=none, zfp=none at Mon Jul 20 05:15:41 PM EDT 2026 ==='
++ export MODEL_NAME=wide_resnet50_2
++ MODEL_NAME=wide_resnet50_2
++ export DATASET=cifar10
++ DATASET=cifar10
++ export NUM_CLASSES=10
++ NUM_CLASSES=10
++ export IMAGE_SIZE=32
++ IMAGE_SIZE=32
++ export NUM_EPOCHS=20
++ NUM_EPOCHS=20
++ export BATCH_SIZE=64
++ BATCH_SIZE=64
++ export LEARNING_RATE=0.1
++ LEARNING_RATE=0.1
++ export MOMENTUM=0.9
++ MOMENTUM=0.9
++ export WEIGHT_DECAY=5e-4
++ WEIGHT_DECAY=5e-4
++ export NESTEROV=true
++ NESTEROV=true
++ export WD_ON_BN_BIAS=false
++ WD_ON_BN_BIAS=false
++ export GRAD_CLIP=none
++ GRAD_CLIP=none
++ export SCHEDULER=cosine
++ SCHEDULER=cosine
++ export WARMUP_EPOCHS=0
++ WARMUP_EPOCHS=0
++ export NUM_WORKERS=4
++ NUM_WORKERS=4
++ export PIN_MEMORY=true
++ PIN_MEMORY=true
++ export DROP_LAST=true
++ DROP_LAST=true
++ export PRETRAINED=false
++ PRETRAINED=false
++ export OPTIMIZER=sgd
++ OPTIMIZER=sgd
++ export CIFAR_STEM=true
++ CIFAR_STEM=true
++ export INIT_CIFAR_STEM_FROM_PRETRAINED_CENTER=false
++ INIT_CIFAR_STEM_FROM_PRETRAINED_CENTER=false
++ export DATA_DIR=./data
++ DATA_DIR=./data
++ export CHECKPOINT_DIR=./checkpoints
++ CHECKPOINT_DIR=./checkpoints
++ export SEED=42
++ SEED=42
++ export BACKEND=mpi
++ BACKEND=mpi
++ export COMM_ALGORITHM=none
++ COMM_ALGORITHM=none
++ unset MIOPEN_FIND_MODE
++ unset MIOPEN_FIND_ENFORCE
++ export TORCH_DISTRIBUTED_DEBUG=DETAIL
++ TORCH_DISTRIBUTED_DEBUG=DETAIL
++ export TORCH_NCCL_ASYNC_ERROR_HANDLING=1
++ TORCH_NCCL_ASYNC_ERROR_HANDLING=1
++ [[ -n '' ]]
++ unset ZFP_RATE
++ unset SRUN_CPUS_PER_TASK
++ unset HIP_VISIBLE_DEVICES CUDA_VISIBLE_DEVICES
++ echo MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_5039911/miopen_db
++ echo MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_5039911/kernel_cache
++ '[' -n /mnt/bb/matilderestelli/miopen_cache_5039911/miopen_db ']'
++ ls -ld /mnt/bb/matilderestelli/miopen_cache_5039911/miopen_db
++ echo '==== GPU visibility debug (batch shell) ===='
++ hostname
++ env
++ egrep 'ROCR_VISIBLE_DEVICES|HIP_VISIBLE_DEVICES|CUDA_VISIBLE_DEVICES|GPU_DEVICE_ORDINAL|SLURM_JOB_GPUS|SLURM_STEP_GPUS'
++ command -v rocminfo
++ rocminfo
++ head -n 30
++ true
++ srun --exact -n 8 --ntasks-per-node=8 --cpus-per-task=1 --gpus-per-task=1 python -u interface.py
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py:533: FutureWarning: `broadcast_buffers` is deprecated. Use `forward_sync_buffers` instead. IMPORTANT: unlike `broadcast_buffers=False`, `forward_sync_buffers=False` still syncs buffers at init. If you rely on buffers NOT being synced at init (e.g. rank-local buffers), keep using `broadcast_buffers=False` until `init_sync_buffers` is available.
+  model = DDP(
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank5]:     train(config)
+[rank5]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank5]:     model = DDP(
+[rank5]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank5]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank5]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank5]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank5]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank3]:     train(config)
+[rank3]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank3]:     model = DDP(
+[rank3]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank3]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank3]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank3]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank3]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank7]:     train(config)
+[rank7]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank7]:     model = DDP(
+[rank7]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank7]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank7]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank7]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank7]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank0]:     train(config)
+[rank0]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank0]:     model = DDP(
+[rank0]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank0]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank0]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank0]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank0]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank1]:     train(config)
+[rank1]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank1]:     model = DDP(
+[rank1]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank1]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank1]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank1]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank1]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank4]:     train(config)
+[rank4]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank4]:     model = DDP(
+[rank4]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank4]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank4]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank4]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank4]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank6]:     train(config)
+[rank6]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank6]:     model = DDP(
+[rank6]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank6]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank6]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank6]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank6]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/interface.py", line 211, in <module>
+[rank2]:     train(config)
+[rank2]:   File "/autofs/nccs-svm1_home1/matilderestelli/ddp-allreduce-eval-framework/ddp_training.py", line 533, in train
+[rank2]:     model = DDP(
+[rank2]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/nn/parallel/distributed.py", line 1064, in __init__
+[rank2]:     _verify_param_shape_across_processes(self.process_group, parameters)
+[rank2]:   File "/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/utils.py", line 286, in _verify_param_shape_across_processes
+[rank2]:     return dist._verify_params_across_processes(process_group, tensors, logger)
+[rank2]: RuntimeError: CUDA tensor detected and the MPI used doesn't have CUDA-aware MPI support
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 4: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+Abort(806980623) on node 5: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 6: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 2: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 3: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 1: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 0: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+INTERNAL ERROR: invalid error code 2c5 (Ring ids do not match) in MPIDI_MVP_gpu_ipc_finalize:49
+Abort(806980623) on node 7: Fatal error in internal_Finalize: Other MPI error, error stack:
+internal_Finalize(50).: MPI_Finalize failed
+MPII_Finalize(431)....: 
+MPII_finalize_gpu(129):  gpu_finalize failed
+srun: error: frontier10386: tasks 0-7: Exited with exit code 15
+srun: Terminating StepId=5039911.9
+++ echo 'FAILED at line 254'
+++ exit 1

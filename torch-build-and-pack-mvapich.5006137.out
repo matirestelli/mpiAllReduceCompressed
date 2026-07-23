@@ -1,0 +1,19 @@
+Deactivating conda environments
+MODULE LIST
+TOOLCHAIN
+/opt/cray/pe/gcc-native/14/bin/gcc
+gcc (SUSE Linux) 14.2.0
+/opt/cray/pe/gcc-native/14/bin/g++
+g++ (SUSE Linux) 14.2.0
+MPI_HOME=/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3
+/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin/mpicc
+gcc -pipe -g -I/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/include -L/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -Wl,-rpath -Wl,/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -Wl,--enable-new-dtags -lmpi
+/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin/mpicxx
+g++ -g -I/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/include -L/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -lmpicxx -Wl,-rpath -Wl,/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/lib -Wl,--enable-new-dtags -lmpi
+/opt/rocm-7.1.1/bin/hipcc
+HIP version: 7.1.52802-26aae437f6
+AMD clang version 20.0.0git (https://github.com/RadeonOpenCompute/llvm-project roc-7.1.1 25444 27682a16360e33e37c4f3cc6adf9a620733f8fe1)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm-7.1.1/lib/llvm/bin
+ERROR: Env not found at /lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda. Create it on the login node first.
