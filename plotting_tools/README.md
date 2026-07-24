@@ -237,3 +237,70 @@ If `--out` is not provided, plots are written directly to `<root>/plots/`.
 - **Filtering Practice**: Use `--global-batch` to clean up strong scaling profiles, and `--batch-per-rank` to clean up weak scaling runs. 
 - **Missing Baselines**: Baseline runs occasionally lack structured hook/tail summaries. Time plots will show the baseline, but hook or tail plots may automatically omit it.
 - **Cluster Environments**: The plotting script relies on a non-interactive backend (`matplotlib.use("Agg")`). It is safe to use across headless node clusters, batch configurations, and remote login nodes.
+
+
+Example command once --ymax is added
+If your max epoch time anywhere is, say, 35, run:
+
+python plot_metric.py ../experiments_frontier/wideresnet/cifar10/strongScaling \
+  --mode strong \
+  --scope all \
+  --metric time \
+  --global-batch 512 \
+  --ymax 156
+Then every epoch-time plot can use the same height.
+
+to get which is max epoch time 
+python - <<'PY'
+> from pathlib import Path
+> from plotting_tools.exp_parser import load_experiment_folder
+> 
+> df = load_experiment_folder(Path("experiments_frontier/wideresnet/cifar10/strongScaling"))
+> print(df["epoch_wall_mean_s"].max())
+> PY
+155.28500000000003
+
+
+Examples
+Strong scaling across many GPUs
+python plot.py experiments_frontier/wideresnet/cifar10/strongScaling \
+  --mode strong --scope all --metric time --global-batch 1024
+x-axis:
+
+GPUs
+title:
+
+WideResNet on Frontier (AMD) — Strong Scaling — Global batch 1024
+
+Strong scaling at fixed GPU count, varying global batch
+python plot_metric.py ../experiments_frontier/wideresnet/cifar10/strongScaling \
+  --mode strong --scope fixed --gpus 8 --metric time --ymax=156
+x-axis:
+
+global batch
+title:
+
+WideResNet on Frontier (AMD) — 64 GPUs — Strong Scaling — varying global batch
+
+If only one global batch remains after filtering, it becomes:
+
+... — Global batch 1024
+Weak scaling across many GPUs
+python plot_metric.py ../experiments_frontier/wideresnet/cifar10/weakScaling \
+  --mode weak --scope all --metric time --batch-per-rank 32
+x-axis:
+
+GPUs
+title:
+
+WideResNet on Frontier (AMD) — Weak Scaling — Batch/rank 32
+
+Weak scaling at fixed GPU count, varying local batch
+python plot_metric.py ../experiments_frontier/wideresnet/cifar10/weakScaling \
+  --mode weak --scope fixed --gpus 64 --metric time
+x-axis:
+
+batch per rank
+title:
+
+WideResNet on Frontier (AMD) — 64 GPUs — Weak Scaling — varying batch/rank

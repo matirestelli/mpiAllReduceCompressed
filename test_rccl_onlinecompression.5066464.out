@@ -1,0 +1,254 @@
+=== Copying golden cache from Lustre to local NVMe on  frontier06911  ===
+=== Copying golden cache from Lustre to local NVMe on  frontier07424  ===
+=== Copying golden cache from Lustre to local NVMe on  frontier06144  ===
+=== Copying golden cache from Lustre to local NVMe on  frontier05120  ===
+Using ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz
+Using ENV_DIR=/mnt/bb/matilderestelli/torch_env
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+Deactivating conda environments
+PyTorch: 2.14.0a0
+Location: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/__init__.py
+HIP available: True gpus: 8
+MPI available: True
+
+############################################################
+# --backend nccl --codec identity --numel 1000 --chunks 1
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=identity numel=1000 chunks=1
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000 shard=500 cshard=500 comp_bytes/chunk=2000
+  [PASS] S2b codec round-trip (identity, no comm)     max_err=0.000000e+00 rel=0.000e+00 finite=True n=500 bytes=2000
+    streams: off
+  [PASS] S3 leader phase 1 (reduce-scatter)           max_err=0.000000e+00 
+  [PASS] S4 leader phase 1+2 (full leader AR)         max_err=0.000000e+00 
+  [PASS] S5 full hierarchical vs native allreduce     max_err=0.000000e+00 rel=0.000e+00
+==============================================================================
+done
+
+############################################################
+# --backend nccl --codec identity --numel 1000 --chunks 4
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=identity numel=1000 chunks=4
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000 shard=500 cshard=125 comp_bytes/chunk=500
+  [PASS] S2b codec round-trip (identity, no comm)     max_err=0.000000e+00 rel=0.000e+00 finite=True n=125 bytes=500
+    streams: off
+  [PASS] S3 leader phase 1 (reduce-scatter)           max_err=0.000000e+00 
+  [PASS] S4 leader phase 1+2 (full leader AR)         max_err=0.000000e+00 
+  [PASS] S5 full hierarchical vs native allreduce     max_err=0.000000e+00 rel=0.000e+00
+==============================================================================
+done
+
+############################################################
+# --backend nccl --codec identity --numel 1000 --chunks 4 --streams
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=identity numel=1000 chunks=4
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000 shard=500 cshard=125 comp_bytes/chunk=500
+  [PASS] S2b codec round-trip (identity, no comm)     max_err=0.000000e+00 rel=0.000e+00 finite=True n=125 bytes=500
+    streams: ON (hook-identical)
+  [PASS] S3 leader phase 1 (reduce-scatter)           max_err=0.000000e+00 
+  [PASS] S4 leader phase 1+2 (full leader AR)         max_err=0.000000e+00 
+  [PASS] S5 full hierarchical vs native allreduce     max_err=0.000000e+00 rel=0.000e+00
+==============================================================================
+done
+
+############################################################
+# --backend nccl --codec zfp --rate 16 --numel 1000 --chunks 1 --tol 1e-2
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=zfp numel=1000 chunks=1
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000 shard=500 cshard=500 comp_bytes/chunk=1024
+  [PASS] S2b codec round-trip (zfp, no comm)          max_err=0.000000e+00 rel=0.000e+00 finite=True n=500 bytes=1024
+    streams: off
+  [PASS] S3 leader phase 1 (reduce-scatter)           max_err=0.000000e+00 
+  [PASS] S4 leader phase 1+2 (full leader AR)         max_err=0.000000e+00 
+  [PASS] S5 full hierarchical vs native allreduce     max_err=0.000000e+00 rel=0.000e+00
+==============================================================================
+done
+
+############################################################
+# --backend nccl --codec zfp --rate 8 --numel 1000 --chunks 1 --tol 1e-1
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=zfp numel=1000 chunks=1
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000 shard=500 cshard=500 comp_bytes/chunk=520
+  [PASS] S2b codec round-trip (zfp, no comm)          max_err=2.000000e+01 rel=1.334e-03 finite=True n=500 bytes=520
+    streams: off
+  [FAIL] S3 leader phase 1 (reduce-scatter)           max_err=1.280000e+02 
+  [FAIL] S4 leader phase 1+2 (full leader AR)         max_err=1.920000e+02 
+  [FAIL] S5 full hierarchical vs native allreduce     max_err=1.200000e+01 rel=1.263e-03
+==============================================================================
+done
+
+############################################################
+# --backend nccl --codec zfp --rate 4 --numel 1000 --chunks 1 --tol 5e-1
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=zfp numel=1000 chunks=1
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000 shard=500 cshard=500 comp_bytes/chunk=272
+  [PASS] S2b codec round-trip (zfp, no comm)          max_err=2.384000e+03 rel=2.268e-01 finite=True n=500 bytes=272
+    streams: off
+  [FAIL] S3 leader phase 1 (reduce-scatter)           max_err=9.392000e+03 
+  [FAIL] S4 leader phase 1+2 (full leader AR)         max_err=2.091200e+04 
+  [FAIL] S5 full hierarchical vs native allreduce     max_err=1.307000e+03 rel=1.376e-01
+==============================================================================
+done
+
+############################################################
+# --backend nccl --codec zfp --rate 16 --numel 1000000 --chunks 4 --streams --tol 1e-2
+############################################################
+==============================================================================
+HIER ALLREDUCE ALGORITHM TEST  backend=nccl codec=zfp numel=1000000 chunks=4
+world=16 ppn=8 nodes=2 leaders=[0, 8]
+==============================================================================
+    S0 rank=8/16 ppn=8 nodes=2 node_id=1 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=9/16 ppn=8 nodes=2 node_id=1 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=4/16 ppn=8 nodes=2 node_id=0 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=12/16 ppn=8 nodes=2 node_id=1 local_rank=4 leader=False leaders=[0, 8]
+    S0 rank=10/16 ppn=8 nodes=2 node_id=1 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=3/16 ppn=8 nodes=2 node_id=0 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=5/16 ppn=8 nodes=2 node_id=0 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=15/16 ppn=8 nodes=2 node_id=1 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=11/16 ppn=8 nodes=2 node_id=1 local_rank=3 leader=False leaders=[0, 8]
+    S0 rank=2/16 ppn=8 nodes=2 node_id=0 local_rank=2 leader=False leaders=[0, 8]
+    S0 rank=6/16 ppn=8 nodes=2 node_id=0 local_rank=6 leader=False leaders=[0, 8]
+    S0 rank=0/16 ppn=8 nodes=2 node_id=0 local_rank=0 leader=True leaders=[0, 8]
+    S0 rank=7/16 ppn=8 nodes=2 node_id=0 local_rank=7 leader=False leaders=[0, 8]
+    S0 rank=13/16 ppn=8 nodes=2 node_id=1 local_rank=5 leader=False leaders=[0, 8]
+    S0 rank=1/16 ppn=8 nodes=2 node_id=0 local_rank=1 leader=False leaders=[0, 8]
+    S0 rank=14/16 ppn=8 nodes=2 node_id=1 local_rank=6 leader=False leaders=[0, 8]
+  [PASS] S1 groups built                              max_err=0.000000e+00 (local_group size=8)
+  [PASS] S2 intra-node all_reduce (step 1)            max_err=0.000000e+00 
+    buffers: padded=1000000 shard=500000 cshard=125000 comp_bytes/chunk=250024
+  [PASS] S2b codec round-trip (zfp, no comm)          max_err=0.000000e+00 rel=0.000e+00 finite=True n=125000 bytes=250024
+    streams: ON (hook-identical)
+  [PASS] S3 leader phase 1 (reduce-scatter)           max_err=0.000000e+00 
+  [PASS] S4 leader phase 1+2 (full leader AR)         max_err=0.000000e+00 
+  [PASS] S5 full hierarchical vs native allreduce     max_err=0.000000e+00 rel=0.000e+00
+==============================================================================
+done
+
+ALL STAGE SETS COMPLETE

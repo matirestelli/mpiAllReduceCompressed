@@ -1,15 +1,15 @@
 #!/bin/bash -l
 #SBATCH -A gen243
 #SBATCH -p extended
-#SBATCH -J ddp-train-frontier_8gpus_64b
+#SBATCH -J ddp-train-frontier_8gpus_16b_64b
 #SBATCH -N 1  
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=7                
 #SBATCH -t 08:00:00   
 #SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier_8gpus_64b.%j.out       
-#SBATCH -e ddp_train_frontier_8gpus_64b.%j.err       
+#SBATCH -o ddp_train_frontier_8gpus_16b_64b.%j.out       
+#SBATCH -e ddp_train_frontier_8gpus_16b_64b.%j.err       
 
 
 #ask for a compute node 
@@ -156,15 +156,18 @@ BACKENDS=(
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 EXPERIMENTS=(
-    "none:"
-    "ring:"
-    "ring_zfp_naive:16"
-    "ring_zfp_online_coll:16"
-    "ring_zfp_online_coll:10"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:16"
-    "recursive_doubling_zfp_online_coll:8"
+    #"none:"
+    #"ring:"
+    #"ring_zfp_naive:16"
+    #"ring_zfp_online_coll:16"
+    #"ring_zfp_online_coll:10"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    #"recursive_doubling_zfp_online_coll:16"
+    #"recursive_doubling_zfp_online_coll:8"
+    "ring_zfp_online_coll:8"
+    "ring_zfp_online_coll:4"
+    "recursive_doubling_zfp_online_coll:4"
     #"default:"
     #"default_sync:"
     #"default_clone:"

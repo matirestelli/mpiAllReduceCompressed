@@ -1,0 +1,592 @@
+++ trap 'echo "FAILED at line $LINENO"; exit 1' ERR
+++ unset LD_PRELOAD
+++ unset PYTHONPATH
+++ export PYTHONNOUSERSITE=1
+++ PYTHONNOUSERSITE=1
+++ module purge
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load PrgEnv-gnu/8.7.0
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load cpe/26.03
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+
+The following have been reloaded with a version change:
+  1) cray-libsci/24.11.0 => cray-libsci/26.03.0
+  2) cray-mpich/8.1.31 => cray-mpich/9.1.0
+  3) craype/2.7.33 => craype/2.7.36
+  4) gcc-native/13.2 => gcc-native/14.2
+
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load cray-mpich
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load gcc/12
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+
+Lmod is automatically replacing "gcc-native/14.2" with "gcc/12.2.0".
+
+
+Inactive Modules:
+  1) cray-libsci/26.03.0
+
+The following have been reloaded with a version change:
+  1) cray-mpich/9.1.0 => cray-mpich/8.1.27
+  2) libfabric/2.3.1 => libfabric/1.20.1
+
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load rocm/7.1.1
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load libfabric
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+
+The following have been reloaded with a version change:
+  1) libfabric/1.20.1 => libfabric/2.3.1
+
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load craype-accel-amd-gfx90a
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
+++ module load miniforge3
+++ '[' -z '' ']'
+++ case "$-" in
+++ __lmod_sh_dbg=x
+++ '[' -n x ']'
+++ set +x
+Shell debugging temporarily silenced: export LMOD_SH_DBG_ON=1 for Lmod's output
+Shell debugging restarted
+++ unset __lmod_sh_dbg
+++ return 0
++++ conda info --base
++++ local cmd=info
++++ case "$cmd" in
++++ __conda_exe info --base
++++ /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda info --base
+++ source /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/profile.d/conda.sh
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ '[' -z x ']'
+++ conda deactivate
+++ local cmd=deactivate
+++ case "$cmd" in
+++ __conda_activate deactivate
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1='(base) '
++++ __conda_exe shell.posix deactivate
++++ /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda shell.posix deactivate
+++ ask_conda='export PATH='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin'\''
+. "/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/conda/deactivate.d/libxml2_deactivate.sh"
+. "/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/conda/deactivate.d/libglib_deactivate.sh"
+unset CONDA_PREFIX
+unset CONDA_DEFAULT_ENV
+unset CONDA_PROMPT_MODIFIER
+PS1='\'''\''
+export CONDA_SHLVL='\''0'\''
+export CONDA_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python'\'''
+++ eval 'export PATH='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin'\''
+. "/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/conda/deactivate.d/libxml2_deactivate.sh"
+. "/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/conda/deactivate.d/libglib_deactivate.sh"
+unset CONDA_PREFIX
+unset CONDA_DEFAULT_ENV
+unset CONDA_PROMPT_MODIFIER
+PS1='\'''\''
+export CONDA_SHLVL='\''0'\''
+export CONDA_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python'\'''
++++ export PATH=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin
++++ PATH=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin
++++ . /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/conda/deactivate.d/libxml2_deactivate.sh
+++++ test -n ''
+++++ unset XML_CATALOG_FILES
+++++ unset xml_catalog_files_libxml2
++++ . /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/conda/deactivate.d/libglib_deactivate.sh
+++++ export GSETTINGS_SCHEMA_DIR=
+++++ GSETTINGS_SCHEMA_DIR=
+++++ unset GSETTINGS_SCHEMA_DIR_CONDA_BACKUP
+++++ '[' -z ']'
+++++ unset GSETTINGS_SCHEMA_DIR
++++ unset CONDA_PREFIX
++++ unset CONDA_DEFAULT_ENV
++++ unset CONDA_PROMPT_MODIFIER
++++ PS1=
++++ export CONDA_SHLVL=0
++++ CONDA_SHLVL=0
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ export LD_LIBRARY_PATH=/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib
+++ LD_LIBRARY_PATH=/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib
+++ export MPICH_GPU_SUPPORT_ENABLED=1
+++ MPICH_GPU_SUPPORT_ENABLED=1
+++ export FI_MR_CACHE_MONITOR=kdreg2
+++ FI_MR_CACHE_MONITOR=kdreg2
+++ export FI_CXI_DEFAULT_CQ_SIZE=131072
+++ FI_CXI_DEFAULT_CQ_SIZE=131072
+++ export FI_CXI_DEFAULT_TX_SIZE=2048
+++ FI_CXI_DEFAULT_TX_SIZE=2048
+++ export FI_CXI_RX_MATCH_MODE=hybrid
+++ FI_CXI_RX_MATCH_MODE=hybrid
+++ export NCCL_NET_GDR_LEVEL=3
+++ NCCL_NET_GDR_LEVEL=3
+++ export NCCL_CROSS_NIC=1
+++ NCCL_CROSS_NIC=1
+++ export NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+++ NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+++ export OMP_NUM_THREADS=1
+++ OMP_NUM_THREADS=1
+++ export OPENBLAS_NUM_THREADS=1
+++ OPENBLAS_NUM_THREADS=1
+++ export MKL_NUM_THREADS=1
+++ MKL_NUM_THREADS=1
+++ export GOTO_NUM_THREADS=1
+++ GOTO_NUM_THREADS=1
+++ export BLIS_NUM_THREADS=1
+++ BLIS_NUM_THREADS=1
+++ export http_proxy=http://proxy.ccs.ornl.gov:3128
+++ http_proxy=http://proxy.ccs.ornl.gov:3128
+++ export https_proxy=http://proxy.ccs.ornl.gov:3128
+++ https_proxy=http://proxy.ccs.ornl.gov:3128
+++ export HTTP_PROXY=http://proxy.ccs.ornl.gov:3128
+++ HTTP_PROXY=http://proxy.ccs.ornl.gov:3128
+++ export HTTPS_PROXY=http://proxy.ccs.ornl.gov:3128
+++ HTTPS_PROXY=http://proxy.ccs.ornl.gov:3128
+++ export ZFP_HOME=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier
+++ ZFP_HOME=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier
+++ export LD_LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib
+++ LD_LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib
+++ export CPATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include:
+++ CPATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/include:
+++ export LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:
+++ LIBRARY_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:
+++ export CMAKE_PREFIX_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier:/opt/rocm-7.1.1/lib/cmake/hip
+++ CMAKE_PREFIX_PATH=/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier:/opt/rocm-7.1.1/lib/cmake/hip
+++ export MIOPEN_BASE=/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline
+++ MIOPEN_BASE=/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline
+++ : 5066464
+++ : 4
+++ NVME_BASE=/mnt/bb/matilderestelli
+++ export MIOPEN_LOCAL=/mnt/bb/matilderestelli/miopen_cache_5066464
+++ MIOPEN_LOCAL=/mnt/bb/matilderestelli/miopen_cache_5066464
+++ export MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_5066464/miopen_db
+++ MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_5066464/miopen_db
+++ export MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_5066464/kernel_cache
+++ MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_5066464/kernel_cache
+++ srun -N 4 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  mkdir -p '\''/mnt/bb/matilderestelli'\''            '\''/mnt/bb/matilderestelli/miopen_cache_5066464'\''            '\''/mnt/bb/matilderestelli/miopen_cache_5066464/miopen_db'\''            '\''/mnt/bb/matilderestelli/miopen_cache_5066464/kernel_cache'\''
+'
+++ srun -N 4 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  if [[ -d '\''/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline'\'' ]]; then
+    echo '\''=== Copying golden cache from Lustre to local NVMe on '\'' $(hostname) '\'' ==='\''
+    cp -a '\''/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline/.'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5066464/'\'' 2>/dev/null || true
+  fi
+'
+++ export ORIGINAL_HOME=/ccs/home/matilderestelli
+++ ORIGINAL_HOME=/ccs/home/matilderestelli
+++ export HOME=/mnt/bb/matilderestelli/miopen_cache_5066464
+++ HOME=/mnt/bb/matilderestelli/miopen_cache_5066464
+++ srun -N 4 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  mkdir -p '\''/mnt/bb/matilderestelli/miopen_cache_5066464/.cache/miopen'\'' '\''/mnt/bb/matilderestelli/miopen_cache_5066464/.config/miopen'\''
+'
+++ unset MIOPEN_FIND_MODE
+++ unset MIOPEN_FIND_ENFORCE
+++ : 5066464
+++ ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz
+++ ENV_DIR=/mnt/bb/matilderestelli/torch_env
+++ TARBALL_DST=/mnt/bb/matilderestelli/torch_env.tar.gz
+++ echo 'Using ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz'
+++ echo 'Using ENV_DIR=/mnt/bb/matilderestelli/torch_env'
+++ srun -N 4 --ntasks-per-node=1 mkdir -p /mnt/bb/matilderestelli
+++ sbcast -pf /lustre/orion/gen243/proj-shared/matilderestelli/pytorch/conda_env_torch_vision_20260701_hipfix.tar.gz /mnt/bb/matilderestelli/torch_env.tar.gz
+++ srun -N 4 --ntasks-per-node=1 rm -rf /mnt/bb/matilderestelli/torch_env
+++ srun -N 4 --ntasks-per-node=1 mkdir -p /mnt/bb/matilderestelli/torch_env
+++ srun -N 4 --ntasks-per-node=1 -c 7 tar --use-compress-program=pigz -xf /mnt/bb/matilderestelli/torch_env.tar.gz -C /mnt/bb/matilderestelli/torch_env
+++ srun -N 4 --ntasks-per-node=1 bash -lc '
+  source $(conda info --base)/etc/profile.d/conda.sh
+  conda activate '\''/mnt/bb/matilderestelli/torch_env'\''
+  conda-unpack
+'
++++ conda info --base
++++ local cmd=info
++++ case "$cmd" in
++++ __conda_exe info --base
++++ /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda info --base
+++ source /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/etc/profile.d/conda.sh
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ '[' -z x ']'
+++ conda activate /mnt/bb/matilderestelli/torch_env
+++ local cmd=activate
+++ case "$cmd" in
+++ __conda_activate activate /mnt/bb/matilderestelli/torch_env
+++ '[' -n '' ']'
+++ local ask_conda
++++ PS1=
++++ __conda_exe shell.posix activate /mnt/bb/matilderestelli/torch_env
++++ /autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda shell.posix activate /mnt/bb/matilderestelli/torch_env
+++ ask_conda='PS1='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export PATH='\''/mnt/bb/matilderestelli/torch_env/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin'\''
+export CONDA_PREFIX='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_PROMPT_MODIFIER='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export CONDA_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python'\'''
+++ eval 'PS1='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export PATH='\''/mnt/bb/matilderestelli/torch_env/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin'\''
+export CONDA_PREFIX='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''/mnt/bb/matilderestelli/torch_env'\''
+export CONDA_PROMPT_MODIFIER='\''(/mnt/bb/matilderestelli/torch_env) '\''
+export CONDA_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python'\'''
++++ PS1='(/mnt/bb/matilderestelli/torch_env) '
++++ export PATH=/mnt/bb/matilderestelli/torch_env/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin
++++ PATH=/mnt/bb/matilderestelli/torch_env/bin:/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/condabin:/sw/frontier/miniforge3/23.11.0-0/bin:/opt/cray/libfabric/2.3.1/bin:/opt/rocm-7.1.1/bin:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/bin:/opt/cray/pe/mpich/8.1.27/bin:/opt/cray/pe/gcc/12.2.0/snos/bin:/opt/cray/pe/craype/2.7.36/bin:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/ccs/home/matilderestelli/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/autofs/nccs-svm1_home1/matilderestelli/.vscode-server/cli/servers/Stable-5264f2156cbcd7aea5fd004d29eaa10209155d66/server/bin/remote-cli:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/sw/frontier/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/opt/puppetlabs/bin:/usr/diags/scripts:/usr/diags/bin/non-mpi:/usr/diags/bin/nvidia/gpuburn_static:/opt/cray/pe/bin
++++ export CONDA_PREFIX=/mnt/bb/matilderestelli/torch_env
++++ CONDA_PREFIX=/mnt/bb/matilderestelli/torch_env
++++ export CONDA_SHLVL=1
++++ CONDA_SHLVL=1
++++ export CONDA_DEFAULT_ENV=/mnt/bb/matilderestelli/torch_env
++++ CONDA_DEFAULT_ENV=/mnt/bb/matilderestelli/torch_env
++++ export 'CONDA_PROMPT_MODIFIER=(/mnt/bb/matilderestelli/torch_env) '
++++ CONDA_PROMPT_MODIFIER='(/mnt/bb/matilderestelli/torch_env) '
++++ export CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ CONDA_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
++++ CONDA_PYTHON_EXE=/autofs/nccs-svm1_sw/frontier/miniforge3/23.11.0-0/bin/python
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
+++ export ROCM_HOME=/opt/rocm-7.1.1
+++ ROCM_HOME=/opt/rocm-7.1.1
+++ export ROCM_COMPAT_DIR=/mnt/bb/matilderestelli/rocm_compat_5066464
+++ ROCM_COMPAT_DIR=/mnt/bb/matilderestelli/rocm_compat_5066464
+++ srun -N 4 --ntasks-per-node=1 bash -lc '
+  set -euo pipefail
+  ROCM_HOME='\''/opt/rocm-7.1.1'\''
+  ROCM_LIBDIR="$ROCM_HOME/lib"
+  [[ -d "$ROCM_LIBDIR" ]] || ROCM_LIBDIR="$ROCM_HOME/lib64"
+
+  mkdir -p '\''/mnt/bb/matilderestelli/rocm_compat_5066464'\''
+  ln -sf "$ROCM_LIBDIR/libamdhip64.so.7" '\''/mnt/bb/matilderestelli/rocm_compat_5066464/libamdhip64.so.7'\''
+  ln -sf "$ROCM_LIBDIR/libamdhip64.so.7" '\''/mnt/bb/matilderestelli/rocm_compat_5066464/libamdhip64.so.6'\''
+  ln -sf "$ROCM_LIBDIR/libamdhip64.so.7" '\''/mnt/bb/matilderestelli/rocm_compat_5066464/libamdhip64.so.5'\''
+'
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+
+CondaError: Run 'conda init' before 'conda deactivate'
+
+++ ROCM_LIBDIR=/opt/rocm-7.1.1/lib
+++ [[ -d /opt/rocm-7.1.1/lib ]]
+++ export LD_LIBRARY_PATH=/mnt/bb/matilderestelli/rocm_compat_5066464:/mnt/bb/matilderestelli/torch_env/lib:/opt/rocm-7.1.1/lib:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib
+++ LD_LIBRARY_PATH=/mnt/bb/matilderestelli/rocm_compat_5066464:/mnt/bb/matilderestelli/torch_env/lib:/opt/rocm-7.1.1/lib:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib:/ccs/home/matilderestelli/ddp-allreduce-eval-framework/zfp-install-frontier/lib64:/opt/cray/pe/mpich/8.1.27/ofi/gnu/9.1/lib:/opt/cray/pe/mpich/8.1.27/gtl/lib:/opt/cray/pe/dsmml/0.3.0/dsmml/lib:/opt/cray/pe/lib64:/opt/cray/lib64:/opt/cray/libfabric/2.3.1/lib64:/opt/rocm-7.1.1/lib/roctracer:/opt/rocm-7.1.1/lib/rocprofiler:/opt/rocm-7.1.1/lib
+++ python -
+++ scontrol show hostnames 'frontier[05120,06144,06911,07424]'
+++ head -n1
++ export MASTER_ADDR=frontier05120
++ MASTER_ADDR=frontier05120
++ export MASTER_PORT=29577
++ MASTER_PORT=29577
++ export PYTHONUNBUFFERED=1
++ PYTHONUNBUFFERED=1
++ run --backend nccl --codec identity --numel 1000 --chunks 1
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec identity --numel 1000 --chunks 1'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec identity --numel 1000 --chunks 1
+[W724 12:14:33.265892053 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:33.277944137 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:33.278784204 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:33.280833082 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.680856721 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.680862793 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.680869285 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.680965021 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.600800503 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.604088528 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.604085302 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.621361255 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.840774597 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.841063326 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.841071132 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:14:37.875932738 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ run --backend nccl --codec identity --numel 1000 --chunks 4
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec identity --numel 1000 --chunks 4'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec identity --numel 1000 --chunks 4
+[W724 12:15:10.718394647 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.728395113 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.731492428 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.734177067 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.600243447 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.607574063 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.611475037 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.614319154 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.851963356 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.861106386 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.953651511 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.863693242 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.866156639 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.965339837 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.965552178 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:10.970257280 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ run --backend nccl --codec identity --numel 1000 --chunks 4 --streams
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec identity --numel 1000 --chunks 4 --streams'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec identity --numel 1000 --chunks 4 --streams
+[W724 12:15:20.090496573 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.187280837 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.958873541 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.193282795 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.966510681 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.198077443 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.199250809 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.292260452 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.971088666 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.973110030 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.110887208 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.114228786 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.117516680 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.303913160 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.304030166 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:20.306728852 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ run --backend nccl --codec zfp --rate 16 --numel 1000 --chunks 1 --tol 1e-2
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec zfp --rate 16 --numel 1000 --chunks 1 --tol 1e-2'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec zfp --rate 16 --numel 1000 --chunks 1 --tol 1e-2
+[W724 12:15:31.485263019 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.503560019 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.505069807 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.508050757 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.599594828 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.604413550 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.608483052 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.610648745 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.303218202 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.311654669 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.449479326 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.320293979 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.321520034 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.458054598 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.465825235 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:31.466126186 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ run --backend nccl --codec zfp --rate 8 --numel 1000 --chunks 1 --tol 1e-1
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec zfp --rate 8 --numel 1000 --chunks 1 --tol 1e-1'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec zfp --rate 8 --numel 1000 --chunks 1 --tol 1e-1
+[W724 12:15:41.901153476 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.906011636 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.911662071 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.823003288 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.914253650 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.594995815 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.731663063 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.830316579 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.600616850 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.737225402 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.833308320 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.604586648 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.836434192 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.741663889 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.742903765 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:41.607582561 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ run --backend nccl --codec zfp --rate 4 --numel 1000 --chunks 1 --tol 5e-1
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec zfp --rate 4 --numel 1000 --chunks 1 --tol 5e-1'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec zfp --rate 4 --numel 1000 --chunks 1 --tol 5e-1
+[W724 12:15:50.443646221 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.450581263 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.455142558 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.367214958 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.458822115 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.277422529 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.142520479 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.377407436 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.380100158 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.287946697 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.382989392 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.292617984 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:50.294181866 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:51.186057918 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:51.191306132 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:15:51.196345572 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ run --backend nccl --codec zfp --rate 16 --numel 1000000 --chunks 4 --streams --tol 1e-2
++ echo ''
++ echo '############################################################'
++ echo '# --backend nccl --codec zfp --rate 16 --numel 1000000 --chunks 4 --streams --tol 1e-2'
++ echo '############################################################'
++ srun --exact -n 16 --ntasks-per-node=8 --cpus-per-task=7 --gpus-per-task=1 --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 python -u test_hier_algo.py --backend nccl --codec zfp --rate 16 --numel 1000000 --chunks 4 --streams --tol 1e-2
+[W724 12:16:00.996735518 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.099614233 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.919853887 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.015839419 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.016662475 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.018847874 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.111344213 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.112173248 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.114583397 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.929563190 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.796707216 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.938782233 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.804069484 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.940028884 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.807979677 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+[W724 12:16:00.808994051 socket.cpp:764] [c10d] The client socket cannot be initialized to connect to [frontier05120.frontier.olcf.ornl.gov]:29577 (errno: 97 - Address family not supported by protocol).
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
+/mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/distributed/c10d_logger.py:83: FutureWarning: `torch.distributed.all_gather_into_tensor` is deprecated. Please use `torch.distributed.all_gather_single` instead.
+  return func(*args, **kwargs)
++ echo ''
++ echo 'ALL STAGE SETS COMPLETE'

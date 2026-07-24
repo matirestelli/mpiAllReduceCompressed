@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH -A gen243
 #SBATCH -p extended
-#SBATCH -J ddp-train-frontier_16gpus_8b_32b
+#SBATCH -J ddp-train-frontier_rccl_16gpus_8b_32b
 #SBATCH -N 2
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
@@ -10,8 +10,8 @@
 #SBATCH --gpu-bind=closest
 #SBATCH -t 06:00:00
 #SBATCH -C nvme
-#SBATCH -o ddp_train_frontier_16gpus_8b_32b.%j.out
-#SBATCH -e ddp_train_frontier_16gpus_8b_32b.%j.err
+#SBATCH -o ddp_train_frontier_rccl_16gpus_8b_32b.%j.out
+#SBATCH -e ddp_train_frontier_rccl_16gpus_8b_32b.%j.err
  
 
 

@@ -5,6 +5,7 @@ import math
 import re
 from pathlib import Path
 from typing import Optional
+
 import pandas as pd
 
 RE_MODEL = re.compile(r"Distributed Training:\s*(.+?)\s+on\s+(.+)")
@@ -44,6 +45,8 @@ def normalize_algorithm(algo: Optional[str]) -> str:
     algo = algo.replace("built-in (no hook)", "none")
     algo = algo.replace("built-in", "none")
     algo = algo.replace("no hook", "none")
+    if algo == "default":
+        algo = "none"
     return algo
 
 def infer_zfp_rate(text: Optional[str]) -> Optional[str]:
@@ -82,7 +85,7 @@ def pretty_method_name(algo: str, zfp_rate: Optional[str]) -> str:
 
 def infer_algorithm_from_filename(name: str) -> Optional[str]:
     name = name.lower()
-    if "builtin" in name or "_none_" in name:
+    if "builtin" in name or "_none_" in name or "default" in name:
         return "none"
     if "ring_zfp_naive" in name:
         return "ring_zfp_naive"
@@ -275,6 +278,106 @@ def parse_out_file(path: Path) -> pd.DataFrame:
     flush()
     return pd.DataFrame(records)
 
+def _is_valid_acc(x) -> bool:
+    return pd.notna(x)
+
+def _is_builtin_source(path_str: str) -> bool:
+    s = str(path_str).lower()
+    return "builtin" in s
+
+def _is_default_source(path_str: str) -> bool:
+    s = str(path_str).lower()
+    return "default" in s
+
+def apply_baseline_fallback(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Keep only one baseline row per experiment configuration.
+
+    Priority:
+      1) built-in baseline if best_val_acc is valid
+      2) else default baseline if present
+      3) else built-in baseline anyway
+      4) else any baseline-like row
+
+    All chosen baseline rows are emitted as:
+      algorithm = "none"
+      method = "Baseline"
+    """
+    if df.empty:
+        return df
+
+    df = df.copy()
+
+    # Make sure columns exist
+    if "algorithm" not in df.columns:
+        return df
+    if "method" not in df.columns:
+        df["method"] = df.apply(lambda r: pretty_method_name(r["algorithm"], r.get("zfp_rate")), axis=1)
+    if "source_file" not in df.columns:
+        df["source_file"] = ""
+
+    group_cols = [
+        "model",
+        "dataset",
+        "ranks",
+        "batch_per_rank",
+        "global_batch",
+        "lr",
+    ]
+    group_cols = [c for c in group_cols if c in df.columns]
+
+    kept_rows = []
+
+    for _, group in df.groupby(group_cols, dropna=False):
+        baseline_group = group[group["algorithm"].apply(normalize_algorithm) == "none"]
+        non_baseline_group = group[group["algorithm"].apply(normalize_algorithm) != "none"]
+
+        # Keep all non-baseline rows untouched
+        for _, row in non_baseline_group.iterrows():
+            kept_rows.append(row.to_dict())
+
+        if baseline_group.empty:
+            continue
+
+        builtin_rows = baseline_group[
+            baseline_group["source_file"].astype(str).apply(_is_builtin_source)
+        ]
+        default_rows = baseline_group[
+            baseline_group["source_file"].astype(str).apply(_is_default_source)
+        ]
+
+        chosen = None
+
+        if not builtin_rows.empty:
+            # Prefer a builtin row with valid accuracy
+            builtin_valid = builtin_rows[builtin_rows["best_val_acc"].apply(_is_valid_acc)]
+            if not builtin_valid.empty:
+                chosen = builtin_valid.iloc[0]
+            elif not default_rows.empty:
+                chosen = default_rows.iloc[0]
+            else:
+                chosen = builtin_rows.iloc[0]
+        elif not default_rows.empty:
+            chosen = default_rows.iloc[0]
+        else:
+            chosen = baseline_group.iloc[0]
+
+        row = chosen.to_dict()
+        row["algorithm"] = "none"
+        row["method"] = "Baseline"
+        kept_rows.append(row)
+
+    if not kept_rows:
+        return df
+
+    out = pd.DataFrame(kept_rows)
+
+    # Final normalization just in case
+    out["algorithm"] = out["algorithm"].apply(normalize_algorithm)
+    out["method"] = out.apply(lambda r: pretty_method_name(r["algorithm"], r.get("zfp_rate")), axis=1)
+
+    return out.reset_index(drop=True)
+
 def load_experiment_folder(root: str | Path) -> pd.DataFrame:
     root = Path(root)
     logs_dir = root / "logs"
@@ -301,6 +404,7 @@ def load_experiment_folder(root: str | Path) -> pd.DataFrame:
 
     if df_log.empty and df_out.empty:
         return pd.DataFrame()
+
     if df_log.empty:
         df = df_out.copy()
     elif df_out.empty:
@@ -337,10 +441,16 @@ def load_experiment_folder(root: str | Path) -> pd.DataFrame:
 
     df["algorithm"] = df["algorithm"].apply(normalize_algorithm)
     df["method"] = df.apply(lambda r: pretty_method_name(r["algorithm"], r["zfp_rate"]), axis=1)
+
+    # Collapse builtin/default baseline choices into one Baseline row per config
+    df = apply_baseline_fallback(df)
+
     return df
 
 def ensure_plot_dir(root: str | Path) -> Path:
     root = Path(root)
+    if not root.exists():
+        raise FileNotFoundError(f"Experiment root does not exist: {root.resolve()}")
     out = root / "plots"
-    out.mkdir(exist_ok=True)
+    out.mkdir(parents=True, exist_ok=True)
     return out
