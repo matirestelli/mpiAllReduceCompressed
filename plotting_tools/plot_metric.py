@@ -334,7 +334,15 @@ def make_default_title(
     }
     model_name = model_map.get(model_name.lower(), model_name)
 
-    first_line_parts = [f"{model_name} on Frontier (AMD)"]
+    root_str = str(root).lower()
+    if "frontier" in root_str:
+        platform = "Frontier (AMD)"
+    elif "polaris" in root_str:
+        platform = "Polaris (NVIDIA)"
+    else:
+        platform = "Polaris (NVIDIA)"
+
+    first_line_parts = [f"{model_name} on {platform}"]
     if scope == "fixed" and gpus is not None:
         first_line_parts.append(f"{gpus} GPUs")
     first_line_parts.append(scaling_name)

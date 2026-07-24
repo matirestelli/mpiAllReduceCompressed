@@ -250,6 +250,16 @@ python plot_metric.py ../experiments_frontier/wideresnet/cifar10/strongScaling \
   --ymax 156
 Then every epoch-time plot can use the same height.
 
+
+python plot_metric.py ../experiments_polaris/wideresnet/cifar10/strongScaling \
+  --mode strong \
+  --scope all \
+  --metric time \
+  --global-batch 512 \
+  --ymax 156
+Then every epoch-time plot can use the same height.
+
+
 to get which is max epoch time 
 python - <<'PY'
 > from pathlib import Path
@@ -290,6 +300,10 @@ python plot_metric.py ../experiments_frontier/wideresnet/cifar10/weakScaling \
   --mode weak --scope all --metric time --batch-per-rank 32
 x-axis:
 
+python plot_metric.py ../experiments_polaris/wideresnet/cifar10/weakScaling \
+  --mode weak --scope all --metric time --batch-per-rank 32
+
+  
 GPUs
 title:
 
