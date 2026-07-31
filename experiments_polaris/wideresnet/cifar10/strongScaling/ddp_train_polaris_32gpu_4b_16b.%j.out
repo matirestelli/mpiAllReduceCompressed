@@ -10452,7 +10452,229 @@ DISTRIBUTED TRAINING LAUNCHER
 
 ================================================================================
 Done in 94.8s | Best val acc: 10.00%
-Epoch times (train+val): mean=9.4s  min=9.2s  max=10.3s
+Epoch times (train+val): mean=9.4s  min=9.2sù         q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    Q  max=10.3s
 Train-only epoch time (epochs 2..N): median=5.66s  min=5.65s  max=5.68s
   -> use this for STRONG scaling (fixed global batch)
   -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
@@ -18589,3 +18811,1904 @@ Train-only epoch time (epochs 2..N): median=9.80s  min=9.64s  max=9.84s
 ================================================================================
 === Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=mpi, hook=recursive_doubling_zfp_online_coll, zfp_rate=8, status=0 at Wed Jul 22 11:48:04 AM UTC 2026 ===
 === Job finished: Wed Jul 22 11:48:04 AM UTC 2026 ===
+=== Job started: Thu Jul 30 09:10:35 PM UTC 2026 ===
+=== Node: x3207c0s37b0n0 ===
+[INFO] GTL preloaded: /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+=============================================
+  Polaris DDP + Eagle PyTorch + Cray MPICH
+=============================================
+Node              : x3207c0s37b0n0
+ZFP_HOME          : /home/mrest/mpiAllReduceCompressed/zfp-install
+GTL               : /opt/cray/pe/mpich/9.0.1/ofi/nvidia/23.3/lib/libmpi_gtl_cuda.so
+MPICH_GPU_SUPPORT : 1
+
+PyTorch version   : 2.8.0a0+gitba56102
+PyTorch location  : /lus/eagle/projects/UIC-HPC/mrest/pytorch_mpi_build/src/pytorch/torch/__init__.py
+CUDA available    : True 4
+MPI available     : True
+mpi4py            : MPI VERSION    : CRAY MPICH version 9.0.1.498 (ANL base 4.1.2)
+mpi4py rank test  : rank 0 OK
+=============================================
+MASTER_ADDR=x3207c0s37b0n0.hsn.cm.polaris.alcf.anl.gov
+MASTER_PORT=29500
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=4, lr=0.1, scheduler=cosine, backend=mpi, hook=ring_zfp_online_coll, zfp_rate=8 at Thu Jul 30 09:11:10 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: ring_zfp_online_coll
+================================================================================
+Ranks: 32, Epochs: 10, Batch/rank: 4, Effective batch: 128
+LR: 0.1, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = ./data/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/ring_zfp_online_coll
+[Optim] SGD: lr=0.1 momentum=0.9 nesterov=True wd=0.0005 wd_on_bn_bias=False
+[Optim]   group 0: 66,778,816 params, wd=0.0005
+[Optim]   group 1: 68,234 params, wd=0.0
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+[Data] Train batches: 390, Val batches: 2500
+
+[Sched] cosine: steps/epoch=390, total_steps=3900, warmup_steps=0 (0 epochs)
+
+
+[Epoch 1] Training... (lr at epoch start=0.100000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 4
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/390] Loss: 54.6978, Acc: 9.00%, lr: 0.099959
+  Batch [100/390] Loss: 39.9105, Acc: 10.25%, lr: 0.099838
+  Batch [150/390] Loss: 35.1402, Acc: 11.00%, lr: 0.099635
+  Batch [200/390] Loss: 32.1454, Acc: 11.50%, lr: 0.099353
+  Batch [250/390] Loss: 29.5990, Acc: 11.50%, lr: 0.098990
+  Batch [300/390] Loss: 27.5429, Acc: 12.00%, lr: 0.098547
+  Batch [350/390] Loss: 25.6057, Acc: 11.43%, lr: 0.098026
+[Epoch 1] Train Loss: 24.9424, Acc: 11.54%  |  Val Loss: 133.5370, Acc: 11.87%  |  Time: 81.9s
+[Epoch 1] t_iter median: 169.99 ms  (fwd 6.80 | bwd+comm 159.56 | opt 3.50 | data 0.07)  |  train-only epoch: 69.0s
+  -> Best model saved (11.87%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3106 work_total_ms=61533.644 work_mean_ms=19.811 work_min_ms=15.127 work_max_ms=85.038
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=391 tail_total_ms=57842.602 tail_mean_ms=147.935 tail_min_ms=19.676 tail_max_ms=184.580
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr at epoch start=0.097553)
+  Batch [50/390] Loss: 18.1260, Acc: 19.00%, lr: 0.096892
+  Batch [100/390] Loss: 18.3100, Acc: 15.25%, lr: 0.096155
+  Batch [150/390] Loss: 18.3936, Acc: 13.83%, lr: 0.095344
+  Batch [200/390] Loss: 18.3219, Acc: 14.00%, lr: 0.094459
+  Batch [250/390] Loss: 18.8486, Acc: 13.90%, lr: 0.093501
+  Batch [300/390] Loss: 18.5108, Acc: 13.92%, lr: 0.092473
+  Batch [350/390] Loss: 18.3745, Acc: 14.14%, lr: 0.091377
+[Epoch 2] Train Loss: 18.4851, Acc: 13.46%  |  Val Loss: 177.8097, Acc: 9.95%  |  Time: 79.4s
+[Epoch 2] t_iter median: 170.01 ms  (fwd 6.84 | bwd+comm 159.74 | opt 3.33 | data 0.07)  |  train-only epoch: 66.7s
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=61638.734 work_mean_ms=19.756 work_min_ms=15.191 work_max_ms=44.945
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=57880.106 tail_mean_ms=148.411 tail_min_ms=143.087 tail_max_ms=184.063
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr at epoch start=0.090451)
+  Batch [50/390] Loss: 16.5710, Acc: 16.00%, lr: 0.089235
+  Batch [100/390] Loss: 17.9703, Acc: 14.75%, lr: 0.087955
+  Batch [150/390] Loss: 16.9254, Acc: 13.67%, lr: 0.086613
+  Batch [200/390] Loss: 17.1976, Acc: 12.12%, lr: 0.085213
+  Batch [250/390] Loss: 16.5044, Acc: 12.20%, lr: 0.083755
+  Batch [300/390] Loss: 17.8368, Acc: 11.75%, lr: 0.082242
+  Batch [350/390] Loss: 17.1912, Acc: 12.07%, lr: 0.080677
+[Epoch 3] Train Loss: 16.9786, Acc: 11.67%  |  Val Loss: 42.8059, Acc: 11.84%  |  Time: 79.4s
+[Epoch 3] t_iter median: 170.21 ms  (fwd 6.76 | bwd+comm 160.04 | opt 3.28 | data 0.07)  |  train-only epoch: 66.8s
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=61946.038 work_mean_ms=19.854 work_min_ms=15.102 work_max_ms=40.330
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=58304.953 tail_mean_ms=149.500 tail_min_ms=143.418 tail_max_ms=182.912
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr at epoch start=0.079389)
+  Batch [50/390] Loss: 17.5112, Acc: 9.50%, lr: 0.077737
+  Batch [100/390] Loss: 16.1037, Acc: 11.25%, lr: 0.076039
+  Batch [150/390] Loss: 17.2671, Acc: 11.67%, lr: 0.074299
+  Batch [200/390] Loss: 17.0415, Acc: 12.12%, lr: 0.072520
+  Batch [250/390] Loss: 17.0957, Acc: 12.40%, lr: 0.070704
+  Batch [300/390] Loss: 16.9783, Acc: 12.25%, lr: 0.068855
+  Batch [350/390] Loss: 16.3501, Acc: 12.57%, lr: 0.066975
+[Epoch 4] Train Loss: 16.2886, Acc: 12.50%  |  Val Loss: 125.6155, Acc: 10.60%  |  Time: 79.5s
+[Epoch 4] t_iter median: 170.55 ms  (fwd 6.81 | bwd+comm 160.42 | opt 3.26 | data 0.06)  |  train-only epoch: 66.9s
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=62158.632 work_mean_ms=19.923 work_min_ms=15.125 work_max_ms=43.519
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=58586.835 tail_mean_ms=150.223 tail_min_ms=144.094 tail_max_ms=178.537
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr at epoch start=0.065451)
+  Batch [50/390] Loss: 18.3894, Acc: 8.00%, lr: 0.063524
+  Batch [100/390] Loss: 16.5273, Acc: 12.25%, lr: 0.061574
+  Batch [150/390] Loss: 14.9038, Acc: 12.50%, lr: 0.059606
+  Batch [200/390] Loss: 13.6650, Acc: 12.12%, lr: 0.057623
+  Batch [250/390] Loss: 13.5043, Acc: 12.30%, lr: 0.055627
+  Batch [300/390] Loss: 13.0764, Acc: 12.33%, lr: 0.053622
+  Batch [350/390] Loss: 12.7723, Acc: 12.71%, lr: 0.051611
+[Epoch 5] Train Loss: 12.3811, Acc: 12.82%  |  Val Loss: 32.6326, Acc: 12.24%  |  Time: 79.3s
+[Epoch 5] t_iter median: 170.06 ms  (fwd 6.82 | bwd+comm 159.57 | opt 3.51 | data 0.11)  |  train-only epoch: 66.7s
+  -> Best model saved (12.24%)
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=61715.358 work_mean_ms=19.781 work_min_ms=14.142 work_max_ms=44.714
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=57980.298 tail_mean_ms=148.667 tail_min_ms=141.953 tail_max_ms=181.227
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr at epoch start=0.050000)
+  Batch [50/390] Loss: 9.6631, Acc: 15.00%, lr: 0.047987
+  Batch [100/390] Loss: 10.7904, Acc: 14.25%, lr: 0.045977
+  Batch [150/390] Loss: 9.8334, Acc: 15.67%, lr: 0.043973
+  Batch [200/390] Loss: 10.1836, Acc: 14.38%, lr: 0.041979
+  Batch [250/390] Loss: 10.3124, Acc: 14.40%, lr: 0.039999
+  Batch [300/390] Loss: 10.4541, Acc: 14.17%, lr: 0.038034
+  Batch [350/390] Loss: 10.0818, Acc: 13.79%, lr: 0.036089
+[Epoch 6] Train Loss: 9.9941, Acc: 14.10%  |  Val Loss: 60.6841, Acc: 12.22%  |  Time: 79.3s
+[Epoch 6] t_iter median: 169.99 ms  (fwd 6.85 | bwd+comm 159.55 | opt 3.51 | data 0.07)  |  train-only epoch: 66.6s
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=61622.916 work_mean_ms=19.751 work_min_ms=15.121 work_max_ms=37.940
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=57862.838 tail_mean_ms=148.366 tail_min_ms=140.812 tail_max_ms=177.658
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr at epoch start=0.034549)
+  Batch [50/390] Loss: 8.7750, Acc: 12.50%, lr: 0.032647
+  Batch [100/390] Loss: 8.1475, Acc: 13.50%, lr: 0.030773
+  Batch [150/390] Loss: 7.7708, Acc: 13.50%, lr: 0.028930
+  Batch [200/390] Loss: 8.0320, Acc: 13.50%, lr: 0.027121
+  Batch [250/390] Loss: 7.9674, Acc: 13.40%, lr: 0.025350
+  Batch [300/390] Loss: 7.9819, Acc: 13.67%, lr: 0.023618
+  Batch [350/390] Loss: 7.9841, Acc: 13.36%, lr: 0.021929
+[Epoch 7] Train Loss: 7.7679, Acc: 13.59%  |  Val Loss: 25.5314, Acc: 15.36%  |  Time: 79.3s
+[Epoch 7] t_iter median: 170.03 ms  (fwd 6.80 | bwd+comm 159.88 | opt 3.26 | data 0.08)  |  train-only epoch: 66.7s
+  -> Best model saved (15.36%)
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=61991.567 work_mean_ms=19.869 work_min_ms=15.134 work_max_ms=68.758
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=58422.524 tail_mean_ms=149.801 tail_min_ms=143.022 tail_max_ms=213.602
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr at epoch start=0.020611)
+  Batch [50/390] Loss: 6.7860, Acc: 9.50%, lr: 0.019006
+  Batch [100/390] Loss: 6.9106, Acc: 12.25%, lr: 0.017451
+  Batch [150/390] Loss: 6.5869, Acc: 13.50%, lr: 0.015949
+  Batch [200/390] Loss: 6.5709, Acc: 13.00%, lr: 0.014503
+  Batch [250/390] Loss: 6.3379, Acc: 13.70%, lr: 0.013113
+  Batch [300/390] Loss: 6.1778, Acc: 14.50%, lr: 0.011784
+  Batch [350/390] Loss: 6.2456, Acc: 13.79%, lr: 0.010517
+[Epoch 8] Train Loss: 6.2699, Acc: 13.59%  |  Val Loss: 32.8816, Acc: 15.69%  |  Time: 79.6s
+[Epoch 8] t_iter median: 170.12 ms  (fwd 6.84 | bwd+comm 159.79 | opt 3.35 | data 0.07)  |  train-only epoch: 66.7s
+  -> Best model saved (15.69%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=61893.040 work_mean_ms=19.838 work_min_ms=15.103 work_max_ms=44.071
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=58265.081 tail_mean_ms=149.398 tail_min_ms=143.179 tail_max_ms=184.503
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr at epoch start=0.009549)
+  Batch [50/390] Loss: 5.4142, Acc: 13.50%, lr: 0.008399
+  Batch [100/390] Loss: 5.7028, Acc: 13.50%, lr: 0.007315
+  Batch [150/390] Loss: 5.7396, Acc: 13.83%, lr: 0.006302
+  Batch [200/390] Loss: 5.6008, Acc: 15.50%, lr: 0.005359
+  Batch [250/390] Loss: 5.6884, Acc: 15.70%, lr: 0.004488
+  Batch [300/390] Loss: 5.7049, Acc: 15.58%, lr: 0.003691
+  Batch [350/390] Loss: 5.6719, Acc: 15.43%, lr: 0.002970
+[Epoch 9] Train Loss: 5.6254, Acc: 15.13%  |  Val Loss: 76.8389, Acc: 14.33%  |  Time: 79.4s
+[Epoch 9] t_iter median: 170.11 ms  (fwd 6.83 | bwd+comm 159.99 | opt 3.21 | data 0.06)  |  train-only epoch: 66.7s
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=62005.559 work_mean_ms=19.874 work_min_ms=15.112 work_max_ms=39.412
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=58494.877 tail_mean_ms=149.987 tail_min_ms=143.699 tail_max_ms=183.491
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr at epoch start=0.002447)
+  Batch [50/390] Loss: 5.2082, Acc: 17.50%, lr: 0.001864
+  Batch [100/390] Loss: 5.3742, Acc: 15.50%, lr: 0.001358
+  Batch [150/390] Loss: 5.3095, Acc: 15.00%, lr: 0.000931
+  Batch [200/390] Loss: 5.3755, Acc: 14.75%, lr: 0.000584
+  Batch [250/390] Loss: 5.4789, Acc: 14.10%, lr: 0.000318
+  Batch [300/390] Loss: 5.4675, Acc: 14.67%, lr: 0.000131
+  Batch [350/390] Loss: 5.4880, Acc: 14.43%, lr: 0.000026
+[Epoch 10] Train Loss: 5.4789, Acc: 13.85%  |  Val Loss: 52.0523, Acc: 14.20%  |  Time: 81.5s
+[Epoch 10] t_iter median: 170.13 ms  (fwd 6.82 | bwd+comm 159.98 | opt 3.21 | data 0.07)  |  train-only epoch: 68.7s
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=3120 work_total_ms=64075.713 work_mean_ms=20.537 work_min_ms=15.104 work_max_ms=1887.975
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=390 tail_total_ms=60571.971 tail_mean_ms=155.313 tail_min_ms=144.289 tail_max_ms=2018.825
+[Epoch 10] Hook timing summary done
+
+================================================================================
+Done in 802.4s | Best val acc: 15.69%
+Epoch times (train+val): mean=79.9s  min=79.3s  max=81.9s
+Train-only epoch time (epochs 2..N): median=66.70s  min=66.60s  max=68.75s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=4, lr=0.1, scheduler=cosine, backend=mpi, hook=ring_zfp_online_coll, zfp_rate=8, status=0 at Thu Jul 30 09:24:55 PM UTC 2026 ===
+=== Starting training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=mpi, hook=ring_zfp_online_coll, zfp_rate=8 at Thu Jul 30 09:24:55 PM UTC 2026 ===
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: ring_zfp_online_coll
+================================================================================
+Ranks: 32, Epochs: 10, Batch/rank: 16, Effective batch: 512
+LR: 0.1, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = ./data/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] Hook registered: mpi/ring_zfp_online_coll
+[Optim] SGD: lr=0.1 momentum=0.9 nesterov=True wd=0.0005 wd_on_bn_bias=False
+[Optim]   group 0: 66,778,816 params, wd=0.0005
+[Optim]   group 1: 68,234 params, wd=0.0
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+[Data] Train batches: 97, Val batches: 625
+
+[Sched] cosine: steps/epoch=97, total_steps=970, warmup_steps=0 (0 epochs)
+
+
+[Epoch 1] Training... (lr at epoch start=0.100000)
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  ring_zfp_online_coll
+  ZFP rate:   8
+  Epochs:     10
+  Batch/rank: 16
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+  Batch [50/97] Loss: 30.5985, Acc: 10.62%, lr: 0.099346
+[Epoch 1] Train Loss: 21.5830, Acc: 10.57%  |  Val Loss: 3619.2633, Acc: 10.00%  |  Time: 20.9s
+[Epoch 1] t_iter median: 169.30 ms  (fwd 7.30 | bwd+comm 158.47 | opt 3.52 | data 0.06)  |  train-only epoch: 17.3s
+  -> Best model saved (10.00%)
+[Epoch 1] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=1
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=762 work_total_ms=15161.365 work_mean_ms=19.897 work_min_ms=15.069 work_max_ms=87.818
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=98 tail_total_ms=14310.053 tail_mean_ms=146.021 tail_min_ms=20.051 tail_max_ms=182.420
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr at epoch start=0.097553)
+  Batch [50/97] Loss: 8.7724, Acc: 15.50%, lr: 0.094440
+[Epoch 2] Train Loss: 8.1038, Acc: 13.53%  |  Val Loss: 5000.1803, Acc: 10.00%  |  Time: 20.4s
+[Epoch 2] t_iter median: 169.57 ms  (fwd 7.30 | bwd+comm 158.69 | opt 3.52 | data 0.07)  |  train-only epoch: 16.7s
+[Epoch 2] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=2
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15347.575 work_mean_ms=19.778 work_min_ms=15.292 work_max_ms=37.380
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14459.223 tail_mean_ms=149.064 tail_min_ms=141.040 tail_max_ms=182.530
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr at epoch start=0.090451)
+  Batch [50/97] Loss: 6.1201, Acc: 15.12%, lr: 0.085183
+[Epoch 3] Train Loss: 6.4503, Acc: 13.34%  |  Val Loss: 2647.8487, Acc: 10.00%  |  Time: 20.4s
+[Epoch 3] t_iter median: 169.81 ms  (fwd 7.30 | bwd+comm 159.02 | opt 3.51 | data 0.07)  |  train-only epoch: 16.8s
+[Epoch 3] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=3
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15404.885 work_mean_ms=19.852 work_min_ms=15.198 work_max_ms=39.000
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14534.818 tail_mean_ms=149.843 tail_min_ms=144.916 tail_max_ms=184.194
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr at epoch start=0.079389)
+  Batch [50/97] Loss: 4.3895, Acc: 16.75%, lr: 0.072483
+[Epoch 4] Train Loss: 5.0504, Acc: 15.27%  |  Val Loss: 2751.7565, Acc: 10.22%  |  Time: 20.5s
+[Epoch 4] t_iter median: 170.64 ms  (fwd 7.19 | bwd+comm 160.13 | opt 3.27 | data 0.07)  |  train-only epoch: 16.8s
+  -> Best model saved (10.22%)
+[Epoch 4] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=4
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15532.769 work_mean_ms=20.016 work_min_ms=15.197 work_max_ms=38.384
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14690.990 tail_mean_ms=151.454 tail_min_ms=147.137 tail_max_ms=187.968
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr at epoch start=0.065451)
+  Batch [50/97] Loss: 5.0591, Acc: 15.50%, lr: 0.057582
+[Epoch 5] Train Loss: 4.5572, Acc: 15.98%  |  Val Loss: 2445.3190, Acc: 10.00%  |  Time: 20.4s
+[Epoch 5] t_iter median: 170.44 ms  (fwd 7.31 | bwd+comm 159.82 | opt 3.22 | data 0.07)  |  train-only epoch: 16.8s
+[Epoch 5] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=5
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15448.581 work_mean_ms=19.908 work_min_ms=15.200 work_max_ms=32.676
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14604.257 tail_mean_ms=150.559 tail_min_ms=142.408 tail_max_ms=176.130
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr at epoch start=0.050000)
+  Batch [50/97] Loss: 3.7924, Acc: 13.25%, lr: 0.041938
+[Epoch 6] Train Loss: 3.7233, Acc: 14.76%  |  Val Loss: 611.1155, Acc: 9.84%  |  Time: 20.5s
+[Epoch 6] t_iter median: 170.79 ms  (fwd 7.27 | bwd+comm 159.98 | opt 3.52 | data 0.08)  |  train-only epoch: 16.8s
+[Epoch 6] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=6
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15463.250 work_mean_ms=19.927 work_min_ms=15.264 work_max_ms=42.655
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14561.702 tail_mean_ms=150.121 tail_min_ms=145.753 tail_max_ms=181.413
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr at epoch start=0.034549)
+  Batch [50/97] Loss: 3.2182, Acc: 15.75%, lr: 0.027084
+[Epoch 7] Train Loss: 3.1831, Acc: 15.98%  |  Val Loss: 47.2643, Acc: 9.26%  |  Time: 20.3s
+[Epoch 7] t_iter median: 169.50 ms  (fwd 7.20 | bwd+comm 158.82 | opt 3.23 | data 0.07)  |  train-only epoch: 16.7s
+[Epoch 7] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=7
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15385.948 work_mean_ms=19.827 work_min_ms=15.076 work_max_ms=35.535
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14528.857 tail_mean_ms=149.782 tail_min_ms=143.937 tail_max_ms=177.464
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr at epoch start=0.020611)
+  Batch [50/97] Loss: 2.8672, Acc: 15.75%, lr: 0.014473
+[Epoch 8] Train Loss: 2.7336, Acc: 16.17%  |  Val Loss: 14.3614, Acc: 12.10%  |  Time: 20.3s
+[Epoch 8] t_iter median: 169.61 ms  (fwd 7.16 | bwd+comm 159.02 | opt 3.27 | data 0.07)  |  train-only epoch: 16.7s
+  -> Best model saved (12.10%)
+[Epoch 8] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=8
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15421.009 work_mean_ms=19.872 work_min_ms=15.309 work_max_ms=36.495
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14575.946 tail_mean_ms=150.267 tail_min_ms=146.133 tail_max_ms=177.874
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr at epoch start=0.009549)
+  Batch [50/97] Loss: 2.6975, Acc: 18.62%, lr: 0.005340
+[Epoch 9] Train Loss: 2.6173, Acc: 18.75%  |  Val Loss: 5.8163, Acc: 19.45%  |  Time: 20.4s
+[Epoch 9] t_iter median: 170.07 ms  (fwd 7.21 | bwd+comm 159.50 | opt 3.27 | data 0.07)  |  train-only epoch: 16.8s
+  -> Best model saved (19.45%)
+[Epoch 9] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=9
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15463.668 work_mean_ms=19.927 work_min_ms=15.185 work_max_ms=38.533
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14612.632 tail_mean_ms=150.646 tail_min_ms=140.327 tail_max_ms=185.372
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr at epoch start=0.002447)
+  Batch [50/97] Loss: 2.5122, Acc: 18.62%, lr: 0.000578
+[Epoch 10] Train Loss: 2.5108, Acc: 19.14%  |  Val Loss: 3.5871, Acc: 19.31%  |  Time: 20.4s
+[Epoch 10] t_iter median: 170.05 ms  (fwd 7.23 | bwd+comm 159.47 | opt 3.27 | data 0.07)  |  train-only epoch: 16.8s
+[Epoch 10] Summarizing hook timing...
+
+[HOOK_TIMING_SUMMARY] epoch=10
+[HOOK_WORK_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 calls=776 work_total_ms=15489.504 work_mean_ms=19.961 work_min_ms=15.132 work_max_ms=43.452
+[HOOK_TAIL_SUMMARY] label=mpi:ring_zfp_online_coll:rate8 steps=97 tail_total_ms=14641.207 tail_mean_ms=150.940 tail_min_ms=146.458 tail_max_ms=180.590
+[Epoch 10] Hook timing summary done
+
+================================================================================
+Done in 208.2s | Best val acc: 19.45%
+Epoch times (train+val): mean=20.5s  min=20.3s  max=20.9s
+Train-only epoch time (epochs 2..N): median=16.76s  min=16.71s  max=16.84s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+=== Finished training: model=wide_resnet50_2, dataset=cifar10, batch=16, lr=0.1, scheduler=cosine, backend=mpi, hook=ring_zfp_online_coll, zfp_rate=8, status=0 at Thu Jul 30 09:28:37 PM UTC 2026 ===
+=== Job finished: Thu Jul 30 09:28:37 PM UTC 2026 ===

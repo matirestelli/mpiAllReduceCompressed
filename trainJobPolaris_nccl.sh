@@ -1,12 +1,12 @@
 #!/bin/bash -l
-#PBS -l select=2:system=polaris
+#PBS -l select=8:system=polaris
 #PBS -l walltime=01:00:00
 #PBS -l filesystems=home:eagle
 #PBS -q debug-scaling
 #PBS -A UIC-HPC
-#PBS -o ddp_train_PolarisNCCL_rcs_${PBS_JOBID}.%j.out
-#PBS -e ddp_train_PolarisNCCL_rcs_${PBS_JOBID}.%j.err
-#PBS -N ddp-train_PolarisNCCL
+#PBS -o ddp_train_PolarisNCCL_32gpus_4b_16b.%j.out
+#PBS -e ddp_train_PolarisNCCL_32gpus_4b_16b.%j.err
+#PBS -N ddp-train_PolarisNCCL_32gpus_4b_16b
 
 cd ${PBS_O_WORKDIR}
 
@@ -36,7 +36,7 @@ echo "MASTER_PORT=${MASTER_PORT}"
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
 
-NUM_PROCS=8
+NUM_PROCS=32
 PPN=4
 # processes per node
 
@@ -61,16 +61,18 @@ IMAGE_SIZES=(
 )
 
 NUM_EPOCHS_LIST=(
-    "20"
+    "10"
+    #"20"
     # "50"
     # "100"
 )
 
 BATCH_SIZES=(
-    # "8"       # weak scaling local batch 8, total 128
+    #"4"
+    #"8"       # weak scaling local batch 8, total 128
     "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
     #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
-    # "64"    # strong global 256 on 4 GPUs
+    #"64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
 
@@ -152,15 +154,15 @@ BACKENDS=(
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 EXPERIMENTS=(
-    #"none:"
-    #"ring:"
-    #"ring_zfp_naive:16"
-    #"ring_zfp_online_coll:16"
-    #"ring_zfp_online_coll:10"
+    "none:"
+    "ring:"
+    "ring_zfp_naive:16"
+    "ring_zfp_online_coll:16"
+    "ring_zfp_online_coll:8"
     "recursive_doubling:"
     "recursive_doubling_zfp_naive:16"
-    #"recursive_doubling_zfp_online_coll:16"
-    #"recursive_doubling_zfp_online_coll:8"
+    "recursive_doubling_zfp_online_coll:16"
+    "recursive_doubling_zfp_online_coll:8"
     #"default:"
     #"default_sync:"
     #"default_clone:"

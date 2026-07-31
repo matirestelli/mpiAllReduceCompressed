@@ -4,8 +4,8 @@
 #PBS -l filesystems=home:eagle
 #PBS -q debug-scaling
 #PBS -A UIC-HPC
-#PBS -o ddp_train_polaris_32gpus_8b_32b_128b.%j.out
-#PBS -e ddp_train_polaris_32gpus_8b_32b_128b.%j.err
+#PBS -o ddp_train_polaris_8gpus_8b_32b_128b.%j.out
+#PBS -e ddp_train_polaris_8gpus_8b_32b_128b.%j.err
 #PBS -N ddp-train-polaris
 
 # ── WEAK SCALING GRID (Polaris / PBS / A100) ─────────────────────────────────
@@ -45,7 +45,7 @@ echo "MASTER_ADDR=${MASTER_ADDR}"
 echo "MASTER_PORT=${MASTER_PORT}"
 
 # ── Polaris topology ─────────────────────────────────────────────────────────
-NUM_PROCS=32
+NUM_PROCS=8
 PPN=4                       # Polaris node = 4x A100
 NNODES=$(( (NUM_PROCS + PPN - 1) / PPN ))
 # Polaris: 32 CPU cores/node, 4 ranks/node -> 8 cores/rank (--depth=8).
@@ -77,7 +77,7 @@ WEAK_CONFIGS=(
     # P=8   (select=2)
     #"8:0.05"     # gb 64
     #"32:0.20"    # gb 256
-    # "128:0.80"   # gb 1024
+    "128:0.80"   # gb 1024
 
     # P=16  (select=4)
     # "8:0.10"    # gb 128
@@ -87,13 +87,13 @@ WEAK_CONFIGS=(
     # P=32  (select=8)
     #"8:0.20"    # gb 256
     # "32:0.80"   # gb 1024
-    "128:3.20"  # gb 4096
+    #"128:3.20"  # gb 4096
 )
 
 NUM_EPOCHS_LIST=(
-    #"5"        # P=8
+    "5"        # P=8
     #"8"      # P=16
-    "12"     # P=32
+    #"12"     # P=32
 )
 
 MOMENTUMS=(
@@ -167,16 +167,16 @@ BACKENDS=(
 # "none"    = no custom communication hook.
 # Full list only at bs=32 (main operating point). bs=8 and bs=128 bracket the regime.
 EXPERIMENTS=(
-    "none:"
-    "ring:"
-    "ring_zfp_naive:16"
-    "ring_zfp_online_coll:16"
-    "ring_zfp_online_coll:10"
+   #"none:"
+    #"ring:"
+    #"ring_zfp_naive:16"
+   # "ring_zfp_online_coll:16"
+    #"ring_zfp_online_coll:10"
     "ring_zfp_online_coll:8"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:16"
-    "recursive_doubling_zfp_online_coll:8"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    #"recursive_doubling_zfp_online_coll:16"
+    # "recursive_doubling_zfp_online_coll:8"
     #"recursive_doubling_zfp_online_coll:4"
     #"ring_zfp_online_coll:8"
     #"ring_zfp_online_coll:4"
