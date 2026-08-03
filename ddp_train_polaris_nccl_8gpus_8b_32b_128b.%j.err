@@ -1,0 +1,438 @@
+
+The following have been reloaded with a version change:
+  1) gcc-native/14 => gcc-native/13
+
+
+The following have been reloaded with a version change:
+  1) gcc-native/13 => gcc-native/14.2
+
+[W731 19:42:03.287511693 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[W731 19:42:03.719962084 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[rank3]:[W731 19:52:21.048144743 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=101, addr=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:34758, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank3]:[W731 19:52:21.048747613 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=101, addr=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:34758, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank1]:[W731 19:52:21.061548433 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=97, addr=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:33972, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank1]:[W731 19:52:21.062793638 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=97, addr=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:33972, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank7]:[W731 19:52:21.469551537 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=101, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:50314, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank7]:[W731 19:52:21.470077913 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=101, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:50314, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank5]:[W731 19:52:21.497975753 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=97, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:50308, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank5]:[W731 19:52:21.501198648 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=97, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:50308, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank6]:[W731 19:52:21.513678538 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=99, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:50306, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank6]:[W731 19:52:21.515630483 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=99, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:50306, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank4]:[W731 19:52:21.533655275 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=74, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:53826, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank4]:[W731 19:52:21.534033003 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=74, addr=[x3003c0s25b0n0.hsn.cm.polaris.alcf.anl.gov]:53826, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank2]:[W731 19:52:21.142609171 socket.cpp:460] [c10d] waitForInput: poll for socket SocketImpl(fd=99, addr=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:34746, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) returned 0, likely a timeout
+[rank2]:[W731 19:52:21.143339760 socket.cpp:485] [c10d] waitForInput: socket SocketImpl(fd=99, addr=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:34746, remote=[x3003c0s1b1n0.hsn.cm.polaris.alcf.anl.gov]:29500) timed out after 600000ms
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank1]:     train(config)
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank1]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank1]:                                         ^^^^^^^^^^^^
+[rank1]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank1]:     loss.backward()
+[rank1]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank1]:     torch.autograd.backward(
+[rank1]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank1]:     _engine_run_backward(
+[rank1]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: RuntimeError: Got the following error when running the callback: DistBackendError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0:1', but store->get('0:1') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//0:1
+[rank1]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank1]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x14d5e0228720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank1]: frame #1: <unknown function> + 0x60bd481 (0x14d5f3b5d481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #2: <unknown function> + 0x11c7b10 (0x14d5eec67b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x14d5f3c0e4ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x14d5f3c0e778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14d5f3baa570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14d5f3baa570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14d5f3baa570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x14d5e11ff93b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank1]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x14d5e12015a3 in /soft/applications/conda/2025-[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank2]:     train(config)
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank2]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank2]:                                         ^^^^^^^^^^^^
+[rank2]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank2]:     loss.backward()
+[rank2]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank2]:     torch.autograd.backward(
+[rank2]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank2]:     _engine_run_backward(
+[rank2]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank2]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]: RuntimeError: Got the following error when running the callback: DistBackendError: [2] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '1:2', but store->get('1:2') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//1:2
+[rank2]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank2]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x153c2a4a3720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank2]: frame #1: <unknown function> + 0x60bd481 (0x153c3ddd8481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #2: <unknown function> + 0x11c7b10 (0x153c38ee2b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x153c3de894ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x153c3de89778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x153c3de25570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x153c3de25570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x153c3de25570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x153c2b47a93b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank2]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x153c2b47c5a3 in /soft/applications/conda/2025-[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank3]:     train(config)
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank3]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank3]:                                         ^^^^^^^^^^^^
+[rank3]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank3]:     loss.backward()
+[rank3]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank3]:     torch.autograd.backward(
+[rank3]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank3]:     _engine_run_backward(
+[rank3]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank3]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]: RuntimeError: Got the following error when running the callback: DistBackendError: [3] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '2:3', but store->get('2:3') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//2:3
+[rank3]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank3]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x148e72987720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank3]: frame #1: <unknown function> + 0x60bd481 (0x148e862bc481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #2: <unknown function> + 0x11c7b10 (0x148e813c6b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x148e8636d4ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x148e8636d778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x148e86309570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x148e86309570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x148e86309570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x148e7395e93b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank3]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x148e739605a3 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank1]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x14d5e1222a20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank1]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x14d5f3bfc5c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #12: <unknown function> + 0x60fa4a5 (0x14d5f3b9a4a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #13: <unknown function> + 0x610818d (0x14d5f3ba818d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #14: <unknown function> + 0x56b2c50 (0x14d5f3152c50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #15: <unknown function> + 0x6114704 (0x14d5f3bb4704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #16: <unknown function> + 0x6119d67 (0x14d5f3bb9d67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank1]: frame #17: <unknown function> + 0xcf844b (0x14d5fd0f244b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank1]: frame #18: <unknown function> + 0x39c0b8 (0x14d5fc7960b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank1]: frame #19: <unknown function> + 0x21bc08 (0x55b06c661c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x55b06c64517c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #21: <unknown function> + 0x112b23 (0x55b06c558b23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #22: <unknown function> + 0x24523c (0x55b06c68b23c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #23: <unknown function> + 0x244dd0 (0x55b06c68add0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #24: <unknown function> + 0x323612 (0x55b06c769612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #25: <unknown function> + 0x3235c4 (0x55b06c7695c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank1]: frame #26: <unknown function> + 0xa6fec (0x14d60b2dcfec in /lib64/libc.so.6)
+[rank1]: frame #27: <unknown function> + 0x12e418 (0x14d60b364418 in /lib64/libc.so.6)
+[rank1]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank1]: At:
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank1]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank1]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank1]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank1]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank2]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x153c2b49da20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank2]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x153c3de775c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #12: <unknown function> + 0x60fa4a5 (0x153c3de154a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #13: <unknown function> + 0x610818d (0x153c3de2318d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #14: <unknown function> + 0x56b2c50 (0x153c3d3cdc50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #15: <unknown function> + 0x6114704 (0x153c3de2f704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #16: <unknown function> + 0x6119d67 (0x153c3de34d67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank2]: frame #17: <unknown function> + 0xcf844b (0x153c4736d44b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank2]: frame #18: <unknown function> + 0x39c0b8 (0x153c46a110b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank2]: frame #19: <unknown function> + 0x21bc08 (0x556e74593c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x556e7457717c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #21: <unknown function> + 0x112b23 (0x556e7448ab23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #22: <unknown function> + 0x24523c (0x556e745bd23c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #23: <unknown function> + 0x244dd0 (0x556e745bcdd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #24: <unknown function> + 0x323612 (0x556e7469b612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #25: <unknown function> + 0x3235c4 (0x556e7469b5c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank2]: frame #26: <unknown function> + 0xa6fec (0x153c55457fec in /lib64/libc.so.6)
+[rank2]: frame #27: <unknown function> + 0x12e418 (0x153c554df418 in /lib64/libc.so.6)
+[rank2]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank2]: At:
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank2]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank2]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank2]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank2]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank3]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x148e73981a20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank3]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x148e8635b5c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #12: <unknown function> + 0x60fa4a5 (0x148e862f94a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #13: <unknown function> + 0x610818d (0x148e8630718d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #14: <unknown function> + 0x56b2c50 (0x148e858b1c50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #15: <unknown function> + 0x6114704 (0x148e86313704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #16: <unknown function> + 0x6119d67 (0x148e86318d67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank3]: frame #17: <unknown function> + 0xcf844b (0x148e8f85144b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank3]: frame #18: <unknown function> + 0x39c0b8 (0x148e8eef50b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank3]: frame #19: <unknown function> + 0x21bc08 (0x5577fc8d6c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x5577fc8ba17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #21: <unknown function> + 0x112b23 (0x5577fc7cdb23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #22: <unknown function> + 0x24523c (0x5577fc90023c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #23: <unknown function> + 0x244dd0 (0x5577fc8ffdd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #24: <unknown function> + 0x323612 (0x5577fc9de612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #25: <unknown function> + 0x3235c4 (0x5577fc9de5c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank3]: frame #26: <unknown function> + 0xa6fec (0x148e9d93bfec in /lib64/libc.so.6)
+[rank3]: frame #27: <unknown function> + 0x12e418 (0x148e9d9c3418 in /lib64/libc.so.6)
+[rank3]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank3]: At:
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank3]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank3]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank3]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank3]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank4]:     train(config)
+[rank4]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank4]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank4]:                                         ^^^^^^^^^^^^
+[rank4]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank4]:     loss.backward()
+[rank4]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank4]:     torch.autograd.backward(
+[rank4]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank4]:     _engine_run_backward(
+[rank4]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank4]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]: RuntimeError: Got the following error when running the callback: DistBackendError: [4] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '3:4', but store->get('3:4') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//3:4
+[rank4]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank4]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x154116cba720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank4]: frame #1: <unknown function> + 0x60bd481 (0x15412a5ef481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #2: <unknown function> + 0x11c7b10 (0x1541256f9b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x15412a6a04ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x15412a6a0778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x15412a63c570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x15412a63c570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x15412a63c570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x154117c9193b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank4]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x154117c935a3 in /soft/applications/conda/2025-[rank5]: Traceback (most recent call last):
+[rank5]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank5]:     train(config)
+[rank5]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank5]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank5]:                                         ^^^^^^^^^^^^
+[rank5]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank5]:     loss.backward()
+[rank5]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank5]:     torch.autograd.backward(
+[rank5]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank5]:     _engine_run_backward(
+[rank5]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank5]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]: RuntimeError: Got the following error when running the callback: DistBackendError: [5] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '4:5', but store->get('4:5') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//4:5
+[rank5]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank5]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x14c007379720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank5]: frame #1: <unknown function> + 0x60bd481 (0x14c01acae481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #2: <unknown function> + 0x11c7b10 (0x14c015db8b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x14c01ad5f4ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x14c01ad5f778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14c01acfb570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14c01acfb570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x14c01acfb570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x14c00835093b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank5]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x14c0083525a3 in /soft/applications/conda/2025-[rank6]: Traceback (most recent call last):
+[rank6]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank6]:     train(config)
+[rank6]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank6]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank6]:                                         ^^^^^^^^^^^^
+[rank6]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank6]:     loss.backward()
+[rank6]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank6]:     torch.autograd.backward(
+[rank6]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank6]:     _engine_run_backward(
+[rank6]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank6]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]: RuntimeError: Got the following error when running the callback: DistBackendError: [6] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '5:6', but store->get('5:6') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//5:6
+[rank6]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank6]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x15056ed84720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank6]: frame #1: <unknown function> + 0x60bd481 (0x1505826b9481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #2: <unknown function> + 0x11c7b10 (0x15057d7c3b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x15058276a4ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x15058276a778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x150582706570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x150582706570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x150582706570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x15056fd5b93b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank6]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x15056fd5d5a3 in /soft/applications/conda/2025-[rank7]: Traceback (most recent call last):
+[rank7]:   File "/home/mrest/mpiAllReduceCompressed/interface.py", line 211, in <module>
+[rank7]:     train(config)
+[rank7]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 658, in train
+[rank7]:     train_loss, train_acc, iter_stats = train_epoch(
+[rank7]:                                         ^^^^^^^^^^^^
+[rank7]:   File "/home/mrest/mpiAllReduceCompressed/ddp_training.py", line 184, in train_epoch
+[rank7]:     loss.backward()
+[rank7]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank7]:     torch.autograd.backward(
+[rank7]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank7]:     _engine_run_backward(
+[rank7]:   File "/soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank7]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]: RuntimeError: Got the following error when running the callback: DistBackendError: [7] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '6:7', but store->get('6:7') got error: wait timeout after 600000ms, keys: /default_pg/0//cuda//6:7
+[rank7]: Exception raised from doWait at /soft/applications/conda/2025-09-28/pytorch/torch/csrc/distributed/c10d/TCPStore.cpp:597 (most recent call first):
+[rank7]: frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x80 (0x151869b35720 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libc10.so)
+[rank7]: frame #1: <unknown function> + 0x60bd481 (0x15187d46a481 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #2: <unknown function> + 0x11c7b10 (0x151878574b10 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2e (0x15187d51b4ee in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x108 (0x15187d51b778 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x15187d4b7570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x15187d4b7570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x30 (0x15187d4b7570 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x65b (0x15186ab0c93b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank7]: frame #9: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x8d3 (0x15186ab0e5a3 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank4]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x154117cb4a20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank4]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x15412a68e5c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #12: <unknown function> + 0x60fa4a5 (0x15412a62c4a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #13: <unknown function> + 0x610818d (0x15412a63a18d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #14: <unknown function> + 0x56b2c50 (0x154129be4c50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #15: <unknown function> + 0x6114704 (0x15412a646704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #16: <unknown function> + 0x6119d67 (0x15412a64bd67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank4]: frame #17: <unknown function> + 0xcf844b (0x154133b8444b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank4]: frame #18: <unknown function> + 0x39c0b8 (0x1541332280b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank4]: frame #19: <unknown function> + 0x21bc08 (0x55d7f6f4bc08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x55d7f6f2f17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #21: <unknown function> + 0x112b23 (0x55d7f6e42b23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #22: <unknown function> + 0x24523c (0x55d7f6f7523c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #23: <unknown function> + 0x244dd0 (0x55d7f6f74dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #24: <unknown function> + 0x323612 (0x55d7f7053612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #25: <unknown function> + 0x3235c4 (0x55d7f70535c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank4]: frame #26: <unknown function> + 0xa6fec (0x154141d6efec in /lib64/libc.so.6)
+[rank4]: frame #27: <unknown function> + 0x12e418 (0x154141df6418 in /lib64/libc.so.6)
+[rank4]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank4]: At:
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank4]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank4]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank4]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank4]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank5]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x14c008373a20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank5]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x14c01ad4d5c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #12: <unknown function> + 0x60fa4a5 (0x14c01aceb4a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #13: <unknown function> + 0x610818d (0x14c01acf918d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #14: <unknown function> + 0x56b2c50 (0x14c01a2a3c50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #15: <unknown function> + 0x6114704 (0x14c01ad05704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #16: <unknown function> + 0x6119d67 (0x14c01ad0ad67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank5]: frame #17: <unknown function> + 0xcf844b (0x14c02424344b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank5]: frame #18: <unknown function> + 0x39c0b8 (0x14c0238e70b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank5]: frame #19: <unknown function> + 0x21bc08 (0x5599fe087c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x5599fe06b17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #21: <unknown function> + 0x112b23 (0x5599fdf7eb23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #22: <unknown function> + 0x24523c (0x5599fe0b123c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #23: <unknown function> + 0x244dd0 (0x5599fe0b0dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #24: <unknown function> + 0x323612 (0x5599fe18f612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #25: <unknown function> + 0x3235c4 (0x5599fe18f5c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank5]: frame #26: <unknown function> + 0xa6fec (0x14c03232ffec in /lib64/libc.so.6)
+[rank5]: frame #27: <unknown function> + 0x12e418 (0x14c0323b7418 in /lib64/libc.so.6)
+[rank5]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank5]: At:
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank5]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank5]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank5]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank5]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank6]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x15056fd7ea20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank6]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x1505827585c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #12: <unknown function> + 0x60fa4a5 (0x1505826f64a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #13: <unknown function> + 0x610818d (0x15058270418d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #14: <unknown function> + 0x56b2c50 (0x150581caec50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #15: <unknown function> + 0x6114704 (0x150582710704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #16: <unknown function> + 0x6119d67 (0x150582715d67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank6]: frame #17: <unknown function> + 0xcf844b (0x15058bc4e44b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank6]: frame #18: <unknown function> + 0x39c0b8 (0x15058b2f20b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank6]: frame #19: <unknown function> + 0x21bc08 (0x5638ae4efc08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x5638ae4d317c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #21: <unknown function> + 0x112b23 (0x5638ae3e6b23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #22: <unknown function> + 0x24523c (0x5638ae51923c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #23: <unknown function> + 0x244dd0 (0x5638ae518dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #24: <unknown function> + 0x323612 (0x5638ae5f7612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #25: <unknown function> + 0x3235c4 (0x5638ae5f75c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank6]: frame #26: <unknown function> + 0xa6fec (0x150599e38fec in /lib64/libc.so.6)
+[rank6]: frame #27: <unknown function> + 0x12e418 (0x150599ec0418 in /lib64/libc.so.6)
+[rank6]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank6]: At:
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank6]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank6]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank6]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank6]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank7]: frame #10: c10d::ProcessGroupNCCL::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x1640 (0x15186ab2fa20 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so)
+[rank7]: frame #11: c10d::ProcessGroupWrapper::recv(std::vector<at::Tensor, std::allocator<at::Tensor> >&, int, int) + 0x14 (0x15187d5095c4 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #12: <unknown function> + 0x60fa4a5 (0x15187d4a74a5 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #13: <unknown function> + 0x610818d (0x15187d4b518d in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #14: <unknown function> + 0x56b2c50 (0x15187ca5fc50 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #15: <unknown function> + 0x6114704 (0x15187d4c1704 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #16: <unknown function> + 0x6119d67 (0x15187d4c6d67 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_cpu.so)
+[rank7]: frame #17: <unknown function> + 0xcf844b (0x1518869ff44b in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank7]: frame #18: <unknown function> + 0x39c0b8 (0x1518860a30b8 in /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/lib/libtorch_python.so)
+[rank7]: frame #19: <unknown function> + 0x21bc08 (0x56438e108c08 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #20: _PyObject_MakeTpCall + 0x2cc (0x56438e0ec17c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #21: <unknown function> + 0x112b23 (0x56438dfffb23 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #22: <unknown function> + 0x24523c (0x56438e13223c in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #23: <unknown function> + 0x244dd0 (0x56438e131dd0 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #24: <unknown function> + 0x323612 (0x56438e210612 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #25: <unknown function> + 0x3235c4 (0x56438e2105c4 in /soft/applications/conda/2025-09-28/mconda3/bin/python)
+[rank7]: frame #26: <unknown function> + 0xa6fec (0x151894aedfec in /lib64/libc.so.6)
+[rank7]: frame #27: <unknown function> + 0x12e418 (0x151894b75418 in /lib64/libc.so.6)
+[rank7]: . This may indicate a possible application crash on rank 0 or a network set up issue.
+
+[rank7]: At:
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2455): irecv
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py(2773): batch_isend_irecv
+[rank7]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(760): _ring_allreduce_sum
+[rank7]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(874): _work
+[rank7]:   /home/mrest/mpiAllReduceCompressed/communication_strategy.py(415): _worker
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(59): run
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/concurrent/futures/thread.py(93): _worker
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1012): run
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1075): _bootstrap_inner
+[rank7]:   /soft/applications/conda/2025-09-28/mconda3/lib/python3.12/threading.py(1032): _bootstrap
+
+=>> PBS: job killed: walltime 10843 exceeded limit 10800

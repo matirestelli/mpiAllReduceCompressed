@@ -264,7 +264,6 @@ for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
             -env SEED="42"
             -env BACKEND="${BACKEND}"
             -env COMM_ALGORITHM="${COMM_ALGORITHM}"
-            -env TORCH_DISTRIBUTED_DEBUG=DETAIL
             -env TORCH_NCCL_ASYNC_ERROR_HANDLING=1
         )
 
