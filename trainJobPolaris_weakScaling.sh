@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#PBS -l select=8:system=polaris
-#PBS -l walltime=01:00:00
+#PBS -l select=10:system=polaris
+#PBS -l walltime=03:00:00
 #PBS -l filesystems=home:eagle
-#PBS -q debug-scaling
+#PBS -q prod
 #PBS -A UIC-HPC
 #PBS -o ddp_train_polaris_8gpus_8b_32b_128b.%j.out
 #PBS -e ddp_train_polaris_8gpus_8b_32b_128b.%j.err
@@ -75,8 +75,8 @@ IMAGE_SIZES=(
 # BATCH_SIZE and LEARNING_RATE must be PAIRED here, not cross-producted.
 WEAK_CONFIGS=(
     # P=8   (select=2)
-    #"8:0.05"     # gb 64
-    #"32:0.20"    # gb 256
+    "8:0.05"     # gb 64
+    "32:0.20"    # gb 256
     "128:0.80"   # gb 1024
 
     # P=16  (select=4)
@@ -265,7 +265,6 @@ for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
             -env SEED="42"
             -env BACKEND="${BACKEND}"
             -env COMM_ALGORITHM="${COMM_ALGORITHM}"
-            -env TORCH_DISTRIBUTED_DEBUG=DETAIL
             -env TORCH_NCCL_ASYNC_ERROR_HANDLING=1
         )
 

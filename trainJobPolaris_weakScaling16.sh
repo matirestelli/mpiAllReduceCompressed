@@ -1,12 +1,12 @@
 #!/bin/bash -l
 #PBS -l select=10:system=polaris
-#PBS -l walltime=03:00:00
+#PBS -l walltime=02:00:00
 #PBS -l filesystems=home:eagle
 #PBS -q prod
 #PBS -A UIC-HPC
-#PBS -o ddp_train_polaris_nccl_8gpus_8b_32b_128b.%j.out
-#PBS -e ddp_train_polaris_nccl_8gpus_8b_32b_128b.%j.err
-#PBS -N ddp-train-polaris_nccl_8gpus_8b_32b_128b
+#PBS -o ddp_train_polaris_16gpus_8b_32b_128b.%j.out
+#PBS -e ddp_train_polaris_16gpus_8b_32b_128b.%j.err
+#PBS -N ddp-train-polaris
 
 # ── WEAK SCALING GRID (Polaris / PBS / A100) ─────────────────────────────────
 # B_local fixed, B_global = B_local x P grows. LR = 0.1 * B_global / 128.
@@ -29,7 +29,7 @@ cd "${PBS_O_WORKDIR}"
 echo "=== Job started: $(date) ==="
 echo "=== Node: $(hostname) ==="
 
-source ${PBS_O_WORKDIR}/envScript_nccl.sh
+source "${PBS_O_WORKDIR}/envScript3.sh"
 
 # For enabling profiling time for communication hooks.
 export DDP_HOOK_TIMING=1
@@ -45,7 +45,7 @@ echo "MASTER_ADDR=${MASTER_ADDR}"
 echo "MASTER_PORT=${MASTER_PORT}"
 
 # ── Polaris topology ─────────────────────────────────────────────────────────
-NUM_PROCS=8
+NUM_PROCS=16
 PPN=4                       # Polaris node = 4x A100
 NNODES=$(( (NUM_PROCS + PPN - 1) / PPN ))
 # Polaris: 32 CPU cores/node, 4 ranks/node -> 8 cores/rank (--depth=8).
@@ -75,14 +75,14 @@ IMAGE_SIZES=(
 # BATCH_SIZE and LEARNING_RATE must be PAIRED here, not cross-producted.
 WEAK_CONFIGS=(
     # P=8   (select=2)
-    "8:0.05"     # gb 64
-    "32:0.20"    # gb 256
-    "128:0.80"   # gb 1024
+    #"8:0.05"     # gb 64
+    #"32:0.20"    # gb 256
+    #"128:0.80"   # gb 1024
 
     # P=16  (select=4)
-    # "8:0.10"    # gb 128
-    #"32:0.40"   # gb 512
-    #"128:1.60"  # gb 2048
+    "8:0.10"    # gb 128
+    "32:0.40"   # gb 512
+    "128:1.60"  # gb 2048
 
     # P=32  (select=8)
     #"8:0.20"    # gb 256
@@ -91,8 +91,8 @@ WEAK_CONFIGS=(
 )
 
 NUM_EPOCHS_LIST=(
-    "5"        # P=8
-    #"8"      # P=16
+    #"5"        # P=8
+    "8"      # P=16
     #"12"     # P=32
 )
 
@@ -159,24 +159,24 @@ DROP_LAST_VALUES=(
 )
 
 BACKENDS=(
-    # "mpi"
-    "nccl"
+    "mpi"
+    # "nccl"
 )
 
 # "default" = built-in DDP allreduce wrapped with NVTX timing.
 # "none"    = no custom communication hook.
 # Full list only at bs=32 (main operating point). bs=8 and bs=128 bracket the regime.
 EXPERIMENTS=(
-    "none:"
-    "ring:"
-    "ring_zfp_naive:16"
-    "ring_zfp_online_coll:16"
-    "ring_zfp_online_coll:10"
+   #"none:"
+    #"ring:"
+    #"ring_zfp_naive:16"
+   # "ring_zfp_online_coll:16"
+    #"ring_zfp_online_coll:10"
     "ring_zfp_online_coll:8"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:16"
-    "recursive_doubling_zfp_online_coll:8"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    #"recursive_doubling_zfp_online_coll:16"
+    # "recursive_doubling_zfp_online_coll:8"
     #"recursive_doubling_zfp_online_coll:4"
     #"ring_zfp_online_coll:8"
     #"ring_zfp_online_coll:4"
