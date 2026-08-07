@@ -318,3 +318,31 @@ batch per rank
 title:
 
 WideResNet on Frontier (AMD) — 64 GPUs — Weak Scaling — varying batch/rank
+
+
+
+How to use
+Step 1: parse
+python exp_parser_comm.py experiments_frontier --out parsed_comm.csv
+Step 2: hook work bar plots
+python plot_comm_metric.py parsed_comm.csv --mode strong --scope all --metric hook_mean --kind bar
+python plot_comm_metric.py parsed_comm.csv --mode weak   --scope all --metric hook_mean --kind bar
+Step 3: tail bar plots
+python plot_comm_metric.py parsed_comm.csv --mode strong --scope all --metric tail_mean --kind bar
+python plot_comm_metric.py parsed_comm.csv --mode weak   --scope all --metric tail_mean --kind bar
+Step 4: tail wrt total train time
+python plot_comm_metric.py parsed_comm.csv --mode strong --scope all --metric tail_pct --kind bar
+python plot_comm_metric.py parsed_comm.csv --mode weak   --scope all --metric tail_pct --kind bar
+Step 5: accounting plot like the figure
+same GPU count, compare methods
+python plot_comm_metric.py parsed_comm.csv --mode strong --scope fixed --gpus 8 --kind accounting
+same method, compare GPU counts
+python plot_comm_metric.py parsed_comm.csv --mode weak --scope all --kind accounting --met
+
+# strong: fix global batch
+python plot_hook_tail.py .../strongScaling --mode strong --scope all --kind hook --global-batch 128
+python plot_hook_tail.py .../strongScaling --mode strong --scope all --kind tail --global-batch 128
+
+# weak: fix local batch
+python plot_hook_tail.py .../weakScaling   --mode weak   --scope all --kind hook --batch-per-rank 16
+python plot_hook_tail.py .../weakScaling   --mode weak   --scope all --kind tail --batch-per-rank 16

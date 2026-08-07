@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -19,6 +20,7 @@ METHOD_ORDER = [
     "Ring+ZFP naive (rate:16)",
     "Ring+ZFP online (rate:16)",
     "Ring+ZFP online (rate:10)",
+    "Ring+ZFP online (rate:8)",
     "Recursive doubling",
     "RD+ZFP naive (rate:16)",
     "RD+ZFP online (rate:16)",
@@ -32,6 +34,7 @@ METHOD_COLORS = {
     "Ring+ZFP naive (rate:16)": "#41ae76",
     "Ring+ZFP online (rate:16)": "#74c476",
     "Ring+ZFP online (rate:10)": "#c7e9c0",
+    "Ring+ZFP online (rate:8)": "#c7e9c0",
 
     "Recursive doubling": "#08519c",
     "RD+ZFP naive (rate:16)": "#3182bd",
@@ -61,6 +64,7 @@ METHOD_GROUP = {
     "Ring+ZFP naive (rate:16)": "ring",
     "Ring+ZFP online (rate:16)": "ring",
     "Ring+ZFP online (rate:10)": "ring",
+    "Ring+ZFP online (rate:8)": "ring",
 
     "Recursive doubling": "rd",
     "RD+ZFP naive (rate:16)": "rd",
@@ -84,6 +88,65 @@ def ordered_methods(values):
     ordered = [m for m in METHOD_ORDER if m in present]
     leftovers = sorted([m for m in present if m not in METHOD_ORDER])
     return ordered + leftovers
+
+# Ring+ZFP online switched from rate 10 to rate 8. They are styled identically
+# (same green / order / offset).
+
+def _config_signature(df):
+    """
+    A robust per-config identity: (ranks, effective_global_batch).
+    effective_global_batch = global_batch if recorded, else ranks * batch_per_rank.
+    Normalized to plain ints so 128 vs 128.0, or 'global_batch recorded' vs
+    'only batch_per_rank recorded', still map to the same config. Model name is
+    intentionally excluded (one model per experiment folder), so capitalization
+    differences between .log and .out sources don't split a config.
+    """
+    def rk(v):
+        try:
+            return int(round(float(v))) if pd.notna(v) else None
+        except Exception:
+            return None
+
+    ranks = df["ranks"] if "ranks" in df.columns else pd.Series([None] * len(df), index=df.index)
+    gb = df["global_batch"] if "global_batch" in df.columns else pd.Series([np.nan] * len(df), index=df.index)
+    bpr = df["batch_per_rank"] if "batch_per_rank" in df.columns else pd.Series([np.nan] * len(df), index=df.index)
+
+    rk_sig, gb_sig = [], []
+    for r, g, b in zip(ranks, gb, bpr):
+        ri = rk(r)
+        eff = rk(g)
+        if eff is None and ri is not None:
+            bi = rk(b)
+            eff = ri * bi if bi is not None else None
+        rk_sig.append(ri)
+        gb_sig.append(eff)
+    return pd.Series(rk_sig, index=df.index), pd.Series(gb_sig, index=df.index)
+
+def prefer_online_rate8(df):
+    """
+    Ring+ZFP online was re-run from rate 10 to rate 8. For each configuration,
+    if a rate-8 run exists, use it and drop the stale rate-10 run for that same
+    configuration. Configurations that only have rate 10 keep it untouched, and
+    if nothing was re-run at rate 8 the data is left completely unchanged.
+    """
+    if "method" not in df.columns:
+        return df
+
+    old, new = "Ring+ZFP online (rate:10)", "Ring+ZFP online (rate:8)"
+    if new not in set(df["method"].dropna()):
+        return df
+
+    df = df.copy()
+    df["_rk_sig"], df["_gb_sig"] = _config_signature(df)
+
+    drop_idx = []
+    for _, g in df.groupby(["_rk_sig", "_gb_sig"], dropna=False):
+        methods_here = set(g["method"].dropna())
+        if new in methods_here and old in methods_here:
+            drop_idx.extend(g.index[g["method"] == old].tolist())
+
+    df = df.drop(index=drop_idx) if drop_idx else df
+    return df.drop(columns=["_rk_sig", "_gb_sig"])
 
 def metric_spec(mode: str, metric: str):
     if metric == "time":
@@ -170,6 +233,7 @@ def family_offsets():
         "Ring+ZFP naive (rate:16)": -0.09,
         "Ring+ZFP online (rate:16)": -0.03,
         "Ring+ZFP online (rate:10)": 0.03,
+        "Ring+ZFP online (rate:8)": 0.03,
 
         # RD family: bars touch each other
         "Recursive doubling": 0.15,
@@ -216,11 +280,11 @@ def plot_fixed(df, mode, value_col, ylabel, title, output, ymax=None):
         )
 
     ax.set_title(title, fontsize=20, pad=12, loc="center")
-    ax.set_xlabel(x_label, fontsize=16)
-    ax.set_ylabel(ylabel, fontsize=17)
+    ax.set_xlabel(x_label, fontsize=18)
+    ax.set_ylabel(ylabel, fontsize=19)
     ax.set_xticks(x)
-    ax.set_xticklabels([str(v) for v in x_values], fontsize=13)
-    ax.tick_params(axis="y", labelsize=13)
+    ax.set_xticklabels([str(v) for v in x_values], fontsize=15)
+    ax.tick_params(axis="y", labelsize=15)
 
     ax.grid(axis="y", alpha=0.18, linewidth=0.8)
     ax.grid(axis="x", visible=False)
@@ -242,7 +306,7 @@ def plot_fixed(df, mode, value_col, ylabel, title, output, ymax=None):
         bbox_to_anchor=(0.5, -0.20),
         ncol=3,
         frameon=False,
-        fontsize=10,
+        fontsize=13,
         columnspacing=1.4,
         handletextpad=0.5,
     )
@@ -279,11 +343,11 @@ def plot_all(df, value_col, ylabel, title, output, ymax=None):
         )
 
     ax.set_title(title, fontsize=20, pad=8)
-    ax.set_xlabel("GPUs", fontsize=16)
-    ax.set_ylabel(ylabel, fontsize=17)
+    ax.set_xlabel("GPUs", fontsize=18)
+    ax.set_ylabel(ylabel, fontsize=19)
     ax.set_xticks(x)
-    ax.set_xticklabels([str(g) for g in gpu_list], fontsize=13)
-    ax.tick_params(axis="y", labelsize=13)
+    ax.set_xticklabels([str(g) for g in gpu_list], fontsize=15)
+    ax.tick_params(axis="y", labelsize=15)
 
     ax.grid(axis="y", alpha=0.18, linewidth=0.8)
     ax.grid(axis="x", visible=False)
@@ -305,7 +369,7 @@ def plot_all(df, value_col, ylabel, title, output, ymax=None):
         bbox_to_anchor=(0.5, -0.20),
         ncol=3,
         frameon=False,
-        fontsize=10,
+        fontsize=13,
         columnspacing=1.4,
         handletextpad=0.5,
     )
@@ -315,6 +379,49 @@ def plot_all(df, value_col, ylabel, title, output, ymax=None):
     plt.close(fig)
     print(f"[INFO] wrote {output}")
 
+def normalize_backend_label(raw):
+    """Map a raw backend string to a clean display label, or None if unknown/empty."""
+    if raw is None:
+        return None
+    s = str(raw).strip().lower()
+    if not s or s in ("nan", "none"):
+        return None
+    if "rccl" in s:
+        return "RCCL"
+    if "nccl" in s:
+        return "NCCL"
+    if "gloo" in s:
+        return "Gloo"
+    if "mpi" in s:
+        return "MPI"
+    return s.upper()
+
+def detect_backend(root: Path, df=None):
+    """
+    Determine the communication backend for the title.
+
+    Priority:
+      1) folder / path name (e.g. experiments_polaris_nccl, experiments_frontier_rccl)
+      2) parsed 'backend' column, if it resolves to a single value
+    Returns a clean label (e.g. "NCCL", "RCCL") or None.
+    """
+    root_str = str(root).lower()
+    if "rccl" in root_str:
+        return "RCCL"
+    if "nccl" in root_str:
+        return "NCCL"
+
+    if df is not None and "backend" in df.columns:
+        labels = []
+        for v in unique_non_null(df["backend"].tolist()):
+            lab = normalize_backend_label(v)
+            if lab and lab not in labels:
+                labels.append(lab)
+        if len(labels) == 1:
+            return labels[0]
+
+    return None
+
 def make_default_title(
     root: Path,
     mode: str,
@@ -323,6 +430,7 @@ def make_default_title(
     global_batch=None,
     batch_per_rank=None,
     varying_batches=False,
+    backend=None,
 ):
     model_name = root.parts[-3] if len(root.parts) >= 3 else root.name
     scaling_name = "Strong Scaling" if mode == "strong" else "Weak Scaling"
@@ -336,11 +444,17 @@ def make_default_title(
 
     root_str = str(root).lower()
     if "frontier" in root_str:
-        platform = "Frontier (AMD)"
+        platform_name, vendor = "Frontier", "AMD"
     elif "polaris" in root_str:
-        platform = "Polaris (NVIDIA)"
+        platform_name, vendor = "Polaris", "NVIDIA"
     else:
-        platform = "Polaris (NVIDIA)"
+        platform_name, vendor = "Polaris", "NVIDIA"
+
+    # e.g. "Frontier (AMD, RCCL)" or, when no backend is known, "Frontier (AMD)"
+    quals = [vendor]
+    if backend:
+        quals.append(backend)
+    platform = f"{platform_name} ({', '.join(quals)})"
 
     first_line_parts = [f"{model_name} on {platform}"]
     if scope == "fixed" and gpus is not None:
@@ -418,6 +532,9 @@ def main():
     ap.add_argument("--global-batch", type=int, default=None, help="Optional strong-scaling filter")
     ap.add_argument("--batch-per-rank", type=int, default=None, help="Optional weak-scaling filter")
     ap.add_argument("--title", default=None)
+    ap.add_argument("--backend", default=None,
+                    help="Override backend label in title (e.g. NCCL, RCCL). "
+                         "Auto-detected from the folder name / data if omitted.")
     ap.add_argument("--png", action="store_true", help="Also save PNG besides PDF")
     ap.add_argument("--csv", action="store_true", help="Save filtered CSV used for plotting")
     ap.add_argument("--ymax", type=float, default=None, help="Fixed upper y-axis limit")
@@ -438,6 +555,7 @@ def main():
         raise SystemExit(f"No data found in {root}")
 
     df = prepare_batch_columns(df)
+    df = prefer_online_rate8(df)
 
     value_col, ylabel = metric_spec(args.mode, args.metric)
     df = filter_df(
@@ -461,6 +579,8 @@ def main():
 
     meta = validate_for_scope(df, args.mode, args.scope)
 
+    backend = args.backend or detect_backend(root, df)
+
     title = args.title or make_default_title(
         root,
         args.mode,
@@ -469,6 +589,7 @@ def main():
         global_batch=meta["global_batch"],
         batch_per_rank=meta["batch_per_rank"],
         varying_batches=meta["varying_batches"],
+        backend=backend,
     )
 
     if args.out:

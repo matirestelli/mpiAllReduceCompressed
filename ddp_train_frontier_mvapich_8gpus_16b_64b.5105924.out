@@ -1,0 +1,484 @@
+=== Job started: Tue Jul 28 10:49:28 AM EDT 2026 ===
+=== Node: frontier06911 ===
+Using ENV_TARBALL=/lustre/orion/gen243/proj-shared/matilderestelli/pytorch_mvapich/conda_env.tar.gz
+Using ENV_DIR=/mnt/bb/matilderestelli/torch_env
+Deactivating conda environments
+MVP_CH4_OFI_ENABLE_HMEM=1
+MPICH_GPU_SUPPORT_ENABLED=1
+MIOPEN_USER_DB_PATH=/mnt/bb/matilderestelli/miopen_cache_5105924/miopen_db
+MVP_COMPRESSION_DATA_TYPE=FLOAT
+MVP_PMI_VERSION=2
+MIOPEN_LOCAL=/mnt/bb/matilderestelli/miopen_cache_5105924
+MVP_COMPRESSION_NUM_STREAM=16
+FI_CXI_DEFAULT_CQ_SIZE=131072
+MPICH_OFI_NIC_POLICY=NUMA
+ROCM_PATH=/opt/rocm-7.1.1
+MV2_SHOW_ENV_INFO=1
+NCCL_CROSS_NIC=1
+FI_CXI_DEFAULT_TX_SIZE=2048
+MIOPEN_BASE=/lustre/orion/gen243/proj-shared/matilderestelli/miopen_cache_baseline
+MIOPEN_CUSTOM_CACHE_DIR=/mnt/bb/matilderestelli/miopen_cache_5105924/kernel_cache
+FI_CXI_RX_MATCH_MODE=hybrid
+MVP_ENABLE_GPU=1
+ROCM_HOME=/opt/rocm-7.1.1
+FI_MR_CACHE_MONITOR=kdreg2
+ROCM_COMPAT_DIR=/mnt/bb/matilderestelli/rocm_compat_5105924
+NCCL_NET_GDR_LEVEL=3
+MVP_LMOD_MODULEPATH_ROOT=/sw/frontier/ums/ums038/
+MVP_COMPRESSION_BUFFER_SIZE=33554432
+FI_CXI_ATS=0
+MVP_ZFP_RATE=8
+NCCL_SOCKET_IFNAME=hsn0,hsn1,hsn2,hsn3
+MVP_CH4_OFI_ENABLE_MR_HMEM=1
+/sw/frontier/ums/ums038/mvapich-plus/4.0/ofi/gnu/12.3/bin/mpicc
+/mnt/bb/matilderestelli/torch_env/bin/python
+/opt/rocm-7.1.1/bin/hipcc
+Python executable: /mnt/bb/matilderestelli/torch_env/bin/python
+CONDA_PREFIX: /mnt/bb/matilderestelli/torch_env
+ROCM_HOME: /opt/rocm-7.1.1
+PyTorch: 2.14.0a0
+Location: /mnt/bb/matilderestelli/torch_env/lib/python3.10/site-packages/torch/__init__.py
+HIP version: 7.1.52802
+HIP available: True
+GPU count: 8
+torchvision: 0.24.0
+has nms: True
+MPI available: True
+=== Starting: model=wide_resnet50_2, ws=8, bs=64, gb=512, lr=0.1, sched=cosine, warmup=0, mom=0.9, wd=5e-4, nesterov=true, wd_bn_bias=false, backend=mpi, hook=none, zfp=none at Tue Jul 28 10:51:06 AM EDT 2026 ===
+==== Runtime env debug ====
+__LMOD_REF_COUNT_PE_LIBSCI_REQUIRED_PRODUCTS=PE_MPICH:1
+MVP_CH4_OFI_ENABLE_HMEM=1
+MPICH_GPU_SUPPORT_ENABLED=1
+MVP_COMPRESSION_DATA_TYPE=FLOAT
+MVP_PMI_VERSION=2
+MVP_COMPRESSION_NUM_STREAM=16
+MPICH_OFI_NIC_POLICY=GPU
+ROCR_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+MV2_SHOW_ENV_INFO=1
+PE_LIBSCI_REQUIRED_PRODUCTS=PE_MPICH
+SLURM_JOB_GPUS=0,1,2,3,4,5,6,7
+MVP_ENABLE_GPU=1
+MVP_LMOD_MODULEPATH_ROOT=/sw/frontier/ums/ums038/
+MVP_COMPRESSION_BUFFER_SIZE=33554432
+FI_CXI_ATS=0
+MVP_ZFP_RATE=8
+MVP_CH4_OFI_ENABLE_MR_HMEM=1
+==== GPU visibility debug (batch shell) ====
+frontier06911
+[37mROCk module version 6.16.13 is loaded[0m
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.18
+Runtime Ext Version:     1.14
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+XNACK enabled:           NO
+DMAbuf Support:          YES
+VMM Support:             YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD EPYC 7A53 64-Core Processor    
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD EPYC 7A53 64-Core Processor    
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+DISTRIBUTED TRAINING LAUNCHER
+================================================================================
+  Model:      wide_resnet50_2 (CIFAR stem) (from scratch)
+  Dataset:    cifar10 (10 classes)
+  Image size: 32
+  LR:         0.1
+  Momentum:   0.9 (nesterov=True)
+  Optimizer:  sgd
+  Weight dec: 0.0005 (on BN/bias=False)
+  Backend:    mpi
+  Algorithm:  built-in (no hook)
+  Epochs:     20
+  Batch/rank: 64
+  LR:         0.1
+  Scheduler:  cosine
+  Warmup:     0
+  Grad clip:  None
+  Drop last:  True
+  Data dir:   ./data
+================================================================================
+
+
+================================================================================
+Distributed Training: WIDE_RESNET50_2 on CIFAR10
+Backend: MPI, Algorithm: built-in (no hook)
+================================================================================
+Ranks: 8, Epochs: 20, Batch/rank: 64, Effective batch: 512
+LR: 0.1, Device: cuda:0
+
+[Cache] Pretrained weights cache (TORCH_HOME) = /lustre/orion/gen243/proj-shared/matilderestelli/pretrained_weights_cache
+[Setup] Model on cuda:0, wrapped in DDP (static_graph=True)
+[Setup] No hook — using DDP built-in MPI allreduce
+[Optim] SGD: lr=0.1 momentum=0.9 nesterov=True wd=0.0005 wd_on_bn_bias=False
+[Optim]   group 0: 66,778,816 params, wd=0.0005
+[Optim]   group 1: 68,234 params, wd=0.0
+[Data] Train batches: 97, Val batches: 157
+
+[Sched] cosine: steps/epoch=97, total_steps=1940, warmup_steps=0 (0 epochs)
+
+
+[Epoch 1] Training... (lr at epoch start=0.100000)
+  Batch [50/97] Loss: 9.6235, Acc: 9.84%, lr: 0.099836
+[Epoch 1] Train Loss: 6.1492, Acc: 10.05%  |  Val Loss: 2.3122, Acc: 9.97%  |  Time: 197.3s
+[Epoch 1] t_iter median: 1691.78 ms  (fwd 24.84 | bwd+comm 1660.68 | opt 6.07 | data 0.11)  |  train-only epoch: 183.2s
+  -> Best model saved (9.97%)
+[Epoch 1] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=1 no hook timing samples
+[Epoch 1] Hook timing summary done
+
+[Epoch 2] Training... (lr at epoch start=0.099384)
+  Batch [50/97] Loss: 2.4197, Acc: 12.59%, lr: 0.098590
+[Epoch 2] Train Loss: 2.3560, Acc: 15.01%  |  Val Loss: 3.7555, Acc: 10.69%  |  Time: 168.7s
+[Epoch 2] t_iter median: 1683.31 ms  (fwd 24.81 | bwd+comm 1652.14 | opt 6.15 | data 0.12)  |  train-only epoch: 163.9s
+  -> Best model saved (10.69%)
+[Epoch 2] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=2 no hook timing samples
+[Epoch 2] Hook timing summary done
+
+[Epoch 3] Training... (lr at epoch start=0.097553)
+  Batch [50/97] Loss: 2.2881, Acc: 17.78%, lr: 0.096147
+[Epoch 3] Train Loss: 2.2577, Acc: 17.80%  |  Val Loss: 2.1994, Acc: 18.38%  |  Time: 169.0s
+[Epoch 3] t_iter median: 1680.35 ms  (fwd 24.81 | bwd+comm 1649.26 | opt 6.17 | data 0.10)  |  train-only epoch: 164.1s
+  -> Best model saved (18.38%)
+[Epoch 3] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=3 no hook timing samples
+[Epoch 3] Hook timing summary done
+
+[Epoch 4] Training... (lr at epoch start=0.094550)
+  Batch [50/97] Loss: 2.1860, Acc: 16.66%, lr: 0.092568
+[Epoch 4] Train Loss: 2.2004, Acc: 18.11%  |  Val Loss: 2.1512, Acc: 18.82%  |  Time: 168.6s
+[Epoch 4] t_iter median: 1685.98 ms  (fwd 24.82 | bwd+comm 1654.38 | opt 6.17 | data 0.10)  |  train-only epoch: 163.7s
+  -> Best model saved (18.82%)
+[Epoch 4] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=4 no hook timing samples
+[Epoch 4] Hook timing summary done
+
+[Epoch 5] Training... (lr at epoch start=0.090451)
+  Batch [50/97] Loss: 2.1250, Acc: 18.75%, lr: 0.087941
+[Epoch 5] Train Loss: 2.1110, Acc: 19.59%  |  Val Loss: 2.2135, Acc: 15.97%  |  Time: 169.0s
+[Epoch 5] t_iter median: 1684.33 ms  (fwd 24.84 | bwd+comm 1653.21 | opt 6.17 | data 0.10)  |  train-only epoch: 163.9s
+[Epoch 5] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=5 no hook timing samples
+[Epoch 5] Hook timing summary done
+
+[Epoch 6] Training... (lr at epoch start=0.085355)
+  Batch [50/97] Loss: 2.0749, Acc: 20.00%, lr: 0.082380
+[Epoch 6] Train Loss: 2.0712, Acc: 20.34%  |  Val Loss: 2.0387, Acc: 21.11%  |  Time: 173.3s
+[Epoch 6] t_iter median: 1704.14 ms  (fwd 24.81 | bwd+comm 1673.05 | opt 6.18 | data 0.10)  |  train-only epoch: 167.3s
+  -> Best model saved (21.11%)
+[Epoch 6] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=6 no hook timing samples
+[Epoch 6] Hook timing summary done
+
+[Epoch 7] Training... (lr at epoch start=0.079389)
+  Batch [50/97] Loss: 2.0795, Acc: 21.31%, lr: 0.076021
+[Epoch 7] Train Loss: 2.0423, Acc: 21.25%  |  Val Loss: 2.0084, Acc: 22.89%  |  Time: 169.5s
+[Epoch 7] t_iter median: 1687.76 ms  (fwd 24.81 | bwd+comm 1656.67 | opt 6.17 | data 0.10)  |  train-only epoch: 164.2s
+  -> Best model saved (22.89%)
+[Epoch 7] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=7 no hook timing samples
+[Epoch 7] Hook timing summary done
+
+[Epoch 8] Training... (lr at epoch start=0.072700)
+  Batch [50/97] Loss: 1.9832, Acc: 21.78%, lr: 0.069022
+[Epoch 8] Train Loss: 1.9871, Acc: 22.47%  |  Val Loss: 1.9891, Acc: 22.54%  |  Time: 169.2s
+[Epoch 8] t_iter median: 1684.71 ms  (fwd 24.87 | bwd+comm 1653.56 | opt 6.14 | data 0.11)  |  train-only epoch: 163.9s
+[Epoch 8] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=8 no hook timing samples
+[Epoch 8] Hook timing summary done
+
+[Epoch 9] Training... (lr at epoch start=0.065451)
+  Batch [50/97] Loss: 1.9303, Acc: 23.22%, lr: 0.061554
+[Epoch 9] Train Loss: 1.9273, Acc: 22.68%  |  Val Loss: 1.9761, Acc: 22.59%  |  Time: 172.0s
+[Epoch 9] t_iter median: 1700.86 ms  (fwd 24.87 | bwd+comm 1669.57 | opt 6.14 | data 0.11)  |  train-only epoch: 165.6s
+[Epoch 9] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=9 no hook timing samples
+[Epoch 9] Hook timing summary done
+
+[Epoch 10] Training... (lr at epoch start=0.057822)
+  Batch [50/97] Loss: 1.8986, Acc: 23.25%, lr: 0.053802
+[Epoch 10] Train Loss: 1.8960, Acc: 23.99%  |  Val Loss: 1.8967, Acc: 25.14%  |  Time: 171.4s
+[Epoch 10] t_iter median: 1692.69 ms  (fwd 24.85 | bwd+comm 1661.66 | opt 6.12 | data 0.16)  |  train-only epoch: 164.9s
+  -> Best model saved (25.14%)
+[Epoch 10] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=10 no hook timing samples
+[Epoch 10] Hook timing summary done
+
+[Epoch 11] Training... (lr at epoch start=0.050000)
+  Batch [50/97] Loss: 1.8785, Acc: 27.16%, lr: 0.045956
+[Epoch 11] Train Loss: 1.8802, Acc: 27.67%  |  Val Loss: 1.8823, Acc: 27.94%  |  Time: 172.8s
+[Epoch 11] t_iter median: 1689.39 ms  (fwd 24.84 | bwd+comm 1658.47 | opt 6.11 | data 0.10)  |  train-only epoch: 167.2s
+  -> Best model saved (27.94%)
+[Epoch 11] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=11 no hook timing samples
+[Epoch 11] Hook timing summary done
+
+[Epoch 12] Training... (lr at epoch start=0.042178)
+  Batch [50/97] Loss: 1.8819, Acc: 29.47%, lr: 0.038210
+[Epoch 12] Train Loss: 1.8477, Acc: 29.83%  |  Val Loss: 1.8128, Acc: 32.33%  |  Time: 169.8s
+[Epoch 12] t_iter median: 1681.54 ms  (fwd 24.81 | bwd+comm 1650.42 | opt 6.19 | data 0.10)  |  train-only epoch: 164.0s
+  -> Best model saved (32.33%)
+[Epoch 12] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=12 no hook timing samples
+[Epoch 12] Hook timing summary done
+
+[Epoch 13] Training... (lr at epoch start=0.034549)
+  Batch [50/97] Loss: 1.7897, Acc: 31.81%, lr: 0.030754
+[Epoch 13] Train Loss: 1.7703, Acc: 32.67%  |  Val Loss: 1.8041, Acc: 34.36%  |  Time: 169.2s
+[Epoch 13] t_iter median: 1677.79 ms  (fwd 24.83 | bwd+comm 1646.43 | opt 6.11 | data 0.10)  |  train-only epoch: 163.4s
+  -> Best model saved (34.36%)
+[Epoch 13] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=13 no hook timing samples
+[Epoch 13] Hook timing summary done
+
+[Epoch 14] Training... (lr at epoch start=0.027300)
+  Batch [50/97] Loss: 1.7021, Acc: 36.66%, lr: 0.023772
+[Epoch 14] Train Loss: 1.6861, Acc: 37.03%  |  Val Loss: 1.6550, Acc: 39.02%  |  Time: 169.9s
+[Epoch 14] t_iter median: 1680.61 ms  (fwd 24.82 | bwd+comm 1649.55 | opt 6.11 | data 0.10)  |  train-only epoch: 163.8s
+  -> Best model saved (39.02%)
+[Epoch 14] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=14 no hook timing samples
+[Epoch 14] Hook timing summary done
+
+[Epoch 15] Training... (lr at epoch start=0.020611)
+  Batch [50/97] Loss: 1.6547, Acc: 37.78%, lr: 0.017435
+[Epoch 15] Train Loss: 1.6468, Acc: 37.89%  |  Val Loss: 1.5817, Acc: 41.94%  |  Time: 170.6s
+[Epoch 15] t_iter median: 1687.83 ms  (fwd 24.84 | bwd+comm 1656.66 | opt 6.19 | data 0.10)  |  train-only epoch: 164.6s
+  -> Best model saved (41.94%)
+[Epoch 15] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=15 no hook timing samples
+[Epoch 15] Hook timing summary done
+
+[Epoch 16] Training... (lr at epoch start=0.014645)
+  Batch [50/97] Loss: 1.5946, Acc: 41.44%, lr: 0.011901
+[Epoch 16] Train Loss: 1.5940, Acc: 41.20%  |  Val Loss: 1.5622, Acc: 42.69%  |  Time: 171.1s
+[Epoch 16] t_iter median: 1691.73 ms  (fwd 24.87 | bwd+comm 1660.34 | opt 6.07 | data 0.11)  |  train-only epoch: 164.9s
+  -> Best model saved (42.69%)
+[Epoch 16] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=16 no hook timing samples
+[Epoch 16] Hook timing summary done
+
+[Epoch 17] Training... (lr at epoch start=0.009549)
+  Batch [50/97] Loss: 1.5501, Acc: 44.50%, lr: 0.007305
+[Epoch 17] Train Loss: 1.5386, Acc: 44.22%  |  Val Loss: 1.5092, Acc: 44.71%  |  Time: 172.3s
+[Epoch 17] t_iter median: 1704.71 ms  (fwd 24.83 | bwd+comm 1673.71 | opt 5.87 | data 0.10)  |  train-only epoch: 166.1s
+  -> Best model saved (44.71%)
+[Epoch 17] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=17 no hook timing samples
+[Epoch 17] Hook timing summary done
+
+[Epoch 18] Training... (lr at epoch start=0.005450)
+  Batch [50/97] Loss: 1.5222, Acc: 44.94%, lr: 0.003760
+[Epoch 18] Train Loss: 1.5295, Acc: 44.94%  |  Val Loss: 1.4825, Acc: 45.65%  |  Time: 171.7s
+[Epoch 18] t_iter median: 1697.67 ms  (fwd 24.83 | bwd+comm 1666.08 | opt 5.86 | data 0.10)  |  train-only epoch: 165.4s
+  -> Best model saved (45.65%)
+[Epoch 18] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=18 no hook timing samples
+[Epoch 18] Hook timing summary done
+
+[Epoch 19] Training... (lr at epoch start=0.002447)
+  Batch [50/97] Loss: 1.5019, Acc: 44.81%, lr: 0.001353
+[Epoch 19] Train Loss: 1.4935, Acc: 44.81%  |  Val Loss: 1.4550, Acc: 46.55%  |  Time: 171.2s
+[Epoch 19] t_iter median: 1691.51 ms  (fwd 24.84 | bwd+comm 1660.59 | opt 5.89 | data 0.10)  |  train-only epoch: 164.8s
+  -> Best model saved (46.55%)
+[Epoch 19] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=19 no hook timing samples
+[Epoch 19] Hook timing summary done
+
+[Epoch 20] Training... (lr at epoch start=0.000616)
+  Batch [50/97] Loss: 1.4664, Acc: 48.00%, lr: 0.000145
+[Epoch 20] Train Loss: 1.4648, Acc: 47.12%  |  Val Loss: 1.4619, Acc: 46.42%  |  Time: 171.6s
+[Epoch 20] t_iter median: 1693.85 ms  (fwd 24.84 | bwd+comm 1663.03 | opt 5.91 | data 0.09)  |  train-only epoch: 165.0s
+[Epoch 20] Summarizing hook timing...
+[HOOK_TIMING_SUMMARY] epoch=20 no hook timing samples
+[Epoch 20] Hook timing summary done
+
+================================================================================
+Done in 3474.6s | Best val acc: 46.55%
+Epoch times (train+val): mean=171.9s  min=168.6s  max=197.3s
+Train-only epoch time (epochs 2..N): median=164.57s  min=163.42s  max=167.30s
+  -> use this for STRONG scaling (fixed global batch)
+  -> use t_iter_median_ms from the CSV for WEAK scaling (fixed local batch)
+================================================================================
+FAILED at line 232

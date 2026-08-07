@@ -1,15 +1,19 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p extended
-#SBATCH -J ddp-train-frontier_8gpus_64b
-#SBATCH -N 2  
+#SBATCH -p batch
+#SBATCH -q debug
+#SBATCH -J ddp-train-frontier_rccl_32gpus_4b_16b
+#SBATCH -N 1
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
-#SBATCH --cpus-per-task=7            
-#SBATCH -t 08:00:00   
-#SBATCH -C nvme            
-#SBATCH -o ddp_train_frontier_rccl_8gpus_64b.%j.out       
-#SBATCH -e ddp_train_frontier_rccl_8gpus_64b.%j.err           
+#SBATCH --gpus-per-task=1
+#SBATCH --cpus-per-task=7
+#SBATCH --gpu-bind=closest
+#SBATCH -t 02:00:00
+#SBATCH -C nvme
+#SBATCH -o ddp_train_frontier_rccl_32gpus_4b_16b.%j.out
+#SBATCH -e ddp_train_frontier_rccl_32gpus_4b_16b.%j.err
+ 
 
 
 #ask for a compute node 
@@ -33,9 +37,16 @@ export PRETRAINED_WEIGHTS_CACHE=/lustre/orion/gen243/proj-shared/matilderestelli
 export DDP_ITER_LOG=0        # per-rank JSONL off (space); set 1 for a few configs
 export DDP_PROFILE_BARRIER=0 # MUST stay 0 for timing runs — it kills bwd/comm overlap
 unset MPICH_OFI_NIC_POLICY
+# --- rendezvous for env:// init (multi-node NCCL/RCCL) ---
+export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n1)
+export MASTER_PORT=$(( 29500 + (SLURM_JOB_ID % 20000) ))
+echo "MASTER_ADDR=$MASTER_ADDR  MASTER_PORT=$MASTER_PORT"
+export GLOO_SOCKET_IFNAME=hsn0
+export TORCH_DISTRIBUTED_DEBUG=OFF
 
 # Edit these lists to run multiple experiments inside one queued job.
 # Leave only one active value in each list for a single run.
+
 
 NUM_PROCS=8
 PPN=8
@@ -62,15 +73,18 @@ IMAGE_SIZES=(
 )
 
 NUM_EPOCHS_LIST=(
-    "20"
+    "10"
+    #"20"
     # "50"
     # "100"
 )
 
 BATCH_SIZES=(
-    # "8"       # weak scaling local batch 8, total 128
-    #"16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    #"4"
+    #"8"       # weak scaling local batch 8, total 128
+    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
     #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
+    #"4"
     "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
 )
@@ -78,11 +92,9 @@ BATCH_SIZES=(
 LEARNING_RATES=(
     #"0.0001"
     #"0.001"    # paper-style CIFAR reproduction
-    #"0.003" 
-    #"0.01"
-    #"0.05"
+    # "0.01"
+    # "0.05"
     "0.1"
-    #"0.2"
 )
 
 MOMENTUMS=(
@@ -92,13 +104,12 @@ MOMENTUMS=(
 
 OPTIMIZERS=(
     "sgd"        # A1–A5
-    #"adamw"    # A6–A7 (paper's lr=0.001 is probably an Adam LR)
+    # "adamw"    # A6–A7 (paper's lr=0.001 is probably an Adam LR)
 )
 
 WEIGHT_DECAYS=(
     "5e-4"     # standard CIFAR WRN
-    #"0.05"  #adam 
-    # "1e-4"   # B3 and imagenet
+    # "1e-4"   # B3
 )
 
 NESTEROV_VALUES=(
@@ -146,7 +157,7 @@ DROP_LAST_VALUES=(
 )
 
 BACKENDS=(
-    # "mpi"
+    #"mpi"
     "nccl"
 )
 
@@ -156,17 +167,16 @@ EXPERIMENTS=(
     #"none:"
     #"ring:"
     #"ring_zfp_naive:16"
-    "ring_zfp_online_coll:4"
-    "ring_zfp_online_coll:8"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:4"
-    "recursive_doubling_zfp_online_coll:8"
+    "ring_zfp_online_coll:16"
+    #"ring_zfp_online_coll:8"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    "recursive_doubling_zfp_online_coll:16"
+    #"recursive_doubling_zfp_online_coll:8"
     #"default:"
-    #"default_sync:"
-    #"default_clone:"
-    #"default_cpu_stage:"
 )
+
+RUN_IDX=0
 
 for MODEL_NAME in "${MODELS[@]}"; do
 for DATASET in "${DATASETS[@]}"; do
@@ -188,6 +198,10 @@ for WEIGHT_DECAY in "${WEIGHT_DECAYS[@]}"; do
 for NESTEROV in "${NESTEROV_VALUES[@]}"; do
 for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
     for EXPERIMENT in "${EXPERIMENTS[@]}"; do
+    
+        export MASTER_PORT=$(( 29500 + (SLURM_JOB_ID % 20000) + RUN_IDX ))
+        RUN_IDX=$((RUN_IDX + 1))
+
         COMM_ALGORITHM="${EXPERIMENT%%:*}"
         ZFP_RATE="${EXPERIMENT#*:}"
 
@@ -223,7 +237,7 @@ for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
         unset MIOPEN_FIND_MODE
         unset MIOPEN_FIND_ENFORCE
 
-        export TORCH_DISTRIBUTED_DEBUG=DETAIL
+        export TORCH_DISTRIBUTED_DEBUG=OFF
         export TORCH_NCCL_ASYNC_ERROR_HANDLING=1
 
         if [[ -n "${ZFP_RATE}" ]]; then
@@ -246,8 +260,9 @@ for WD_ON_BN_BIAS in "${WD_ON_BN_BIAS_VALUES[@]}"; do
         command -v rocminfo >/dev/null 2>&1 && rocminfo | head -n 30 || true
 
         srun --exact -n "${NUM_PROCS}" --ntasks-per-node="${PPN}" \
-            --cpus-per-task="${SLURM_CPUS_PER_TASK:-1}" \
+            --cpus-per-task=7 \
             --gpus-per-task=1 \
+            --gpu-bind=map_gpu:0,1,2,3,4,5,6,7 \
             python -u interface.py
 
         status=$?
@@ -282,3 +297,6 @@ echo "=== Job finished: $(date) ==="
 
 # salloc -A gen243 -p batch -J torch-build-and-pack -N 1 -t 00:30:00 -c 16 -C nvme
 # squeue -j <jobid> -o "%.18i %.9P %.10T %.8u %.10M %.20S %.6D %R"
+
+
+# salloc -A gen243 -p extended -J ddp-train-frontier_test2Nodes -N 2 --ntasks-per-node=8 --gpus-per-node=8 --gpus-per-task=1 --gpu-bind=closest --cpus-per-task=8  -t 03:30:00 -C nvme   

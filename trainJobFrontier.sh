@@ -1,12 +1,13 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p extended
+#SBATCH -p batch
+#SBATCH -q debug
 #SBATCH -J ddp-train-frontier_8gpus_16b_64b
 #SBATCH -N 1  
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
 #SBATCH --cpus-per-task=7                
-#SBATCH -t 08:00:00   
+#SBATCH -t 02:00:00   
 #SBATCH -C nvme            
 #SBATCH -o ddp_train_frontier_8gpus_16b_64b.%j.out       
 #SBATCH -e ddp_train_frontier_8gpus_16b_64b.%j.err       
@@ -65,14 +66,15 @@ IMAGE_SIZES=(
 )
 
 NUM_EPOCHS_LIST=(
-    "20"
+    "10"
+    #"20"
     # "50"
     # "100"
 )
 
 BATCH_SIZES=(
     # "8"       # weak scaling local batch 8, total 128
-    #"16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
+    "16"       # weak scaling local batch 16 (only one that works on Polaris supercompter)
     #"32"       # strong global scaling -> keep 32 fixed as local batch size, total 512 on 16 GPUs
     "64"    # strong global 256 on 4 GPUs
     # "128"   # weak scaling local batch 128
@@ -149,7 +151,7 @@ DROP_LAST_VALUES=(
 )
 
 BACKENDS=(
-    @"mpi"
+    "mpi"
     # "nccl"
 )
 
@@ -166,8 +168,6 @@ EXPERIMENTS=(
     #"recursive_doubling_zfp_online_coll:16"
     #"recursive_doubling_zfp_online_coll:8"
     "ring_zfp_online_coll:8"
-    "ring_zfp_online_coll:4"
-    "recursive_doubling_zfp_online_coll:4"
     #"default:"
     #"default_sync:"
     #"default_clone:"

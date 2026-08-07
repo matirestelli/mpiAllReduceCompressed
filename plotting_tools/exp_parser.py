@@ -32,6 +32,20 @@ RE_START_BLOCK = re.compile(
     r"=== Starting:\s*model=([^,]+),\s*ws=(\d+),\s*bs=(\d+),\s*gb=(\d+),\s*lr=([0-9.eE+-]+),.*?backend=([^,]+),\s*hook=([^,]+),\s*zfp=([^\s]+)"
 )
 
+# Polaris/ALCF format: many runs concatenated in one .out, each delimited by
+#   === Starting training: model=..., dataset=..., batch=..., lr=..., scheduler=...,
+#                          backend=..., hook=..., zfp_rate=... ===
+#   ...
+#   === Finished training: ...same fields..., status=0 at <time> ===
+# The Finished line is the most reliable (carries every config field + status).
+_RE_RUN_FIELDS = (
+    r"model=(?P<model>[^,]+),\s*dataset=(?P<dataset>[^,]+),\s*"
+    r"batch=(?P<batch>\d+),\s*lr=(?P<lr>[0-9.eE+-]+),\s*scheduler=(?P<scheduler>[^,]+),\s*"
+    r"backend=(?P<backend>[^,]+),\s*hook=(?P<hook>[^,]+),\s*zfp_rate=(?P<zfp>[^,\s]+)"
+)
+RE_FINISHED_META = re.compile(r"=== Finished training:\s*" + _RE_RUN_FIELDS)
+RE_STARTING_META = re.compile(r"=== Starting training:\s*" + _RE_RUN_FIELDS)
+
 def safe_float(x):
     try:
         return float(x)
@@ -276,7 +290,119 @@ def parse_out_file(path: Path) -> pd.DataFrame:
                 flush()
 
     flush()
+
+    if not records:
+        # Polaris/ALCF format: multiple runs in one file, delimited by
+        # "=== Finished training: ... ===". Accumulate each run's text and parse
+        # its config from the Finished line (falling back to a trailing
+        # "=== Starting training:" run that never finished, e.g. a crash).
+        chunk = []
+        for line in lines:
+            chunk.append(line)
+            mf = RE_FINISHED_META.search(line)
+            if mf:
+                rec = _rec_from_run_chunk("\n".join(chunk), mf.groupdict(), path)
+                if _record_has_content(rec):
+                    records.append(rec)
+                chunk = []
+        if chunk:
+            block_text = "\n".join(chunk)
+            ms = RE_STARTING_META.search(block_text)
+            if ms:
+                rec = _rec_from_run_chunk(block_text, ms.groupdict(), path)
+                if _record_has_content(rec):
+                    records.append(rec)
+
+    if not records:
+        # Single-run SLURM output (one run per file) in the logs/*.log header
+        # format. Parse the whole file as one run. Only triggers when neither
+        # block format was present, so it never affects multi-run outputs.
+        rec = parse_log_file(path)
+        rec["source_file"] = str(path)
+        rec["source_kind"] = "out"
+        rec["dataset"] = rec.get("dataset") or "cifar10"
+        if _record_has_content(rec):
+            records.append(rec)
+
     return pd.DataFrame(records)
+
+def _rec_from_run_chunk(block_text: str, meta: dict, path: Path) -> dict:
+    """Build one record from a single run's text block, using config fields taken
+    from its Starting/Finished line (Polaris/ALCF concatenated-.out format)."""
+    zfp = meta.get("zfp")
+    zfp_rate = None if (not zfp or str(zfp).strip().lower() == "none") else str(zfp).strip()
+
+    rec = {
+        "source_file": str(path),
+        "source_kind": "out",
+        "model": (meta.get("model") or "").strip() or None,
+        "dataset": (meta.get("dataset") or "cifar10").strip(),
+        "backend": (meta.get("backend") or "").strip().lower() or None,
+        "algorithm": normalize_algorithm(meta.get("hook")),
+        "zfp_rate": zfp_rate,
+        "method": None,
+        "ranks": math.nan,
+        "epochs": math.nan,
+        "batch_per_rank": math.nan,
+        "global_batch": math.nan,
+        "lr": safe_float(meta.get("lr")),
+        "best_val_acc": math.nan,
+        "train_only_epoch_s": math.nan,
+        "epoch_wall_mean_s": math.nan,
+        "t_iter_median_ms": math.nan,
+        "hook_work_mean_ms": math.nan,
+        "tail_mean_ms": math.nan,
+    }
+
+    m = RE_RANKS.search(block_text)
+    if m:
+        rec["ranks"] = int(m.group(1))
+        rec["epochs"] = int(m.group(2))
+        rec["batch_per_rank"] = int(m.group(3))
+        rec["global_batch"] = int(m.group(4))
+
+    titer = RE_TITER.findall(block_text)
+    if titer:
+        rec["t_iter_median_ms"] = safe_float(titer[-1][0])
+
+    train_only = RE_TRAIN_ONLY.findall(block_text)
+    if train_only:
+        rec["train_only_epoch_s"] = safe_float(train_only[-1])
+
+    epoch_times = [safe_float(mm.group(2)) for mm in RE_EPOCH_TOTAL.finditer(block_text)]
+    if epoch_times:
+        rec["epoch_wall_mean_s"] = sum(epoch_times) / len(epoch_times)
+
+    done = RE_DONE.search(block_text)
+    if done:
+        rec["best_val_acc"] = safe_float(done.group(2))
+
+    work = RE_WORK.findall(block_text)
+    if work:
+        rec["hook_work_mean_ms"] = safe_float(work[-1][3])
+        rec["zfp_rate"] = rec["zfp_rate"] or infer_zfp_rate(work[-1][0])
+
+    tail = RE_TAIL.findall(block_text)
+    if tail:
+        rec["tail_mean_ms"] = safe_float(tail[-1][3])
+        rec["zfp_rate"] = rec["zfp_rate"] or infer_zfp_rate(tail[-1][0])
+
+    rec["method"] = pretty_method_name(rec["algorithm"], rec["zfp_rate"])
+    return rec
+
+def _record_has_content(rec: dict) -> bool:
+    """True if a parsed record carries at least one real measurement/identifier,
+    so blank or non-training .out/.txt files don't inject spurious rows."""
+    if rec is None:
+        return False
+    if rec.get("model"):
+        return True
+    for k in ("ranks", "train_only_epoch_s", "epoch_wall_mean_s",
+              "t_iter_median_ms", "best_val_acc", "hook_work_mean_ms", "tail_mean_ms"):
+        v = rec.get(k)
+        if v is not None and not (isinstance(v, float) and math.isnan(v)):
+            return True
+    return False
 
 def _is_valid_acc(x) -> bool:
     return pd.notna(x)

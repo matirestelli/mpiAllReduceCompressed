@@ -1,0 +1,84 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="white"/>
+
+  <defs>
+    <marker id="arrowO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#ff9e1c"/>
+    </marker>
+    <marker id="arrowP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#b50094"/>
+    </marker>
+    <marker id="arrowR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#fe5000"/>
+    </marker>
+    <marker id="arrowD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#4e008e"/>
+    </marker>
+
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- Ring arrows -->
+  <path d="M435 165 C540 95, 660 95, 765 165" stroke="#ff9e1c" stroke-width="5" fill="none" marker-end="url(#arrowO)" stroke-linecap="round"/>
+  <path d="M860 275 C930 375, 930 525, 860 625" stroke="#fe5000" stroke-width="5" fill="none" marker-end="url(#arrowR)" stroke-linecap="round"/>
+  <path d="M765 735 C660 805, 540 805, 435 735" stroke="#4e008e" stroke-width="5" fill="none" marker-end="url(#arrowD)" stroke-linecap="round"/>
+  <path d="M340 625 C270 525, 270 375, 340 275" stroke="#b50094" stroke-width="5" fill="none" marker-end="url(#arrowP)" stroke-linecap="round"/>
+
+  <!-- GPU-0 -->
+  <text x="310" y="135" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#333">GPU-0</text>
+  <rect x="220" y="160" width="220" height="160" rx="18" fill="white" stroke="#333" stroke-width="3" filter="url(#shadow)"/>
+
+  <rect x="255" y="205" width="36" height="70" rx="8" fill="#ff9e1c"/>
+  <rect x="300" y="205" width="36" height="70" rx="8" fill="#b50094"/>
+  <rect x="345" y="205" width="36" height="70" rx="8" fill="#fe5000"/>
+  <rect x="390" y="205" width="36" height="70" rx="8" fill="#4e008e"/>
+
+  <text x="273" y="247" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="white">a1</text>
+  <text x="318" y="247" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="white">a2</text>
+  <text x="363" y="247" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="white">a3</text>
+  <text x="408" y="247" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="white">a4</text>
+
+  <!-- GPU-1 -->
+  <text x="690" y="135" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#333">GPU-1</text>
+  <rect x="600" y="160" width="220" height="160" rx="18" fill="white" stroke="#333" stroke-width="3" filter="url(#shadow)"/>
+
+  <rect x="635" y="185" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="635" y="225" width="36" height="35" rx="8" fill="#ff9e1c"/>
+  <rect x="635" y="265" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="635" y="305" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+
+  <text x="653" y="208" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">b1</text>
+  <text x="653" y="248" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="white">b2</text>
+  <text x="653" y="288" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">b3</text>
+  <text x="653" y="328" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">b4</text>
+
+  <!-- GPU-2 -->
+  <text x="690" y="585" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#333">GPU-2</text>
+  <rect x="600" y="610" width="220" height="160" rx="18" fill="white" stroke="#333" stroke-width="3" filter="url(#shadow)"/>
+
+  <rect x="695" y="635" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="695" y="675" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="695" y="715" width="36" height="35" rx="8" fill="#b50094"/>
+  <rect x="695" y="755" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+
+  <text x="713" y="658" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">c1</text>
+  <text x="713" y="698" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">c2</text>
+  <text x="713" y="738" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="white">c3</text>
+  <text x="713" y="778" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">c4</text>
+
+  <!-- GPU-3 -->
+  <text x="310" y="585" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#333">GPU-3</text>
+  <rect x="220" y="610" width="220" height="160" rx="18" fill="white" stroke="#333" stroke-width="3" filter="url(#shadow)"/>
+
+  <rect x="350" y="635" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="350" y="675" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="350" y="715" width="36" height="35" rx="8" fill="#ECECEC" stroke="#999"/>
+  <rect x="350" y="755" width="36" height="35" rx="8" fill="#4e008e"/>
+
+  <text x="368" y="658" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">d1</text>
+  <text x="368" y="698" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">d2</text>
+  <text x="368" y="738" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#666">d3</text>
+  <text x="368" y="778" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="white">d4</text>
+</svg>

@@ -1,17 +1,18 @@
 #!/bin/bash -l
 #SBATCH -A gen243
-#SBATCH -p extended
-#SBATCH -J ddp-train-frontier_32gpus_8b_32b_128b
+#SBATCH -p batch
+#SBATCH -q debug
+#SBATCH -J ddp-train-frontier_8gpus_8b_32b_128b
 #SBATCH -N 4
 #SBATCH --ntasks-per-node=8
 #SBATCH --gpus-per-node=8
 #SBATCH --gpus-per-task=1
 #SBATCH --cpus-per-task=7
 #SBATCH --gpu-bind=closest
-#SBATCH -t 08:00:00
+#SBATCH -t 02:00:00
 #SBATCH -C nvme
-#SBATCH -o ddp_train_frontier_32gpus_8b_32b_128b.%j.out
-#SBATCH -e ddp_train_frontier_32gpus_8b_32b_128b.%j.err
+#SBATCH -o ddp_train_frontier_8gpus_8b_32b_128b.%j.out
+#SBATCH -e ddp_train_frontier_8gpus_8b_32b_128b.%j.err
 
 
 #ask for a compute node
@@ -49,7 +50,7 @@ export DDP_PROFILE_BARRIER=0 # MUST stay 0 for timing runs — it kills bwd/comm
 export MPICH_OFI_NIC_POLICY=GPU
 
 
-NUM_PROCS=32
+NUM_PROCS=8
 PPN=8
 # processes per node
 NNODES=$(( (NUM_PROCS + PPN - 1) / PPN ))
@@ -81,9 +82,9 @@ IMAGE_SIZES=(
 # BATCH_SIZE and LEARNING_RATE must be PAIRED here, not cross-producted.
 WEAK_CONFIGS=(
     # P=8
-    #"8:0.05"     # gb 64
-    #"32:0.20"    # gb 256
-    #"128:0.80"   # gb 1024
+    "8:0.05"     # gb 64
+    "32:0.20"    # gb 256
+    "128:0.80"   # gb 1024
 
     # P=16
     #"8:0.10"    # gb 128
@@ -91,15 +92,15 @@ WEAK_CONFIGS=(
     #"128:1.60"  # gb 2048
 
     # P=32
-    "8:0.20"    # gb 256
-    "32:0.80"   # gb 1024
-    "128:3.20"  # gb 4096
+    #"8:0.20"    # gb 256
+    #"32:0.80"   # gb 1024
+    #"128:3.20"  # gb 4096
 )
 
 NUM_EPOCHS_LIST=(
-    #"5"        # P=8
+    "5"        # P=8
     #"8"      # P=16
-    "12"     # P=32
+    #"12"     # P=32
 )
 
 MOMENTUMS=(
@@ -174,16 +175,17 @@ BACKENDS=(
 # Full list only at bs=32 (main operating point). bs=8 and bs=128 bracket the
 
 EXPERIMENTS=(
-    "none:"
-    "ring:"
-    "ring_zfp_naive:16"
-    "ring_zfp_online_coll:16"
-    "ring_zfp_online_coll:10"
-    "recursive_doubling:"
-    "recursive_doubling_zfp_naive:16"
-    "recursive_doubling_zfp_online_coll:16"
-    "recursive_doubling_zfp_online_coll:8"
-    "default:"
+    #"none:"
+    #"ring:"
+    #"ring_zfp_naive:16"
+    #"ring_zfp_online_coll:16"
+    #"ring_zfp_online_coll:10"
+    "ring_zfp_online_coll:8"
+    #"recursive_doubling:"
+    #"recursive_doubling_zfp_naive:16"
+    #"recursive_doubling_zfp_online_coll:16"
+    #"recursive_doubling_zfp_online_coll:8"
+    #"default:"
     #"default_sync:"
     #"default_clone:"
     #"default_cpu_stage:"
