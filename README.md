@@ -348,3 +348,4 @@ resnext101_32x8d_20_mpi_recursive_doubling_zfp_online_coll_rate8.log
 ## Regenerate Figures from Existing Logs
 
 Run plotting scripts from the repository root unless noted otherwise.
+
